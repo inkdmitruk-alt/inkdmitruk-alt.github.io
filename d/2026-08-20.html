@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ранковий дайджест</title>
+</head>
+<body>
+
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--text:#1c2230;--muted:#67748b;--accent:#2f6bdb;
+--border:#e3e7ee;--up:#188a4b;--down:#cf3543;--chip:#edf1f9;--note:#f3f7ff;--noteb:#2f6bdb;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0e1116;--card:#161b23;
+--text:#e7ebf2;--muted:#93a0b4;--accent:#6ea1ff;--border:#28303d;--chip:#1d2530;
+--note:#18202e;--noteb:#6ea1ff;--up:#3fbf7a;--down:#ef6a75;}}
+:root[data-theme="dark"]{--bg:#0e1116;--card:#161b23;--text:#e7ebf2;--muted:#93a0b4;
+--accent:#6ea1ff;--border:#28303d;--chip:#1d2530;--note:#18202e;--noteb:#6ea1ff;
+--up:#3fbf7a;--down:#ef6a75;}
+*{box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);margin:0;padding:22px 14px 40px;
+font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
+.wrap{max-width:780px;margin:0 auto;}
+h1{font-size:1.45rem;margin:0 0 2px;text-wrap:balance;}
+.date{color:var(--muted);font-size:.9rem;margin-bottom:14px;}
+.prices{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;}
+.prices span{background:var(--chip);border:1px solid var(--border);border-radius:999px;
+padding:5px 13px;font-size:.85rem;white-space:nowrap;font-variant-numeric:tabular-nums;}
+.up{color:var(--up);font-weight:650;}.down{color:var(--down);font-weight:650;}
+nav.toc{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 20px;}
+nav.toc a{background:var(--card);border:1px solid var(--border);border-radius:999px;
+padding:5px 12px;font-size:.83rem;color:var(--text);text-decoration:none;}
+nav.toc a:hover{border-color:var(--accent);color:var(--accent);}
+section{background:var(--card);border:1px solid var(--border);border-radius:16px;
+padding:16px 18px;margin-bottom:16px;scroll-margin-top:12px;}
+h2{font-size:1.08rem;margin:0 0 6px;text-wrap:balance;}
+h2 .cnt{color:var(--muted);font-weight:400;font-size:.8rem;}
+ul.tldr{margin:6px 0 0;padding-left:20px;}
+ul.tldr li{margin-bottom:10px;}
+details{border-top:1px solid var(--border);}
+details:first-of-type{border-top:none;}
+summary{cursor:pointer;font-weight:600;line-height:1.5;list-style:none;
+padding:12px 4px 12px 22px;position:relative;border-radius:8px;}
+summary::-webkit-details-marker{display:none;}
+summary::before{content:"▸";position:absolute;left:2px;top:12px;color:var(--accent);
+transition:transform .15s ease;}
+details[open] summary::before{transform:rotate(90deg);}
+summary:hover{color:var(--accent);}
+summary .tag{color:var(--muted);font-weight:400;font-size:.78rem;white-space:nowrap;}
+.body{margin:0 0 8px;padding:0 4px 0 22px;}
+.note{margin:8px 0;padding:9px 12px 9px 14px;background:var(--note);
+border-left:3px solid var(--noteb);border-radius:0 10px 10px 0;font-size:.94rem;}
+.note b{color:var(--accent);}
+.src{font-size:.84rem;margin:0 0 12px;padding:0 4px 0 22px;color:var(--muted);}
+.src a{color:var(--accent);text-decoration:none;}
+.src a:hover{text-decoration:underline;}
+footer{color:var(--muted);font-size:.8rem;margin-top:16px;line-height:1.55;}
+footer a{color:var(--accent);text-decoration:none;}
+@media (prefers-reduced-motion: reduce){summary::before{transition:none;}}
+
+.sitenav{position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+padding:9px 14px;margin:-22px -14px 18px;background:var(--card);border-bottom:1px solid var(--border);
+backdrop-filter:saturate(150%) blur(8px);}
+.sitenav a{font-size:.85rem;text-decoration:none;color:var(--muted);padding:5px 11px;border-radius:999px;
+border:1px solid transparent;white-space:nowrap;}
+.sitenav a:hover{color:var(--accent);border-color:var(--border);}
+.sitenav a.on{color:var(--accent);border-color:var(--accent);font-weight:600;}
+.sitenav .sp{flex:1;}
+</style>
+<div class="wrap"><nav class="sitenav"><a href="/" class="on">☕ Дайджест</a><a href="/en.html">📊 Economic Brief</a><a href="/archive.html">🗂 Архів</a><span class="sp"></span><span style="font-size:.8rem;color:var(--muted)">20 серпня 2026</span></nav>
+<h1>☕ Ранковий дайджест</h1>
+<div class="date">Четвер, 20 серпня 2026 · вечірній випуск (ранковий пропущено через збій дозволів — виправлено) · сформовано 16:55, Нью-Йорк</div>
+<div class="prices">
+<span>BTC $72 866 <span class="up">+6,1%</span></span>
+<span>ETH $2 327 <span class="up">+9,6%</span></span>
+<span>S&amp;P 500 7 641 <span class="down">−0,87%</span></span>
+<span>Nasdaq 26 067 <span class="down">−1,00%</span></span>
+<span>Dow 52 759 <span class="down">−1,32%</span></span>
+</div>
+<nav class="toc">
+<a href="#top">🔥 Головне</a><a href="#ua">🇺🇦 Україна</a><a href="#usa">🇺🇸 США</a><a href="#world">🌍 Світ</a><a href="#immi">🛂 Імміграція</a><a href="#docs">📄 Документи</a><a href="#mkt">📈 Ринки</a><a href="#crypto">₿ Крипто</a><a href="#ai">🤖 AI</a><a href="#tattoo">🎨 Тату</a>
+</nav>
+
+<section id="top"><h2>🔥 Головне за добу</h2>
+<ul class="tldr">
+<li>🇺🇦 <b>Масована комбінована атака на Київ і область: щонайменше 17 загиблих за добу</b> — балістика, крилаті ракети й дрони; знову зачеплена дитяча лікарня, вперше за місяці вдень уражена критична інфраструктура столиці.</li>
+<li>📉 <b>Dow обвалився на ~700 пунктів (−1,3%)</b> — план Мінфіну США приборкати дохідності облігацій провалився; Walmart −9% після слабкого прогнозу.</li>
+<li>₿ <b>Bitcoin пробив шеститижневий діапазон і сягнув ~$72,9 тис. (+6%)</b> — рекордні $3 млрд ліквідованих шортів і найбільший приплив у BTC-ETF за 3,5 місяця.</li>
+<li>🛂 <b>USCIS автоматично продовжив прострочені дозволи на роботу українцям із TPS</b>, чиї заявки на продовження застрягли в обробці — дірку закрито до дедлайну 19 жовтня.</li>
+<li>🇺🇸 <b>Мінфін США про Іран: санкції «розчавлять економіку і обвалять режим»</b> — великих бойових дій не планують; нафта подорожчала.</li>
+<li>🕵️ <b>НАБУ оголосило операцію «Феміда»: рейдерські захоплення з хакерами, підробленими документами й суддями</b> — фігуранти ті ж, що у «Форест Гампі»; Sense Bank виставляють на продаж, кошти — на ЗСУ.</li>
+<li>🛂 <b>США депортували перших 20 із 1 200 мігрантів у Ліберію</b> за новою угодою про «треті країни».</li>
+<li>🤖 <b>The Verge: OpenAI входить в «еру Брокмана»</b> — президент компанії різко розширює вплив; запущено ініціативу AI Futures.</li>
+</ul></section>
+
+<section id="ua"><h2>🇺🇦 Україна <span class="cnt">· 7 новин</span></h2>
+
+<details open><summary>Атака на Київ, Бориспіль і Бровари: 17 загиблих, удар по критичній інфраструктурі <span class="tag">· УП / Суспільне / ОП</span></summary>
+<p class="body">Росія комбінувала балістику, крилаті ракети і дрони «щоб якомога сильніше вдарити» (Зеленський). За добу в столиці щонайменше 17 загиблих; зачеплені дитяча лікарня, склади й бізнес-центр у Голосіївському районі (вечірня атака дронів — ще один загиблий). Зеленський: ~90% крилатих ракет збито, «з балістикою ситуація гірша». Кличко: Росія «цілеспрямовано» била по критичній інфраструктурі — вперше за кілька місяців; можливі перебої з гарячою водою. Понад 600 рятувальників працювали в Києві, Борисполі та Броварах. У Голосіївському фіксують погіршення повітря.</p>
+<p class="src">Джерела: <a href="https://www.pravda.com.ua/news/2026/08/20/8049564/">УП (17 загиблих)</a> · <a href="https://www.pravda.com.ua/news/2026/08/20/8049591/">УП (Зеленський про ППО)</a> · <a href="https://www.bbc.co.uk/news/articles/c98vzmden5yo">BBC (Кличко)</a> · <a href="https://t.me/V_Zelenskiy_official/20462">ОП</a> · <a href="https://kyivindependent.com/ukraine-war-latest-at-least-15-dead-after-mass-russian-missile-drone-attack-on-kyiv/">Kyiv Independent</a></p>
+</details>
+
+<details><summary>Бізнес під прицілом: вигоріли склади шести мереж, гривня — історичний мінімум до євро <span class="tag">· ЕП / Forbes</span></summary>
+<p class="body">За добу зруйновано або пошкоджено нафтобазу KLO, склади «ЕКО Маркет», Varus, «Фора» (збитки 100+ млн грн; склад пропрацював тиждень після попереднього удару), Yves Rocher і виробника морозива «Файні льоди». НБУ зафіксував історичний мінімум гривні до євро. Мінагро: становище агросектору через блокаду одеських портів гірше, ніж навесні 2022-го; втім, дефіциту продовольства не прогнозують.</p>
+<p class="src">Джерела: <a href="https://epravda.com.ua/biznes/rf-atakuvala-naftobazu-klo-u-kijivskiy-oblasti-20-serpnya-824818/">ЕП (KLO)</a> · <a href="https://t.me/Forbes_Ukraine_official/32785">Forbes (Фора)</a> · <a href="https://epravda.com.ua/finances/grivnya-onovila-istorichniy-minimum-do-yevro-kurs-nbu-na-21-serpnya-824814/">ЕП (гривня)</a> · <a href="https://epravda.com.ua/power/blokada-portiv-odesi-pogirshila-stanovishche-agrosektoru-minagro-824817/">ЕП (агро)</a></p>
+</details>
+
+<details><summary>НАБУ: операція «Феміда» — рейдерство з хакерами й суддями; Sense Bank продають <span class="tag">· УП / Суспільне</span></summary>
+<p class="body">У межах спецоперації «Форест Гамп» НАБУ і САП викрили схему рейдерських захоплень підприємств: хакери, підроблені документи, судові рішення і вплив чинних нардепів та чиновників; нові плівки, за УП, ведуть до Офісу президента. Прем'єр Корецький доручив Мінфіну пришвидшити продаж державного Sense Bank — виручені кошти підуть на Сили оборони. ВАКС у п'ятницю обиратиме запобіжний захід Микитасю.</p>
+<p class="src">Джерела: <a href="https://t.me/ukrpravda_news/82719">УП (схема)</a> · <a href="https://www.pravda.com.ua/news/2026/08/20/8049604/">УП (плівки і ОП)</a> · <a href="https://t.me/suspilnenews/73677">Суспільне (Sense Bank)</a> · <a href="https://epravda.com.ua/power/vaks-prodovzhit-rozglyad-zapobizhnogo-zahodu-dlya-maksima-mikitasya-824820/">ЕП (ВАКС)</a></p>
+</details>
+
+<details><summary>Кадри: очільник оборонних закупівель іде достроково, Федоров таки їде в США <span class="tag">· Forbes / Суспільне</span></summary>
+<p class="body">Керівник Агенції оборонних закупівель Арсен Жумаділов достроково розірвав контракт («АОЗ потонуло в бюрократії») — перший гучний відхід після призначення міністра Хмари. Зеленський анонсував нові призначення в дипломатії, зокрема щодо США, і доручив аудит домовленостей із партнерами. Команда екс-міністра Федорова підтвердила його поїздку до США — кажуть, лише щодо defense-tech проєктів, без зустрічей із політиками. Екс-міністр оборони Резніков тим часом закликав до обов'язкової мобілізації «всіх, і жінок теж».</p>
+<p class="src">Джерела: <a href="https://t.me/Forbes_Ukraine_official/32788">Forbes (Жумаділов)</a> · <a href="https://www.pravda.com.ua/news/2026/08/20/8049598/">УП (дипломатія)</a> · <a href="https://t.me/suspilnenews/73667">Суспільне (Федоров)</a> · <a href="https://nv.ua/ukr/ukraine/politics/mobilizaciya-zhinok-i-cholovikiv-reznikov-proponuye-obov-yazkovu-sluzhbu-dlya-vsih-50634471.html">NV (Резніков)</a></p>
+</details>
+
+<details><summary>Удари вглиб РФ: НПЗ Taneco і термінал Тамманефтегаз; Румунія збила російський морський дрон <span class="tag">· KI / УП</span></summary>
+<p class="body">Генштаб підтвердив ураження НПЗ Taneco (Татарстан), терміналу «Тамманефтегаз» і аеродромів запуску дронів у Приморсько-Ахтарську та окупованому Донецьку. Окремо: румунський F-16 знищив у своїй економічній зоні російський морський дрон із вибухівкою — Бухарест поінформував НАТО, президент Дан засудив ескалацію.</p>
+<p class="src">Джерела: <a href="https://kyivindependent.com/ukrainian-drones-reportedly-strike-russian-oil-refinery/">Kyiv Independent (Taneco)</a> · <a href="https://kyivindependent.com/ukraine-hits-russian-drone-launch-airfields-in-primorsko-akhtarsk-occupied-donetsk-hur-says/">KI (аеродроми)</a> · <a href="https://t.me/ukrpravda_news/82722">УП (Румунія)</a></p>
+</details>
+
+<details><summary>Nord Stream: затриманий українець був консультантом фільму Шона Пенна про цю ж диверсію <span class="tag">· Guardian / Суспільне</span></summary>
+<p class="body">Суд у Хорватії взяв під варту Володимира Журавльова, якого Німеччина підозрює в підриві «Північного потоку-2». Guardian з'ясував деталь дня: він був консультантом фільму про цю саму диверсію з Шоном Пенном («Snake Island»).</p>
+<p class="src">Джерела: <a href="https://www.theguardian.com/business/2026/aug/20/man-arrested-nord-stream-volodymyr-zhuravlev-consultant-film-sean-penn-snake-island">The Guardian</a> · <a href="https://t.me/suspilnenews/73676">Суспільне</a></p>
+</details>
+
+<details><summary>ВПК: перша українська керована авіабомба «Вирівнювач» уже воює; Leonardo відкрила компанію в Україні <span class="tag">· УП / NV</span></summary>
+<p class="body">КАБ «Вирівнювач» пройшла випробування, закуповується і застосовується ЗСУ; тестують ще до 10 зразків, зокрема з удвічі потужнішою БЧ. Італійський оборонний гігант Leonardo відкрив дочірню компанію в Україні. Ложка дьогтю: будівництво заводу твердого палива Fire Point у Данії відклали до кінця 2027 року.</p>
+<p class="src">Джерела: <a href="https://t.me/ukrpravda_news/82723">УП (Вирівнювач)</a> · <a href="https://nv.ua/ukr/world/countries/leonardo-ukraine-vidkrittya-dochirnoji-kompaniji-dlya-oboronnih-tehnologiy-50634478.html">NV (Leonardo)</a> · <a href="https://t.me/ukrpravda_news/82715">УП (Fire Point)</a></p>
+</details>
+</section>
+
+<section id="usa"><h2>🇺🇸 США <span class="cnt">· 6 новин</span></h2>
+
+<details open><summary>Бонди не слухаються Мінфіну: план Бессента провалився, ринки впали <span class="tag">· CNBC / MarketWatch</span></summary>
+<p class="body">Через день після подвоєння викупу облігацій розпродаж Treasuries відновився — дохідності знову вгору, Dow −700 пунктів. CNBC: Бессент дедалі глибше заходить «на територію ФРС», що стає тестом незалежності центробанку для нового голови Ворша; аналітики попереджають, що «простого виходу» з боргової спіралі $40 трлн немає. Конгрес обмежився наріканнями — плану дій ні в кого нема.</p>
+<p class="src">Джерела: <a href="https://www.cnbc.com/2026/08/19/stock-market-today-live-updates.html">CNBC (ринки)</a> · <a href="https://www.cnbc.com/2026/08/20/bessents-efforts-in-the-treasury-market-so-far-havent-worked-heres-what-else-he-can-try.html">CNBC (Бессент)</a> · <a href="https://www.marketwatch.com/story/treasury-rout-restarts-one-day-after-bessents-beefed-up-buyback-plan-972766a1">MarketWatch</a> · <a href="https://thehill.com/homenews/house/6042281-lawmakers-debate-national-debt/">The Hill (Конгрес)</a></p>
+</details>
+
+<details><summary>Іран: «санкції розчавлять економіку і обвалять режим» — але великої війни не буде <span class="tag">· BBC / CNBC</span></summary>
+<p class="body">Мінфін Бессент заявив, що США «не планують відновлювати масштабні бойові дії» проти Ірану, натомість економічний тиск «обвалить режим». Авіаносець Abraham Lincoln після місяців операції залишив Близький Схід — його змінив George Washington. NYT: погрози Трампа ставлять під удар торгових партнерів Ірану, насамперед Китай. NPR: війна з Іраном і тарифи вже б'ють по американських фермерах — політичний ризик для республіканців у листопаді.</p>
+<p class="src">Джерела: <a href="https://www.bbc.co.uk/news/articles/c87n90eg0p2o">BBC</a> · <a href="https://www.cnbc.com/2026/08/20/bessent-economy-iran-war-trump.html">CNBC (Бессент)</a> · <a href="https://www.nytimes.com/2026/08/20/world/middleeast/iran-trade-trump-threat-china.html">NYT</a> · <a href="https://www.npr.org/2026/08/20/nx-s1-5914684/farmers-trump-pennsylvania-midterms">NPR (фермери)</a></p>
+</details>
+
+<details><summary>ФБР обшукало дім конгресмена Свалвелла у справі про сексуальне насильство <span class="tag">· NYT</span></summary>
+<p class="body">Агенти ФБР провели обшук у будинку демократа Еріка Свалвелла в межах федерального розслідування про сексуальне насильство. Свалвелл — один із найпомітніших критиків Трампа в Палаті представників.</p>
+<p class="src">Джерела: <a href="https://www.nytimes.com/2026/08/20/us/eric-swalwell-fbi-search-home.html">NYT</a></p>
+</details>
+
+<details><summary>Праймеріз: «анти-трампівський опір» програє, а Кук-репорт зсунув Айову і Техас до демократів <span class="tag">· Politico / The Hill</span></summary>
+<p class="body">Politico: кандидати «#Resistance»-крила демократів системно програють праймеріз — виборці обирають прагматиків. Водночас Cook Political Report перевів губернаторські перегони в Айові й Техасі в категорію «на користь демократів». У Флориді — скандал із «сфальшованими даними» ще однієї соціологічної фірми.</p>
+<p class="src">Джерела: <a href="https://www.politico.com/news/2026/08/20/the-trump-resistance-is-losing-its-primaries-01042844">Politico</a> · <a href="https://thehill.com/homenews/campaign/6041925-cook-report-iowa-texas-democrat-governor-edge/">The Hill (Cook)</a> · <a href="https://thehill.com/homenews/campaign/6042103-pollsters-under-fire-midterms-false-data-florida-gubernatorial-primary/">The Hill (соціологія)</a></p>
+</details>
+
+<details><summary>КНДР запустила ракету в бік моря — на тлі скорочення американо-корейських навчань <span class="tag">· NPR / NYT</span></summary>
+<p class="body">Японія повідомила про запуск підозрюваної ракети КНДР — за день після того, як сестра Кіма заявила, що «не в курсі» переговорів зі США. Експерти NYT: наказ Трампа скоротити навчання з Південною Кореєю несе ризики для стримування.</p>
+<p class="src">Джерела: <a href="https://www.npr.org/2026/08/20/g-s1-139381/north-korea-suspected-missile">NPR</a> · <a href="https://www.nytimes.com/2026/08/20/us/politics/trumps-order-military-exercises-risks.html">NYT</a></p>
+</details>
+
+<details><summary>Коротко: перерахунок PSLF відкинув частину позичальників назад; нові санкції проти Куби <span class="tag">· CNBC / The Hill</span></summary>
+<p class="body">Міносвіти перерахувало прогрес у програмі прощення студентських боргів PSLF — частина держслужбовців втратила зараховані місяці платежів. Рубіо оголосив новий пакет санкцій проти Куби.</p>
+<p class="src">Джерела: <a href="https://www.cnbc.com/2026/08/20/public-service-loan-forgiveness-pslf-payment-counts.html">CNBC (PSLF)</a> · <a href="https://thehill.com/policy/international/6042225-rubio-cuba-sanctions/">The Hill (Куба)</a></p>
+</details>
+</section>
+
+<section id="world"><h2>🌍 Світ <span class="cnt">· 4 новини</span></h2>
+
+<details><summary>П'ять країн Заходу засудили ізраїльський проєкт поселень на Західному березі <span class="tag">· BBC</span></summary>
+<p class="body">Британія, Франція, Німеччина, Італія і Канада спільно засудили відкриття тендерів на чутливий поселенський проєкт E1, який фактично розрізає Західний берег. Окремо: Ізраїль визнав, що його військові стріляли в авто, у якому загинула 6-річна Гінд Раджаб — справа, що сколихнула світ у 2024-му.</p>
+<p class="src">Джерела: <a href="https://www.bbc.co.uk/news/articles/c998evlgz8ko">BBC (поселення)</a> · <a href="https://www.theguardian.com/world/2026/aug/19/israel-admits-it-soldiers-fired-at-car-in-which-hind-rajab-was-killed">The Guardian (Гінд Раджаб)</a></p>
+</details>
+
+<details><summary>Засновника Evergrande засудили до довічного ув'язнення <span class="tag">· BBC</span></summary>
+<p class="body">Хуей Ка Яня, засновника колапсованого китайського девелопера Evergrande (найбільше банкрутство в історії нерухомості), засуджено до довічного терміну — фінал показової кампанії Пекіна проти боргових імперій.</p>
+<p class="src">Джерела: <a href="https://www.bbc.co.uk/news/articles/cd0x9mjjmgjo">BBC</a></p>
+</details>
+
+<details><summary>Дві трагедії видобутку й перевезень: шахта в Колумбії і човен у Нігерії <span class="tag">· BBC</span></summary>
+<p class="body">Зсув на нелегальній золотій копальні в Колумбії вбив щонайменше 13 людей; на північному заході Нігерії перекинувся човен — десятки загиблих.</p>
+<p class="src">Джерела: <a href="https://www.bbc.co.uk/news/articles/czxel9lz3vqo">BBC (Колумбія)</a> · <a href="https://www.bbc.co.uk/news/articles/cj035jg256no">BBC (Нігерія)</a></p>
+</details>
+
+<details><summary>Сирія: вперше екстрадовано офіцера режиму Асада за воєнні злочини <span class="tag">· BBC</span></summary>
+<p class="body">Колишнього офіцера армії Асада вперше видали Сирії за звинуваченнями у воєнних злочинах — прецедент для правосуддя перехідного періоду.</p>
+<p class="src">Джерела: <a href="https://www.bbc.co.uk/news/articles/cvgjdy8q766o">BBC</a></p>
+</details>
+</section>
+
+<section id="immi"><h2>🛂 Українці в США та імміграція <span class="cnt">· 4 новини · пріоритетна рубрика</span></h2>
+
+<details open><summary>USCIS автоматично продовжив прострочені дозволи на роботу українцям із TPS <span class="tag">· USCIS, 14.08 · важливо</span></summary>
+<p class="body">Оновлення USCIS від 14 серпня закриває болючу дірку: ті, хто вчасно подав продовження I-765 за TPS Ukraine, але чиї картки формально «прострочились» 19 квітня 2026 через черги в обробці, тепер отримують автоматичне продовження дії EAD, поки заявка розглядається.</p>
+<div class="note"><b>Що це означає:</b> якщо у вас або знайомих EAD за TPS «прострочений», але заявка на продовження подана — ви легально працевлаштовані; покажіть роботодавцю прострочену картку разом із квитанцією I-797C. Дедлайн самого TPS — 19 жовтня 2026 — лишається.</div>
+<p class="src">Джерела: <a href="https://myattorneyusa.com/immigration-news/uscis-extends-expired-ukraine-tps-work-permits-for-pending-renewal-applicants-as-the-designation-approaches-its-october-19-2026-end-date/">MyAttorneyUSA (розбір)</a> · <a href="https://www.uscis.gov/humanitarian/temporary-protected-status">USCIS TPS</a></p>
+</details>
+
+<details><summary>США депортували перших 20 із 1 200 мігрантів у Ліберію <span class="tag">· The Guardian</span></summary>
+<p class="body">За новою угодою адміністрації з Ліберією відправлено першу групу з 20 людей — загалом домовленість передбачає прийом 1 200 депортованих, які не є громадянами Ліберії.</p>
+<div class="note"><b>Що це означає:</b> механізм депортацій у «треті країни» масштабується — людей висилають у держави, з якими вони не мають зв'язку. Для будь-кого без стійкого статусу (зокрема після завершення TPS/паролю) ціна прострочення легальності зростає: тепер це ризик опинитись не «вдома», а в третій країні.</div>
+<p class="src">Джерела: <a href="https://www.theguardian.com/us-news/2026/aug/20/liberia-deportation-agreement">The Guardian</a></p>
+</details>
+
+<details><summary>До кінця TPS Ukraine — два місяці; DHS мовчить про продовження <span class="tag">· контекст</span></summary>
+<p class="body">Дія TPS для України завершується 19 жовтня 2026, і DHS досі не оголосив ані продовження, ані офіційного припинення. U4U-парол не приймає нових заявок із січня 2025; за оцінками, близько 120 тис. українців уже живуть із простроченим паролем. Юристи радять не чекати жовтня: паралельно готувати інші шляхи (притулок, робочі/сімейні петиції, студентські статуси).</p>
+<div class="note"><b>Що це означає:</b> якщо ваш статус тримається на TPS — вересень має бути місяцем плану Б із юристом, а не жовтень.</div>
+<p class="src">Джерела: <a href="https://www.visaverge.com/news/ukrainians-who-fled-war-face-losing-u-s-legal-status-now/">VisaVerge</a> · <a href="https://www.harrisbeachmurtha.com/insights/legal-options-for-ukrainian-nationals-to-stay-in-the-united-states-in-2026/">Harris Beach (легальні опції)</a> · <a href="https://ukrainetaskforce.org/">Ukraine Immigration Task Force</a></p>
+</details>
+
+<details><summary>Нагадування з учора: IRS готує обмеження податкових повернень частині іммігрантів <span class="tag">· The Hill</span></summary>
+<p class="body">Мінфін та IRS планують обмежити refundable tax credits для окремих категорій іммігрантів. Правил ще нема — стежимо; потенційно зачіпає тих, хто подає податки з ITIN.</p>
+<p class="src">Джерела: <a href="https://thehill.com/business/6040026-irs-treasury-trump-immigration-tax-restrictions/">The Hill</a></p>
+</details>
+</section>
+
+<section id="docs"><h2>📄 Державні документи <span class="cnt">· 2 новини</span></h2>
+
+<details><summary>Україна: санкції РНБО — проти Іванющенка і причетних до «Маші і Ведмедя» <span class="tag">· УП</span></summary>
+<p class="body">Зеленський підписав укази про санкції проти ексрегіонала Юрія Іванющенка (у розшуку) та проти росіян, причетних до створення мультсеріалу «Маша і Ведмідь» — інструмента російської «м'якої сили». Рада також офіційно затвердила призначення Хмари (МО) і Сибіги (МЗС) після чотиритижневої перерви.</p>
+<p class="src">Джерела: <a href="https://www.pravda.com.ua/news/2026/08/20/8049605/">УП (Іванющенко)</a> · <a href="https://www.pravda.com.ua/news/2026/08/20/8049606/">УП (санкції)</a> · <a href="https://t.me/suspilnenews/73674">Суспільне (Рада)</a></p>
+</details>
+
+<details><summary>США: нових значущих документів у Federal Register за добу немає <span class="tag">· Federal Register</span></summary>
+<p class="body">Свіжих президентських документів чи правил із суттєвим впливом за добу не публікувалось; чинним лишається вчорашній указ про обмеження імпорту дронів і компонентів.</p>
+<p class="src">Джерела: <a href="https://www.federalregister.gov/documents/2026/08/19/2026-16979/adjusting-imports-of-unmanned-aircraft-systems-and-unmanned-aircraft-systems-components-into-the">Federal Register</a></p>
+</details>
+</section>
+
+<section id="mkt"><h2>📈 Ринки і компанії <span class="cnt">· 5 новин</span></h2>
+
+<details open><summary>Розпродаж повернувся: Dow −1,32%, S&amp;P 500 −0,87% — облігації диктують ринку <span class="tag">· CNBC / MarketWatch</span></summary>
+<p class="body">Спроба Мінфіну збити дохідності подвоєним викупом облігацій не спрацювала — розпродаж Treasuries відновився, і акції пішли вниз слідом (Dow 52 759; S&amp;P 7 641; Nasdaq 26 067). MarketWatch: «бонд-ринок готовий проколоти бульбашку акцій»; втім, колумністи нагадують — самі по собі зростання ставок бичачий ринок ще не вбивали.</p>
+<p class="src">Джерела: <a href="https://www.cnbc.com/2026/08/19/stock-market-today-live-updates.html">CNBC</a> · <a href="https://www.marketwatch.com/story/the-bond-market-is-going-to-burst-the-stock-market-bubble-1c6f0971">MarketWatch (бульбашка)</a> · <a href="https://www.marketwatch.com/story/if-rising-rates-were-enough-to-end-a-bull-market-wed-have-entered-a-bear-market-long-ago-0c6790a0">MarketWatch (контраргумент)</a></p>
+</details>
+
+<details><summary>Walmart −9%: прогноз розчарував Волл-стріт; спіткнувся і TJX <span class="tag">· CNBC</span></summary>
+<p class="body">Найбільший рітейлер світу відзвітував, але слабкий прогноз обвалив акції на ~9% — інвестори читають це як сигнал обережності американського споживача. Рідкісний промах показав і TJX (TJ Maxx) — хоча частина аналітиків бачить у просіданні можливість купити.</p>
+<p class="src">Джерела: <a href="https://www.cnbc.com/2026/08/20/walmart-wmt-q2-2027-earnings.html">CNBC (Walmart)</a> · <a href="https://www.cnbc.com/2026/08/20/a-rare-stumble-at-tjx-has-wall-street-spooked-we-see-a-chance-to-buy.html">CNBC (TJX)</a></p>
+</details>
+
+<details><summary>Нафта подорожчала на іранських погрозах Мінфіну США <span class="tag">· CNBC</span></summary>
+<p class="body">Brent і WTI зросли після слів Бессента про намір «обвалити» іранську економіку — ринок закладає ризики для поставок і Ормузької протоки.</p>
+<p class="src">Джерела: <a href="https://www.cnbc.com/2026/08/20/oil-prices-brent-wti-hormuz-trump.html">CNBC</a></p>
+</details>
+
+<details><summary>Hyundai нарощує виробництво в Джорджії; AI-облігації стали улюбленцем Волл-стріт <span class="tag">· CNBC</span></summary>
+<p class="body">CEO Hyundai повідомив CNBC про розширення випуску на новому заводі Metaplant у Джорджії — ставка на виробництво в США під тарифний режим. Тим часом Волл-стріт розкуповує високодохідні облігації AI-компаній, а «neocloud»-акції на кшталт CoreWeave переживають момент слави.</p>
+<p class="src">Джерела: <a href="https://www.cnbc.com/2026/08/20/hyundai-georgia-metaplant-us-production.html">CNBC (Hyundai)</a> · <a href="https://www.cnbc.com/2026/08/20/wall-street-loves-these-high-yielding-ai-bonds-what-income-investors-should-know-.html">CNBC (AI-бонди)</a> · <a href="https://www.marketwatch.com/story/neocloud-stocks-like-coreweave-are-having-a-moment-and-times-running-out-to-cash-in-8aca34c8">MarketWatch (CoreWeave)</a></p>
+</details>
+
+<details><summary>Коротко: Lakers продали за рекордні $12,5 млрд, частку Falcons оцінили в $10,6 млрд <span class="tag">· CNBC</span></summary>
+<p class="body">Продаж Los Angeles Lakers за $12,5 млрд переоцінив усю НБА; Arctos купує 10% Atlanta Falcons за оцінкою $10,6 млрд. Спортивні франшизи — новий клас активів для великих грошей.</p>
+<p class="src">Джерела: <a href="https://www.cnbc.com/2026/08/20/heres-how-the-los-angeles-lakers-12point5b-sale-impacts-the-value-of-all-30-nba-teams.html">CNBC (Lakers)</a> · <a href="https://www.cnbc.com/2026/08/20/arctos-agrees-to-buy-10percent-of-atlanta-falcons-at-10point6-billion-valuation-sources.html">CNBC (Falcons)</a></p>
+</details>
+</section>
+
+<section id="crypto"><h2>₿ Крипто <span class="cnt">· 5 новин</span></h2>
+
+<details open><summary>Bitcoin $72,9 тис.: пробій діапазону, рекордні $3 млрд ліквідованих шортів, golden cross <span class="tag">· CoinDesk / The Block</span></summary>
+<p class="body">BTC вийшов із шеститижневого діапазону, за добу «спалив» рекордні ~$3 млрд коротких позицій і формує бичачий golden cross. Спотові BTC-ETF прийняли $517 млн — найбільший денний приплив за 3,5 місяця. ETH +9,6% до ~$2 330; XRP +15%. Драйвер той самий: викупи Treasuries Мінфіном і очікування Clarity Act. Один стратег уже говорить про $180 тис. як наступну ціль — це прогноз, не факт.</p>
+<p class="src">Джерела: <a href="https://www.coindesk.com/markets/2026/08/20/bitcoin-breaks-out-of-six-week-range-tops-usd71-000-as-usd3-billion-in-shorts-get-wiped-out">CoinDesk (пробій)</a> · <a href="https://cointelegraph.com/markets/bitcoin-etfs-largest-daily-inflow-since-early-may">Cointelegraph (ETF)</a> · <a href="https://www.theblock.co/news/markets/2026-08-20-bitcoins-rally-pushes-past-72000-analysts-see-demand-beyond-historic-short-squeeze-412337">The Block</a> · <a href="https://www.coindesk.com/markets/2026/08/20/treasury-buybacks-could-set-up-bitcoin-s-next-move-toward-usd180-000">CoinDesk ($180k)</a></p>
+</details>
+
+<details><summary>CFTC: «якщо Конгрес не ухвалить Clarity Act — напишемо правила самі» <span class="tag">· The Hill / CoinDesk</span></summary>
+<p class="body">Голова CFTC поставив персонал у готовність створювати крипторегулювання без Конгресу, якщо Clarity Act застрягне. The Block переказує деталі зустрічі в Овальному кабінеті: Трамп «бичачий» щодо закону і збирав фідбек від CEO крипти й фінансів.</p>
+<p class="src">Джерела: <a href="https://thehill.com/policy/technology/6042267-cftc-crypto-clarity-act/">The Hill</a> · <a href="https://www.coindesk.com/policy/2026/08/20/u-s-cftc-chief-puts-staff-on-notice-to-create-crypto-regulations-if-clarity-act-fails">CoinDesk</a> · <a href="https://www.theblock.co/news/regulation/2026-08-20-inside-oval-office-meeting-trump-bullish-clarity-act-solicits-feedback-crypto-finance-ceos-412340">The Block (Овальний)</a></p>
+</details>
+
+<details><summary>X Ілона Маска вивчає стейблкоїни для виплат інфлюенсерам <span class="tag">· CoinDesk</span></summary>
+<p class="body">X розглядає стейблкоїн-виплати авторам контенту — ще один крок платформи до «everything app» із вбудованими фінансами.</p>
+<p class="src">Джерела: <a href="https://www.coindesk.com/business/2026/08/20/elon-musk-s-x-is-exploring-stablecoins-to-pay-influencers-and-content-providers">CoinDesk</a></p>
+</details>
+
+<details><summary>Binance відкрила торгівлю AI-агентам — контроль лишили користувачам <span class="tag">· Cointelegraph / TechCrunch</span></summary>
+<p class="body">Binance дозволила AI-агентам торгувати від імені користувачів із налаштовуваними лімітами. TechCrunch застерігає: стримування агентів — здебільшого на совісті самих користувачів; галузеві лідери паралельно попереджають, що AI-агенти можуть зробити сьогоднішні мільярдні зломи «копійками».</p>
+<p class="src">Джерела: <a href="https://cointelegraph.com/news/binance-opens-crypto-trading-to-ai-agents-with-user-set-controls">Cointelegraph</a> · <a href="https://techcrunch.com/2026/08/20/binance-now-lets-ai-agents-trade-but-keeping-them-in-check-is-largely-up-to-users/">TechCrunch</a> · <a href="https://www.theblock.co/news/ecosystems/2026-08-19-ai-agents-todays-billion-dollar-crypto-hacks-look-like-pennies-industry-leaders-412278">The Block (ризики)</a></p>
+</details>
+
+<details><summary>Опитування: більшість американців вважають криптоінвестиції родини Трампа недоречними <span class="tag">· Cointelegraph</span></summary>
+<p class="body">Свіже опитування: більшість американців (включно з частиною республіканців) кажуть, що криптобізнеси сім'ї президента — «not appropriate» на тлі того, як адміністрація сама пише правила для галузі.</p>
+<p class="src">Джерела: <a href="https://cointelegraph.com/news/americans-donald-trump-crypto-investments-inappropriate-poll">Cointelegraph</a></p>
+</details>
+</section>
+
+<section id="ai"><h2>🤖 AI <span class="cnt">· 5 новин</span></h2>
+
+<details open><summary>«Тепер це OpenAI Брокмана»: президент компанії різко посилив вплив <span class="tag">· The Verge</span></summary>
+<p class="body">The Verge: після «добровільного пригальмовування» релізів центр ваги в OpenAI змістився до президента Грега Брокмана — він перебирає ключові напрями. Компанія паралельно запустила «AI Futures» — ініціативу про суспільні наслідки AI.</p>
+<p class="src">Джерела: <a href="https://www.theverge.com/ai-artificial-intelligence/982774/greg-brockman-openai-role-expansion">The Verge</a> · <a href="https://openai.com/index/introducing-ai-futures">OpenAI (AI Futures)</a></p>
+</details>
+
+<details><summary>Google дав видавцям інструмент проти втрат трафіку від AI-відповідей <span class="tag">· TechCrunch</span></summary>
+<p class="body">Google представив механізм, що дозволяє видавцям краще монетизувати/утримувати трафік, який з'їдають AI-огляди в пошуку — визнання проблеми, про яку медіа кричать другий рік.</p>
+<p class="src">Джерела: <a href="https://techcrunch.com/2026/08/20/google-gives-publishers-a-new-way-to-fight-ai-driven-traffic-losses/">TechCrunch</a></p>
+</details>
+
+<details><summary>Дослідження: третина вебсторінок, створених після запуску ChatGPT, має ознаки AI-авторства <span class="tag">· TechCrunch</span></summary>
+<p class="body">Масштабний аналіз показав: ~33% сторінок, опублікованих після листопада 2022-го, несуть сліди машинного тексту. Інтернет стрімко наповнюється генерованим контентом — це б'є і по пошуку, і по довірі до джерел.</p>
+<p class="src">Джерела: <a href="https://techcrunch.com/2026/08/20/a-third-of-webpages-published-since-chatgpts-launch-show-signs-of-ai-authorship-study-finds/">TechCrunch</a></p>
+</details>
+
+<details><summary>Slack запускає канали спільного vibe-кодингу; Meta привезла Pocket у США <span class="tag">· The Verge / TechCrunch</span></summary>
+<p class="body">Slack додає колаборативні vibe-coding канали (код пишеться прямо в чаті командою з AI). Meta відкрила американцям Pocket — застосунок, де ігри «вайб-кодяться» і шаряться; фінтех Ramp випустив власний роутер AI-моделей.</p>
+<p class="src">Джерела: <a href="https://www.theverge.com/tech/982628/slack-code-vibe-coding-channels-launch">The Verge (Slack)</a> · <a href="https://techcrunch.com/2026/08/20/meta-brings-pocket-an-app-that-lets-you-vibe-code-and-share-games-to-us-users/">TechCrunch (Pocket)</a> · <a href="https://techcrunch.com/2026/08/20/ramp-launches-its-own-ai-model-router-called-router/">TechCrunch (Ramp)</a></p>
+</details>
+
+<details><summary>Grok масово видає безглузді відповіді <span class="tag">· TechCrunch</span></summary>
+<p class="body">Користувачі xAI скаржаться, що Grok періодично відповідає гібберішем — компанія причину поки не пояснила. Нагадування, чому «стабільність > хайп» у продакшн-використанні моделей.</p>
+<p class="src">Джерела: <a href="https://techcrunch.com/2026/08/20/grok-keeps-sending-gibberish-responses-to-users/">TechCrunch</a></p>
+</details>
+</section>
+
+<section id="tattoo"><h2>🎨 Тату-індустрія <span class="cnt">· 3 новини · нова рубрика</span></h2>
+
+<details open><summary>MoCRA: до кінця 2026-го виробники фарб мають зареєструватися у FDA — найбільша зміна нагляду з 1938 року <span class="tag">· галузеві джерела</span></summary>
+<p class="body">Modernization of Cosmetics Regulation Act поступово вмикає обов'язкову реєстрацію виробництв і продуктових лістингів для косметики, включно з тату-фарбами; паралельно жорсткішають пороги для ароматичних амінів і поліциклічних ароматичних вуглеводнів (PAH) — за зразком європейського REACH.</p>
+<div class="note"><b>Що це означає:</b> варто вже зараз перевірити, чи ваші постачальники фарб реєструються за MoCRA і публікують сертифікати відповідності — фарби «сірих» брендів наступного року можуть зникнути з легального обігу або створити ризики для студії.</div>
+<p class="src">Джерела: <a href="https://intenzetattooink.com/blogs/news/tattoo-ink-safety-standards-2026-the-professional-artist-s-guide-to-compliance-and-quality">Intenze (гайд зі стандартів 2026)</a></p>
+</details>
+
+<details><summary>Конвенції наприкінці серпня: Art Tattoo Montréal і South of England Ink Fest <span class="tag">· анонси</span></summary>
+<p class="body">28–30 серпня — одразу два помітні івенти: 22-й Art Tattoo Montréal у Старому порту Монреаля (найбільша конвенція Канади) і South of England Ink Fest на іподромі Ладлоу. Якщо думали показати роботи на конвенції — Монреаль з Флориди ближчий, ніж здається.</p>
+<p class="src">Джерела: <a href="https://www.worldtattooevents.com/tattoo-conventions/2026">World Tattoo Events (календар 2026)</a></p>
+</details>
+
+<details><summary>Тренди 2026: fine-line і мікро-тату домінують, AI-консультації прискорюють дизайн <span class="tag">· галузеві огляди</span></summary>
+<p class="body">Галузеві огляди сходяться: попит зміщується до ультратонких ліній, стриманого кольору і персональних платежів-розміщень; студії, що використовують AI на етапі консультації/ескіза, повідомляють про скорочення часу дизайну на 40–60% без втрати задоволеності клієнтів.</p>
+<p class="src">Джерела: <a href="https://inkjin.com/tattoo-guides/tattoo-trends-2026-whats-hot-right-now/">Inkjin (тренди)</a> · <a href="https://www.anomalietattoo.com/blogs/studio-inspiration/tattoo-trends-2026-what-the-data-and-culture-are-revealing">Anomalie (дані)</a></p>
+</details>
+</section>
+
+<footer>Згенеровано 20.08.2026 о 16:55 за Нью-Йорком (вечірній випуск замість пропущеного ранкового; о 07:51 задача застрягла на системному дозволі — виправлено, завтра вийде вчасно).
+Вікно новин: ~26 годин · Джерел зібрано: 29/29 · Недоступні: president.gov.ua (постійне обмеження).
+Архів: НОВИНИ/digests · <a href="#top">↑ нагору</a></footer>
+</div>
+
+</body>
+</html>
