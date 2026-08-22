@@ -40,16 +40,27 @@ summary .tag{color:var(--muted);font-weight:400;font-size:.8rem;}
 .src a:hover{text-decoration:underline;}
 footer{color:var(--muted);font-size:.8rem;margin-top:18px;line-height:1.5;}
 
-.sitenav{position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;gap:6px;align-items:center;
-padding:9px 14px;margin:-22px -14px 18px;background:var(--card);border-bottom:1px solid var(--border);
-backdrop-filter:saturate(150%) blur(8px);}
-.sitenav a{font-size:.85rem;text-decoration:none;color:var(--muted);padding:5px 11px;border-radius:999px;
-border:1px solid transparent;white-space:nowrap;}
-.sitenav a:hover{color:var(--accent);border-color:var(--border);}
-.sitenav a.on{color:var(--accent);border-color:var(--accent);font-weight:600;}
+.sitenav{
+  position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:4px;
+  align-items:center; padding:11px 16px; margin:-26px -16px 26px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.sitenav a{
+  font-size:.81rem; font-weight:450; text-decoration:none; color:var(--muted);
+  padding:6px 12px; border-radius:8px; white-space:nowrap;
+  transition:color .12s, background .12s;
+}
+.sitenav a:hover{color:var(--head);background:var(--chip);}
+.sitenav a.on{color:var(--accent);background:var(--accent-soft);font-weight:600;}
 .sitenav .sp{flex:1;}
+.sitenav .when{font-size:.76rem;color:var(--muted);letter-spacing:.01em;}
+@media (max-width:640px){
+  .sitenav{margin:-20px -12px 20px;padding:9px 12px;}
+  .sitenav a{padding:5px 10px;font-size:.78rem;}
+  .sitenav .when{display:none;}
+}
 </style>
-<div class="wrap"><nav class="sitenav"><a href="/" class="on">☕ Дайджест</a><a href="/en.html">📊 Economic Brief</a><a href="/archive.html">🗂 Архів</a><span class="sp"></span><span style="font-size:.8rem;color:var(--muted)">19 серпня 2026</span></nav>
+<div class="wrap"><nav class="sitenav"><a href="/" class="on">☕ Дайджест</a><a href="/en.html">📊 Economic Brief</a><a href="/archive.html">🗂 Архів</a><span class="sp"></span><span class="when">19 серпня 2026</span></nav>
 <h1>☕ Ранковий дайджест</h1>
 <div class="date">Середа, 19 серпня 2026 · перший (тестовий) випуск, сформовано 22:10 за Нью-Йорком</div>
 <div class="prices">

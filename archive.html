@@ -6,68 +6,156 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Архів дайджестів</title>
 <style>
-:root{--bg:#f5f6f8;--card:#fff;--text:#1c2230;--muted:#67748b;--accent:#2f6bdb;
---border:#e3e7ee;--up:#188a4b;--down:#cf3543;--chip:#edf1f9;--note:#f3f7ff;--noteb:#2f6bdb;}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0e1116;--card:#161b23;
---text:#e7ebf2;--muted:#93a0b4;--accent:#6ea1ff;--border:#28303d;--chip:#1d2530;
---note:#18202e;--noteb:#6ea1ff;--up:#3fbf7a;--down:#ef6a75;}}
-:root[data-theme="dark"]{--bg:#0e1116;--card:#161b23;--text:#e7ebf2;--muted:#93a0b4;
---accent:#6ea1ff;--border:#28303d;--chip:#1d2530;--note:#18202e;--noteb:#6ea1ff;
---up:#3fbf7a;--down:#ef6a75;}
+:root{
+  --bg:#f4f4f2; --card:#fff; --head:#161a20; --body:#3d4551; --muted:#818a99;
+  --accent:#3f5b8c; --accent-soft:#eaeff7; --border:#e6e7ea; --rule:#eff0f2;
+  --up:#1a7f4b; --down:#c23b48; --chip:#f0f1f3;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}
 *{box-sizing:border-box;}
-body{background:var(--bg);color:var(--text);margin:0;padding:22px 14px 40px;
-font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
-.wrap{max-width:780px;margin:0 auto;}
-h1{font-size:1.45rem;margin:0 0 2px;text-wrap:balance;}
-.date{color:var(--muted);font-size:.9rem;margin-bottom:14px;}
-.prices{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;}
-.prices span{background:var(--chip);border:1px solid var(--border);border-radius:999px;
-padding:5px 13px;font-size:.85rem;white-space:nowrap;font-variant-numeric:tabular-nums;}
-.up{color:var(--up);font-weight:650;}.down{color:var(--down);font-weight:650;}
-nav.toc{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 20px;}
-nav.toc a{background:var(--card);border:1px solid var(--border);border-radius:999px;
-padding:5px 12px;font-size:.83rem;color:var(--text);text-decoration:none;}
-nav.toc a:hover{border-color:var(--accent);color:var(--accent);}
-nav.toc a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
-section{background:var(--card);border:1px solid var(--border);border-radius:16px;
-padding:16px 18px;margin-bottom:16px;scroll-margin-top:12px;}
-h2{font-size:1.08rem;margin:0 0 6px;text-wrap:balance;}
-h2 .cnt{color:var(--muted);font-weight:400;font-size:.8rem;}
-ul.tldr{margin:6px 0 0;padding-left:20px;}
-ul.tldr li{margin-bottom:10px;}
-details{border-top:1px solid var(--border);}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--body); margin:0; padding:26px 16px 56px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  font-size:17px; line-height:1.72; font-weight:400;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:720px;margin:0 auto;}
+
+/* ── Шапка ─────────────────────────────── */
+h1{
+  font-size:1.75rem; line-height:1.2; font-weight:600; letter-spacing:-.022em;
+  color:var(--head); margin:0 0 6px; text-wrap:balance;
+}
+.date{color:var(--muted);font-size:.82rem;font-weight:400;letter-spacing:.01em;margin-bottom:20px;}
+.prices{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px;}
+.prices span{
+  background:var(--chip); border-radius:8px; padding:6px 11px;
+  font-size:.78rem; font-weight:500; color:var(--head); white-space:nowrap;
+  font-variant-numeric:tabular-nums; letter-spacing:-.005em;
+}
+.up{color:var(--up);font-weight:600;}
+.down{color:var(--down);font-weight:600;}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 30px;}
+nav.toc a{
+  background:transparent; border:1px solid var(--border); border-radius:8px;
+  padding:6px 11px; font-size:.79rem; font-weight:450; color:var(--muted);
+  text-decoration:none; transition:color .12s, border-color .12s;
+}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);}
+nav.toc a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+/* ── Секції: головне, що розділяє потік ── */
+section{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:6px 22px 10px; margin:0 0 26px; scroll-margin-top:16px;
+}
+h2{
+  font-size:.94rem; font-weight:600; letter-spacing:.005em; color:var(--head);
+  margin:0; padding:18px 0 14px; border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; gap:9px; text-wrap:balance;
+}
+h2 .cnt{color:var(--muted);font-weight:400;font-size:.78rem;letter-spacing:0;margin-left:auto;}
+
+/* ── Головне за добу ───────────────────── */
+section#top{background:var(--accent-soft);border-color:transparent;}
+ul.tldr{margin:0;padding:14px 0 6px;list-style:none;}
+ul.tldr li{
+  margin:0; padding:11px 0 11px 2px; border-top:1px solid var(--rule);
+  font-size:.97rem; line-height:1.62;
+}
+ul.tldr li:first-child{border-top:none;}
+ul.tldr b{color:var(--head);font-weight:600;}
+
+/* ── Новина ────────────────────────────── */
+details{border-top:1px solid var(--rule);}
 details:first-of-type{border-top:none;}
-summary{cursor:pointer;font-weight:600;line-height:1.5;list-style:none;
-padding:12px 4px 12px 22px;position:relative;border-radius:8px;}
+summary{
+  cursor:pointer; list-style:none; position:relative;
+  padding:17px 4px 17px 26px; margin:0;
+  font-size:1rem; font-weight:500; line-height:1.5; color:var(--head);
+  letter-spacing:-.008em; transition:color .12s;
+}
 summary::-webkit-details-marker{display:none;}
-summary::before{content:"\25B8";position:absolute;left:2px;top:12px;color:var(--accent);
-transition:transform .15s ease;}
-details[open] summary::before{transform:rotate(90deg);}
+summary::before{
+  content:""; position:absolute; left:4px; top:26px;
+  width:7px; height:7px; border-right:1.5px solid var(--muted);
+  border-bottom:1.5px solid var(--muted); transform:rotate(-45deg);
+  transition:transform .18s ease, border-color .12s;
+}
+details[open] summary::before{transform:rotate(45deg);border-color:var(--accent);}
 summary:hover{color:var(--accent);}
-summary .tag{color:var(--muted);font-weight:400;font-size:.78rem;white-space:nowrap;}
-.body{margin:0 0 8px;padding:0 4px 0 22px;}
-.note{margin:8px 0 8px 22px;padding:9px 12px 9px 14px;background:var(--note);
-border-left:3px solid var(--noteb);border-radius:0 10px 10px 0;font-size:.94rem;}
-.note b{color:var(--accent);}
-.src{font-size:.84rem;margin:0 0 12px;padding:0 4px 0 22px;color:var(--muted);}
-.src a{color:var(--accent);text-decoration:none;}
-.src a:hover{text-decoration:underline;}
-footer{color:var(--muted);font-size:.8rem;margin-top:16px;line-height:1.55;}
+summary:hover::before{border-color:var(--accent);}
+summary .tag{
+  display:block; margin-top:5px; color:var(--muted);
+  font-weight:400; font-size:.76rem; letter-spacing:.01em;
+}
+.body{
+  margin:0 0 14px; padding:0 4px 0 26px;
+  font-size:.96rem; line-height:1.75; font-weight:400; color:var(--body);
+  max-width:66ch;
+}
+.note{
+  margin:0 4px 14px 26px; padding:13px 16px;
+  background:var(--accent-soft); border-radius:10px;
+  font-size:.92rem; line-height:1.62; color:var(--body); max-width:64ch;
+}
+.note b{color:var(--accent);font-weight:600;}
+.src{
+  margin:0 4px 18px 26px; padding:0;
+  font-size:.79rem; line-height:1.9; color:var(--muted); font-weight:400;
+}
+.src a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);}
+.src a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+footer{
+  color:var(--muted); font-size:.76rem; line-height:1.75; font-weight:400;
+  margin:34px 0 0; padding-top:18px; border-top:1px solid var(--border);
+}
 footer a{color:var(--accent);text-decoration:none;}
+
+@media (max-width:640px){
+  body{font-size:16px;padding:20px 12px 44px;}
+  h1{font-size:1.5rem;}
+  section{padding:4px 16px 8px;border-radius:12px;margin-bottom:20px;}
+  .body,.note,.src{padding-left:0;margin-left:0;}
+  .note{margin-bottom:12px;}
+  summary{padding-left:22px;}
+}
 @media (prefers-reduced-motion: reduce){summary::before{transition:none;}}
 
-.sitenav{position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;gap:6px;align-items:center;
-padding:9px 14px;margin:-22px -14px 18px;background:var(--card);border-bottom:1px solid var(--border);
-backdrop-filter:saturate(150%) blur(8px);}
-.sitenav a{font-size:.85rem;text-decoration:none;color:var(--muted);padding:5px 11px;border-radius:999px;
-border:1px solid transparent;white-space:nowrap;}
-.sitenav a:hover{color:var(--accent);border-color:var(--border);}
-.sitenav a.on{color:var(--accent);border-color:var(--accent);font-weight:600;}
+.sitenav{
+  position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:4px;
+  align-items:center; padding:11px 16px; margin:-26px -16px 26px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.sitenav a{
+  font-size:.81rem; font-weight:450; text-decoration:none; color:var(--muted);
+  padding:6px 12px; border-radius:8px; white-space:nowrap;
+  transition:color .12s, background .12s;
+}
+.sitenav a:hover{color:var(--head);background:var(--chip);}
+.sitenav a.on{color:var(--accent);background:var(--accent-soft);font-weight:600;}
 .sitenav .sp{flex:1;}
+.sitenav .when{font-size:.76rem;color:var(--muted);letter-spacing:.01em;}
+@media (max-width:640px){
+  .sitenav{margin:-20px -12px 20px;padding:9px 12px;}
+  .sitenav a{padding:5px 10px;font-size:.78rem;}
+  .sitenav .when{display:none;}
+}
 </style>
 </head>
 <body>
-<div class="wrap"><nav class="sitenav"><a href="/">☕ Дайджест</a><a href="/en.html">📊 Economic Brief</a><a href="/archive.html" class="on">🗂 Архів</a><span class="sp"></span><span style="font-size:.8rem;color:var(--muted)"></span></nav><h1>🗂 Архів випусків</h1><section><ul class="tldr"><li><b>21 серпня 2026</b> — <a href="/d/2026-08-21.html">☕ Дайджест</a> · <a href="/e/2026-08-21.html">📊 Economic Brief</a></li>
+<div class="wrap"><nav class="sitenav"><a href="/">☕ Дайджест</a><a href="/en.html">📊 Economic Brief</a><a href="/archive.html" class="on">🗂 Архів</a><span class="sp"></span><span class="when"></span></nav><h1>🗂 Архів випусків</h1><section><ul class="tldr"><li><b>21 серпня 2026</b> — <a href="/d/2026-08-21.html">☕ Дайджест</a> · <a href="/e/2026-08-21.html">📊 Economic Brief</a></li>
 <li><b>20 серпня 2026</b> — <a href="/d/2026-08-20.html">☕ Дайджест</a></li>
 <li><b>19 серпня 2026</b> — <a href="/d/2026-08-19.html">☕ Дайджест</a></li></ul></section><footer>Усі випуски зберігаються назавжди. <a href="/">← до свіжого</a></footer></div>
 </body>
