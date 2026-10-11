@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Daily Economic Brief</title>
+</head>
+<body>
+
+<style>
+:root{
+  --bg:#f4f4f2; --card:#fff; --head:#161a20; --body:#3d4551; --muted:#818a99;
+  --accent:#3f5b8c; --accent-soft:#eaeff7; --border:#e6e7ea; --rule:#eff0f2;
+  --up:#1a7f4b; --down:#c23b48; --chip:#f0f1f3;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--body); margin:0; padding:26px 16px 56px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  font-size:17px; line-height:1.72; font-weight:400;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:720px;margin:0 auto;}
+
+/* ── Шапка ─────────────────────────────── */
+h1{
+  font-size:1.75rem; line-height:1.2; font-weight:600; letter-spacing:-.022em;
+  color:var(--head); margin:0 0 6px; text-wrap:balance;
+}
+.date{color:var(--muted);font-size:.82rem;font-weight:400;letter-spacing:.01em;margin-bottom:20px;}
+.prices{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px;}
+.prices span{
+  background:var(--chip); border-radius:8px; padding:6px 11px;
+  font-size:.78rem; font-weight:500; color:var(--head); white-space:nowrap;
+  font-variant-numeric:tabular-nums; letter-spacing:-.005em;
+}
+.up{color:var(--up);font-weight:600;}
+.down{color:var(--down);font-weight:600;}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 30px;}
+nav.toc a{
+  background:transparent; border:1px solid var(--border); border-radius:8px;
+  padding:6px 11px; font-size:.79rem; font-weight:450; color:var(--muted);
+  text-decoration:none; transition:color .12s, border-color .12s;
+}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);}
+nav.toc a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+/* ── Секції: головне, що розділяє потік ── */
+section{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:6px 22px 10px; margin:0 0 26px; scroll-margin-top:16px;
+}
+h2{
+  font-size:.94rem; font-weight:600; letter-spacing:.005em; color:var(--head);
+  margin:0; padding:18px 0 14px; border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; gap:9px; text-wrap:balance;
+}
+h2 .cnt{color:var(--muted);font-weight:400;font-size:.78rem;letter-spacing:0;margin-left:auto;}
+
+/* ── Головне за добу ───────────────────── */
+section#top{background:var(--accent-soft);border-color:transparent;}
+ul.tldr{margin:0;padding:14px 0 6px;list-style:none;}
+ul.tldr li{
+  margin:0; padding:11px 0 11px 2px; border-top:1px solid var(--rule);
+  font-size:.97rem; line-height:1.62;
+}
+ul.tldr li:first-child{border-top:none;}
+ul.tldr b{color:var(--head);font-weight:600;}
+
+/* ── Новина ────────────────────────────── */
+details{border-top:1px solid var(--rule);}
+details:first-of-type{border-top:none;}
+summary{
+  cursor:pointer; list-style:none; position:relative;
+  padding:17px 4px 17px 26px; margin:0;
+  font-size:1rem; font-weight:500; line-height:1.5; color:var(--head);
+  letter-spacing:-.008em; transition:color .12s;
+}
+summary::-webkit-details-marker{display:none;}
+summary::before{
+  content:""; position:absolute; left:4px; top:26px;
+  width:7px; height:7px; border-right:1.5px solid var(--muted);
+  border-bottom:1.5px solid var(--muted); transform:rotate(-45deg);
+  transition:transform .18s ease, border-color .12s;
+}
+details[open] summary::before{transform:rotate(45deg);border-color:var(--accent);}
+summary:hover{color:var(--accent);}
+summary:hover::before{border-color:var(--accent);}
+summary .tag{
+  display:block; margin-top:5px; color:var(--muted);
+  font-weight:400; font-size:.76rem; letter-spacing:.01em;
+}
+.body{
+  margin:0 0 14px; padding:0 4px 0 26px;
+  font-size:.96rem; line-height:1.75; font-weight:400; color:var(--body);
+  max-width:66ch;
+}
+.note{
+  margin:0 4px 14px 26px; padding:13px 16px;
+  background:var(--accent-soft); border-radius:10px;
+  font-size:.92rem; line-height:1.62; color:var(--body); max-width:64ch;
+}
+.note b{color:var(--accent);font-weight:600;}
+.src{
+  margin:0 4px 18px 26px; padding:0;
+  font-size:.79rem; line-height:1.9; color:var(--muted); font-weight:400;
+}
+.src a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);}
+.src a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+footer{
+  color:var(--muted); font-size:.76rem; line-height:1.75; font-weight:400;
+  margin:34px 0 0; padding-top:18px; border-top:1px solid var(--border);
+}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media (max-width:640px){
+  body{font-size:16px;padding:20px 12px 44px;}
+  h1{font-size:1.5rem;}
+  section{padding:4px 16px 8px;border-radius:12px;margin-bottom:20px;}
+  .body,.note,.src{padding-left:0;margin-left:0;}
+  .note{margin-bottom:12px;}
+  summary{padding-left:22px;}
+}
+@media (prefers-reduced-motion: reduce){summary::before{transition:none;}}
+
+.sitenav{
+  position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:4px;
+  align-items:center; padding:11px 16px; margin:-26px -16px 26px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.sitenav a{
+  font-size:.81rem; font-weight:450; text-decoration:none; color:var(--muted);
+  padding:6px 12px; border-radius:8px; white-space:nowrap;
+  transition:color .12s, background .12s;
+}
+.sitenav a:hover{color:var(--head);background:var(--chip);}
+.sitenav a.on{color:var(--accent);background:var(--accent-soft);font-weight:600;}
+.sitenav .sp{flex:1;}
+.sitenav .when{font-size:.76rem;color:var(--muted);letter-spacing:.01em;}
+@media (max-width:640px){
+  .sitenav{margin:-20px -12px 20px;padding:9px 12px;}
+  .sitenav a{padding:5px 10px;font-size:.78rem;}
+  .sitenav .when{display:none;}
+}
+</style>
+<div class="wrap"><nav class="sitenav"><a href="/">☕ Дайджест</a><a href="/en.html" class="on">📊 Economic Brief</a><a href="/archive.html">🗂 Архів</a><span class="sp"></span><span class="when">11 жовтня 2026</span></nav>
+<h1>📊 Daily Economic Brief</h1>
+<div class="date">Sunday, 11 October 2026 · compiled 11:22 New York time</div>
+<div class="prices"><span>BTC $83 049 <span class="up">+0.15%</span></span><span>ETH $2 505 <span class="down">−0.05%</span></span><span>S&amp;P 500 7 812 <span class="up">+0.59%</span></span><span>NASDAQ 27 366 <span class="up">+0.64%</span></span><span>DJIA 51 655 <span class="up">+0.83%</span></span></div>
+<nav class="toc"><a href="#top">🔥 Top</a><a href="#macro">📊 Macro &amp; Rates</a><a href="#geo">🌐 Geopolitics &amp; the Economy</a><a href="#trade">🚢 Trade, Tariffs &amp; Policy</a><a href="#trump">🎙 Trump &amp; Policy Signals</a><a href="#corp">🏢 Corporate &amp; Earnings</a><a href="#crypto">₿ Digital Assets</a><a href="#ai">🤖 The AI Economy</a><a href="#energy">⚡ Energy &amp; Commodities</a></nav>
+<section><h2>🧭 The throughline</h2><p class="body" style="padding-left:0">The week’s main story was the cost of money. Long-dated Treasury yields hit 24-year highs (30-year at 5.73%), and a $39 billion 10-year auction cleared at 5.3%, all with Brent above $100 and US inflation at 3.4%. Equities kept rising anyway (S&amp;P 500 +1.2% on the week), so markets are betting that earnings growth and AI demand can outrun higher discount rates. The administration is fighting fuel inflation politically rather than monetarily: it waived sanctions on Russian diesel and announced an unconfirmed Russia–Ukraine energy ceasefire, a strategy whose effect on real supply is still unproven. This week (bank earnings, September CPI on the 14th, TSMC on the 15th) tests whether profits and inflation can justify current valuations with the 10-year above 5%.</p></section>
+<section id="top"><h2>🔥 Top of the brief</h2><ul class="tldr">
+<li>🏦 <b>30-year Treasury yield touched 5.73%</b> highest since 2002, and the 10-year auction cleared at 5.3%, the highest since 2000</li>
+<li>📈 <b>S&amp;P 500 closed at 7,811.54, up 1.2% on the week</b> just shy of a record ahead of bank earnings and CPI</li>
+<li>⛽ <b>Treasury licenses Russian diesel imports through April 2027</b> Trump touts up to 1.8 million tonnes as diesel sits about 70% above pre-war levels</li>
+<li>🕊️ <b>Trump declares a Russia–Ukraine “energy ceasefire”</b> Kyiv calls it news, Moscow has not confirmed, and refinery strikes are the key diesel variable</li>
+<li>📊 <b>September CPI due Wednesday, consensus 3.6% y/y</b> after just 29,000 jobs in September, with the Fed meeting on October 28</li>
+<li>📡 <b>SpaceX spectrum deal hits telecoms</b> T-Mobile fell 13%, AT&amp;T 10% and Verizon 9% in one session</li>
+<li>₿ <b>About $1.25 billion left crypto ETFs last week</b> ether funds are on a nine-day outflow streak and BTC is near $83,000</li>
+<li>🤖 <b>FT puts OpenAI run-rate near $50 billion, not $70 billion</b> AI hardware stocks sold off before rebounding on Friday</li>
+</ul></section>
+<section id="macro"><h2>📊 Macro &amp; Rates <span class="cnt">4 items</span></h2>
+<details open><summary>Long-end Treasury yields hit 24-year highs as a global bond selloff accelerates<span class="tag">NBC News / Bloomberg / CNBC</span></summary>
+<p class="body">On Wednesday, October 7, the 30-year Treasury yield reached 5.73%, the highest since 2002, and the 10-year peaked at 5.36%. A $39 billion 10-year auction cleared at 5.3%, the highest yield on a 10-year sale since November 2000, though strong demand pulled yields off their highs. The selloff was global: the UK 30-year gilt hit its highest level since 1998, and French and Italian yields jumped.</p>
+<p class="body">Ed Yardeni warned that France may be nearing a debt crisis. The drivers were oil above $100, sticky inflation, large fiscal deficits and heavy AI-related corporate borrowing. By Friday the 30-year had eased to about 5.60% and the 10-year to about 5.24%.</p>
+<p class="note"><b>Why it matters:</b> a 10-year above 5% raises mortgage, corporate and government borrowing costs and compresses equity valuations, which makes rates the main risk to the bull market.</p>
+<p class="src">Sources: <a href="https://www.nbcnews.com/business/markets/treasury-yields-hit-24-year-highs-global-sell-accelerates-rcna602045">NBC News — Treasury yields hit 24-year highs</a> · <a href="https://www.bloomberg.com/news/articles/2026-10-07/us-30-year-yields-return-to-2002-high-with-crude-back-above-100">Bloomberg — US 30-year yields return to 2002 high</a> · <a href="https://www.cnbc.com/2026/10/09/us-treasurys-bond-yields-midterms.html">CNBC — Treasury yields steady as traders wrap up volatile week</a></p>
+</details>
+<details><summary>Labor market stalls: September payrolls +29,000, unemployment at 4.2%<span class="tag">BabyPips / Bloomberg</span></summary>
+<p class="body">Nonfarm payrolls rose just 29,000 in September, below every estimate in a forecast range of roughly 84,000 to 95,000. Unemployment rose to 4.2%, partly because the labor force grew. Revisions were negative: August was cut to +133,000 from +162,000, and July now shows a loss of 10,000 jobs. Average hourly earnings rose only 0.1% on the month to $37.81, a 3.0% annual pace. With PCE inflation at 3.4%, real wage growth is now close to zero or negative.</p>
+<p class="body">The University of Michigan’s preliminary October sentiment index fell to 46.3, against a 48 consensus and the lowest since May.</p>
+<p class="note"><b>Why it matters:</b> weak hiring with 3%+ inflation is stagflation-like, and it pulls the Fed between its two mandates.</p>
+<p class="src">Sources: <a href="https://www.babypips.com/news/headline-us-jobs-report-september-2026-payrolls-miss-fed-hike-odds">BabyPips — US jobs report September 2026</a> · <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-october-9-dow-sp-500-nasdaq-080148117.html">Yahoo Finance — Market wrap Oct 9 (UMich sentiment)</a></p>
+</details>
+<details><summary>September CPI on Wednesday is the swing factor for an October 28 Fed hike<span class="tag">CMC Markets</span></summary>
+<p class="body">The Fed raised its target range by 25 basis points on September 16, to 3.75%–4.00%, in a rare hiking cycle driven by energy-led inflation. September CPI is due Wednesday, October 14, at 8:30 a.m. ET. Consensus is +0.6% m/m and 3.6% y/y on the headline (prior 3.4%), and +0.2% m/m on core. September PPI and retail sales follow on Thursday, and the Beige Book comes out Wednesday. In early October, futures priced about a 25% chance of an October hike and treated a December move as nearly certain.</p>
+<p class="body">CMC notes that a cooler print could keep the Fed on hold until after the November midterms, while a hot one would revive October hike bets.</p>
+<p class="note"><b>Why it matters:</b> a headline number driven by energy and a soft core would let the Fed look through oil, but a firm core reading would push yields back toward their highs.</p>
+<p class="src">Sources: <a href="https://www.cmcmarkets.com/en-ie/news-and-analysis/the-week-ahead-us-cpi-eurozone-cpi-jpmorgan-earnings">CMC Markets — The week ahead: US CPI, JPMorgan earnings</a> · <a href="https://www.babypips.com/news/headline-us-jobs-report-september-2026-payrolls-miss-fed-hike-odds">BabyPips — Fed hike odds</a></p>
+</details>
+<details><summary>Equities shrug off rates: S&amp;P 500 +1.2% on the week, bull market turns four on Monday<span class="tag">AP / Yahoo Finance / Truist</span></summary>
+<p class="body">On Friday the S&amp;P 500 rose 0.59% to 7,811.54, the Dow 0.83% to 51,654.95 and the Nasdaq Composite 0.64% to 27,366.17. For the week, the S&amp;P gained 1.2%, the Dow 0.9% and the Nasdaq 0.6%, while the rate-sensitive Russell 2000 lost 0.9%. The S&amp;P is up 14.1% year to date, and the VIX ended at 14.84. Truist says the bull market turns four on October 12 with a 119% gain, modest next to the 1987–2000 and 2009–2020 runs.</p>
+<p class="body">Deutsche Bank notes the S&amp;P has risen in 21 of the last 23 midterm cycles, measured from one month before the election to two months after. Gold rose 1.43% to $4,216, a sign that some investors are hedging.</p>
+<p class="note"><b>Why it matters:</b> small caps lagging large caps shows where the rate pain falls, since leveraged smaller firms feel 5% yields first.</p>
+<p class="src">Sources: <a href="https://wtop.com/national/2026/10/how-major-us-stock-indexes-fared-friday-10-9-2026/">WTOP/AP — How major US stock indexes fared 10/9/2026</a> · <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-october-9-dow-sp-500-nasdaq-080148117.html">Yahoo Finance — Stock market today, Oct 9</a></p>
+</details>
+</section>
+<section id="geo"><h2>🌐 Geopolitics &amp; the Economy <span class="cnt">3 items</span></h2>
+<details open><summary>Trump’s Russia–Ukraine “energy ceasefire” is unconfirmed but matters for diesel<span class="tag">NBC News / Axios / France 24</span></summary>
+<p class="body">On Sunday, October 11, Trump posted on Truth Social that an “ENERGY CEASEFIRE” between Russia and Ukraine was in effect and that both sides had agreed. He gave no details. Zelenskyy told Axios the deal was news to him but said Ukraine would comply if Russia did. The Kremlin has not confirmed it, and a similar announcement on September 14 was followed by continued strikes. The economic channel is refining: the IEA identified Ukrainian strikes on Russian refineries, together with restricted Hormuz flows, as key drivers of the global diesel squeeze.</p>
+<p class="body">A real pause could ease product cracks and diesel prices, though Russian strikes on Ukraine’s grid would also have to stop.</p>
+<p class="note"><b>Why it matters:</b> if it holds, the truce is a bigger potential downward force on diesel prices than the import deal, so watch for Moscow’s confirmation and refinery-strike data.</p>
+<p class="src">Sources: <a href="https://www.nbcnews.com/world/ukraine/trump-russia-ukraine-agree-energy-ceasefire-zelenskyy-diesel-rcna602766">NBC News — Trump claims energy ceasefire</a> · <a href="https://www.axios.com/2026/10/11/trump-russia-ukraine-energy-ceasefire-zelensky">Axios — Trump says Russia and Ukraine agreed to energy ceasefire</a> · <a href="https://www.france24.com/en/europe/20261011-trump-says-russia-and-ukraine-agree-energy-ceasefire">France 24 — Trump says Russia and Ukraine agree energy ceasefire</a></p>
+</details>
+<details><summary>Houthi strikes on Riyadh airport and a claimed hit on Aramco’s Yanbu hub raise Red Sea risk<span class="tag">AP</span></summary>
+<p class="body">Houthi-claimed attacks hit Riyadh’s King Khalid International Airport, and a Saudia aircraft was damaged on the ground. Initial AP reports cited three dead; Saudi authorities later raised the toll to 12 killed and more than 300 wounded (NPR, October 10). The Saudi-led coalition has vowed retaliation, and Trump said Sunday he would “look at” joining. The Houthis also claimed an attack on an Aramco facility in Yanbu, a key Red Sea export hub that matters more while Hormuz flows are constrained.</p>
+<p class="body">Saudi Arabia and allied forces are conducting a major offensive against the Houthis in Yemen, with US intelligence support. Washington has not resumed direct strikes on the Houthis so far.</p>
+<p class="note"><b>Why it matters:</b> with Hormuz impaired, Saudi Arabia’s Red Sea outlet at Yanbu is a critical bypass, and any lasting damage there would add directly to the oil risk premium.</p>
+<p class="src">Sources: <a href="https://www.ksat.com/news/world/2026/10/09/saudi-authorities-say-3-killed-in-attacks-on-riyadh-airport-claimed-by-houthi-rebels/">AP via KSAT — Riyadh airport attacks (initial report)</a> · <a href="https://www.npr.org/2026/10/10/g-s1-147682/attack-on-riyadh-airport-killed-12-people-and-wounded-over-300-more-saudi-authorities-say">NPR — Attack on Riyadh airport killed 12</a> · <a href="https://www.cnbc.com/2026/10/11/trump-saudi-arabia-iran-houthis.html">CNBC — Trump &#x27;going to look at&#x27; joining Saudi fight against Houthis</a></p>
+</details>
+<details><summary>The Iran war keeps an energy premium in every asset class<span class="tag">Yahoo Finance / The Hill / The Block</span></summary>
+<p class="body">Energy prices have been elevated since the US–Israeli conflict with Iran began on February 28, and the US has enforced a blockade of Iranian ports since April, with a pause from mid-June to mid-July. Earlier this year the Pentagon estimated the blockade had cost Iran about $4.8 billion in oil revenue. On Friday, Trump said the US would not attack Iran before the midterms, which lowers near-term escalation risk.</p>
+<p class="body">Treasury Secretary Bessent also said the US is targeting about $1 billion in Iran-linked crypto for seizure. Brent nonetheless stayed above $100.</p>
+<p class="note"><b>Why it matters:</b> a pledge not to escalate caps the upside risk but does not reopen supply, so the premium shrinks only if Hormuz traffic actually normalizes.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-october-9-dow-sp-500-nasdaq-080148117.html">Yahoo Finance — Market wrap Oct 9</a> · <a href="https://www.theblock.co/news/regulation/2026-10-09-us-targets-1-billion-iran-linked-crypto-seizure-bessent-says-we-know-where-it-is-418151">The Block — US targets $1B Iran-linked crypto seizure</a></p>
+</details>
+</section>
+<section id="trade"><h2>🚢 Trade, Tariffs &amp; Policy <span class="cnt">3 items</span></h2>
+<details open><summary>OFAC’s General License 135 opens a path for Russian diesel imports through April 7, 2027<span class="tag">Ship &amp; Bunker / NPR</span></summary>
+<p class="body">After a Trump–Putin call, Treasury’s Office of Foreign Assets Control issued General License 135. It authorizes transactions related to the sale, delivery and importation, including into the United States, of Russian-origin diesel through April 7, 2027. It is the first such license since the war began to run longer than the usual 30 days. Trump said Russia would supply over 300,000 tonnes immediately, 500,000 tonnes in November and 1 million tonnes after that.</p>
+<p class="body">The White House did not say who pays or when the fuel arrives. EU and UK import bans and the $100/bbl product price cap remain in force, so the license mainly opens US and third-country channels.</p>
+<p class="note"><b>Why it matters:</b> this is a supply-side inflation tool used for political ends, and it weakens the West’s sanctions leverage over Moscow at the same time.</p>
+<p class="src">Sources: <a href="https://shipandbunker.com/news/world/445068-us-lifts-sanctions-on-russian-diesel-for-six-months-after-trump-putin-call">Ship &amp; Bunker — US lifts sanctions on Russian diesel for six months</a> · <a href="https://www.nhpr.org/2026-10-09/trump-says-u-s-to-get-diesel-from-russia-relaxing-pressure-on-moscow-to-ease-prices-before-midterms">NPR — Trump says U.S. to get diesel from Russia</a></p>
+</details>
+<details><summary>Diesel deal collides with the congressional sanctions mandate<span class="tag">AP / NPR</span></summary>
+<p class="body">AP reported that the move casts doubt on whether the White House will impose sanctions on Russia this month. A bipartisan law directs the administration to target the top importers of Russian oil and gas. Rep. Don Beyer, senior House Democrat on the Joint Economic Committee, called the announcement “infuriating” and said expanded tariff powers granted in hopes of helping Ukraine were a mistake.</p>
+<p class="body">Former GOP congressman Adam Kinzinger highlighted Republicans’ 2022 calls to stop buying Russian oil. We found no sitting Republican lawmaker publicly condemning the deal so far.</p>
+<p class="note"><b>Why it matters:</b> secondary sanctions on buyers of Russian energy, which would hit India, China and Turkey, now look less likely in the near term, and that lowers the tail risk of a wider global energy-trade shock.</p>
+<p class="src">Sources: <a href="https://www.nhpr.org/2026-10-09/trump-says-u-s-to-get-diesel-from-russia-relaxing-pressure-on-moscow-to-ease-prices-before-midterms">NPR — Trump says U.S. to get diesel from Russia</a></p>
+</details>
+<details><summary>Fuel costs are flowing through to transport: Delta’s fuel bill jumped 62%<span class="tag">Yahoo Finance / AAA</span></summary>
+<p class="body">Delta’s Q3 fuel expense rose 62% to $4.1 billion, and the airline now expects full-year fuel costs to be about $6 billion higher. The national average for diesel hit a record $6.52 per gallon on September 22 and was around $6.23–$6.28 on October 9, about 70% above where it stood before the Iran war began. Trucking, farming and airlines are the first places where energy inflation shows up in prices and margins.</p>
+<p class="body">Trump explicitly framed the Russian diesel deal around “Farmers, Ranchers, and Truckers.” Freight costs eventually show up in goods CPI with a lag.</p>
+<p class="note"><b>Why it matters:</b> transport-cost pass-through is why headline inflation can stay above 3% even with a cooling labor market.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-october-9-dow-sp-500-nasdaq-080148117.html">Yahoo Finance — Delta earnings, Oct 9</a> · <a href="https://shipandbunker.com/news/world/445068-us-lifts-sanctions-on-russian-diesel-for-six-months-after-trump-putin-call">Ship &amp; Bunker — diesel prices and GL 135</a></p>
+</details>
+</section>
+<section id="trump"><h2>🎙 Trump &amp; Policy Signals <span class="cnt">3 items</span></h2>
+<details open><summary>Pre-midterm priority: lower pump prices, by deal if necessary<span class="tag">NPR / NBC News</span></summary>
+<p class="body">In three days, Trump announced the Russian diesel deal, demanded that Kyiv stop striking Russian refineries, said Ukraine should “get a new leader who can make a deal,” and declared an energy ceasefire. He wrote that “Lower prices for Americans” is his “Greatest Priority.” He attributes the global diesel squeeze mostly to the Russia–Ukraine war rather than the Iran conflict, a framing Zelenskyy and some analysts dispute. Midterms are in early November.</p>
+<p class="note"><b>Why it matters:</b> expect more supply-side announcements, such as waivers, SPR moves and pressure on producers, before November, and every one of them adds headline risk for energy markets.</p>
+<p class="src">Sources: <a href="https://www.nbcnews.com/world/ukraine/trump-russia-ukraine-agree-energy-ceasefire-zelenskyy-diesel-rcna602766">NBC News — Energy ceasefire and diesel deal</a> · <a href="https://www.nhpr.org/2026-10-09/trump-says-u-s-to-get-diesel-from-russia-relaxing-pressure-on-moscow-to-ease-prices-before-midterms">NPR — Diesel from Russia before midterms</a></p>
+</details>
+<details><summary>Fed independence pressure: committee formed to probe Governor Lisa Cook<span class="tag">Yahoo Finance</span></summary>
+<p class="body">Trump formed a committee to investigate mortgage-fraud allegations against Fed Governor Lisa Cook. The move comes as the Fed is in a hiking cycle that runs against the administration’s preference for lower rates. Markets watch any perceived erosion of Fed independence closely because it can raise the term premium on long Treasuries. That premium is a plausible part of why the 30-year is at 24-year highs.</p>
+<p class="body">Separately, a new Bessent adviser reportedly said yields are “really, really high” but can come down soon; we could not access the full CNBC piece.</p>
+<p class="note"><b>Why it matters:</b> political pressure on the Fed can, paradoxically, push long-term borrowing costs higher rather than lower.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-october-9-dow-sp-500-nasdaq-080148117.html">Yahoo Finance — Market wrap Oct 9 (Cook committee)</a> · <a href="https://www.cnbc.com/2026/10/08/treasury-yields-david-zervos.html">CNBC — Bessent adviser on yields</a></p>
+</details>
+<details><summary>“No Iran attack before the midterms” is a de-escalation signal markets welcomed<span class="tag">Yahoo Finance</span></summary>
+<p class="body">Trump said on Friday that the US will not attack Iran before the midterm elections. Although he said Sunday he would “look at” joining Saudi strikes on the Houthis, the pledge suggests a lower near-term chance of a military shock to Gulf supply. Stocks rallied Friday and the VIX fell 3.7% to 14.84, though the rebound in tech after Thursday’s OpenAI-related selloff also helped. Oil barely moved, with Brent settling at $104.72, a sign that traders see the supply constraint as structural rather than tied to headlines. The blockade of Iranian ports remains in place.</p>
+<p class="note"><b>Why it matters:</b> the statement lowers the risk of a spike but not the price level, so energy-driven inflation persists either way.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-october-9-dow-sp-500-nasdaq-080148117.html">Yahoo Finance — Stock market today, Oct 9</a></p>
+</details>
+</section>
+<section id="corp"><h2>🏢 Corporate &amp; Earnings <span class="cnt">4 items</span></h2>
+<details><summary>Big banks open Q3 earnings season Tuesday; JPMorgan consensus EPS is $5.90<span class="tag">CMC Markets</span></summary>
+<p class="body">JPMorgan, Goldman Sachs, Wells Fargo, Johnson &amp; Johnson and UnitedHealth report on Tuesday, October 13. Bank of America, Morgan Stanley, BlackRock and State Street follow Wednesday, then Schwab, PNC, BNY Mellon and Prologis on Thursday, and Truist, Travelers, M&amp;T and Regions on Friday. JPMorgan is expected to post EPS of $5.90 (+16.4% y/y) on revenue of $51.3 billion (+8.8%). Net interest income is expected at $26.9 billion (+12.1%) and trading income at $5.8 billion (−18.4%), and options imply a move of about 3.3%.</p>
+<p class="body">Higher long rates widen lending margins but hurt bond portfolios and mortgage volumes. Credit-quality commentary will be read against 4.2% unemployment.</p>
+<p class="note"><b>Why it matters:</b> banks are the first read on whether US consumers and businesses are absorbing 5% rates, so provisions and card delinquencies are the numbers to watch.</p>
+<p class="src">Sources: <a href="https://www.cmcmarkets.com/en-ie/news-and-analysis/the-week-ahead-us-cpi-eurozone-cpi-jpmorgan-earnings">CMC Markets — Week ahead</a></p>
+</details>
+<details><summary>Delta misses as fuel costs bite, a warning for energy-intensive sectors<span class="tag">Yahoo Finance</span></summary>
+<p class="body">Delta reported Q3 adjusted EPS of $1.72 against $1.82 expected, on revenue of $17.58 billion versus $17.76 billion expected. Revenue still grew 15.7% year over year. The fuel bill rose 62% to $4.1 billion, and Delta cut guidance on a roughly $6 billion increase in full-year fuel costs. The shares were roughly flat, which suggests the hit was largely priced in. The result shows how oil at $100+ moves profit away from fuel consumers and toward producers.</p>
+<p class="note"><b>Why it matters:</b> expect similar margin pressure at airlines, logistics and chemicals companies this season, while energy producers benefit.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-october-9-dow-sp-500-nasdaq-080148117.html">Yahoo Finance — Stock market today, Oct 9</a></p>
+</details>
+<details><summary>SpaceX spectrum purchase knocks billions off US telecom stocks<span class="tag">Yahoo Finance</span></summary>
+<p class="body">SpaceX agreed to acquire nationwide low-band spectrum. Roth Capital reported a roughly $8 billion deal for Grain Management’s frequencies. Investors read it as a credible direct-to-device mobile threat: T-Mobile fell 13.27% to $148.58, AT&amp;T 9.81% to $22.18 and Verizon 8.75% to $41.65. AST SpaceMobile, which also wanted the spectrum, fell 10.48%. SpaceX shares rose about 1.25% to $162.57, roughly 8% above their $150 IPO price. Roth flagged ATEX, NN and GOGO as possible beneficiaries of rising spectrum demand.</p>
+<p class="note"><b>Why it matters:</b> telecom is a defensive, high-dividend sector, and a new well-capitalized competitor reprices its cash flows and dividend safety.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/stocks/articles/p-500-nasdaq-100-dow-225311213.html">Yahoo Finance — MSFT, NFLX, SPCX, ASTS in focus</a></p>
+</details>
+<details><summary>Moderna jumps 14%; Netflix reportedly preparing 5% job cuts<span class="tag">Yahoo Finance / Puck</span></summary>
+<p class="body">Moderna rose 14.21% to $225, a 52-week high, after a New York Times report on a national cancer-vaccine push. The stock is up about 627% year to date and has returned to the Nasdaq-100. According to Puck, Netflix is preparing to cut about 5% of its global workforce as soon as this week. The cuts would come ahead of its Q3 report later in October. Policy-driven moves like Moderna’s show how much single-stock returns now depend on Washington headlines.</p>
+<p class="note"><b>Why it matters:</b> layoffs at a profitable mega-cap like Netflix fit the wider picture of companies protecting margins as hiring stalls.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/stocks/articles/p-500-nasdaq-100-dow-225311213.html">Yahoo Finance — Movers Oct 9</a></p>
+</details>
+</section>
+<section id="crypto"><h2>₿ Digital Assets <span class="cnt">3 items</span></h2>
+<details><summary>About $1.25 billion left US spot crypto ETFs last week; BTC holds near $83,000<span class="tag">The Block</span></summary>
+<p class="body">On Sunday, bitcoin traded near $83,049 (+0.1% over 24 hours) and ether near $2,505 (−0.1%), barely changed from Friday. US spot bitcoin ETFs saw $681.1 million of net outflows last week, the worst week since late June, which ended a three-week inflow run. Wednesday alone accounted for $487.1 million. Bitcoin ETFs’ 2026 net inflows are down to $494.1 million, against $105.84 billion in net assets.</p>
+<p class="body">Across bitcoin, ether and Solana products, about $1.25 billion left in a week. JPMorgan still estimates roughly $50 billion of total crypto inflows this year.</p>
+<p class="note"><b>Why it matters:</b> with risk-free yields above 5%, holding non-yielding assets costs more, and ETF flows show institutions cutting exposure.</p>
+<p class="src">Sources: <a href="https://www.theblock.co/news/markets/2026-10-10-ether-etfs-extend-outflow-streak-to-nine-days-as-solana-funds-snap-record-14-week-inflow-run-418215">The Block — ETF flows week ending Oct 9</a> · <a href="https://www.theblock.co/news/markets/2026-10-08-jpmorgan-crypto-inflows-50-billion-etf-futures-q4-418115">The Block — JPMorgan sees $50B crypto inflows</a></p>
+</details>
+<details><summary>Ether ETFs log nine straight days of outflows; Solana funds end a 14-week streak<span class="tag">The Block</span></summary>
+<p class="body">Spot ether ETFs lost $542.1 million last week, their worst week since January, and $697.2 million over nine consecutive outflow days since September 29. BlackRock’s ETHA accounted for $477 million, about 88% of the weekly total. Category net assets fell 10% to $15.71 billion, and 2026 net inflows dropped to $931.8 million from $1.47 billion. Solana ETFs posted $24.8 million of outflows, their largest week since launch. That ended a 14-week inflow streak, just two weeks after a record $188.2 million weekly inflow.</p>
+<p class="note"><b>Why it matters:</b> outflows across several altcoin products point to broad de-risking rather than rotation between coins.</p>
+<p class="src">Sources: <a href="https://www.theblock.co/news/markets/2026-10-10-ether-etfs-extend-outflow-streak-to-nine-days-as-solana-funds-snap-record-14-week-inflow-run-418215">The Block — Ether ETFs nine-day outflow streak</a></p>
+</details>
+<details><summary>Ledger supply-chain incident and prediction-market probes raise operational and regulatory risk<span class="tag">The Block / Crypto Briefing / WSJ</span></summary>
+<p class="body">Buyers of Ledger hardware wallets sold through Southeast Asian reseller CryptoBilis have lost more than $86 million, according to on-chain analyst Specter, or nearly $90 million according to MistTrack. Tether froze USDT linked to the thefts. Ledger suspended the reseller and is investigating, and analysts describe the incident as a supply-chain compromise rather than a breach of Ledger itself; claims of a hardware implant remain unverified.</p>
+<p class="body">Separately, the WSJ reports that Kalshi is investigating bets on Trump’s press-secretary pick placed before the announcement. Blockchain.com is seeking CFTC approval for US prediction markets and crypto derivatives.</p>
+<p class="note"><b>Why it matters:</b> insider-trading concerns in prediction markets make tighter CFTC rules more likely for a fast-growing sector.</p>
+<p class="src">Sources: <a href="https://www.theblock.co/news/business/2026-10-09-ledger-cryptobilis-fund-losses-418163">The Block — Ledger CryptoBilis losses</a> · <a href="https://www.theblock.co/news/regulation/2026-10-10-kalshi-is-investigating-bets-on-trumps-press-secretary-pick-placed-before-announcement-wsj-418222">The Block — Kalshi investigating press secretary bets</a> · <a href="https://www.theblock.co/news/business/2026-10-09-blockchain-com-cftc-license-prediction-markets-derivatives-418192">The Block — Blockchain.com seeks CFTC license</a></p>
+</details>
+</section>
+<section id="ai"><h2>🤖 The AI Economy <span class="cnt">3 items</span></h2>
+<details><summary>FT puts OpenAI’s run-rate near $50 billion, not $70 billion, and AI hardware stocks wobble<span class="tag">FT / Malay Mail / eNCA</span></summary>
+<p class="body">Citing documents shared with backers, the Financial Times reported that OpenAI’s annualized revenue was close to $50 billion at the end of September. Earlier media reports, based on investor-adjusted figures, had pegged it near $70 billion. The gap reflects accounting: Anthropic counts revenue from sales through AWS and Google Cloud, OpenAI reports net revenue, and investors adjusting for comparability inflated OpenAI’s number.</p>
+<p class="body">On October 8 the Nasdaq fell 1.25%, its worst day since mid-August. Nvidia fell 2.9%, Oracle 5.5% and CoreWeave 8%, while AMD and Broadcom lost about 4% each. Bloomberg later reported that OpenAI expects at least $70 billion by year-end, and tech rebounded Friday.</p>
+<p class="note"><b>Why it matters:</b> the whole AI capex chain is priced on frontier-lab revenue, so any shortfall there feeds straight into chip and cloud valuations.</p>
+<p class="src">Sources: <a href="https://malaymail.com/news/money/2026/10/09/ai-hype-meets-revenue-reality-openai-figures-fall-us20b-short-of-earlier-reports/238332">Malay Mail — OpenAI figures fall US$20b short</a> · <a href="https://www.enca.com/business/openai-revenue-gap-report-rattles-ai-stocks">eNCA — OpenAI revenue gap rattles AI stocks</a></p>
+</details>
+<details><summary>AI is now a bond-market story: hyperscalers have issued $48 billion of euro debt this year<span class="tag">NBC News / Apollo</span></summary>
+<p class="body">Apollo’s Huw van Steenis says hyperscalers have raised $48 billion in euro-denominated bonds this year, more than triple all of 2025. Reports also say SpaceX plans to raise $40 billion for Nvidia chips; NBC has not confirmed this. Corporate AI borrowing adds to the supply of duration hitting global bond markets at the same time as large sovereign deficits. That is one reason long yields are rising across the US, UK and Europe at once.</p>
+<p class="body">With a 10-year Treasury above 5%, the hurdle rate for data-center projects is materially higher than it was during the 2023–24 build-out.</p>
+<p class="note"><b>Why it matters:</b> higher funding costs push AI spending toward projects that pay back quickly, which favors firms with cash flow over those that depend on borrowing.</p>
+<p class="src">Sources: <a href="https://www.nbcnews.com/business/markets/treasury-yields-hit-24-year-highs-global-sell-accelerates-rcna602045">NBC News — Global bond sell-off</a></p>
+</details>
+<details><summary>Apple takes Huxe’s talent and IP; TSMC on Thursday is the next AI demand test<span class="tag">MacRumors / CMC Markets</span></summary>
+<p class="body">A European Commission filing shows Apple signed a hiring-and-licensing deal with Huxe on June 9. Huxe is an AI audio startup founded by former Google NotebookLM staff. Apple gets a non-exclusive license to Huxe’s IP and can make job offers to some of its staff, but it is not acquiring the company. It is at least Apple’s fourth AI-related deal this year. Microsoft, meanwhile, launched a specialized AI system for fast automated decisions, part of a shift toward cheaper, narrower enterprise models. TSMC reports Q3 on Thursday, October 15, and it is the clearest read on AI accelerator demand after last week’s scare.</p>
+<p class="note"><b>Why it matters:</b> acqui-hires let big tech add AI talent without full merger review, and TSMC’s guidance will show whether the scare over OpenAI’s revenue was noise or the start of a real slowdown.</p>
+<p class="src">Sources: <a href="https://macrumors.com/2026/10/09/apple-signs-hiring-deal-ai-podcast-startup-huxe">MacRumors — Apple signs hiring deal with Huxe</a> · <a href="https://www.cmcmarkets.com/en-ie/news-and-analysis/the-week-ahead-us-cpi-eurozone-cpi-jpmorgan-earnings">CMC Markets — Week ahead (TSMC)</a></p>
+</details>
+</section>
+<section id="energy"><h2>⚡ Energy &amp; Commodities <span class="cnt">3 items</span></h2>
+<details><summary>Brent settles at $104.72 and stays above $100 despite de-escalation signals<span class="tag">CNBC / Yahoo Finance</span></summary>
+<p class="body">Brent rose 0.42% to settle at $104.72 on Friday, and November WTI rose 0.39% to $91.85. The Brent–WTI spread of about $13 reflects the premium on seaborne barrels while Hormuz flows are restricted. Crude has been above $100 for much of the week, and Bloomberg tied the latest bond selloff directly to oil topping $100. Neither Trump’s pledge not to attack Iran before the midterms nor the diesel deal moved crude meaningfully. Brent briefly topped $126 in the spring, so current prices sit below the war peak but well above pre-war levels.</p>
+<p class="note"><b>Why it matters:</b> sustained $100+ Brent keeps headline CPI above 3%, and that is what drives Fed hike odds and long-end yields.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-october-9-dow-sp-500-nasdaq-080148117.html">Yahoo Finance — Market wrap Oct 9</a> · <a href="https://www.bloomberg.com/news/articles/2026-10-07/us-30-year-yields-return-to-2002-high-with-crude-back-above-100">Bloomberg — 30-year yields and crude above $100</a></p>
+</details>
+<details><summary>Diesel is the pressure point, with the squeeze coming from both Hormuz and Russian refineries<span class="tag">NPR / Ship &amp; Bunker / NBC News</span></summary>
+<p class="body">US diesel hit a record $6.52 per gallon on September 22 and was around $6.23–$6.28 on October 9, about 70% above where it stood before the Iran war began. The IEA has identified two causes: constrained product flows through Hormuz and Ukrainian strikes on Russian refining. Washington is now addressing both, with GL 135 for Russian diesel imports and the announced energy ceasefire.</p>
+<p class="body">The promised volumes are modest: 300,000 tonnes is roughly 2.2 million barrels, against US distillate demand of about 4 million barrels a day. The likely effect is on margins and sentiment more than on physical balances.</p>
+<p class="note"><b>Why it matters:</b> diesel feeds directly into freight, food and farm costs, so it can move goods inflation faster than crude does.</p>
+<p class="src">Sources: <a href="https://shipandbunker.com/news/world/445068-us-lifts-sanctions-on-russian-diesel-for-six-months-after-trump-putin-call">Ship &amp; Bunker — GL 135 and diesel prices</a> · <a href="https://www.nbcnews.com/world/ukraine/trump-russia-ukraine-agree-energy-ceasefire-zelenskyy-diesel-rcna602766">NBC News — Energy ceasefire and diesel</a></p>
+</details>
+<details><summary>Gold above $4,200 as real yields and the dollar firm<span class="tag">Yahoo Finance / CMC Markets</span></summary>
+<p class="body">Gold rose 1.43% on Friday to $4,216.30 an ounce. CMC Markets notes that gold had earlier broken support as long-term real yields and the dollar moved higher, which makes Friday’s bounce look more like hedging demand than a trend change. Normally, 5%+ nominal yields would weigh on a non-yielding asset. Gold holding above $4,200 suggests investors are hedging geopolitical risk, fiscal risk and political pressure on the Fed rather than pricing a pure rate story. Gold’s strength contrasts with crypto, which saw ETF outflows the same week.</p>
+<p class="note"><b>Why it matters:</b> among non-yielding hedges, gold is winning over bitcoin for now, which says something about how investors rank geopolitical and fiscal risk.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/stocks/articles/p-500-nasdaq-100-dow-225311213.html">Yahoo Finance — Market wrap Oct 9</a> · <a href="https://www.cmcmarkets.com/en-ie/news-and-analysis/the-week-ahead-us-cpi-eurozone-cpi-jpmorgan-earnings">CMC Markets — Week ahead (gold commentary)</a></p>
+</details>
+</section>
+<footer>Compiled automatically on 11.10.2026 at 11:22 New York time. Window: last ~26 hours · Feeds collected: 29/29. <a href="#top">↑ back to top</a></footer></div>
+</body>
+</html>
