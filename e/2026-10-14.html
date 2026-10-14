@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Daily Economic Brief</title>
+</head>
+<body>
+
+<style>
+:root{
+  --bg:#f4f4f2; --card:#fff; --head:#161a20; --body:#3d4551; --muted:#818a99;
+  --accent:#3f5b8c; --accent-soft:#eaeff7; --border:#e6e7ea; --rule:#eff0f2;
+  --up:#1a7f4b; --down:#c23b48; --chip:#f0f1f3;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--body); margin:0; padding:26px 16px 56px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  font-size:17px; line-height:1.72; font-weight:400;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:720px;margin:0 auto;}
+
+/* ── Шапка ─────────────────────────────── */
+h1{
+  font-size:1.75rem; line-height:1.2; font-weight:600; letter-spacing:-.022em;
+  color:var(--head); margin:0 0 6px; text-wrap:balance;
+}
+.date{color:var(--muted);font-size:.82rem;font-weight:400;letter-spacing:.01em;margin-bottom:20px;}
+.prices{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px;}
+.prices span{
+  background:var(--chip); border-radius:8px; padding:6px 11px;
+  font-size:.78rem; font-weight:500; color:var(--head); white-space:nowrap;
+  font-variant-numeric:tabular-nums; letter-spacing:-.005em;
+}
+.up{color:var(--up);font-weight:600;}
+.down{color:var(--down);font-weight:600;}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 30px;}
+nav.toc a{
+  background:transparent; border:1px solid var(--border); border-radius:8px;
+  padding:6px 11px; font-size:.79rem; font-weight:450; color:var(--muted);
+  text-decoration:none; transition:color .12s, border-color .12s;
+}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);}
+nav.toc a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+/* ── Секції: головне, що розділяє потік ── */
+section{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:6px 22px 10px; margin:0 0 26px; scroll-margin-top:16px;
+}
+h2{
+  font-size:.94rem; font-weight:600; letter-spacing:.005em; color:var(--head);
+  margin:0; padding:18px 0 14px; border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; gap:9px; text-wrap:balance;
+}
+h2 .cnt{color:var(--muted);font-weight:400;font-size:.78rem;letter-spacing:0;margin-left:auto;}
+
+/* ── Головне за добу ───────────────────── */
+section#top{background:var(--accent-soft);border-color:transparent;}
+ul.tldr{margin:0;padding:14px 0 6px;list-style:none;}
+ul.tldr li{
+  margin:0; padding:11px 0 11px 2px; border-top:1px solid var(--rule);
+  font-size:.97rem; line-height:1.62;
+}
+ul.tldr li:first-child{border-top:none;}
+ul.tldr b{color:var(--head);font-weight:600;}
+
+/* ── Новина ────────────────────────────── */
+details{border-top:1px solid var(--rule);}
+details:first-of-type{border-top:none;}
+summary{
+  cursor:pointer; list-style:none; position:relative;
+  padding:17px 4px 17px 26px; margin:0;
+  font-size:1rem; font-weight:500; line-height:1.5; color:var(--head);
+  letter-spacing:-.008em; transition:color .12s;
+}
+summary::-webkit-details-marker{display:none;}
+summary::before{
+  content:""; position:absolute; left:4px; top:26px;
+  width:7px; height:7px; border-right:1.5px solid var(--muted);
+  border-bottom:1.5px solid var(--muted); transform:rotate(-45deg);
+  transition:transform .18s ease, border-color .12s;
+}
+details[open] summary::before{transform:rotate(45deg);border-color:var(--accent);}
+summary:hover{color:var(--accent);}
+summary:hover::before{border-color:var(--accent);}
+summary .tag{
+  display:block; margin-top:5px; color:var(--muted);
+  font-weight:400; font-size:.76rem; letter-spacing:.01em;
+}
+.body{
+  margin:0 0 14px; padding:0 4px 0 26px;
+  font-size:.96rem; line-height:1.75; font-weight:400; color:var(--body);
+  max-width:66ch;
+}
+.note{
+  margin:0 4px 14px 26px; padding:13px 16px;
+  background:var(--accent-soft); border-radius:10px;
+  font-size:.92rem; line-height:1.62; color:var(--body); max-width:64ch;
+}
+.note b{color:var(--accent);font-weight:600;}
+.src{
+  margin:0 4px 18px 26px; padding:0;
+  font-size:.79rem; line-height:1.9; color:var(--muted); font-weight:400;
+}
+.src a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);}
+.src a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+footer{
+  color:var(--muted); font-size:.76rem; line-height:1.75; font-weight:400;
+  margin:34px 0 0; padding-top:18px; border-top:1px solid var(--border);
+}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media (max-width:640px){
+  body{font-size:16px;padding:20px 12px 44px;}
+  h1{font-size:1.5rem;}
+  section{padding:4px 16px 8px;border-radius:12px;margin-bottom:20px;}
+  .body,.note,.src{padding-left:0;margin-left:0;}
+  .note{margin-bottom:12px;}
+  summary{padding-left:22px;}
+}
+@media (prefers-reduced-motion: reduce){summary::before{transition:none;}}
+
+.sitenav{
+  position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:4px;
+  align-items:center; padding:11px 16px; margin:-26px -16px 26px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.sitenav a{
+  font-size:.81rem; font-weight:450; text-decoration:none; color:var(--muted);
+  padding:6px 12px; border-radius:8px; white-space:nowrap;
+  transition:color .12s, background .12s;
+}
+.sitenav a:hover{color:var(--head);background:var(--chip);}
+.sitenav a.on{color:var(--accent);background:var(--accent-soft);font-weight:600;}
+.sitenav .sp{flex:1;}
+.sitenav .when{font-size:.76rem;color:var(--muted);letter-spacing:.01em;}
+@media (max-width:640px){
+  .sitenav{margin:-20px -12px 20px;padding:9px 12px;}
+  .sitenav a{padding:5px 10px;font-size:.78rem;}
+  .sitenav .when{display:none;}
+}
+</style>
+<div class="wrap"><nav class="sitenav"><a href="/">☕ Дайджест</a><a href="/en.html" class="on">📊 Economic Brief</a><a href="/archive.html">🗂 Архів</a><span class="sp"></span><span class="when">14 жовтня 2026</span></nav>
+<h1>📊 Daily Economic Brief</h1>
+<div class="date">Wednesday, 14 October 2026 · compiled 13:26 New York time</div>
+<div class="prices"><span>BTC $81 916 <span class="down">−1.45%</span></span><span>ETH $2 444 <span class="down">−2.41%</span></span><span>S&amp;P 500 7 720 <span class="down">−1.10%</span></span><span>NASDAQ 26 756 <span class="down">−1.65%</span></span><span>DJIA 51 496 <span class="down">−0.34%</span></span></div>
+<nav class="toc"><a href="#top">🔥 Top</a><a href="#macro">📊 Macro &amp; Rates</a><a href="#geo">🌐 Geopolitics &amp; the Economy</a><a href="#trump">🎙 Trump, Trade &amp; Policy Signals</a><a href="#corp">🏢 Corporate &amp; Earnings</a><a href="#crypto">₿ Digital Assets</a><a href="#ai">🤖 The AI Economy</a><a href="#energy">⚡ Energy &amp; Commodities</a></nav>
+<section><h2>🧭 The throughline</h2><p class="body" style="padding-left:0">Wednesday&#x27;s tape was a collision between the Iran-war energy shock bleeding into core inflation and a Wall Street AI-capex narrative that depends on cheap credit. September core CPI printed 2.6% y/y against 2.5% expected, the 2-year yield jumped ~12bp and October hike odds surged to 42–60% — punishing duration and leverage: CoreWeave bonds near 15%, the SOX down a sixth straight session, bitcoin back near $82k. Defensive rotation (healthcare +2.1%, staples +1.7%) and Brent above $105 say the market is pricing stagflation risk rather than recession. Washington&#x27;s levers — a Russian diesel waiver and a pre-midterm pause on Iran strikes — are not offsetting Hormuz disruption, and the IEA warns diesel tightness may persist into 2027. All figures intraday as of ~13:00 ET.</p></section>
+<section id="top"><h2>🔥 Top of the brief</h2><ul class="tldr">
+<li>📊 <b>Hot core CPI: +0.3% m/m, 2.6% y/y vs 0.2%/2.5% expected</b> Headline 3.7% y/y; gasoline +9.1% drove about half the monthly gain.</li>
+<li>🏦 <b>October Fed hike odds jump from ~22% to 42–60%</b> CME 42%, LSEG 60%; policy rate is 3.75–4.00% after September&#x27;s hike; FOMC meets Oct 27–28.</li>
+<li>📉 <b>S&amp;P 500 −1.1%, Nasdaq −1.66% intraday</b> NYSE decliners outnumber advancers 4.4-to-1; the index is set to end its longest streak without a 1% drop.</li>
+<li>💸 <b>Bank of America −6% on revenue miss and $1.2B AML penalty</b> Worst day since April 2025, even as Morgan Stanley&#x27;s equities desk beat by $909M.</li>
+<li>🤖 <b>AI credit stress: CoreWeave 2032 bonds touch a 15% yield</b> CRWV ~−15%, Oracle ~−8%, Dell ~−11.5%; Larry Fink warns a data-center moratorium could cause a recession.</li>
+<li>🛢 <b>Brent ~$106 after GFS Pride sinking and Houthi strike on Aramco HQ</b> IEA: VLCC Gulf-to-Asia freight ~$36/bbl, more than 5× pre-war.</li>
+<li>👵 <b>Social Security COLA set at 3.6% for 2027</b> Largest since 2023; average retiree benefit up ~$75/month to $2,170.</li>
+<li>₿ <b>BTC ~$81.9k (−1.3%), ETH ~$2,444 (−2.2%)</b> Rate fears outweighed BlackRock&#x27;s +63% crypto AUM and Kraken&#x27;s EU bank purchase.</li>
+</ul></section>
+<section id="macro"><h2>📊 Macro &amp; Rates <span class="cnt">4 items</span></h2>
+<details open><summary>September CPI beats on core: 0.3% m/m and 2.6% y/y<span class="tag">CoinDesk / The Hill / Yahoo</span></summary>
+<p class="body">Headline CPI rose 0.6% m/m, matching forecasts, and 3.7% y/y versus 3.6% expected and 3.4% in August. Core CPI rose 0.3% m/m versus 0.2% expected, and the annual rate climbed to 2.6% from 2.4%. Gasoline rose 9.1% in the month and accounted for roughly half of the headline increase, an energy shock tied to the Iran war. Analysts cited shelter, airfares and used cars as the drivers of the core surprise, which suggests pass-through beyond fuel.</p>
+<p class="body">Inflation has outpaced wage growth for the past five months, per AP-cited reporting, so real incomes are being squeezed. Higher real and nominal rates hurt rate-sensitive sectors and long-duration equities, while indexed income streams such as Social Security catch up with a lag.</p>
+<p class="note"><b>Why it matters:</b> the core beat removes the Fed&#x27;s ability to call this a transitory energy shock and makes the next PCE print and the Beige Book (due this afternoon) pivotal for the Oct 27–28 FOMC.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/markets/2026/10/14/u-s-september-cpi-comes-in-hot-sending-bitcoin-sharply-lower">CoinDesk CPI recap</a> · <a href="https://thehill.com/business/6146675-bls-september-cpi-data-inflation/amp/">The Hill</a></p>
+</details>
+<details><summary>Front end reprices: 2-year yield +12bp to ~4.90%, 10-year touches 5.33%<span class="tag">Bloomberg / CoinDesk / CNBC</span></summary>
+<p class="body">Bloomberg reported the 2-year yield up 12bp at 4.90%, the biggest mover on the curve. CoinDesk&#x27;s early read had the 10-year up 9.3bp to 5.308%, and Yahoo Finance put the intraday high at 5.33% before it eased to about 5.23–5.25%. The 30-year moved less: sources range from about 5.54% to 5.61%, against Tuesday&#x27;s 5.558%, which flattens the 2s/30s curve. A flattening led by the front end means markets are pricing Fed action more than a fiscal term premium.</p>
+<p class="body">The dollar index rose about 0.7% to 102.85 and gold fell about 1.8% to around $4,103. Mortgage rates followed: the MBA 30-year contract rate was 7.5%, and its mortgage market index fell to 199.2 from 204.7.</p>
+<p class="note"><b>Why it matters:</b> a 10-year holding above about 5.3% tightens financial conditions for housing, autos and leveraged AI borrowers, and could do part of the Fed&#x27;s job for it.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/economy/policy/articles/us-treasuries-slump-hot-inflation-124425335.html">US Treasuries Slump as Hot Inflation Lifts Fed Rate-Hike Bets</a> · <a href="https://www.cnbc.com/2026/10/14/us-treasury-yields-cpi-inflation-report.html">10-year Treasury yield jumps on hot core (CNBC)</a></p>
+</details>
+<details><summary>Fed hike odds for October surge, and officials send mixed signals<span class="tag">CME / LSEG / Reuters</span></summary>
+<p class="body">Before the release, futures put the chance of a quarter-point hike at the Oct 27–28 meeting at about 22%. Afterwards, CME FedWatch showed 42%, LSEG data cited by Reuters showed 60%, and Bloomberg described it as roughly a coin toss. CME also showed 93% odds of at least one hike by December. Governor Christopher Waller said on Tuesday in New Delhi that higher Treasury yields are &#x27;doing a little bit of the work&#x27; of tightening, which reads as a case for patience.</p>
+<p class="body">Vice Chair for Supervision Michelle Bowman said the Fed has time to wait after its September hike. PGIM&#x27;s Robert Sockin said &#x27;We had that October hike in our forecast&#x27; and that the data &#x27;opens the door more to it.&#x27; Principal&#x27;s Seema Shah expects hikes in December and early 2027.</p>
+<p class="note"><b>Why it matters:</b> the gap between hawkish market pricing and dovish Fed voices sets up volatility around the next round of Fed remarks (Richmond Fed&#x27;s Barkin speaks today).</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/stocks/articles/p-500-dow-futures-inch-115448878.html">Reuters via Yahoo market wrap</a> · <a href="https://finance.yahoo.com/markets/stocks/articles/stock-market-today-stocks-drop-104125102.html">Stocks Drop, Treasury Yields Surge (CME odds)</a> · <a href="https://finance.yahoo.com/economy/policy/articles/feds-waller-says-higher-treasury-103559245.html">Waller remarks</a></p>
+</details>
+<details><summary>Housing squeeze: Fannie Mae lifts its 2027 mortgage-rate forecast to 7.5%, and the 2027 COLA is 3.6%<span class="tag">CNBC / SSA</span></summary>
+<p class="body">CNBC reported that Fannie Mae now expects the 30-year fixed rate to average 7.4% in Q4 2026 and 7.5% in 2027, up from 6.8% and 6.7% a month ago. We found no second outlet confirming those figures. Mortgage News Daily had the average 30-year at 7.46% on Tuesday, before the CPI-driven rise in yields. Separately, the SSA announced a 3.6% COLA for 2027, the largest since 2023&#x27;s 8.7%.</p>
+<p class="body">It lifts the average retired-worker benefit from $2,095 to $2,170 a month for about 76 million Social Security and SSI recipients. The taxable wage cap rises to $192,300 from $184,500, a stealth tax increase on higher earners. The COLA is tied to Q3 CPI-W, so it locks in this year&#x27;s energy-driven inflation for 2027 federal outlays.</p>
+<p class="note"><b>Why it matters:</b> higher mortgage rates and indexed transfer spending together put upward pressure on deficits and term premia while housing turnover stays frozen.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/10/14/fannie-mae-sharply-raises-mortgage-rate-forecast-for-2027-.html">Fannie Mae sharply raises mortgage rate forecast for 2027 (CNBC)</a> · <a href="https://www.ssa.gov/news/en/cola/factsheets/2027.html">SSA 2027 COLA fact sheet</a></p>
+</details>
+</section>
+<section id="geo"><h2>🌐 Geopolitics &amp; the Economy <span class="cnt">3 items</span></h2>
+<details open><summary>Second merchant ship lost near Hormuz since the war began<span class="tag">Reuters / Arab News</span></summary>
+<p class="body">The Singapore-flagged container ship GFS Pride (2,824 TEU) sank near the Strait of Hormuz, according to maritime security sources and a Pakistani navigational warning dated Oct 14. All 21 crew were evacuated. Reuters sources say a projectile hit the ship, while Iran&#x27;s IRGC claims it struck a naval mine, which risk firm Marisks called unverified. IMO data make it the second vessel sunk since the US-Iran war began on Feb 28, and the bulk carrier Cape Dao is reported to be sinking after a Sept 23 hit.</p>
+<p class="body">UKMTO reports more than 20 vessels, mostly tankers, attacked this month in Hormuz and the Gulf of Oman. Two senior Iranian officials told Reuters that the new tactics aim to keep oil prices high and influence the US midterms.</p>
+<p class="note"><b>Why it matters:</b> Iran is deliberately using the shipping channel to put an inflation tax on the US electorate, so war-risk premia and freight costs are likely to stay high at least until Nov 3.</p>
+<p class="src">Sources: <a href="https://www.arabnews.com/middle-east/container-ship-sinks-near-hormuz-after-being-hit-by-projectile-3006316">Container ship sinks near Hormuz (Reuters via Arab News)</a></p>
+</details>
+<details><summary>Houthis hit Aramco&#x27;s Dhahran HQ and threaten Saudi airports and oil sites<span class="tag">Reuters / CNN / The National</span></summary>
+<p class="body">Saudi Arabia&#x27;s Energy Ministry said an Aramco administrative building in Dhahran was targeted on Tuesday evening, causing a limited fire with no casualties. A company source said the top three floors of an office tower were damaged. The Houthis claimed missile and drone attacks on Dhahran, Riyadh&#x27;s airport and a Riyadh refinery, and urged shipping companies and workers to evacuate Saudi oil sites and airports.</p>
+<p class="body">Riyadh&#x27;s King Khalid airport has been closed until Oct 17 after a weekend attack that killed 13. The Saudi–Houthi fight over the Bab el-Mandeb shipping lanes has resumed, Fox News reports. That threatens the Red Sea bypass routes that eased the Hormuz bottleneck, including East-West pipeline flows to Yanbu.</p>
+<p class="note"><b>Why it matters:</b> if the Red Sea outlet is also contested, the Gulf loses its main alternative export route, which lifts the floor under Brent.</p>
+<p class="src">Sources: <a href="https://www.investing.com/news/stock-market-news/yemens-houthis-vow-more-attacks-on-saudi-airports-oil-facilities-after-aramco-hq-hit-4949648">Houthis vow more attacks after Aramco HQ hit (Reuters via Investing.com)</a> · <a href="https://www.thenationalnews.com/business/energy/2026/10/14/houthi-attack-hits-aramcos-historic-nerve-centre-in-saudi-arabia/">Houthi attack hits Aramco&#x27;s historic nerve centre (The National)</a></p>
+</details>
+<details><summary>IRGC threatens to sink US warships, and CENTCOM says it controls the strait<span class="tag">Anadolu / IRNA / CENTCOM</span></summary>
+<p class="body">IRGC Navy commander Rear Adm. Ali Azmaei said on state TV, as reported by IRNA, that Iranian forces are &#x27;counting down&#x27; to sink US warships that approach Hormuz. He also claimed the IRGC issues transit permits for the strait. CENTCOM rejected this, saying US and partner forces &#x27;clearly control&#x27; the strait and helped move more than 19 million barrels of crude through it the previous day.</p>
+<p class="body">The IEA says total Hormuz flows rose by 3.7 mb/d to 10.9 mb/d in September, helped by ship-to-ship transfers and restored East-West pipeline flows. It warns that the recent escalation &#x27;threatens to derail further gains.&#x27; The rhetoric has not yet turned into attacks on US naval vessels, and none were found in reporting.</p>
+<p class="note"><b>Why it matters:</b> crude volumes are recovering, but any US-Iran naval clash would erase that recovery in one session, which helps explain why option skew in oil stays bid.</p>
+<p class="src">Sources: <a href="https://www.aa.com.tr/en/us-israel-iran-war/iran-s-irgc-navy-threatens-to-sink-us-warships-approaching-strait-of-hormuz/4087785">IRGC Navy threatens to sink US warships (Anadolu)</a> · <a href="https://www.iea.org/reports/oil-market-report-october-2026">IEA Oil Market Report October 2026</a></p>
+</details>
+</section>
+<section id="trump"><h2>🎙 Trump, Trade &amp; Policy Signals <span class="cnt">4 items</span></h2>
+<details open><summary>Russian diesel waiver: OFAC licenses imports through April 7, 2027<span class="tag">NBC / CNBC / CNN</span></summary>
+<p class="body">Trump said on Truth Social that Russia would supply more than 300,000 tons of diesel immediately, 500,000 tons in November and 1 million tons after that, with a further 3 million tons depending on the state of Russia&#x27;s refineries. Treasury&#x27;s OFAC then issued a general license authorizing the sale, delivery and import, including into the US, of Russian-origin diesel until 12:01 a.m.</p>
+<p class="body">EDT on April 7, 2027. Russia had suspended all diesel exports this month after Ukrainian strikes on its refineries. CNBC says analysts expect the volumes to make little difference to prices, and others question whether Russia can deliver them. European leaders and Ukraine&#x27;s Zelenskyy object that easing sanctions without de-escalation prolongs the war. Trump also declared a Russia-Ukraine &#x27;energy ceasefire&#x27; on Sunday.</p>
+<p class="note"><b>Why it matters:</b> it splits Western sanctions policy and shows the White House prioritizing pump prices before Nov 3, while the IEA says diesel tightness may last into 2027.</p>
+<p class="src">Sources: <a href="https://www.nbcnews.com/business/energy/trump-putin-diesel-prices-rcna602566">Trump eases Russia sanctions for diesel (NBC)</a> · <a href="https://www.cnbc.com/2026/10/12/russia-ukraine-energy-ceasefire-diesel-prices.html">Diesel deal offers little price relief (CNBC)</a> · <a href="https://www.cnn.com/2026/10/11/europe/trump-diesel-deal-putin-latam-intl">Diesel deal drives a wedge through Western alliance (CNN)</a></p>
+</details>
+<details><summary>Iran: a no-strike pledge until the midterms, then &#x27;wait until you see what we do&#x27;<span class="tag">NBC / Fox News / CBS</span></summary>
+<p class="body">On Oct 8 Trump posted that the US would not attack Iran before the Nov 3 midterms and cited &#x27;productive discussions.&#x27; Oil barely reacted: Brent closed that day at $104.28, NBC reported. At an Alaska rally on Tuesday night he warned the reprieve could end within weeks, saying &#x27;Wait until you see what we do to Iran,&#x27; Fox News reported. That puts a visible date on the risk of escalation after the vote.</p>
+<p class="body">No new Truth Social post from Trump on markets or the Fed was found for Oct 14. In September, after the Fed&#x27;s first hike in about three years, he wrote that US rates &#x27;should be 1%, or less,&#x27; while saying he still backs Chair Kevin Warsh.</p>
+<p class="note"><b>Why it matters:</b> oil now carries a premium for the period right after Nov 3, and another Fed hike in October would likely reopen White House pressure on Warsh.</p>
+<p class="src">Sources: <a href="https://www.nbcnews.com/business/energy/oil-prices-stocks-trump-iran-rcna602248">Trump&#x27;s pledge fails to soothe oil markets (NBC)</a> · <a href="https://www.foxnews.com/live-news/us-iran-war-donald-trump-oil-nuclear-sites-hormuz-strait-october-14">Fox News live blog Oct 14</a> · <a href="https://www.forbes.com/sites/antoniopequenoiv/2026/09/16/trump-rants-about-interest-rates-after-feds-first-hike-in-3-years/">Trump rants after Fed&#x27;s first hike in 3 years (Forbes)</a></p>
+</details>
+<details><summary>OCC debanking report names all nine of the largest national banks<span class="tag">OCC / Banking Dive</span></summary>
+<p class="body">The OCC&#x27;s review, ordered by Trump&#x27;s executive order &#x27;Guaranteeing Fair Access to Banking for All Americans,&#x27; found that all nine large national banks it examined, including JPMorgan, Bank of America and Citibank, had debanking policies between 2020 and September 2025. The affected sectors include digital assets, oil and gas, coal, firearms, detention facilities and tobacco. The review drew on nearly 100,000 complaints and about 420,000 pages of documents.</p>
+<p class="body">Comptroller Jonathan Gould said the banks &#x27;denied, debanked and discriminated against&#x27; lawful businesses. The CFPB says it will investigate, but no penalties have been announced. The report landed the same day Bank of America took a $1.2B anti-money-laundering penalty, adding to regulatory headline risk for big banks.</p>
+<p class="note"><b>Why it matters:</b> it gives a regulatory push toward opening bank access for crypto and fossil-fuel firms, and future fair-access rules could limit banks&#x27; discretion to manage reputational risk.</p>
+<p class="src">Sources: <a href="https://www.occ.gov/news-issuances/news-releases/2026/nr-occ-2026-90.html">OCC press release</a> · <a href="https://www.bankingdive.com/news/occ-debanking-report-trump-gould-jpmorgan-bofa-capital-one-td-cfpb/832997/">OCC blasts debanking at JPMorgan, others (Banking Dive)</a></p>
+</details>
+<details><summary>Data-center moratoriums become a macro policy fight<span class="tag">CNBC / Yahoo</span></summary>
+<p class="body">BlackRock CEO Larry Fink said on CNBC that a national moratorium on data centers would push the US into recession: &#x27;So much of our economy is based on the buildout of this capex.&#x27; He said the fear is &#x27;mostly&#x27; based on misinformation, that data centers are creating jobs, and that states proposing moratoriums &#x27;frighten&#x27; him. New York has already imposed a one-year moratorium on environmental permits for new data centers above 50MW, and reports say about 100 localities have proposed or enacted pauses.</p>
+<p class="body">Opposition is turning into a midterm issue over utility bills and water use. Fink&#x27;s view is a forecast from an interested party: BlackRock finances data-center projects, and no GDP impact study was cited.</p>
+<p class="note"><b>Why it matters:</b> local permitting, not chip supply, may become the binding constraint on AI capex, which shifts value toward power generation (CEG, VST, NEE) and grid equipment.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/10/14/blackrocks-fink-warns-data-center-moratorium-could-spark-a-recession.html">Fink warns data center moratorium could spark a recession (CNBC)</a> · <a href="https://finance.yahoo.com/technology/ai/articles/blackrock-ceo-larry-fink-warned-143036756.html">New York halted large data centers (Yahoo)</a></p>
+</details>
+</section>
+<section id="corp"><h2>🏢 Corporate &amp; Earnings <span class="cnt">4 items</span></h2>
+<details open><summary>Bank of America: EPS $0.91 vs $1.10 expected, revenue $30B vs $30.6B, plus a $1.2B AML penalty<span class="tag">Yahoo Finance</span></summary>
+<p class="body">Regulators charged BofA $1.2B on Tuesday over widespread failures in its anti-money-laundering safeguards. Net income was $6.93B, or $0.91 a share, and would have been $8.1B, or $1.08, excluding the penalty. Revenue rose 3% to $30B, short of the roughly $30.6B consensus. Net interest income rose 8% to $16.4B. Investment banking fees fell 11% to $1.8B but beat forecasts, fixed income trading fell 17% to $2.6B and equities trading rose 11% to $2.5B.</p>
+<p class="body">CFO Alastair Borthwick said the consent order carries no growth restriction, unlike Wells Fargo&#x27;s eight-year asset cap. The stock fell more than 6% intraday, its worst day since April 2025.</p>
+<p class="note"><b>Why it matters:</b> the open-ended remediation timeline and the OCC debanking findings add a compliance-cost overhang just as higher rates threaten loan growth.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/article/bank-of-america-stock-on-track-for-worst-day-since-2025-as-12-billion-fine-weighs-on-q3-earnings-135327799.html">BofA worst day since 2025 (Yahoo)</a></p>
+</details>
+<details><summary>Morgan Stanley&#x27;s equities desk beats by $909M, but the stock falls about 3%<span class="tag">CNBC / SEC 8-K</span></summary>
+<p class="body">Net revenue was $20.3B, up from $18.2B a year earlier, and EPS was $3.03 versus the $2.91 LSEG estimate. Equities trading revenue rose 41% to $5.8B, about $909M above the StreetAccount estimate, with Asia especially strong. Fixed income fell 7% to $2.01B, about $260M short of estimates, and investment banking rose 2% to $2.16B, about $110M short, as IPO underwriting slowed. Wealth management posted record revenue and pre-tax profit, and net new assets were $232B.</p>
+<p class="body">Return on tangible equity was 22.6%, the fifth straight quarter above 20%, and the CET1 ratio was 14.9%. Shares fell about 3–3.5% as the rate shock outweighed the beat.</p>
+<p class="note"><b>Why it matters:</b> equity volatility is a trading windfall, but the soft IPO pipeline and weaker fixed income show how a hiking Fed hits capital-markets fees.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/10/14/morgan-stanley-ms-q3-2026-earnings.html">Morgan Stanley tops estimates (CNBC)</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000895421/000089542126000288/a3q26msearningsrelease.htm">MS Q3 2026 earnings release (SEC)</a></p>
+</details>
+<details><summary>Tuesday&#x27;s banks: Goldman crushed estimates, JPMorgan missed, and all warned on sticky inflation<span class="tag">Fortune / Goldman 8-K / Investing.com</span></summary>
+<p class="body">Goldman Sachs earned $17.01 a share on about $18.68B of net revenue, nearly 30% above the roughly $13.09 consensus, helped by an 18% rise in advisory revenue. JPMorgan earned $5.57 a share versus $5.93 expected, a rare miss caused by slower fixed income trading. Citi reported revenue of $23.8B and EPS of $2.85, beating the $2.65 estimate, and Yahoo called it Citi&#x27;s best Q3 revenue in a decade.</p>
+<p class="body">Wells Fargo earned $1.87 a share ($5.95B), with credit provisions of $1B and net charge-offs of $983M. Fortune reported that executives warned of long-term damage from higher rates and &#x27;sticky inflation&#x27; on consumers. Reuters said JPM, GS, WFC and C all closed lower on Tuesday, and the S&amp;P banks index touched a four-month low on Wednesday.</p>
+<p class="note"><b>Why it matters:</b> credit quality is holding for now, so the market is trading the macro outlook (a hiking Fed and squeezed consumers) rather than current earnings.</p>
+<p class="src">Sources: <a href="https://fortune.com/2026/10/13/jpmorgan-goldman-sachs-citigroup-wells-fargo-interest-inflation/">Big banks warn on rates and sticky inflation (Fortune)</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000886982/000088698226000529/a3q26gsearningsresults.htm">Goldman Q3 2026 8-K</a> · <a href="https://www.investing.com/analysis/bank-earnings-q3-2026-goldman-30-beat-jpmorgan-misses-revenue-200689491">Bank earnings Q3 2026 (Investing.com)</a></p>
+</details>
+<details><summary>BlackRock beats on EPS and inflows, and Netflix cuts 1,000 jobs<span class="tag">Yahoo / TechCrunch</span></summary>
+<p class="body">BlackRock earned an adjusted $15.93 a share versus $14.15 expected. Revenue rose 19% to $7.75B, net inflows were $205.5B versus $171.5B expected, and AUM reached a record $15.49T, slightly below the $15.57T forecast. Larry Fink compared financing AI compute to the rise of mortgage-backed securities in the 1980s and said BlackRock may securitize loans backed by computing equipment.</p>
+<p class="body">The stock was roughly flat. Netflix is cutting about 1,000 jobs, or 6% of staff, its largest layoff since 2022, mainly in product, technology, legal and HR. Co-CEOs Peters and Sarandos said the business remains &#x27;strong and growing&#x27; and on track for its full-year forecast. Netflix reports earnings on Oct 20.</p>
+<p class="note"><b>Why it matters:</b> asset managers gain from volatility and inflows, while mature tech platforms trim costs ahead of a tougher rate backdrop; Netflix&#x27;s Oct 20 report will test that discipline.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/article/blackrock-stock-jumps-as-q3-earnings-investor-inflows-beat-expectations-103844244.html">BlackRock Q3 (Yahoo)</a> · <a href="https://techcrunch.com/2026/10/14/netflix-to-lay-off-1000-staff-amid-intensifying-competition-for-user-attention/">Netflix to lay off 1,000 staff (TechCrunch)</a></p>
+</details>
+</section>
+<section id="crypto"><h2>₿ Digital Assets <span class="cnt">3 items</span></h2>
+<details><summary>Bitcoin ~$81.9k (−1.3%) and ether ~$2,444 (−2.2%) as hot CPI hits risk assets<span class="tag">CoinDesk / Yahoo</span></summary>
+<p class="body">Bitcoin dropped about $1,000 to roughly $82,800 straight after the CPI release, and the ticker later showed about $81,900, down from overnight highs above $84,000. Ether traded near $2,444, down about 2.2%, according to CoinDesk&#x27;s ticker. In the run-up to the report, US spot bitcoin ETFs lost about $773M over four sessions from Oct 7 to Oct 12, per Farside data. Higher real yields, a stronger dollar (DXY +0.7%) and better odds of an October Fed hike raise the cost of holding non-yielding assets. Traders are watching the $80,000 support level. All figures are intraday.</p>
+<p class="note"><b>Why it matters:</b> crypto is trading as a high-beta rates asset, so the Oct 27–28 FOMC outcome matters more for prices than crypto-specific news.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/markets/2026/10/14/u-s-september-cpi-comes-in-hot-sending-bitcoin-sharply-lower">Hot CPI sends bitcoin sharply lower (CoinDesk)</a></p>
+</details>
+<details><summary>Institutional plumbing: BlackRock&#x27;s crypto AUM +63%, Strive adds 2,822 BTC, BNY and Citadel run a tokenized repo<span class="tag">CoinDesk / The Block / Blockhead</span></summary>
+<p class="body">BlackRock&#x27;s digital-asset AUM rose to $79.6B from $48.8B over Q3. Net inflows contributed $7.9B and price gains $22.9B, but AUM remains 23% below the $104B peak of September 2025. Strive bought 2,822 BTC for about $235M, at roughly $83,266 each, taking its holdings to 35,595 BTC and passing MARA as the fourth-largest public bitcoin treasury. Warrant exercises raised about $369.2M toward the purchase.</p>
+<p class="body">BNY said Citadel Securities settled a tokenized 2-year Treasury note on BNY&#x27;s private ledger and pledged it in an overnight triparty repo, settling in minutes instead of T+1. The size of that single trade was not disclosed.</p>
+<p class="note"><b>Why it matters:</b> tokenized collateral in core funding markets grows regardless of crypto prices, which is a longer-lasting adoption signal than ETF flows.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/markets/2026/10/14/blackrock-s-crypto-etf-assets-surge-63-but-remain-far-below-2025-peak">BlackRock&#x27;s crypto ETF assets surge 63% (CoinDesk)</a> · <a href="https://www.theblock.co/news/business/2026-10-14-strive-buys-235-million-in-bitcoin-warrant-yield-369-million-418556">Strive buys $235M in bitcoin (The Block)</a> · <a href="https://www.blockhead.co/2026/10/14/bny-citadel-securities-run-tokenized-treasury-through-triparty-repo/">BNY, Citadel tokenized Treasury repo (Blockhead)</a></p>
+</details>
+<details><summary>Kraken buys an EU bank, StanChart delays its $2T stablecoin call to 2030, and France targets stablecoin swaps<span class="tag">CoinDesk / Cointelegraph / Decrypt</span></summary>
+<p class="body">Payward, Kraken&#x27;s parent, agreed to buy Lithuania&#x27;s Saldo Bank (about $190M in assets, per CoinDesk). It would become the first crypto firm to own a European bank, able to take deposits, lend and process euro payments, with closing expected in 2027. Standard Chartered&#x27;s Geoffrey Kendrick moved his $2T stablecoin forecast from 2028 to 2030 because supply has sat at $300–320B for 12 months, even as on-chain transfer volume approaches about $10T a month.</p>
+<p class="body">He names the GENIUS Act&#x27;s January 2027 start as the key risk. A French Assembly finance committee backed an amendment to treat crypto-to-e-money-token swaps as taxable sales from Jan 1, 2027, at the existing 31.4% flat tax. The committee also rejected the budget&#x27;s revenue section, so the amendment must be refiled before the Oct 20 vote.</p>
+<p class="note"><b>Why it matters:</b> crypto firms are moving toward regulated banking, while governments look to tax stablecoin swaps, which could slow the stablecoin growth that StanChart already expects to be delayed.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/business/2026/10/14/kraken-parent-payward-to-become-first-crypto-firm-to-buy-a-eu-bank-as-it-expands-into-deposits-lending">Payward to buy Saldo Bank (CoinDesk)</a> · <a href="https://cointelegraph.com/news/standard-chartered-stablecoin-forecast-2030-market-growth">StanChart revises stablecoin outlook (Cointelegraph)</a> · <a href="https://decrypt.co/380630/france-stablecoin-swap-crypto-exit-tax?amp=1">French stablecoin swap tax (Decrypt)</a></p>
+</details>
+</section>
+<section id="ai"><h2>🤖 The AI Economy <span class="cnt">3 items</span></h2>
+<details><summary>CoreWeave&#x27;s 2032 bonds touch a 15% yield, a warning on debt-funded AI capex<span class="tag">Yahoo Finance</span></summary>
+<p class="body">A chart posted by Chamath Palihapitiya showed the yield on CoreWeave&#x27;s $1.25B of 2032 notes touching 15% and closing at a record 14.5%; Elon Musk replied &#x27;Yikes.&#x27; CoreWeave&#x27;s total debt rose to about $52B at end-June from about $15B a year earlier. Q2 interest expense was $640M, up from $267M, and the company lost $626M on $2.58B of revenue. D.A. Davidson&#x27;s Gil Luria estimates CoreWeave borrows at about 9% while earning about 1% on its investments, and says the equity could be worth zero if AI spending turns.</p>
+<p class="body">The stock fell as much as 15%, and Nebius fell about 10–11%. The FT reports CoreWeave is courting insurers for investment-grade, chip-backed debt.</p>
+<p class="note"><b>Why it matters:</b> if the Fed hikes again, the &#x27;neocloud&#x27; model of financing GPUs with high-yield debt starts to break, with spillover risk to private credit.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/technology/article/yikes-coreweave-stock-sinks-after-its-bond-yield-touched-15-143801702.html">CoreWeave stock sinks after bond yield touched 15%</a></p>
+</details>
+<details><summary>Chip selloff: SOX on track for a sixth straight decline, memory hit by China&#x27;s CXMT<span class="tag">Reuters / Yahoo</span></summary>
+<p class="body">The Philadelphia semiconductor index was headed for its sixth straight decline, its longest losing streak since May 2025. Memory stocks (SK Hynix, Micron, Sandisk, Seagate, Western Digital) fell for a third day after China&#x27;s CXMT claimed a production breakthrough, and the Roundhill Memory ETF dropped about 3.5%. Oracle fell about 7.8%. Barclays downgraded Dell (−11.5%) and HP (−7.8%) to equal-weight.</p>
+<p class="body">Tesla, Meta and Nvidia each fell more than 2%, and the MAGS ETF lost about 1.5%. Apple was the exception, up about 1.5% and back above a $5T market value. Yahoo notes semiconductors are still up about 62% in 2026, so this is a correction from very high levels.</p>
+<p class="note"><b>Why it matters:</b> Chinese memory competition plus higher discount rates is compressing multiples; TSMC&#x27;s results later this week are the next catalyst.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/stocks/articles/p-500-dow-futures-inch-115448878.html">Reuters market wrap (Yahoo)</a> · <a href="https://finance.yahoo.com/markets/stocks/articles/stock-market-today-stocks-drop-104125102.html">Stocks drop; memory stocks extend declines</a></p>
+</details>
+<details><summary>ASML: demand stays strong, with customers seeking 2029–2030 slots and 2027–2028 supply short<span class="tag">ASML / CNBC</span></summary>
+<p class="body">Q3 net sales were a record €11.7B at a 57.5% gross margin, both above guidance. Q4 guidance is €14.2–15.2B, with the top end above the €14.2B LSEG consensus. Full-year 2026 guidance was raised for the third time, to €44–45B. CEO Christophe Fouquet said customers keep lifting their short- and medium-term demand forecasts, driven by AI, and some want to place orders for 2029 and 2030.</p>
+<p class="body">ASML expects its planned 2027 and 2028 supply to fall short of demand and is looking at adding capacity beyond the 30% increase it announced for 2028. The stock still slipped about 1.5% in New York as the sector sold off.</p>
+<p class="note"><b>Why it matters:</b> equipment makers are pointing to multi-year demand at the same time as AI borrowers&#x27; credit cracks, so investors favour firms with order books over firms with leverage.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/10/14/asml-3q-earnings-ai-demand-orders-capacity.html">ASML order interest through 2030 (CNBC)</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000937966/000162828026065813/pressreleasefinancialresul.htm">ASML Q3 release (SEC 6-K)</a></p>
+</details>
+</section>
+<section id="energy"><h2>⚡ Energy &amp; Commodities <span class="cnt">3 items</span></h2>
+<details><summary>Brent ~$105.9 and WTI ~$95–96, with the IEA warning diesel tightness may last into 2027<span class="tag">Reuters / IEA</span></summary>
+<p class="body">Reuters-based reporting had December Brent at about $105.94 and November WTI at about $95.27; the Yahoo ticker showed WTI up about 1.9% at $95.95. The IEA&#x27;s October report says Brent futures have risen about 13% since the start of September to around $107. Gulf crude exports were nearing pre-war levels in September, and Hormuz flows rose by 3.7 mb/d to 10.9 mb/d. The IEA also says recent attacks on infrastructure and tankers could derail that recovery.</p>
+<p class="body">Refined-product flows through Hormuz are much weaker: Kpler put them at about 677k b/d in late September versus 3.6 mb/d before the war. That gap explains why diesel, not crude, is the tightest market.</p>
+<p class="note"><b>Why it matters:</b> product cracks and gasoline (+9.1% in CPI) keep feeding headline inflation and the 3.6% COLA, so energy is now directly tied to Fed policy.</p>
+<p class="src">Sources: <a href="https://boereport.com/2026/10/14/record-oil-tanker-rates-put-pressure-on-asian-refiners-iea-says/">Record tanker rates pressure Asian refiners, IEA says</a> · <a href="https://www.foxnews.com/live-news/us-iran-war-donald-trump-oil-nuclear-sites-hormuz-strait-october-14">Oil prices and Hormuz (Fox live)</a></p>
+</details>
+<details><summary>Freight shock: VLCC Gulf-to-Asia rates at about $36/bbl, more than five times pre-war<span class="tag">IEA / Semafor</span></summary>
+<p class="body">The IEA says chartering a VLCC from the Middle East Gulf to Asia cost about $36 a barrel in early October, more than five times the pre-war level, and US Gulf-to-China freight topped $37 a barrel. Poten and other trackers put spot VLCC rates at about $1.3–1.4M a day. Longer routings, ship-to-ship transfers in the Gulf of Oman and war-risk premia are tying up a growing share of the global VLCC fleet.</p>
+<p class="body">The IEA says delivered-crude costs pushed Asian refiners&#x27; margins on medium sour crude into negative territory in September. Tanker owners are the winners, while import-dependent Asian refiners and their consumers lose.</p>
+<p class="note"><b>Why it matters:</b> the freight costs act like a tax that widens the spread between US and Gulf crude and turns the US into the swing supplier for Asia, supporting WTI and US exporters.</p>
+<p class="src">Sources: <a href="https://boereport.com/2026/10/14/record-oil-tanker-rates-put-pressure-on-asian-refiners-iea-says/">IEA via BOE Report</a> · <a href="https://www.semafor.com/article/10/08/2026/rates-for-oil-tankers-hit-record-high-as-more-crude-passes-through-hormuz">Tanker rates hit record (Semafor)</a></p>
+</details>
+<details><summary>Gold falls about 1.8% to roughly $4,103 as the dollar and real yields rise<span class="tag">Yahoo / Reuters</span></summary>
+<p class="body">Gold fell about 1.8%, to around $4,103 an ounce, according to the Yahoo ticker, after trading near $4,116 shortly after the CPI release. The dollar index gained about 0.7% to 102.85, and 2-year yields rose about 12bp, raising the opportunity cost of holding bullion. The move shows gold trading as a rates asset rather than a war hedge on a day of Gulf escalation. Bitcoin fell alongside it, about 1.3%. Both are under pressure from a repricing toward Fed hikes, not from changes in geopolitical risk.</p>
+<p class="note"><b>Why it matters:</b> if the Fed hikes in October, safe-haven assets may keep losing to cash yielding about 4–5%, but any escalation after the midterms could reverse that quickly.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/stocks/articles/stock-market-today-stocks-drop-104125102.html">Stocks Drop, Treasury Yields Surge (Yahoo)</a></p>
+</details>
+</section>
+<footer>Compiled automatically on 14.10.2026 at 13:26 New York time. Window: last ~26 hours · Feeds collected: 29/29. <a href="#top">↑ back to top</a></footer></div>
+</body>
+</html>
