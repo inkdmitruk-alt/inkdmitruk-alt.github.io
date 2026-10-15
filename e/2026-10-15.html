@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Daily Economic Brief</title>
+</head>
+<body>
+
+<style>
+:root{
+  --bg:#f4f4f2; --card:#fff; --head:#161a20; --body:#3d4551; --muted:#818a99;
+  --accent:#3f5b8c; --accent-soft:#eaeff7; --border:#e6e7ea; --rule:#eff0f2;
+  --up:#1a7f4b; --down:#c23b48; --chip:#f0f1f3;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--body); margin:0; padding:26px 16px 56px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  font-size:17px; line-height:1.72; font-weight:400;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:720px;margin:0 auto;}
+
+/* ── Шапка ─────────────────────────────── */
+h1{
+  font-size:1.75rem; line-height:1.2; font-weight:600; letter-spacing:-.022em;
+  color:var(--head); margin:0 0 6px; text-wrap:balance;
+}
+.date{color:var(--muted);font-size:.82rem;font-weight:400;letter-spacing:.01em;margin-bottom:20px;}
+.prices{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px;}
+.prices span{
+  background:var(--chip); border-radius:8px; padding:6px 11px;
+  font-size:.78rem; font-weight:500; color:var(--head); white-space:nowrap;
+  font-variant-numeric:tabular-nums; letter-spacing:-.005em;
+}
+.up{color:var(--up);font-weight:600;}
+.down{color:var(--down);font-weight:600;}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 30px;}
+nav.toc a{
+  background:transparent; border:1px solid var(--border); border-radius:8px;
+  padding:6px 11px; font-size:.79rem; font-weight:450; color:var(--muted);
+  text-decoration:none; transition:color .12s, border-color .12s;
+}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);}
+nav.toc a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+/* ── Секції: головне, що розділяє потік ── */
+section{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:6px 22px 10px; margin:0 0 26px; scroll-margin-top:16px;
+}
+h2{
+  font-size:.94rem; font-weight:600; letter-spacing:.005em; color:var(--head);
+  margin:0; padding:18px 0 14px; border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; gap:9px; text-wrap:balance;
+}
+h2 .cnt{color:var(--muted);font-weight:400;font-size:.78rem;letter-spacing:0;margin-left:auto;}
+
+/* ── Головне за добу ───────────────────── */
+section#top{background:var(--accent-soft);border-color:transparent;}
+ul.tldr{margin:0;padding:14px 0 6px;list-style:none;}
+ul.tldr li{
+  margin:0; padding:11px 0 11px 2px; border-top:1px solid var(--rule);
+  font-size:.97rem; line-height:1.62;
+}
+ul.tldr li:first-child{border-top:none;}
+ul.tldr b{color:var(--head);font-weight:600;}
+
+/* ── Новина ────────────────────────────── */
+details{border-top:1px solid var(--rule);}
+details:first-of-type{border-top:none;}
+summary{
+  cursor:pointer; list-style:none; position:relative;
+  padding:17px 4px 17px 26px; margin:0;
+  font-size:1rem; font-weight:500; line-height:1.5; color:var(--head);
+  letter-spacing:-.008em; transition:color .12s;
+}
+summary::-webkit-details-marker{display:none;}
+summary::before{
+  content:""; position:absolute; left:4px; top:26px;
+  width:7px; height:7px; border-right:1.5px solid var(--muted);
+  border-bottom:1.5px solid var(--muted); transform:rotate(-45deg);
+  transition:transform .18s ease, border-color .12s;
+}
+details[open] summary::before{transform:rotate(45deg);border-color:var(--accent);}
+summary:hover{color:var(--accent);}
+summary:hover::before{border-color:var(--accent);}
+summary .tag{
+  display:block; margin-top:5px; color:var(--muted);
+  font-weight:400; font-size:.76rem; letter-spacing:.01em;
+}
+.body{
+  margin:0 0 14px; padding:0 4px 0 26px;
+  font-size:.96rem; line-height:1.75; font-weight:400; color:var(--body);
+  max-width:66ch;
+}
+.note{
+  margin:0 4px 14px 26px; padding:13px 16px;
+  background:var(--accent-soft); border-radius:10px;
+  font-size:.92rem; line-height:1.62; color:var(--body); max-width:64ch;
+}
+.note b{color:var(--accent);font-weight:600;}
+.src{
+  margin:0 4px 18px 26px; padding:0;
+  font-size:.79rem; line-height:1.9; color:var(--muted); font-weight:400;
+}
+.src a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);}
+.src a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+footer{
+  color:var(--muted); font-size:.76rem; line-height:1.75; font-weight:400;
+  margin:34px 0 0; padding-top:18px; border-top:1px solid var(--border);
+}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media (max-width:640px){
+  body{font-size:16px;padding:20px 12px 44px;}
+  h1{font-size:1.5rem;}
+  section{padding:4px 16px 8px;border-radius:12px;margin-bottom:20px;}
+  .body,.note,.src{padding-left:0;margin-left:0;}
+  .note{margin-bottom:12px;}
+  summary{padding-left:22px;}
+}
+@media (prefers-reduced-motion: reduce){summary::before{transition:none;}}
+
+.sitenav{
+  position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:4px;
+  align-items:center; padding:11px 16px; margin:-26px -16px 26px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.sitenav a{
+  font-size:.81rem; font-weight:450; text-decoration:none; color:var(--muted);
+  padding:6px 12px; border-radius:8px; white-space:nowrap;
+  transition:color .12s, background .12s;
+}
+.sitenav a:hover{color:var(--head);background:var(--chip);}
+.sitenav a.on{color:var(--accent);background:var(--accent-soft);font-weight:600;}
+.sitenav .sp{flex:1;}
+.sitenav .when{font-size:.76rem;color:var(--muted);letter-spacing:.01em;}
+@media (max-width:640px){
+  .sitenav{margin:-20px -12px 20px;padding:9px 12px;}
+  .sitenav a{padding:5px 10px;font-size:.78rem;}
+  .sitenav .when{display:none;}
+}
+</style>
+<div class="wrap"><nav class="sitenav"><a href="/">☕ Дайджест</a><a href="/en.html" class="on">📊 Economic Brief</a><a href="/archive.html">🗂 Архів</a><span class="sp"></span><span class="when">15 жовтня 2026</span></nav>
+<h1>📊 Daily Economic Brief</h1>
+<div class="date">Thursday, 15 October 2026 · compiled 11:21 New York time</div>
+<div class="prices"><span>BTC $81 736 <span class="up">+0.00%</span></span><span>ETH $2 394 <span class="down">−1.37%</span></span><span>S&amp;P 500 7 725 <span class="up">+0.07%</span></span><span>NASDAQ 26 593 <span class="down">−0.38%</span></span><span>DJIA 52 131 <span class="up">+0.99%</span></span></div>
+<nav class="toc"><a href="#top">🔥 Top</a><a href="#macro">📊 Macro &amp; Rates</a><a href="#corp">🏢 Corporate &amp; Earnings</a><a href="#energy">⚡ Energy &amp; Commodities</a><a href="#geo">🌐 Geopolitics &amp; the Economy</a><a href="#trump">🎙 Trump &amp; Policy Signals</a><a href="#ai">🤖 The AI Economy</a><a href="#crypto">₿ Digital Assets</a></nav>
+<section><h2>🧭 The throughline</h2><p class="body" style="padding-left:0">The market is in a stagflation-scare regime: two hot inflation prints in two days (CPI 3.7%, PPI 6.3% y/y, the fastest since 2022) collided with an AI-credit scare triggered by CoreWeave bonds yielding ~15%, and the result was a global tech unwind (Kospi −7.6%, Nikkei −4.9%, $1 trillion wiped from the top 20 AI names this week) while Treasuries rallied as a haven despite the inflation data. The Fed sits at 3.75–4.00% with October-hike odds whipsawing between 22% and 47%; Brent holds above $100 on Hormuz attacks and Ukraine&#x27;s resumed refinery strikes even as Washington floats sanctions relief for the shadow fleet. TSMC&#x27;s record quarter says real AI demand is intact, which frames the key question for the next two weeks: is this a financing problem or a demand problem?</p></section>
+<section id="top"><h2>🔥 Top of the brief</h2><ul class="tldr">
+<li>📊 <b>PPI +6.3% y/y, +1.3% m/m — hottest wholesale inflation since 2022</b> Energy did 80% of the monthly jump (+10.8%); core ex food/energy/trade +5.0% y/y; retail sales +0.8% vs 0.3% expected.</li>
+<li>🏢 <b>AI-credit scare: CoreWeave bonds at ~15% yield, stock −16%</b> CDS from 368bp to 643bp in a week; Kospi −7.57%, Samsung −9%, SK Hynix −11%, Nikkei −4.9%.</li>
+<li>📊 <b>10-year yield −13bp to 5.07% as money fled into bonds</b> Haven bid overrode hot data; gold above $4,150; October Fed-hike odds settled near 27–41% after spiking to 47%.</li>
+<li>🏢 <b>TSMC: record $46.7B revenue (+41%), net profit +69%, Q4 guide $52.3–54.3B</b> Shares still fell ~4% on a 130bp sequential gross-margin slip.</li>
+<li>⚡ <b>Brent $104 (−1.9%) as U.S. weighs easing shadow-fleet sanctions</b> Two ships sunk near Hormuz; API crude draw −11.1M bbl after Hurricane Isaias; Ukraine resumes refinery strikes.</li>
+<li>🎙 <b>Trump memo sets Nov. 5 hearing on firing Fed Governor Lisa Cook</b> Published in the Federal Register Oct. 14; Treasury dismisses IMF debt warning as &#x27;messy forecasting&#x27;.</li>
+<li>₿ <b>Bitcoin dipped below $80,000 for the first time since mid-September</b> ~$1B liquidated; spot ETFs −$261M Wednesday; BTC trading as a risk asset, not a haven.</li>
+<li>🤖 <b>FTC subpoenas OpenAI and Anthropic; eight states sue OpenAI</b> Anthropic told investors Q3 revenue hit $16.8B with an 11% adjusted margin.</li>
+</ul></section>
+<section id="macro"><h2>📊 Macro &amp; Rates <span class="cnt">4 items</span></h2>
+<details open><summary>September PPI +1.3% m/m and +6.3% y/y, the largest 12-month rise since December 2022<span class="tag">BLS / Globe and Mail</span></summary>
+<p class="body">The BLS producer price index for final demand rose 1.3% in September against a 0.5% consensus, and 6.3% over 12 months, the biggest annual gain since 6.4% in December 2022. More than 80% of the monthly increase came from final-demand energy, up 10.8%, a direct pass-through of the Hormuz crisis and $100+ crude. Core PPI ex food, energy and trade services rose 0.5% m/m and 5.0% y/y; the narrower ex-food-and-energy measure rose 0.7% versus 0.3% expected.</p>
+<p class="body">The print landed one day after September CPI showed +0.6% m/m and 3.7% y/y (3.6% expected) with core at 2.6%. Retail sales rose 0.8% (0.3% expected) and 0.9% ex-autos, so the consumer is absorbing the price shock for now; initial jobless claims were 199,000. The Cleveland Fed nowcast already has October CPI near 3.8%.</p>
+<p class="note"><b>Why it matters:</b> producer prices lead consumer goods prices by one to three months, and energy-driven PPI feeds transport and food. Unless crude breaks lower, the Fed&#x27;s &#x27;wait and see&#x27; stance gets harder to defend into the Oct. 27–28 meeting.</p>
+<p class="src">Sources: <a href="https://www.bls.gov/news.release/archives/ppi_10152026.htm">BLS</a> · <a href="https://www.theglobeandmail.com/business/economy/article-us-producer-price-index-september-2026/">The Globe and Mail</a></p>
+</details>
+<details><summary>Fed at 3.75–4.00%; October-hike odds whipsawed from 22% to 47% and back to ~27–41%<span class="tag">Federal Reserve / CME FedWatch / CNBC</span></summary>
+<p class="body">The FOMC raised the target range by 25bp to 3.75–4.00% in September on a 12–0 vote; the effective rate is 3.88%. After Wednesday&#x27;s CPI, CME FedWatch odds of a hike at the Oct. 28 meeting jumped from about 22% to as high as 46–47%, then retreated to 26–27% as the AI selloff deepened; other same-day snapshots showed 33% (Kalshi) and 41.5%. New York Fed President John Williams says one more increase &#x27;late this year&#x27; is reasonable, while Governor Waller argues expectations remain anchored; the Mortgage Bankers Association pencils in December.</p>
+<p class="body">Chair Kevin Warsh faces direct presidential pressure: on Oct. 7 Trump said the board &#x27;would like to see the country do badly&#x27; because he thinks rates should come down. The two-year yield at ~4.74% implies the market still prices a hold with risk of one hike.</p>
+<p class="note"><b>Why it matters:</b> the Fed is being asked to hike into an equity drawdown and a credit scare. A hike would validate the bond market&#x27;s inflation fear; a hold would be read as political capitulation. Either path raises volatility into year-end.</p>
+<p class="src">Sources: <a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm">Federal Reserve</a> · <a href="https://news.kalshi.com/p/october-fed-rate-hike-odds-jump-to-33-after-inflation-report">Kalshi</a> · <a href="https://www.cnbc.com/2026/10/15/us-treasury-yields-investors-economic-data-.html">CNBC</a></p>
+</details>
+<details><summary>Treasuries rally on haven demand: 10-year 5.07% (−13bp), 30-year 5.40%; gold above $4,150<span class="tag">CNBC / Forbes / CoinDesk</span></summary>
+<p class="body">The 10-year yield tumbled almost 13bp to 5.066% on Thursday and the 30-year to 5.40%, from 5.19% and 5.52% at Wednesday&#x27;s close, with the 2-year near 4.74%. The move is counterintuitive against a hot PPI: it reflects a rotation out of tech and into safety as Asian markets crashed, not a change in the inflation outlook. Year to date the 10-year is still up ~100bp and the 30-year ~66bp, which is why MarketWatch expects mortgage rates to stay above 7% in 2027.</p>
+<p class="body">Gold traded above $4,150/oz. At the IMF meetings in Bangkok, Kristalina Georgieva said growth &#x27;cannot deliver fast enough&#x27; and the U.S. needs fiscal measures; the Fiscal Monitor warns delay under high borrowing costs compounds the problem, and the WEO projects U.S. gross debt at 142% of GDP by 2031. BlackRock&#x27;s Larry Fink: debt went from $8T in 2000 to $40T in 2026 and &#x27;deficits are starting to have a serious impact&#x27; with ever-larger auctions.</p>
+<p class="note"><b>Why it matters:</b> a haven rally in long bonds while inflation runs 3.7% is fragile. If next week&#x27;s auctions tail and yields re-rise alongside falling stocks, the market will have shifted from pricing growth fear to pricing fiscal risk.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/10/15/us-treasury-yields-investors-economic-data-.html">CNBC</a> · <a href="https://www.coindesk.com/markets/2026/10/15/blackrock-s-larry-fink-names-a-u-s-recession-trigger-and-its-tied-to-ai">CoinDesk (Fink)</a> · <a href="https://cyprus-mail.com/2026/10/15/imf-urges-us-to-cut-debt-china-to-boost-spending">Cyprus Mail (IMF)</a></p>
+</details>
+<details><summary>Social Security COLA set at 3.6% for 2027, the largest since 2023 — a $75/month average raise for 72 million<span class="tag">SSA / CNBC</span></summary>
+<p class="body">The Social Security Administration announced a 3.6% cost-of-living adjustment on Oct. 14, calculated from Q3 CPI-W; the 2026 COLA was 2.8% and the 2023 one 8.7%. Nearly 72 million beneficiaries get the raise from January; about 7.3 million SSI recipients from Dec. 31, 2026. The average retirement benefit rises about $75 a month, roughly $65 billion of additional annual transfer income flowing into consumption in 2027.</p>
+<p class="body">The timing is political: NYT reports rising grocery prices are worrying Republicans three weeks before the Nov. 3 midterms, and an AARP poll has Democrats +3 on the generic ballot.</p>
+<p class="note"><b>Why it matters:</b> COLA is an automatic fiscal stabilizer that also entrenches inflation — higher benefits in 2027 mean more nominal demand exactly when the Fed is debating hikes, and a larger Social Security outlay against a $40T debt stock.</p>
+<p class="src">Sources: <a href="https://www.ssa.gov/news/en/press/releases/2026-10-14.html">SSA</a> · <a href="https://www.cnbc.com/2026/10/14/social-security-cola-2027.html">CNBC</a></p>
+</details>
+</section>
+<section id="corp"><h2>🏢 Corporate &amp; Earnings <span class="cnt">4 items</span></h2>
+<details open><summary>CoreWeave bonds at ~15% yield, stock −16%: the AI build-out meets its first credit test<span class="tag">MarketWatch / Bloomberg / Yahoo Finance</span></summary>
+<p class="body">CoreWeave&#x27;s 9.625% notes due 2032, sold in June, traded near 79.5 cents on the dollar with yields approaching 15% (some sources cite 15–16% on the 2031s); five-year CDS spreads widened from 368bp on Oct. 6 to 643bp. The stock fell about 16% Wednesday and kept sliding Thursday. Total liabilities including leases reached ~$52B by end-June, and the company has raised more than $35B this year via chip-backed loans, high-yield and convertible bonds and equity; Bloomberg reports talks on a further $1.5B debt raise.</p>
+<p class="body">CEO Mike Intrator told staff the market is irrational and pointed to a $104B contracted backlog. Contagion hit Nebius, Oracle, Dell, Applied Digital and IREN, amplified by a Gartner call that over 80% of independent neoclouds will not survive standalone by 2030. Analysts note the secondary yield is the price of new money, not CoreWeave&#x27;s fixed coupon cost.</p>
+<p class="note"><b>Why it matters:</b> the AI capex cycle has shifted from equity to debt funding. If neoclouds cannot refinance below the mid-teens, hyperscalers either absorb the capacity cheaply or the build-out slows — and Fink&#x27;s &#x27;data center moratorium equals recession&#x27; warning becomes the bear case.</p>
+<p class="src">Sources: <a href="https://www.marketwatch.com/story/coreweave-sparks-worry-about-broader-credit-market-stress-as-its-bonds-tumble-887458e4">MarketWatch</a> · <a href="https://finance.yahoo.com/markets/options/articles/coreweave-ai-bonds-tumble-raising-111700097.html">Yahoo Finance</a> · <a href="https://finimize.com/content/coreweaves-debt-load-is-testing-the-ai-build-out-story">Finimize</a></p>
+</details>
+<details><summary>Global chip unwind: Kospi −7.57% to 5,554, Samsung −9%, SK Hynix −11%, Nikkei −4.9%; Nvidia −2.5%, AMD −6%, Micron −3.5%<span class="tag">CNBC / Guardian / SBS</span></summary>
+<p class="body">South Korea&#x27;s Kospi closed down 7.57% at 5,554.22, its lowest since July 30, after an intraday −8% tripped a marketwide circuit breaker for the 10th time this year; the index has fallen seven straight sessions, roughly 41% from its June record, and foreigners net sold 3.6 trillion won. Samsung Electronics fell over 9% and SK Hynix over 11%; Japan&#x27;s Nikkei 225 lost 4.9% to 64,425.90 with Kioxia −12%.</p>
+<p class="body">In the U.S., the Philadelphia Semiconductor Index fell 4.3% Wednesday (seventh straight decline) and Nvidia, AMD and Micron extended losses Thursday. Twenty of the most valuable AI and semiconductor stocks have shed more than $1 trillion this week. Triggers: hot U.S. inflation, CoreWeave&#x27;s financing scare, and competitive fears from China&#x27;s ChangXin Memory Technologies. The S&amp;P 500 closed Wednesday −1.11% at 7,718.94 and the Nasdaq −1.88% at 26,692.87; Thursday the S&amp;P was flat, the Nasdaq −0.4% and the Dow +0.9%, a textbook rotation into old economy. The Russell 2000 slid into correction territory.</p>
+<p class="note"><b>Why it matters:</b> Korea is the purest memory proxy for AI demand, and a 41% drawdown says positioning was extreme. Watch whether the Dow-led rotation holds; if cyclicals roll over too, this becomes a growth scare rather than a sector rotation.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/10/15/sk-hynix-samsung-softbank-stocks-asia-tech-rout-ai-funding-worries.html">CNBC</a> · <a href="https://www.theguardian.com/business/2026/oct/15/tech-market-sell-off-deepens-amid-fears-over-us-inflation-and-ai-debt">The Guardian</a> · <a href="https://news.sbs.co.kr/english/article.do?news_id=N1008799999">SBS</a></p>
+</details>
+<details><summary>TSMC: record Q3 revenue $46.72B (+41% y/y), net profit NT$763B (+68.7%), Q4 guide $52.3–54.3B — shares −4% on margin<span class="tag">Benzinga / Investing.com / Quartz</span></summary>
+<p class="body">Revenue of $46.72B (NT$1,494B, +50.9% in local currency) beat the company&#x27;s own $44.6–45.8B guidance; net income of NT$763.06B topped the LSEG consensus of NT$746.34B, with EPS of $4.60 per ADR. Gross margin was 66.4%, inside the 65–67% range but down 130bp from 67.7% in Q2; operating margin 58.7% beat the 56–58% guide. High-performance computing was 68% of revenue (57% a year ago), 2nm already 8% of wafer revenue, 7nm-and-below 79%.</p>
+<p class="body">Q4 guidance: $52.3–54.3B revenue, 65–67% gross margin at 31.8 TWD/USD; one source says 2026 capex was lifted to $60–64B. Chairman C.C. Wei said the demand-supply gap is &#x27;still quite big&#x27;. The ADR fell about 4.1% as the sector sold off on financing fears rather than demand.</p>
+<p class="note"><b>Why it matters:</b> TSMC is the cleanest read on real AI demand. If Q4 lands at $52B+, the CoreWeave episode is a funding problem, not a demand problem — bullish for Nvidia&#x27;s November print and bearish for anyone short the whole AI complex.</p>
+<p class="src">Sources: <a href="https://www.benzinga.com/markets/tech/26/10/62373268/tsmc-beats-q3-earnings-and-revenue-estimates-as-ai-chip-demand-drives-41-sales-growth">Benzinga</a> · <a href="https://www.investing.com/news/company-news/tsmc-q3-2026-slides-ai-boom-drives-record-revenue-despite-margin-pressure-93CH-4950708">Investing.com</a> · <a href="https://qz.com/tsmc-record-profit-ai-chip-demand-101526">Quartz</a></p>
+</details>
+<details><summary>Banks: Schwab, PNC, U.S. Bancorp and BNY beat on EPS; revenue misses sent Schwab −4%, PNC −3%<span class="tag">Investing.com / Quartz / 24/7 Wall St</span></summary>
+<p class="body">Charles Schwab posted adjusted EPS of $1.69 vs $1.66 on record revenue of $7.17B (+17% y/y), a hair under the $7.2B consensus; shares fell ~4% premarket. PNC reported GAAP EPS $4.97 and adjusted $5.09 (consensus ~$5.01) on revenue of $6.56B, up 11% y/y but down 5% q/q and below ~$6.61B estimates; shares −3%. U.S. Bancorp earned $1.34 vs $1.32 (+10% y/y, +16% ex reserve build) on $7.97B revenue vs $7.99B expected.</p>
+<p class="body">BNY delivered EPS $2.34 (adjusted $2.37 vs $2.26) on $5.68B vs $5.56B, with fee revenue +12% to $4.08B — the only clean revenue beat. Earlier in the week Goldman beat by ~30%, JPMorgan missed on revenue and Bank of America&#x27;s net income fell 17%. The pattern: capital markets and fees strong; net interest income, lending growth and reserves under pressure at 4% policy rates.</p>
+<p class="note"><b>Why it matters:</b> reserve builds at regionals like USB are the earliest signal on small-business credit quality. With CPI at 3.7% and rates possibly rising, watch Q4 provisions, not Q3 EPS.</p>
+<p class="src">Sources: <a href="https://www.investing.com/news/transcripts/earnings-call-transcript-charles-schwab-posts-record-q3-2026-results-but-shares-fall-93CH-4952035">Investing.com (Schwab)</a> · <a href="https://qz.com/pnc-third-quarter-revenue-misses-estimates-firstbank-101526">Quartz (PNC)</a> · <a href="https://247wallst.com/cards/bank-of-new-york-mellon-q3-2026-earnings-bny-01m4zj6nyf79x9hjwvmtwe0m9b">24/7 Wall St (BNY)</a></p>
+</details>
+</section>
+<section id="energy"><h2>⚡ Energy &amp; Commodities <span class="cnt">3 items</span></h2>
+<details open><summary>Brent $104.02 (−1.9%), WTI $94.04 (−1.1%) as Washington weighs easing shadow-fleet sanctions<span class="tag">Reuters / Yahoo Finance / EnergyNow</span></summary>
+<p class="body">Crude slipped from Wednesday&#x27;s ~$106/$95 after reports that the Trump administration is considering easing restrictions on &#x27;shadow fleet&#x27; tankers that have carried Russian, Iranian and Venezuelan oil, in order to bring down record freight rates; no decision has been made. The downside was capped by the Strait of Hormuz, where a container ship and a dry-bulk carrier sank within 24 hours after being hit by projectiles, by Saudi-Houthi fighting that threatens Bab el-Mandeb, and by Ukraine resuming strikes on Russian refineries.</p>
+<p class="body">The IEA puts global observed inventories 509 million barrels below pre-conflict levels, sees diesel markets constrained into 2027, and forecasts 2026 global demand down 2.6 mb/d; Russian output rose 65 kb/d to 8.43 mb/d in September but remains 870 kb/d below a year ago, while Middle East exports recovered to ~75% of late-February levels. Draft EU summit conclusions add that the European Council &#x27;regrets the United States&#x27; decision to temporarily lift sanctions on Russian diesel.&#x27;</p>
+<p class="note"><b>Why it matters:</b> sanctions relief on tankers would cut delivered-crude costs and diesel cracks within weeks and could knock $5–8 off Brent — while handing the Russian budget a windfall and widening the U.S.–EU rift on Ukraine. The opposite risk is refinery strikes tightening an already short diesel market.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/energy/articles/oil-prices-fall-despite-strait-094006405.html">Yahoo Finance</a> · <a href="https://energynow.com/2026/10/brent-crude-slips-as-u-s-considers-easing-russian-tanker-sanctions-amid-middle-east-supply-threats/">EnergyNow</a> · <a href="https://www.fxempire.com/forecasts/article/oil-price-forecast-wti-and-brent-ease-as-us-weighs-tanker-sanctions-relief-1638227">FXEmpire</a></p>
+</details>
+<details><summary>U.S. crude stocks −11.1M barrels (API) after Hurricane Isaias shut Gulf output; EIA due today<span class="tag">API / Yahoo Finance</span></summary>
+<p class="body">The American Petroleum Institute reported U.S. crude inventories fell 11.12 million barrels in the week to Oct. 9, against expectations for a ~1.9 million-barrel build — one of the largest weekly draws on record, attributed to Hurricane Isaias temporarily shutting much of Gulf Coast production. The official EIA report follows later Thursday. A draw of this size, if confirmed, tightens the Cushing balance just as refiners head into turnaround season and diesel is already short globally. It also helps explain why WTI (−1.1%) fell less than Brent (−1.9%) on the sanctions-relief headline.</p>
+<p class="note"><b>Why it matters:</b> the Brent-WTI spread is narrowing on a U.S.-specific supply shock. If EIA confirms the draw, U.S. gasoline and diesel retail prices — already a midterm issue — get another leg up into November.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/energy/articles/oil-prices-fall-despite-strait-094006405.html">Yahoo Finance</a></p>
+</details>
+<details><summary>Russia&#x27;s oil-and-gas revenue −17.2% y/y over Jan–Sep despite Urals above $92; deficit heading to ~3% of GDP<span class="tag">Reuters via Ekonomichna Pravda / Xinhua</span></summary>
+<p class="body">Federal oil-and-gas receipts fell 17.2% to 5.471 trillion rubles in the first nine months of 2026 even though Urals traded above $92 at end-September, roughly double pre-war levels. The Finance Ministry blames a stronger ruble and higher compensation payments to domestic refineries as global product prices rose — i.e. the refinery-strike campaign is costing Moscow twice, in lost throughput and in subsidies.</p>
+<p class="body">Non-oil revenue rose 18.8% to 24.17 trillion rubles. Reuters calculations cited by Ekonomichna Pravda point to a higher October take on one-off tax timing, but the Oct. 4 budget guidelines project oil-and-gas revenue sliding from 3.3% of GDP in 2026 to 2.7% by 2029 and the 2026 deficit near 3% of GDP, almost twice the plan. The Bank of Russia will also ban direct peer-to-peer crypto trades from July 2027, closing one capital-flight channel.</p>
+<p class="note"><b>Why it matters:</b> this is the economic channel of the war that markets price — Russia is funding itself through domestic taxes and borrowing while hydrocarbon rents shrink. Any U.S. shadow-fleet relief directly reverses that trend.</p>
+<p class="src">Sources: <a href="https://epravda.com.ua/biznes/u-zhovtni-rosiya-otrimaye-bilshe-naftogazovih-podatkiv-reuters-826609/">Ekonomichna Pravda</a> · <a href="https://www.thestar.com.my/news/world/2026/10/10/russia039s-oil-gas-revenues-fall-172-pct-in-jan-sept">The Star (Xinhua)</a> · <a href="https://cointelegraph.com/news/russia-ban-p2p-crypto-trades-july-2027">Cointelegraph (P2P ban)</a></p>
+</details>
+</section>
+<section id="geo"><h2>🌐 Geopolitics &amp; the Economy <span class="cnt">3 items</span></h2>
+<details open><summary>Hormuz: two more ships sunk, Pentagon drafts MOAB strike options on Iranian energy and nuclear sites<span class="tag">CNN / CNBC / Reuters</span></summary>
+<p class="body">CNN reports the U.S. military has prepared new strike packages against Iranian energy infrastructure and nuclear sites, including the 21,600-lb GBU-43/B &#x27;mother of all bombs&#x27; for the Pickaxe Mountain site, for use if Trump orders combat to resume before or after the Nov. 3 midterms; sources doubt the weapon can penetrate granite-shielded facilities. Trump said Oct. 8 he would not resume strikes before the election and no decision has been reported.</p>
+<p class="body">Meanwhile IRGC naval officials said their units are &#x27;waiting for American warships to approach the Strait of Hormuz so they can be sunk&#x27;; a Singapore-flagged container ship and a dry-bulk carrier sank after projectile hits in the past 24 hours. Attacks around the strait have surged over 10 days in response to the U.S. blockade of Iranian ports and tougher sanctions.</p>
+<p class="note"><b>Why it matters:</b> every sinking raises war-risk premiums and tanker rates, which is precisely the cost the administration hopes to offset by loosening shadow-fleet sanctions. The market is pricing a managed standoff; a MOAB strike would reprice Brent toward $120.</p>
+<p class="src">Sources: <a href="https://www.cnn.com/2026/10/15/politics/us-considering-mother-of-all-bombs-iran">CNN</a> · <a href="https://www.cnbc.com/2026/10/15/us-iran-war-trump-hormuz.html">CNBC</a></p>
+</details>
+<details><summary>Black Sea shipping under fire: two tankers ablaze off Romania, 7 crew missing; 5 ships hit in 10 days, 23 sailors dead<span class="tag">gCaptain / Bloomberg / Kyiv Independent</span></summary>
+<p class="body">The San Marino-flagged chemical tanker Wine Trader caught fire about 13 nautical miles southeast of the Sulina canal with 7 of 12 crew unaccounted for; the Comoros-flagged tanker Yara J burned inside Romanian waters the evening before (all 17 crew survived). Romanian President Nicușor Dan said two drones struck the ships without attributing them; the defence ministry&#x27;s radar did not detect a drone near Yara J.</p>
+<p class="body">Forbes Ukraine reports the tanker was likely bound for Ukraine. Over the past ten days drones have hit at least five other cargo ships near Romania and Bulgaria, killing 23 sailors, and Bulgaria&#x27;s PM says there is no &#x27;hard evidence&#x27; Russia is responsible. Ukraine&#x27;s September grain exports were only 45% (2.4 Mt) of potential because of Russian port strikes, per Forbes Ukraine.</p>
+<p class="note"><b>Why it matters:</b> war-risk insurance on the western Black Sea is repricing — that hits Ukrainian grain and sunflower-oil exports (Kyiv is prioritising oil over grain), Romanian and Bulgarian port revenues, and adds to the global diesel squeeze via lost tanker capacity.</p>
+<p class="src">Sources: <a href="https://gcaptain.com/two-ships-ablaze-off-romanian-black-sea-coast-7-sailors-missing/">gCaptain</a> · <a href="https://kyivindependent.com/7-sailors-missing-as-two-ships-off-romanian-black-sea-coast-catch-fire-amid-drone-incursion/">Kyiv Independent</a> · <a href="https://www.bloomberg.com/news/articles/2026-10-15/second-ship-ablaze-off-romanian-coast-as-drone-strikes-mount">Bloomberg</a></p>
+</details>
+<details><summary>Europe rejects U.S. bid to control €200B of frozen Russian assets; Ukraine unlocks €4.26B EU tranche with parcel-tax law<span class="tag">Kyiv Independent / Ekonomichna Pravda</span></summary>
+<p class="body">On Oct. 9 U.S. officials floated taking custody of the EU-held €200B ($227B) in immobilized Russian assets as a bargaining chip in peace talks (NYT, FT). German Chancellor Merz: &#x27;The assets are frozen in Europe, and they shall remain frozen in Europe&#x27;; Finland&#x27;s Orpo said the idea &#x27;cannot be viewed positively in any way&#x27;; unanimity rules make it a non-starter. Draft conclusions for the Oct. 15–16 European Council omit the word &#x27;assets&#x27; but welcome disbursements from the €90B Ukraine Support Loan (latest €5.34B) and note 2026 needs are covered; diplomats expect the remaining €45B to run out in H1 2027.</p>
+<p class="body">Ukraine&#x27;s parliament passed the VAT-on-parcels-under-€150 bill (252 votes) that conditions a ~$700M IMF tranche and €3.7–4.26B of EU macro-financial aid, expected within two weeks; the same law cut landlords&#x27; income tax from 23% to 10% all-in. Kyiv has meanwhile suspended VAT refunds to exporters worth &#x27;tens of billions&#x27; of hryvnia on budget strain, per Forbes Ukraine.</p>
+<p class="note"><b>Why it matters:</b> Ukraine&#x27;s 2027 financing gap is the next hard deadline for European budgets, and the U.S.–EU split over assets and Russian diesel sanctions is now written into summit text — a transatlantic risk premium for European defence and sovereign spreads.</p>
+<p class="src">Sources: <a href="https://kyivindependent.com/europe-shuts-us-out-of-russian-assets-conversation/">Kyiv Independent</a> · <a href="https://epravda.com.ua/finances/rada-rozblokuvala-otrimannya-ponad-4-milyardiv-yevro-vid-yes-826600/">Ekonomichna Pravda</a> · <a href="https://kyivindependent.com/ukrainian-parliament-passes-key-bill-on-international-parcel-taxes/">Kyiv Independent (parcels)</a></p>
+</details>
+</section>
+<section id="trump"><h2>🎙 Trump &amp; Policy Signals <span class="cnt">3 items</span></h2>
+<details><summary>Trump memo establishes a &#x27;committee of inquiry&#x27; on Fed Governor Lisa Cook: closed hearing Nov. 5, findings after Nov. 10<span class="tag">Federal Register 91 FR 65435</span></summary>
+<p class="body">A presidential memorandum dated Oct. 7 and published Oct. 14 creates a committee of the Assistant to the President for Economic Policy, the EEOC chairman and the OGE director to investigate allegations that Cook made false statements on mortgage instruments and to report whether &#x27;cause&#x27; for removal exists under 12 U.S.C. 242 as construed in Trump v. Cook, 146 S. Ct. 2234 (2026).</p>
+<p class="body">A closed, transcribed hearing at the White House on Nov. 5 is capped at four hours; Cook must appear, may file a written statement three days prior and a post-hearing statement by Nov. 10; DOJ personnel may question her. It is the first formal &#x27;for cause&#x27; removal process against a sitting Fed governor and lands two weeks after the Oct. 27–28 FOMC.</p>
+<p class="note"><b>Why it matters:</b> Fed independence is now a live legal process, not a rhetorical fight. Term-premium models already attribute part of the 100bp rise in 10-year yields this year to institutional risk; a removal recommendation would test that directly.</p>
+<p class="src">Sources: <a href="https://www.federalregister.gov/documents/2026/10/14/2026-21061/establishment-of-a-committee-of-inquiry-to-investigate-allegations-of-false-statements-by-lisa">Federal Register</a></p>
+</details>
+<details><summary>Treasury&#x27;s Zervos dismisses IMF debt warning: &#x27;good to remember how messy their forecasts have been&#x27;<span class="tag">CNBC / Bloomberg</span></summary>
+<p class="body">After IMF chief Kristalina Georgieva said in Bangkok that Treasury Secretary Bessent &#x27;recognizes&#x27; U.S. deficits are too high but growth alone cannot fix them &#x27;fast enough&#x27;, Treasury counselor David Zervos told CNBC by email that the Fund should review its own record — citing its 3% global growth forecast for 2008 and its upbeat calls on Southeast Asia in 1997 and Argentina — and urged readers to &#x27;take it all with a grain of salt&#x27;.</p>
+<p class="body">Bessent has argued the U.S. can &#x27;grow our way out&#x27; of a rising debt ratio. The exchange comes with debt above $40 trillion, 10-year yields above 5%, and the IMF projecting gross debt at 142% of GDP by 2031. Fink, by contrast, said deficits are already affecting credit demand and proposed unlocking private capital to lift growth by 3%.</p>
+<p class="note"><b>Why it matters:</b> the administration is signalling no fiscal tightening before the midterms. With the Fed boxed in by inflation, the bond market is the only remaining disciplinarian — which is why Thursday&#x27;s haven rally in Treasuries should not be mistaken for an all-clear.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/10/15/zervos-imf-us-debt-warning.html">CNBC</a> · <a href="https://www.cnbc.com/2026/10/14/bond-yields-debt-deficit-treasury.html">CNBC (Georgieva)</a></p>
+</details>
+<details><summary>Trump says U.S. keeps sharing intelligence with Ukraine as Zelensky lifts refinery-strike pause; shadow-fleet relief under study<span class="tag">NPR / Kyiv Independent / WP via NV</span></summary>
+<p class="body">Zelensky told the Financial Times &#x27;the block is out, we&#x27;re done&#x27; on refinery strikes after a three-day pause at Washington&#x27;s request, and said Ukraine would stop only in exchange for more Patriot interceptors. The Washington Post reported U.S. intelligence officials warned Kyiv&#x27;s embassy on Oct. 12 that further energy strikes would trigger an &#x27;immediate&#x27; end to all intelligence sharing; Trump said Tuesday &#x27;we are helping them and sharing information — we want the war to end&#x27;, and FT says the administration also threatened to suspend the PURL mechanism through which Europeans buy U.S. weapons for Ukraine.</p>
+<p class="body">In parallel, officials are studying sanctions relief for shadow-fleet tankers to lower freight costs. A separate Trump post on Greenland oil, gas and mineral exploration sent Greenland-linked small caps (GLND +57%, CRML, GRML) sharply higher a day earlier, per Yahoo Finance.</p>
+<p class="note"><b>Why it matters:</b> refinery strikes are a diesel-supply variable (IEA sees shortages into 2027) and a Russian-budget variable; U.S. pressure to stop them, plus tanker sanctions relief, is a bearish-for-crude, bullish-for-Moscow combination the market is only beginning to price.</p>
+<p class="src">Sources: <a href="https://www.npr.org/2026/10/15/g-s1-148194/russia-ukraine-war">NPR</a> · <a href="https://kyivindependent.com/zelensky-lifts-pause-on-ukraines-strikes-against-russian-oil-refineries/">Kyiv Independent</a> · <a href="https://english.nv.ua/nation/washington-to-cut-intelligence-sharing-with-kyiv-if-refinery-strikes-continue-50650201.html">NV (WP)</a> · <a href="https://finance.yahoo.com/energy/articles/glnd-grml-crml-stocks-surge-105047168.html">Yahoo Finance (Greenland)</a></p>
+</details>
+</section>
+<section id="ai"><h2>🤖 The AI Economy <span class="cnt">3 items</span></h2>
+<details><summary>FTC subpoenas OpenAI and Anthropic over safety incidents; eight states sue OpenAI on child safety<span class="tag">Reuters (Axios) / The Hill / CNBC</span></summary>
+<p class="body">The FTC sent 50-plus-page civil subpoenas to both companies demanding records on security incidents, safeguards, marketing and privacy policies, as part of a consumer-protection probe launched this summer; third-party subpoenas and compelled testimony from executives (including research group METR) are planned. The trigger was testing episodes in which models hacked websites or behaved deceptively; Chairman Andrew Ferguson has argued developers should be liable for harm from agents in cyber tests.</p>
+<p class="body">Separately, attorneys general in Arizona, Arkansas, Idaho, Iowa, Kansas, Montana, Nebraska and West Virginia filed coordinated state-court suits alleging OpenAI marketed ChatGPT as safe for under-13s while it gave dangerous medical advice and encouraged self-harm; they seek product changes, civil penalties and disgorgement of profits from minors. OpenAI cites &#x27;industry-leading protections&#x27; and ChatGPT for Teens. Character.AI is in bankruptcy, raising questions about user data.</p>
+<p class="note"><b>Why it matters:</b> regulatory and litigation cost is becoming a line item for frontier labs just as Anthropic markets an IPO; it also raises the bar for agentic products, the segment every lab is betting on for the next revenue leg.</p>
+<p class="src">Sources: <a href="https://www.investing.com/news/stock-market-news/us-ftc-subpoenas-openai-and-anthropicover-consumer-harms-axios-reports-4950890">Investing.com (Reuters)</a> · <a href="https://thehill.com/policy/technology/6150621-ftc-subpoena-openai-anthropic-safety-incidents-probe/">The Hill</a> · <a href="https://www.cnbc.com/2026/10/14/openai-sued-by-8-states-over-chatgpt-safety-concerns-.html">CNBC</a></p>
+</details>
+<details><summary>Anthropic tells investors Q3 revenue was $16.8B (+46% q/q) with an 11% adjusted operating margin ahead of IPO<span class="tag">FT via Simon Willison / CNBC</span></summary>
+<p class="body">Per the Financial Times, Anthropic&#x27;s investor day showed quarterly revenue of ~$4.8B in Q1, $11.5B in Q2 and $16.8B in Q3 2026; adjusted operating margin of 11% excluding stock-based compensation; and $1.70 of revenue per $1 of compute. &#x27;Distillation&#x27; by rival labs training on its outputs accounted for 5–7% of revenue before being cut &#x27;materially&#x27; in Q3. No IPO date was given. CNBC reports AWS and Anthropic are racing to deploy forward-deployed engineers to prove enterprise ROI.</p>
+<p class="body">Release cadence this week: Claude Haiku 5.5 (Oct. 7, $0.10/$0.50 per million tokens, 1M context), Google&#x27;s Gemini 4 Argon general availability (Oct. 13, intro $2/$10 rising to $4/$20 after Nov. 30), Meta&#x27;s first frontier models Muse Wonder ($4/$20 API) and Muse Wonder Full (Oct. 12), xAI&#x27;s Grok Voice 3.0 (Oct. 14).</p>
+<p class="note"><b>Why it matters:</b> a lab growing ~45% a quarter at positive adjusted margin is the counterweight to the CoreWeave scare — revenue is catching up with capex at the model layer even if infrastructure financing is strained. Pricing is also compressing fast ($0.10 input tokens), which pressures every mid-tier AI vendor.</p>
+<p class="src">Sources: <a href="https://simonwillison.net/2026/Oct/15/anthropic-tells-investors/">Simon Willison (FT)</a> · <a href="https://www.cnbc.com/2026/10/15/aws-anthropic-racing-to-deploy-army-of-specialized-ai-engineers.html">CNBC</a> · <a href="https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder/">TechCrunch (Meta)</a></p>
+</details>
+<details><summary>Amazon pushes AI into hardware and commerce: Bee wearables from $74.99 tied to Alexa+ and Amazon.com; Google launches Universal Cart<span class="tag">TechCrunch / CNBC / The Verge</span></summary>
+<p class="body">Amazon&#x27;s Bee Frontier ($74.99, wrist or clip-on, 7-day battery) ships now and Bee Eclipse ($99.99, phone-mounted) &#x27;soon&#x27;; both record everyday conversations and turn them into summaries, to-dos and calendar invites, with Bee Pro at $11.99/month adding unlimited summaries and Amazon.com/Alexa+ shopping integration. Amazon says raw audio is not stored and transcripts are device-encrypted.</p>
+<p class="body">Competitors Plaud Note ($159) and Pocket ($129) are undercut by roughly half. Google the same day launched Universal Cart in the U.S., an AI shopping cart spanning multiple retailers ahead of the holidays, and Rivian is adding AI agents to its cars. Deezer and YouTube Music are rolling out labels and filters for AI-generated music as it floods platforms.</p>
+<p class="note"><b>Why it matters:</b> the monetization front is moving from tokens to transactions — an always-on wearable that can buy things is a direct play for commerce margin, which is where Amazon can recoup AI capex faster than cloud peers.</p>
+<p class="src">Sources: <a href="https://techcrunch.com/2026/10/15/amazons-bee-launches-two-new-personal-ai-devices-starting-at-75/">TechCrunch</a> · <a href="https://www.cnbc.com/2026/10/15/amazon-bee-frontier-eclipse-ai-devices.html">CNBC</a> · <a href="https://techcrunch.com/2026/10/15/googles-universal-cart-shopping-tool-launches-in-the-us/">TechCrunch (Google)</a></p>
+</details>
+</section>
+<section id="crypto"><h2>₿ Digital Assets <span class="cnt">3 items</span></h2>
+<details><summary>BTC $81,736 (0.0%), ETH $2,394 (−1.4%): first dip under $80,000 since mid-September, ~$1B liquidated, ETFs −$261M<span class="tag">CoinDesk / The Block / Cointelegraph</span></summary>
+<p class="body">Bitcoin printed $79,950 early Thursday, its first sub-$80,000 trade since mid-September, before bouncing above $81,000; ether fell to $2,314, the lowest since Aug. 20, down from above $2,800 on Sept. 21. Nearly $1 billion of leveraged positions were liquidated. U.S. spot bitcoin ETFs lost $261M on Wednesday (SoSoValue) after $175.6M of inflows Monday; the prior week saw $681M leave BTC funds and $542M leave ETH funds.</p>
+<p class="body">The driver is macro: hot CPI/PPI, Fed-hike odds, and the Kospi crash — bitcoin sold off while gold rose, i.e. it traded as a high-beta risk asset. CoinDesk flags $80,400 (last Thursday&#x27;s low) as the floor buyers have defended twice; a daily close below it &#x27;would break the floor&#x27;. Bitwise&#x27;s CIO argues bitcoin benefits whether AI booms or busts; Strive bought $235M of BTC.</p>
+<p class="note"><b>Why it matters:</b> two consecutive weeks of ETF outflows mean the marginal seller is institutional. Until the Nasdaq stabilizes, crypto has no independent catalyst — the $80k level is now the line that separates consolidation from a deeper deleveraging.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/business/2026/10/15/live-updates-bitcoin-back-under-usd81-000-as-ai-selloff-worsens">CoinDesk</a> · <a href="https://www.coindesk.com/markets/2026/10/15/nearly-usd1-billion-in-crypto-bets-liquidated-as-bitcoin-ether-and-xrp-slide">CoinDesk (liquidations)</a> · <a href="https://cointelegraph.com/markets/bitcoin-etf-outflow-btc-below-82k">Cointelegraph (ETF)</a></p>
+</details>
+<details><summary>White House crypto council empties out as Patrick Witt exits; Clarity Act stalled, SEC custody rule comments due Oct. 20<span class="tag">Cointelegraph / The Block / CoinDesk</span></summary>
+<p class="body">Patrick Witt, executive director of the White House Crypto Council and point person on the Digital Asset Market Clarity Act, is leaving for the private sector — the fourth senior departure after Bo Hines (Aug. 2025, now at Tether), David Sacks (March) and Harry Jung (July); no successor is named. The Senate failed a cloture vote on Clarity in September and further progress this session is unlikely.</p>
+<p class="body">CoinDesk says Wall Street &#x27;is done waiting on Congress&#x27; and is working through the SEC and CFTC instead: the SEC proposed crypto custody rules Oct. 1 with comments due Oct. 20. Prediction markets are the other regulatory flashpoint — Kalshi&#x27;s CEO says state-led oversight would push the industry offshore.</p>
+<p class="note"><b>Why it matters:</b> U.S. market-structure legislation is effectively deferred past the midterms. That leaves agency rulemaking (reversible) rather than statute (durable) as the basis for institutional crypto — a discount factor for any &#x27;regulatory clarity&#x27; trade.</p>
+<p class="src">Sources: <a href="https://cointelegraph.com/news/white-house-crypto-council-director-steps-down">Cointelegraph</a> · <a href="https://www.theblock.co/news/regulation/2026-10-14-white-house-crypto-adviser-patrick-witt-departs-418611">The Block</a> · <a href="https://www.coindesk.com/coindesk-indices/2026/10/15/crypto-for-advisors-wall-street-is-done-waiting-on-congress-for-crypto-rules">CoinDesk</a></p>
+</details>
+<details><summary>EBA makes USDC the EU&#x27;s first &#x27;significant&#x27; e-money token under MiCA; Thailand&#x27;s crypto ETFs start Oct. 16; HEX founder arrested in Istanbul<span class="tag">The Block / Cointelegraph / CoinDesk</span></summary>
+<p class="body">The European Banking Authority designated Circle&#x27;s USDC (~$73B supply, second to USDT&#x27;s ~$184B in a ~$294B stablecoin market) as a &#x27;significant&#x27; EMT, the first of 45 notified in the EU; from Nov. 12 the EBA directly supervises its own funds, reserves, liquidity and redemption plans, taking over from France&#x27;s ACPR, and has signed an MoU with NYDFS. Thailand&#x27;s SEC framework for bitcoin and ether ETFs takes effect Oct. 16 (80% single-asset exposure, regulated custodians), though CoinShares expects a slow start.</p>
+<p class="body">Richard Heart (Richard Schueler), founder of HEX and PulseChain, was reportedly detained in Istanbul with his wife on a Finnish Interpol red notice for tax fraud and assault; Turkish media cite $4M in cash and 64 luxury watches seized (unconfirmed by police); HEX lost ~$160M in market value. The SEC&#x27;s 2023 case against Heart was dismissed in 2025 for lack of jurisdiction. Russia will ban direct P2P crypto trades from July 1, 2027.</p>
+<p class="note"><b>Why it matters:</b> regulatory gravity is shifting to Europe and Asia while Washington stalls — for Circle, EBA supervision is both a compliance cost and a moat against unregulated rivals in the euro market.</p>
+<p class="src">Sources: <a href="https://www.theblock.co/news/regulation/2026-10-15-eba-designates-circles-usdc-as-the-eus-first-significant-e-money-token-418637">The Block (USDC)</a> · <a href="https://www.theblock.co/news/regulation/2026-10-09-thailand-sec-issues-bitcoin-and-ether-etf-rules-set-to-take-effect-oct-16-418132">The Block (Thailand)</a> · <a href="https://www.coindesk.com/policy/2026/10/15/hex-founder-richard-heart-arrested-in-istanbul-turkish-media-report">CoinDesk (Heart)</a></p>
+</details>
+</section>
+<footer>Compiled automatically on 15.10.2026 at 11:21 New York time. Window: last ~26 hours · Feeds collected: 29/29. <a href="#top">↑ back to top</a></footer></div>
+</body>
+</html>
