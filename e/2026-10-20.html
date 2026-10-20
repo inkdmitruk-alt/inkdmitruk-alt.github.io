@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Daily Economic Brief</title>
+</head>
+<body>
+
+<style>
+:root{
+  --bg:#f4f4f2; --card:#fff; --head:#161a20; --body:#3d4551; --muted:#818a99;
+  --accent:#3f5b8c; --accent-soft:#eaeff7; --border:#e6e7ea; --rule:#eff0f2;
+  --up:#1a7f4b; --down:#c23b48; --chip:#f0f1f3;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--body); margin:0; padding:26px 16px 56px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  font-size:17px; line-height:1.72; font-weight:400;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:720px;margin:0 auto;}
+
+/* ── Шапка ─────────────────────────────── */
+h1{
+  font-size:1.75rem; line-height:1.2; font-weight:600; letter-spacing:-.022em;
+  color:var(--head); margin:0 0 6px; text-wrap:balance;
+}
+.date{color:var(--muted);font-size:.82rem;font-weight:400;letter-spacing:.01em;margin-bottom:20px;}
+.prices{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px;}
+.prices span{
+  background:var(--chip); border-radius:8px; padding:6px 11px;
+  font-size:.78rem; font-weight:500; color:var(--head); white-space:nowrap;
+  font-variant-numeric:tabular-nums; letter-spacing:-.005em;
+}
+.up{color:var(--up);font-weight:600;}
+.down{color:var(--down);font-weight:600;}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 30px;}
+nav.toc a{
+  background:transparent; border:1px solid var(--border); border-radius:8px;
+  padding:6px 11px; font-size:.79rem; font-weight:450; color:var(--muted);
+  text-decoration:none; transition:color .12s, border-color .12s;
+}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);}
+nav.toc a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+/* ── Секції: головне, що розділяє потік ── */
+section{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:6px 22px 10px; margin:0 0 26px; scroll-margin-top:16px;
+}
+h2{
+  font-size:.94rem; font-weight:600; letter-spacing:.005em; color:var(--head);
+  margin:0; padding:18px 0 14px; border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; gap:9px; text-wrap:balance;
+}
+h2 .cnt{color:var(--muted);font-weight:400;font-size:.78rem;letter-spacing:0;margin-left:auto;}
+
+/* ── Головне за добу ───────────────────── */
+section#top{background:var(--accent-soft);border-color:transparent;}
+ul.tldr{margin:0;padding:14px 0 6px;list-style:none;}
+ul.tldr li{
+  margin:0; padding:11px 0 11px 2px; border-top:1px solid var(--rule);
+  font-size:.97rem; line-height:1.62;
+}
+ul.tldr li:first-child{border-top:none;}
+ul.tldr b{color:var(--head);font-weight:600;}
+
+/* ── Новина ────────────────────────────── */
+details{border-top:1px solid var(--rule);}
+details:first-of-type{border-top:none;}
+summary{
+  cursor:pointer; list-style:none; position:relative;
+  padding:17px 4px 17px 26px; margin:0;
+  font-size:1rem; font-weight:500; line-height:1.5; color:var(--head);
+  letter-spacing:-.008em; transition:color .12s;
+}
+summary::-webkit-details-marker{display:none;}
+summary::before{
+  content:""; position:absolute; left:4px; top:26px;
+  width:7px; height:7px; border-right:1.5px solid var(--muted);
+  border-bottom:1.5px solid var(--muted); transform:rotate(-45deg);
+  transition:transform .18s ease, border-color .12s;
+}
+details[open] summary::before{transform:rotate(45deg);border-color:var(--accent);}
+summary:hover{color:var(--accent);}
+summary:hover::before{border-color:var(--accent);}
+summary .tag{
+  display:block; margin-top:5px; color:var(--muted);
+  font-weight:400; font-size:.76rem; letter-spacing:.01em;
+}
+.body{
+  margin:0 0 14px; padding:0 4px 0 26px;
+  font-size:.96rem; line-height:1.75; font-weight:400; color:var(--body);
+  max-width:66ch;
+}
+.note{
+  margin:0 4px 14px 26px; padding:13px 16px;
+  background:var(--accent-soft); border-radius:10px;
+  font-size:.92rem; line-height:1.62; color:var(--body); max-width:64ch;
+}
+.note b{color:var(--accent);font-weight:600;}
+.src{
+  margin:0 4px 18px 26px; padding:0;
+  font-size:.79rem; line-height:1.9; color:var(--muted); font-weight:400;
+}
+.src a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);}
+.src a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+footer{
+  color:var(--muted); font-size:.76rem; line-height:1.75; font-weight:400;
+  margin:34px 0 0; padding-top:18px; border-top:1px solid var(--border);
+}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media (max-width:640px){
+  body{font-size:16px;padding:20px 12px 44px;}
+  h1{font-size:1.5rem;}
+  section{padding:4px 16px 8px;border-radius:12px;margin-bottom:20px;}
+  .body,.note,.src{padding-left:0;margin-left:0;}
+  .note{margin-bottom:12px;}
+  summary{padding-left:22px;}
+}
+@media (prefers-reduced-motion: reduce){summary::before{transition:none;}}
+
+.sitenav{
+  position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:4px;
+  align-items:center; padding:11px 16px; margin:-26px -16px 26px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.sitenav a{
+  font-size:.81rem; font-weight:450; text-decoration:none; color:var(--muted);
+  padding:6px 12px; border-radius:8px; white-space:nowrap;
+  transition:color .12s, background .12s;
+}
+.sitenav a:hover{color:var(--head);background:var(--chip);}
+.sitenav a.on{color:var(--accent);background:var(--accent-soft);font-weight:600;}
+.sitenav .sp{flex:1;}
+.sitenav .when{font-size:.76rem;color:var(--muted);letter-spacing:.01em;}
+@media (max-width:640px){
+  .sitenav{margin:-20px -12px 20px;padding:9px 12px;}
+  .sitenav a{padding:5px 10px;font-size:.78rem;}
+  .sitenav .when{display:none;}
+}
+</style>
+<div class="wrap"><nav class="sitenav"><a href="/">☕ Дайджест</a><a href="/en.html" class="on">📊 Economic Brief</a><a href="/archive.html">🗂 Архів</a><span class="sp"></span><span class="when">20 жовтня 2026</span></nav>
+<h1>📊 Daily Economic Brief</h1>
+<div class="date">Tuesday, 20 October 2026 · compiled 10:59 New York time</div>
+<div class="prices"><span>BTC $81 690 <span class="down">−0.73%</span></span><span>ETH $2 397 <span class="down">−0.60%</span></span><span>S&amp;P 500 7 679 <span class="down">−0.15%</span></span><span>NASDAQ 26 234 <span class="down">−0.74%</span></span><span>DJIA 52 264 <span class="up">+0.57%</span></span></div>
+<nav class="toc"><a href="#top">🔥 Top</a><a href="#macro">📊 Macro &amp; Rates</a><a href="#energy">⚡ Energy &amp; Commodities</a><a href="#trump">🎙 Trump &amp; Policy Signals</a><a href="#corp">🏢 Corporate &amp; Earnings</a><a href="#ai">🤖 The AI Economy</a><a href="#crypto">₿ Digital Assets</a></nav>
+<section><h2>🧭 The throughline</h2><p class="body" style="padding-left:0">The US economy is caught between an energy shock and a cooling labor market. Brent touched $111 on unverified Houthi strike claims before reversing, diesel is above $6 a gallon, and 10-year yields sit near 5.1% while September payrolls added only 29,000 jobs. Markets have mostly priced out an October Fed hike but still see December as live, so every oil spike now passes straight into rate expectations, mortgage costs and bank stocks. Washington is trying to cap fuel prices before the November 3 midterms: an $8 billion diesel relief program for farmers and a waiver of the Graham Act&#x27;s Russia sanctions both work through supply and subsidies rather than demand. Meanwhile, the financing behind the AI buildout is showing strain in credit markets (CoreWeave&#x27;s bonds trade like distressed debt, and a Korean data-center IPO fell 32%), even as a handful of megacaps keep the indexes up.</p></section>
+<section id="top"><h2>🔥 Top of the brief</h2><ul class="tldr">
+<li>🛢️ <b>Brent hits $111.05, then reverses.</b> It was the highest level since May, on Houthi claims of strikes on Aramco sites. By the US morning, prices were down roughly 2.6–2.9%.</li>
+<li>📉 <b>Indexes swing back from an early loss.</b> Nasdaq-100 futures were down 0.8% premarket. By about 10:30 ET the Dow was up 1.3% and the S&amp;P 500 up 0.7%.</li>
+<li>🏦 <b>October Fed hike largely priced out.</b> About 85% of the market expects a hold on Oct. 28, but most officials still see one more hike in 2026.</li>
+<li>🚜 <b>$8B Harvest Fuel Relief for farmers.</b> USDA will make one-time payments to offset diesel at about $6.32 a gallon, roughly $2.70 above a year ago.</li>
+<li>🇷🇺 <b>Graham Act sanctions on Russia waived.</b> The national-interest waiver followed a diesel deal with Moscow and is pushing oil lower, but it drew bipartisan backlash.</li>
+<li>🚗 <b>GM drops about 5–6.5%.</b> It narrowed full-year EBIT guidance to $14.5–15.5B as US sales fell 5.5%, and added a $20B buyback.</li>
+<li>🧾 <b>CoreWeave&#x27;s credit is flashing red.</b> Its CDS imply better-than-60% market odds of default within five years, and Korea&#x27;s Elice fell 32% on its IPO debut.</li>
+<li>₿ <b>IBIT takes in $665M, its best day in a year.</b> Bitcoin is still stuck near $82K, and BlackRock filed for a downside-protection bitcoin ETF.</li>
+</ul></section>
+<section id="macro"><h2>📊 Macro &amp; Rates <span class="cnt">4 items</span></h2>
+<details open><summary>October Fed hike mostly priced out; December stays live<span class="tag">Fed</span></summary>
+<p class="body">The Fed raised rates by 25bp to 3.75–4.00% on September 16. The next decision is October 27–28. Bank of America notes that about 85% of market participants expect no change next week, though BofA economists still see an October hike as possible. The September minutes showed most officials expect another increase by year-end. Fed staff estimated headline PCE at 3.8% and core at 3.4% in the year to August, and do not see inflation reaching 2% until 2029.</p>
+<p class="body">Last week Williams and Collins both called one more 2026 hike appropriate. Williams added that energy and tech investment are behind the near-term price pressure and that he sees no need for hikes in 2027. CPI ran at 3.7% year on year in the latest print.</p>
+<p class="note"><b>Why it matters:</b> The reaction function now runs through oil. Williams&#x27;s benign 2027 view assumes energy stops adding to inflation, so another sustained move toward $110 Brent would make a December hike close to certain.</p>
+<p class="src">Sources: <a href="https://investinglive.com/central-banks/icymi-three-fed-officials-signal-inflation-fight-continues-williams-sees-no-2027-hike/">investingLive — Fed officials</a> · <a href="https://investinglive.com/central-banks/icymi-fed-minutes-most-officials-see-another-hike-by-year-end-after-unanimous-rise-to-3-75-4/">investingLive — Fed minutes</a></p>
+</details>
+<details><summary>Treasuries rally as oil fades: 10-year near 5.09%, 30-year near 5.42%<span class="tag">Rates</span></summary>
+<p class="body">Quotes on Tuesday morning showed the 10-year Treasury yield at about 5.09%, down roughly 4–5bp. The 30-year was near 5.42% (down about 5bp) and the 5-year near 4.91%. The 10s-2s curve steepened by about 4bp to around 31bp. On Monday the 10-year was near 5.15%. On October 7 it hit 5.365%, the highest since April 2002. Yields eased after the weak September payroll report: 29,000 jobs against forecasts of 84,000–95,000, with unemployment up to 4.2% and July–August revised down by 60,000. The dollar index slipped about 0.3% to around 101.5.</p>
+<p class="note"><b>Why it matters:</b> A bull steepener points to markets betting the Fed is near its peak. But long-end yields above 5.4% still keep the term premium high, and that weighs on housing, small caps and long-duration AI equities.</p>
+<p class="src">Sources: <a href="https://www.investing.com/news/stock-market-news/nasdaq-futures-dip-as-oil-prices-climb-earnings-loom-4959413">Reuters via Investing.com</a> · <a href="https://www.babypips.com/news/headline-us-jobs-report-september-2026-payrolls-miss-fed-hike-odds">BabyPips — September jobs</a></p>
+</details>
+<details><summary>Bank stocks on their longest losing streak since 2008<span class="tag">Financials</span></summary>
+<p class="body">The US bank index is on its longest losing streak since 2008 and is down about 11% since early September, according to Yahoo Finance&#x27;s market blog. One outlet estimates that JPMorgan, Goldman, Citi, Bank of America and Morgan Stanley together lost about $270 billion of market value between their summer peaks and October 9. Higher long-term yields are eroding the value of bond portfolios.</p>
+<p class="body">Higher rates also slow loan demand, and AI-linked borrowers such as the neoclouds are adding credit-quality worries. Monday&#x27;s equity gains were narrow: the cap-weighted S&amp;P 500 rose while the equal-weight index fell 0.3%.</p>
+<p class="note"><b>Why it matters:</b> Lenders are the transmission belt between rates and the real economy. A sustained bank drawdown usually comes before tighter lending standards, which would add to the Fed&#x27;s tightening without another hike.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/live/stock-market-today-dow-sp-500-nasdaq-futures-mixed-amid-volatile-week-112734828.html">Yahoo Finance — live</a> · <a href="https://beinsure.com/news/stock-market-today-wall-street-bank-earnings-face-rate-shock/">Beinsure</a></p>
+</details>
+<details><summary>Housing stalls: 14.5% of deals fell through in September, and mortgage rates are above 7%<span class="tag">Housing</span></summary>
+<p class="body">Redfin data show 14.5% of US home purchase agreements fell out of contract in September, near a record. Zillow&#x27;s average 30-year fixed mortgage rate was 7.36% on October 15, about 1.1 percentage points higher than a year earlier. Mortgage rates track the 10-year Treasury yield, which hit a 24-year high this month. Buyers who sign at one rate and then face higher rates, insurance or energy costs before closing are walking away.</p>
+<p class="note"><b>Why it matters:</b> Cancellations are an early warning for home sales, building activity and durable-goods spending such as furniture and appliances. That fits the GM sales drop and points to weaker Q4 consumption.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/markets/live/stock-market-today-dow-sp-500-nasdaq-futures-mixed-amid-volatile-week-112734828.html">Yahoo Finance — live (Redfin data)</a></p>
+</details>
+</section>
+<section id="energy"><h2>⚡ Energy &amp; Commodities <span class="cnt">4 items</span></h2>
+<details open><summary>Brent tops $111 on Houthi claims against Saudi energy sites, then gives back gains<span class="tag">Oil</span></summary>
+<p class="body">Brent reached $111.05 a barrel overnight, its highest since May, and WTI reached $104.94, its highest since September. Yemen&#x27;s Houthis said they hit an Aramco facility in Yanbu, the Shaybah oilfield and airports in Riyadh and Abha. Saudi Arabia has not confirmed the claims and Reuters could not verify them. Kpler counts at least 18 vessels reportedly attacked in two weeks. By the US morning, quotes showed Brent near $106.7 (-2.6%) and December WTI near $95.7 (-2.9%).</p>
+<p class="body">Part of the WTI gap reflects the November contract expiring and the roll to December. Sources did not clearly explain the intraday reversal.</p>
+<p class="note"><b>Why it matters:</b> The risk premium rests on unverified attack claims while physical Gulf flows are near 80% of pre-war levels. That makes prices prone to sharp two-way swings, and each spike still feeds Fed hike odds.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/energy/articles/brent-crude-hits-five-month-094954385.html">Yahoo Finance/Reuters</a> · <a href="https://www.cnbc.com/2026/10/20/oil-price-wti-brent-crude.html">CNBC</a></p>
+</details>
+<details><summary>UK sends Typhoon jets to defend Saudi Arabia; Gulf flow recovery at risk<span class="tag">Supply security</span></summary>
+<p class="body">The UK will deploy RAF Typhoon fighters to fly defensive missions over Saudi cities and infrastructure against Houthi attacks, according to The Guardian and CNBC; the jets will not take part in offensive strikes. ANZ warned that the recovery of Gulf oil flows, now about 80% of pre-war levels, is at risk. US Energy Secretary Chris Wright says crude flows have recovered to about 80% but refined-product shipments remain constrained. ING says prices are &#x27;well-supported&#x27; and the premium will erode only slowly if flows continue.</p>
+<p class="note"><b>Why it matters:</b> Western air defense for Saudi infrastructure is effectively insurance on spare capacity. If Yanbu, the main Red Sea outlet that bypasses Hormuz, were credibly at risk, the market would lose its key buffer.</p>
+<p class="src">Sources: <a href="https://www.theguardian.com/uk-news/2026/oct/20/uk-raf-typhoon-fighters-saudi-arabia-houthi-attacks">The Guardian</a> · <a href="https://oilprice.com/Energy/Gas-Prices/Wright-Says-Gas-Prices-Peaked-As-Brent-Holds-Above-108.html">Oilprice.com</a></p>
+</details>
+<details><summary>Diesel at about $6.32 a gallon is the real squeeze point<span class="tag">Refined products</span></summary>
+<p class="body">AAA&#x27;s diesel average is about $6.32 a gallon, compared with $3.63 a year ago, according to reporting on the new farm relief program. Diesel hit an all-time high earlier in the Iran war and kept climbing. Jet fuel costs have pushed airlines to cut flights and raise fares. The US Strategic Petroleum Reserve fell below 300 million barrels in early August, down more than 100 million barrels since the start of 2026, which limits Washington&#x27;s ability to cushion further shocks. Refined-product shipments from the Gulf are recovering more slowly than crude.</p>
+<p class="note"><b>Why it matters:</b> Diesel moves freight, harvest and construction costs, so it passes into core goods prices with a lag. This is the channel through which energy becomes stubborn inflation rather than a one-off headline spike.</p>
+<p class="src">Sources: <a href="https://www.ibtimes.co.uk/trump-announces-8bn-fuel-relief-programme-farmers-1826755">IBTimes</a> · <a href="https://www.wdbj7.com/2026/09/09/trump-oil-prices-likely-wont-come-down-until-after-midterms-iran-war-continues/">AP via WDBJ</a></p>
+</details>
+<details><summary>Russia sanctions waiver adds expected supply; analysts call it a midterm price play<span class="tag">Sanctions</span></summary>
+<p class="body">On Friday, October 16, Trump signed a national-interest waiver of the Graham Act&#x27;s Russia provisions two days before they took effect. The law would have imposed tariffs of up to 500% on Russian goods and up to 100% on the top buyers of Russian crude and gas. The waiver followed a deal allowing Russia to sell diesel to the US and world markets amid shortages. Brent fell about 2% on Monday as traders priced in more Russian fuel exports.</p>
+<p class="body">Rubio said the administration will take up to 60 days to assess the sanctions&#x27; impact on the global economy. Phillip Nova&#x27;s Priyanka Sachdeva called the waiver an attempt to keep oil prices in check before the midterms that does little for physical Hormuz disruptions.</p>
+<p class="note"><b>Why it matters:</b> The waiver removes a secondary-tariff threat that hung over buyers of Russian oil such as India, China and Turkey. That lowers tail risk for global refined-product supply but weakens Western leverage over Moscow&#x27;s oil revenue.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/10/17/trump-waives-russia-related-sanctions-tariffs-before-they-take-effect-.html">CNBC</a> · <a href="https://www.brecorder.com/news/40444883/oil-slips-from-5-month-high-as-trumps-russia-sanctions-waiver-may-bring-more-supplies">Business Recorder</a></p>
+</details>
+</section>
+<section id="trump"><h2>🎙 Trump &amp; Policy Signals <span class="cnt">4 items</span></h2>
+<details open><summary>$8 billion Harvest Fuel Relief program for farmers<span class="tag">Fiscal</span></summary>
+<p class="body">Trump announced the program at a Kansas rally on October 19 and on Truth Social, framing it as $8 billion to offset diesel costs during harvest. USDA describes one-time payments covering part of modeled 2026 crop-year losses. The formula uses planted acres reported to the Farm Service Agency, Economic Research Service cost-of-production estimates, and WASDE yields and prices. Funding comes through the Commodity Credit Corporation.</p>
+<p class="body">Payment rates for Title I commodities come in November, with other crops later. It follows the earlier $12 billion Farmer Bridge Assistance program paid to more than 560,000 farmers.</p>
+<p class="note"><b>Why it matters:</b> Farm support since the trade war is now over $20 billion, paid through a fund the Agriculture Secretary controls without new appropriations. That is quasi-permanent fiscal support at a time when the Fed is still fighting inflation.</p>
+<p class="src">Sources: <a href="https://www.usda.gov/about-usda/news/press-releases/2026/10/19/trump-administration-announces-8-billion-harvest-fuel-relief-program">USDA</a> · <a href="https://thehill.com/homenews/administration/6159427-trump-announces-8-billion-harvest-relief/">The Hill</a></p>
+</details>
+<details><summary>Russia sanctions waiver draws bipartisan backlash<span class="tag">Sanctions politics</span></summary>
+<p class="body">The waiver covers every operative Russia section of the Graham Act. The White House certified it as in the national interest but gave no further explanation. Republican Sen. Thom Tillis called it &#x27;beyond irresponsible&#x27; and said on Tuesday that Putin is &#x27;playing President Trump like a fiddle&#x27;; several GOP senators had urged the president to rescind the diesel deal. A national-interest waiver does not repeal the law, so Congress could try to challenge it.</p>
+<p class="note"><b>Why it matters:</b> Sanctions policy is now openly tied to domestic fuel prices. Investors should treat future Russia-sanctions decisions as an energy-price tool, which makes them harder to predict.</p>
+<p class="src">Sources: <a href="https://www.washingtonpost.com/politics/2026/10/17/trump-signs-executive-order-waiving-sanctions-against-russia/">Washington Post</a> · <a href="https://thehill.com/homenews/senate/6159728-tillis-putin-trump-fiddle-russia-ukraine/">The Hill — Tillis</a></p>
+</details>
+<details><summary>Approval at a reported record low of 31% as living costs dominate the run-up to the midterms<span class="tag">Politics &amp; economy</span></summary>
+<p class="body">The Hill reports a new Reuters/Ipsos reading of 31%, a record low. The previous verified poll (September 17–20) put approval at 32% and disapproval at 66%; in it only 17% approved of his handling of the cost of living. In September Trump said oil prices likely won&#x27;t fall until after the November 3 midterms, while gasoline was above $4.20 a gallon. The farm relief package and the Russia waiver both arrived about two weeks before election day.</p>
+<p class="note"><b>Why it matters:</b> Expect more supply-side and subsidy measures before November 3, such as waivers, SPR releases and targeted aid. Each eases prices in the short run but loosens fiscal policy and adds to term-premium pressure on long Treasuries.</p>
+<p class="src">Sources: <a href="https://thehill.com/homenews/administration/6159609-trump-approval-record-low-reuters-ipsos/">The Hill</a> · <a href="https://thedailyguardian.com/world/exclusive-trump-approval-falls-to-record-low-of-32-as-high-costs-bite-reuters-ipsos-poll-finds-759045/">Daily Guardian — Sept poll</a></p>
+</details>
+<details><summary>Supreme Court tariff ruling is now flowing back into corporate earnings<span class="tag">Tariffs</span></summary>
+<p class="body">RTX&#x27;s third-quarter adjusted EPS of $2.26 included $0.25 of &#x27;IEEPA recovery.&#x27; That is money recouped after the Supreme Court in February struck down broad tariffs imposed under the International Emergency Economic Powers Act. After the ruling, the administration switched to Section 122 of the Trade Act of 1974 with a 10% across-the-board import surcharge. On China, a September 29 arrangement cut tariffs on about $30 billion of goods from each side and extended the Kuala Lumpur trade truce to January 10, 2027.</p>
+<p class="note"><b>Why it matters:</b> Tariff refunds are a one-off earnings boost that will show up across importers this season. Analysts should strip them out of results and watch how long Section 122 surcharges can legally remain in place.</p>
+<p class="src">Sources: <a href="http://www.prnewswire.com/news-releases/rtx-reports-q3-2026-results-302913803.html">RTX — Q3 2026</a> · <a href="https://www.techrepublic.com/article/news-trump-us-china-trade-deal-tariffs/">TechRepublic</a></p>
+</details>
+</section>
+<section id="corp"><h2>🏢 Corporate &amp; Earnings <span class="cnt">5 items</span></h2>
+<details open><summary>GM narrows guidance as US sales fall 5.5%; $20B buyback<span class="tag">Autos</span></summary>
+<p class="body">GM reported third-quarter revenue of $50.0 billion against a consensus of about $48.5 billion, net income of $3.3 billion and adjusted EBIT of $4.1 billion. It narrowed 2026 adjusted EBIT guidance to $14.5–15.5 billion from $14–16 billion, removing the top of the range and ending hopes of a third straight raise. US new-vehicle sales fell 5.5% in the quarter, and analysts flagged rising commodity costs.</p>
+<p class="body">The board approved a new multiyear buyback of $20 billion after finishing a $6 billion program, and kept the $0.18 quarterly dividend. Shares fell about 6.3–6.5% premarket and about 5% after the open.</p>
+<p class="note"><b>Why it matters:</b> Autos are the most rate- and fuel-sensitive part of consumer spending. A sales drop of this size alongside 7%+ mortgages and $4+ gasoline suggests big-ticket demand is cracking.</p>
+<p class="src">Sources: <a href="https://www.investing.com/news/stock-market-news/why-is-general-motors-stock-sliding-today-93CH-4959549">Investing.com</a> · <a href="https://www.cnbc.com/2026/10/20/general-motors-gm-earnings-q3-2026.html">CNBC</a></p>
+</details>
+<details><summary>Defense keeps delivering: RTX beats and raises, Northrop lifts outlook<span class="tag">Aerospace &amp; Defense</span></summary>
+<p class="body">RTX posted sales of $25.0 billion, up 11% (12% organic), and adjusted EPS of $2.26, up 33% and well above consensus estimates of $1.66–1.78. It raised full-year adjusted EPS guidance to $7.65–7.75. Northrop Grumman rose about 5.8% after lifting its annual profit forecast. GE Aerospace fell about 2% even though third-quarter adjusted revenue beat expectations, suggesting a high bar for aerospace names. Lockheed reports October 22, with consensus EPS of $7.48 on revenue of $20.35 billion.</p>
+<p class="note"><b>Why it matters:</b> The Middle East conflict and allied rearmament are lifting defense order books. That is one of the few earnings streams that benefits from high energy prices and geopolitical risk.</p>
+<p class="src">Sources: <a href="https://www.rtx.com/news/news-center/2026/10/20/rtx-reports-q3-2026-results">RTX</a> · <a href="https://www.investing.com/news/stock-market-news/nasdaq-futures-dip-as-oil-prices-climb-earnings-loom-4959413">Reuters via Investing.com</a></p>
+</details>
+<details><summary>Salesforce buys Braze for $5.66B in cash<span class="tag">M&amp;A</span></summary>
+<p class="body">Braze holders get $47.50 a share in cash, valuing the customer-engagement platform at about $5.66 billion in enterprise value, according to its 8-K. Braze shares rose about 50.7%. Salesforce says the deal will plug Braze&#x27;s real-time messaging and AI decision tools into Data 360, Customer 360 and Agentforce. CNBC reports closing is expected in Salesforce&#x27;s fiscal 2028; filings do not yet give regulatory review details.</p>
+<p class="note"><b>Why it matters:</b> Depressed software valuations make mid-cap SaaS firms cheap targets for incumbents racing to bundle AI agents. Expect more consolidation and a re-rating of possible targets.</p>
+<p class="src">Sources: <a href="https://www.sec.gov/Archives/edgar/data/0001676238/000095010326015850/dp254600_ex9902.htm">SEC — Braze 8-K</a> · <a href="https://www.cnbc.com/2026/10/20/salesforce-braze-acquisition-deal.html">CNBC</a></p>
+</details>
+<details><summary>Industrial split: 3M jumps on Amazon data-center deal, Steel Dynamics misses<span class="tag">Industrials</span></summary>
+<p class="body">3M rose about 6% after expanding its data-center partnership with Amazon and raising its full-year adjusted EPS forecast to $9.10–9.15 from $8.80–8.95. Halliburton gained 3.9% after beating quarterly profit estimates as high oil prices support oilfield activity. Steel Dynamics fell 4.7% after missing third-quarter estimates. Qualcomm slipped about 1% after a Reuters-reported memo on performance-focused job cuts in November, with no headcount figure. ABB fell about 4.4% despite a sharp jump in orders.</p>
+<p class="note"><b>Why it matters:</b> Suppliers to AI data centers and energy are still winning on earnings even as AI equity sentiment wobbles. Cyclical metals are where weaker goods demand shows up first.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/10/20/3m-mmm-earnings-q3-2026.html">CNBC — 3M</a> · <a href="https://www.investing.com/news/stock-market-news/us-stock-futures-steady-after-wall-street-rebounds-on-tech-recovery-4958596">Investing.com</a></p>
+</details>
+<details><summary>After the bell: SpaceX and Netflix<span class="tag">Earnings preview</span></summary>
+<p class="body">SpaceX consensus is revenue of about $12.7–12.9 billion (LSEG and Bloomberg). StreetAccount expects AI revenue of $6.47 billion, connectivity of $4.84 billion and space of $1.41 billion. Starlink ended June with 12 million subscribers, but average revenue per user fell to $66 from $85 a year earlier. Teslarati estimates capex at about $19.6 billion, implying free cash flow near -$11.6 billion (an estimate, not reported data).</p>
+<p class="body">Netflix guided to revenue of $12.86 billion and a 33.2% operating margin; consensus EPS is $0.82, and options imply a move of about 9.6%.</p>
+<p class="note"><b>Why it matters:</b> SpaceX is now a bellwether for the AI capex cycle. How much cash it burns, and how it funds that, will shape appetite for AI infrastructure debt after the CoreWeave selloff.</p>
+<p class="src">Sources: <a href="https://www.home.saxo/en-gb/content/articles/equities/spacex-preview-20102026">Saxo</a> · <a href="https://www.tipranks.com/news/netflix-q3-earnings-are-today-heres-what-to-expect-from-nflx-stock">TipRanks — Netflix</a></p>
+</details>
+</section>
+<section id="ai"><h2>🤖 The AI Economy <span class="cnt">5 items</span></h2>
+<details><summary>CoreWeave credit trades at distressed levels<span class="tag">AI credit</span></summary>
+<p class="body">CoreWeave&#x27;s 9.625% notes due 2032 yield about 14.8%, briefly touching 15%, and its unsecured 2032 debt traded below 80 cents on the dollar. Five-year CDS hit a record 1,194.5bp, which Bloomberg says implies better-than-60% market odds of default within five years — a market price, not an analyst forecast. S&amp;P rates the company B+, and total debt is close to $30 billion. The stock fell 25% last week, and HSBC reiterated its &#x27;reduce&#x27; rating, seeing another 30%+ downside on &#x27;structural concerns for neoclouds&#x27;.</p>
+<p class="note"><b>Why it matters:</b> Neoclouds turned GPU purchases into high-yield debt backed by contracts with a few customers. If their refinancing window closes, data-center build schedules and Nvidia&#x27;s order book become the next point of strain.</p>
+<p class="src">Sources: <a href="https://investinglive.com/stocks/coreweave-bonds-trade-like-distressed-debt-as-ai-spending-outpaces-balance-sheets/">investingLive</a> · <a href="https://www.cnbc.com/2026/10/20/coreweave-hsbc-debt-risks.html">CNBC — HSBC</a></p>
+</details>
+<details><summary>Korean data-center IPO Elice drops 32% on debut<span class="tag">Capital markets</span></summary>
+<p class="body">Elice Group, a South Korean data-center and neocloud provider, fell about 32% on its first day of trading in Seoul, below its IPO price. Analysts called it a &#x27;red flag&#x27; for AI companies&#x27; ability to raise money. The KOSPI fell 3.73% and the Nikkei 1.3% as AI sentiment reversed in Asia. Nebius and IREN were also weak in early US trading, and US data-center stocks slid, per CNBC.</p>
+<p class="note"><b>Why it matters:</b> The IPO window decides whether AI infrastructure can be funded with equity instead of debt. A failed debut pushes builders back toward more expensive credit just as spreads are widening.</p>
+<p class="src">Sources: <a href="https://www.investing.com/news/stock-market-news/us-stock-futures-steady-after-wall-street-rebounds-on-tech-recovery-4958596">Investing.com</a> · <a href="https://www.cnbc.com/2026/10/20/data-center-stocks-slide-as-korea-ipo-plunges-30percent-pressuring-tech-sentiment.html">CNBC</a></p>
+</details>
+<details><summary>Anthropic and Nscale reportedly in talks on a second $45B compute deal<span class="tag">Compute deals</span></summary>
+<p class="body">Bloomberg reported on October 19 that Nscale and Anthropic are close to another cloud deal worth about $45 billion, following a first deal of the same size reported in late August (about 460MW at the Monarch campus in West Virginia, Nvidia Vera Rubin chips, online around late 2027). Talks are ongoing and terms may change; the companies did not comment. Nscale is preparing its own IPO, but investors are reportedly pushing back on a $30 billion valuation.</p>
+<p class="note"><b>Why it matters:</b> Multiyear take-or-pay leases from AI labs are the collateral behind neocloud debt. Investors in that debt are effectively betting on the labs&#x27; fundraising, so lab IPOs matter for the whole infrastructure credit stack.</p>
+<p class="src">Sources: <a href="https://techcrunch.com/2026/10/19/nscale-and-anthropic-are-reportedly-in-talks-for-yet-another-45-billion-compute-deal/">TechCrunch</a> · <a href="https://techstrong.ai/articles/anthropic-signs-45-billion-cloud-deal-with-nscale-ahead-of-planned-ipo-reports/">Techstrong.ai — first deal</a></p>
+</details>
+<details><summary>US orders federal civilian agencies to remove DeepSeek<span class="tag">AI policy</span></summary>
+<p class="body">A DHS order published in the Federal Register requires federal civilian agencies to stop buying DeepSeek products and services and remove them from government IT systems, including third-party products built on DeepSeek technology; agencies may seek waivers. The rationale is the risk that US government user data could be transferred to Chinese authorities. A December 2025 law had already restricted DeepSeek in intelligence and national-security systems.</p>
+<p class="body">Separately, DeepSeek open-sourced its DeepInfer inference engine with support for both Nvidia GPUs and Huawei Ascend chips.</p>
+<p class="note"><b>Why it matters:</b> The ban formalizes a tech-supply split in public procurement, and DeepSeek&#x27;s Huawei support shows Chinese AI building a parallel hardware stack — a long-run competitive risk for Nvidia&#x27;s China exposure.</p>
+<p class="src">Sources: <a href="https://techcrunch.com/2026/10/20/us-orders-federal-agencies-to-remove-chinas-deepseek-ai-from-their-systems/">TechCrunch</a> · <a href="https://www.reuters.com/technology/us-banning-chinese-ai-deepseek-government-agency-it-systems-2026-10-19/">Reuters</a></p>
+</details>
+<details><summary>Google Cloud London power failure knocks out UK banks for about six hours<span class="tag">Cloud concentration</span></summary>
+<p class="body">A &#x27;power event&#x27; in Google Cloud&#x27;s europe-west2-b zone in London began around 06:08 GMT and disrupted Revolut, Lloyds, Halifax, Bank of Scotland and HSBC. At Revolut, card payments, ATM withdrawals, transfers and log-ins were affected. Google said most services were back by 12:10 GMT and it will publish an incident analysis. Disruptions were also reported at the UK Court Service, Rightmove, DPD and Screwfix, though not every link is confirmed. Revolut said customer money and data were safe.</p>
+<p class="note"><b>Why it matters:</b> As AI workloads crowd into the same hyperscaler regions, concentration risk becomes a systemic finance issue. Expect UK and EU regulators to push &#x27;critical third party&#x27; resilience rules and multi-cloud requirements for banks.</p>
+<p class="src">Sources: <a href="https://www.abc.net.au/news/2026-10-20/google-cloud-failure-europe-banks/107290238">ABC (Australia)</a> · <a href="https://cybernews.com/tech/google-cloud-outage-revolut-hsbc-lloyds/">Cybernews</a></p>
+</details>
+</section>
+<section id="crypto"><h2>₿ Digital Assets <span class="cnt">4 items</span></h2>
+<details><summary>IBIT takes in $665M, its biggest day since October 2025, but bitcoin stays range-bound<span class="tag">ETF flows</span></summary>
+<p class="body">BlackRock&#x27;s IBIT drew $665.16 million of net inflows on Monday, its largest since October 7, 2025, according to SoSoValue. Total US spot bitcoin ETF flows were about +$527 million because Fidelity and Grayscale funds saw outflows. Ether ETFs lost $103 million, a third straight week of outflows. Bitcoin is near $81,690 (-0.7%) and ether near $2,397 (-0.6%), with BTC stuck in an $81,000–83,000 range and options traders buying downside protection as Asian chip stocks fell.</p>
+<p class="note"><b>Why it matters:</b> Strong inflows that fail to lift the price point to supply from long-term holders and miners. Fed hike risk for December is still the main macro cap on crypto.</p>
+<p class="src">Sources: <a href="https://www.theblock.co/news/markets/2026-10-20-blackrock-ibit-bitcoin-etf-665-million-421102">The Block</a> · <a href="https://www.coindesk.com/markets/2026/10/20/bitcoin-drops-to-usd81-400-as-asian-chip-stocks-tumble-options-traders-seek-downside-protection">CoinDesk</a></p>
+</details>
+<details><summary>BlackRock files a third bitcoin product, with downside protection<span class="tag">Product</span></summary>
+<p class="body">BlackRock filed with the SEC for the iShares Bitcoin Managed Protect ETF. It would combine options and fixed-income securities to give IBIT-linked returns while limiting losses, in exchange for capped upside. It would join IBIT (over $65 billion in assets) and the iShares Bitcoin Premium Income ETF, which writes options on IBIT. Separately, Swiss regulator FINMA approved the country&#x27;s first spot bitcoin ETF for retail investors, per The Block.</p>
+<p class="note"><b>Why it matters:</b> Buffered products bring in advisers and retirement-style money that can&#x27;t hold full bitcoin volatility. They also add to options-market hedging, which can dampen realized volatility.</p>
+<p class="src">Sources: <a href="https://www.theblock.co/news/regulation/2026-10-19-blackrock-files-bitcoin-managed-protect-etf-downside-protection-ibit-421087">The Block — BlackRock</a> · <a href="https://www.theblock.co/news/regulation/2026-10-20-swiss-regulator-finma-approves-countrys-first-spot-bitcoin-etf-for-retail-investors-421127">The Block — FINMA</a></p>
+</details>
+<details><summary>France moves toward a 31.4% tax on crypto-to-stablecoin swaps<span class="tag">Regulation</span></summary>
+<p class="body">France&#x27;s National Assembly voted narrowly (38–37, 25 abstentions) for a 2027 budget amendment that would make swaps of crypto into MiCA-regulated e-money stablecoins taxable events. Profits would face the 31.4% flat levy. Today, crypto-to-crypto swaps in France defer tax until conversion to fiat. The measure is not law yet and must survive the rest of the budget process; the budget minister opposes it.</p>
+<p class="body">If adopted, it would apply from January 1, 2027. Chainalysis warns it could push trading toward unregulated tokens and offshore venues.</p>
+<p class="note"><b>Why it matters:</b> Taxing only MiCA-compliant stablecoins would penalize exactly the regulated instruments the EU wants people to use. That is a test case for how European fiscal policy interacts with MiCA.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/policy/2026/10/20/france-s-parliament-approves-vote-to-hit-crypto-to-stablecoin-trades-with-31-levy">CoinDesk</a> · <a href="https://yellow.com/news/france-tax-stablecoin-swaps-chainalysis-offshore">Yellow</a></p>
+</details>
+<details><summary>Institutional signals: JPMorgan&#x27;s 10% long-run BTC return call; Strategy keeps buying<span class="tag">Institutions</span></summary>
+<p class="body">JPMorgan Asset Management&#x27;s 2027 Long-Term Capital Market Assumptions include bitcoin for the first time, with a base case of about 10% a year over a decade (bear case -9.7%, bull case +17%), above its estimates for large-cap stocks (7.5%), bonds and gold (5.5%), per CoinDesk. The authors still call bitcoin a speculative bet rather than a diversifier. On Monday, Strategy (MSTR) bought 267 more BTC for about $22 million, and Strive added 1,223 BTC for $100 million. MSCI&#x27;s final list of affected digital-asset treasury companies is due November 11.</p>
+<p class="note"><b>Why it matters:</b> A 10% expected return is a muted call compared with past bitcoin bull cases, more like a high-volatility equity. MSCI&#x27;s November 11 decision could force passive selling of MSTR-like stocks.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/markets/2026/10/20/jpmorgan-sees-10-annual-bitcoin-returns-topping-stocks-bonds-and-gold-over-next-decade">CoinDesk — JPMorgan</a> · <a href="https://www.theblock.co/news/business/2026-10-19-we-found-room-for-more-orange-michael-saylors-strategy-buys-more-bitcoin-418895">The Block — Strategy</a></p>
+</details>
+</section>
+<footer>Compiled automatically on 20.10.2026 at 10:59 New York time. Window: last ~26 hours · Feeds collected: 29/29. <a href="#top">↑ back to top</a></footer></div>
+</body>
+</html>
