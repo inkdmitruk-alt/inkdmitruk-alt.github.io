@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Daily Economic Brief</title>
+</head>
+<body>
+
+<style>
+:root{
+  --bg:#f4f4f2; --card:#fff; --head:#161a20; --body:#3d4551; --muted:#818a99;
+  --accent:#3f5b8c; --accent-soft:#eaeff7; --border:#e6e7ea; --rule:#eff0f2;
+  --up:#1a7f4b; --down:#c23b48; --chip:#f0f1f3;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--body); margin:0; padding:26px 16px 56px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  font-size:17px; line-height:1.72; font-weight:400;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:720px;margin:0 auto;}
+
+/* ── Шапка ─────────────────────────────── */
+h1{
+  font-size:1.75rem; line-height:1.2; font-weight:600; letter-spacing:-.022em;
+  color:var(--head); margin:0 0 6px; text-wrap:balance;
+}
+.date{color:var(--muted);font-size:.82rem;font-weight:400;letter-spacing:.01em;margin-bottom:20px;}
+.prices{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px;}
+.prices span{
+  background:var(--chip); border-radius:8px; padding:6px 11px;
+  font-size:.78rem; font-weight:500; color:var(--head); white-space:nowrap;
+  font-variant-numeric:tabular-nums; letter-spacing:-.005em;
+}
+.up{color:var(--up);font-weight:600;}
+.down{color:var(--down);font-weight:600;}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 30px;}
+nav.toc a{
+  background:transparent; border:1px solid var(--border); border-radius:8px;
+  padding:6px 11px; font-size:.79rem; font-weight:450; color:var(--muted);
+  text-decoration:none; transition:color .12s, border-color .12s;
+}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);}
+nav.toc a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+/* ── Секції: головне, що розділяє потік ── */
+section{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:6px 22px 10px; margin:0 0 26px; scroll-margin-top:16px;
+}
+h2{
+  font-size:.94rem; font-weight:600; letter-spacing:.005em; color:var(--head);
+  margin:0; padding:18px 0 14px; border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; gap:9px; text-wrap:balance;
+}
+h2 .cnt{color:var(--muted);font-weight:400;font-size:.78rem;letter-spacing:0;margin-left:auto;}
+
+/* ── Головне за добу ───────────────────── */
+section#top{background:var(--accent-soft);border-color:transparent;}
+ul.tldr{margin:0;padding:14px 0 6px;list-style:none;}
+ul.tldr li{
+  margin:0; padding:11px 0 11px 2px; border-top:1px solid var(--rule);
+  font-size:.97rem; line-height:1.62;
+}
+ul.tldr li:first-child{border-top:none;}
+ul.tldr b{color:var(--head);font-weight:600;}
+
+/* ── Новина ────────────────────────────── */
+details{border-top:1px solid var(--rule);}
+details:first-of-type{border-top:none;}
+summary{
+  cursor:pointer; list-style:none; position:relative;
+  padding:17px 4px 17px 26px; margin:0;
+  font-size:1rem; font-weight:500; line-height:1.5; color:var(--head);
+  letter-spacing:-.008em; transition:color .12s;
+}
+summary::-webkit-details-marker{display:none;}
+summary::before{
+  content:""; position:absolute; left:4px; top:26px;
+  width:7px; height:7px; border-right:1.5px solid var(--muted);
+  border-bottom:1.5px solid var(--muted); transform:rotate(-45deg);
+  transition:transform .18s ease, border-color .12s;
+}
+details[open] summary::before{transform:rotate(45deg);border-color:var(--accent);}
+summary:hover{color:var(--accent);}
+summary:hover::before{border-color:var(--accent);}
+summary .tag{
+  display:block; margin-top:5px; color:var(--muted);
+  font-weight:400; font-size:.76rem; letter-spacing:.01em;
+}
+.body{
+  margin:0 0 14px; padding:0 4px 0 26px;
+  font-size:.96rem; line-height:1.75; font-weight:400; color:var(--body);
+  max-width:66ch;
+}
+.note{
+  margin:0 4px 14px 26px; padding:13px 16px;
+  background:var(--accent-soft); border-radius:10px;
+  font-size:.92rem; line-height:1.62; color:var(--body); max-width:64ch;
+}
+.note b{color:var(--accent);font-weight:600;}
+.src{
+  margin:0 4px 18px 26px; padding:0;
+  font-size:.79rem; line-height:1.9; color:var(--muted); font-weight:400;
+}
+.src a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);}
+.src a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+footer{
+  color:var(--muted); font-size:.76rem; line-height:1.75; font-weight:400;
+  margin:34px 0 0; padding-top:18px; border-top:1px solid var(--border);
+}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media (max-width:640px){
+  body{font-size:16px;padding:20px 12px 44px;}
+  h1{font-size:1.5rem;}
+  section{padding:4px 16px 8px;border-radius:12px;margin-bottom:20px;}
+  .body,.note,.src{padding-left:0;margin-left:0;}
+  .note{margin-bottom:12px;}
+  summary{padding-left:22px;}
+}
+@media (prefers-reduced-motion: reduce){summary::before{transition:none;}}
+
+.sitenav{
+  position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:4px;
+  align-items:center; padding:11px 16px; margin:-26px -16px 26px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.sitenav a{
+  font-size:.81rem; font-weight:450; text-decoration:none; color:var(--muted);
+  padding:6px 12px; border-radius:8px; white-space:nowrap;
+  transition:color .12s, background .12s;
+}
+.sitenav a:hover{color:var(--head);background:var(--chip);}
+.sitenav a.on{color:var(--accent);background:var(--accent-soft);font-weight:600;}
+.sitenav .sp{flex:1;}
+.sitenav .when{font-size:.76rem;color:var(--muted);letter-spacing:.01em;}
+@media (max-width:640px){
+  .sitenav{margin:-20px -12px 20px;padding:9px 12px;}
+  .sitenav a{padding:5px 10px;font-size:.78rem;}
+  .sitenav .when{display:none;}
+}
+</style>
+<div class="wrap"><nav class="sitenav"><a href="/">☕ Дайджест</a><a href="/en.html" class="on">📊 Economic Brief</a><a href="/archive.html">🗂 Архів</a><span class="sp"></span><span class="when">19 жовтня 2026</span></nav>
+<h1>📊 Daily Economic Brief</h1>
+<div class="date">Monday, 19 October 2026 · compiled 21:11 New York time</div>
+<div class="prices"><span>BTC $81 654 <span class="down">−0.70%</span></span><span>ETH $2 398 <span class="down">−0.56%</span></span><span>S&amp;P 500 7 691 <span class="up">+0.41%</span></span><span>NASDAQ 26 431 <span class="up">+1.11%</span></span><span>DJIA 51 966 <span class="down">−0.07%</span></span></div>
+<nav class="toc"><a href="#top">🔥 Top</a><a href="#macro">📊 Macro &amp; Rates</a><a href="#geo">🌐 Geopolitics &amp; the Economy</a><a href="#trade">🚢 Trade, Tariffs &amp; Policy</a><a href="#trump">🎙 Trump &amp; Policy Signals</a><a href="#corp">🏢 Corporate &amp; Earnings</a><a href="#crypto">₿ Digital Assets</a><a href="#ai">🤖 The AI Economy</a><a href="#energy">⚡ Energy &amp; Commodities</a></nav>
+<section><h2>🧭 The throughline</h2><p class="body" style="padding-left:0">Monday was a relief rally inside a still-hostile rate regime: the Nasdaq rose 1.11% and the S&amp;P 500 0.41% as chip stocks snapped an eight-session, roughly $2 trillion losing streak, but the 10-year Treasury yield held around 5.1% and the Dow slipped. Energy prices came from the White House rather than OPEC. Trump’s waiver of the Graham Act’s Russia sanctions and secondary tariffs knocked about 2% off Brent in the morning, and that dip in oil gave the AI trade room to bounce. The vulnerable spot is credit: CoreWeave’s distressed-level bonds, CCC spreads near 1,000 bp and a Fed that hiked in September and is still weighing another move make leverage the main thing to watch. Outside the US, the costs of war showed up on balance sheets. Saudi Arabia postponed its flagship investment summit, Ukraine’s businesses have lost $7.7 billion this year, Black Sea insurance is pricing out grain, and Indonesia’s market is being repriced as a possible MSCI downgrade.</p></section>
+<section id="top"><h2>🔥 Top of the brief</h2><ul class="tldr">
+<li>📈 <b>Chips lead a Nasdaq rebound of 1.11%.</b> The S&amp;P 500 closed at 7,690.73 (+0.41%) and the Dow at 51,966.03 (-0.07%). The Philadelphia semiconductor index ended its longest losing streak since 2008, and Micron rose about 3%.</li>
+<li>🛢 <b>Trump’s Russia sanctions waiver pushes oil lower.</b> Brent fell almost 2% to $107.69 and WTI 1.71% to $97.32 on Monday morning after the Graham Act’s secondary tariffs of up to 100% were waived.</li>
+<li>📊 <b>The 10-year yield is still about 5.1%, and October hike odds are near 18%.</b> The Fed meets October 27–28 after a 3.7% September CPI print. CoinDesk’s live coverage put the 10-year yield at 5.133%.</li>
+<li>⚠️ <b>Credit stress is building around AI borrowers.</b> CoreWeave’s 2031 bonds yield about 15%, CCC spreads are approaching 1,000 bp, and MarketWatch warns the riskiest junk debt is in ‘uncharted territory’.</li>
+<li>🇨🇳 <b>China’s Q3 GDP grew 4.5%, beating forecasts as September exports jumped 36.3%.</b> Retail sales rose just 1.1% and fixed-asset investment fell 7.2%, so growth is coming from exports while domestic demand stays weak.</li>
+<li>🇸🇦 <b>Saudi Arabia postpones its ‘Davos in the Desert’ summit to 2027.</b> Houthi missile and drone attacks, including one on Riyadh’s airport, forced the delay of the October 26–29 FII, where Dimon, Fraser, Solomon and Fink were due to speak.</li>
+<li>🇮🇩 <b>Indonesian stocks fall another 5.2% to their lowest since 2020.</b> MSCI’s proposal to downgrade Indonesia to standalone status could pull up to $13 billion out of the market, according to a Goldman Sachs estimate.</li>
+<li>₿ <b>JPMorgan moves JPM Coin onto Ethereum, and BlackRock files a ‘protected’ bitcoin ETF.</b> Large financial institutions keep building crypto rails while bitcoin stays capped below $83,000 by high Treasury yields.</li>
+</ul></section>
+<section id="macro"><h2>📊 Macro &amp; Rates <span class="cnt">5 items</span></h2>
+<details open><summary>Stocks bounce on a tech rally while Treasury yields stay above 5%.<span class="tag">Reuters / CoinDesk / Benzinga</span></summary>
+<p class="body">The S&amp;P 500 closed at 7,690.73 (+0.41%), the Nasdaq Composite at 26,430.89 (+1.11%) and the Dow at 51,966.03 (-0.07%). The gains were narrow: a tech and AI rebound did the lifting while blue chips lagged. Sources disagree on yields. Reuters credited the rebound partly to lower government bond yields and easier crude. CoinDesk’s live blog had the 10-year up 3.3 bp to 5.133%, and Benzinga reported it about 6 bp higher at 5.14%.</p>
+<p class="body">The 10-year had fallen about 14.6 bp the previous week and briefly approached 5%. The VIX fell about 5% to just under 19 after jumping about 20% on Friday. Europe did worse, with the Stoxx 600 down 0.8% and the CAC 40 down 1.65%. With the 10-year still near its highest levels since 2007, equity valuations are being set by the discount rate rather than earnings momentum.</p>
+<p class="note"><b>Why it matters:</b> A rally in long-duration tech while yields are flat to higher depends on positioning, not on easier financial conditions. Watch whether the 10-year stays below the 5.3% it touched after the CPI release. A break above that level would likely undo Monday’s rebound in the most heavily borrowed AI names first.</p>
+<p class="src">Sources: <a href="https://www.investing.com/news/stock-market-news/us-chip-stocks-rise-after-steepest-weekly-selloff-in-months-4957420">Reuters via Investing.com: US chip stocks rise after steepest weekly selloff in months</a> · <a href="https://www.coindesk.com/markets/2026/10/19/live-updates-bitcoin-tags-usd83-000-and-slips-back-as-chip-stocks-lead-a-rebound">CoinDesk: Live updates — Bitcoin holds near $82,000 as Nasdaq rebounds</a> · <a href="https://www.benzinga.com/markets/equities/26/10/62446593/stock-market-today-sandisk-jumps-nasdaq-100-rises-ai-chip-rout-reverses">Benzinga: Stock Market Today — SanDisk jumps, Nasdaq 100 rises</a></p>
+</details>
+<details><summary>Before the October 27–28 FOMC meeting, markets price only about a one-in-six chance of a hike, but the inflation backdrop remains hot.<span class="tag">CNBC / Yahoo Finance / CoinDesk / Invezz</span></summary>
+<p class="body">September CPI, released October 14, rose 3.7% from a year earlier, up from 3.4% in August and above the 3.6% consensus. Prices rose 0.6% on the month, and core prices rose 0.3% against a 0.2% forecast. PPI followed with a 1.3% monthly jump, against roughly 0.5–0.6% expected. The Fed raised rates in September for the first time in more than three years, to a 3.75%–4% target range.</p>
+<p class="body">After CPI, odds of an October hike reached about 42–54%, depending on the outlet. Since then, dovish signals from Chair Kevin Warsh have pulled them down. CoinDesk put Monday’s odds at 18%, up from a 12% low last week, and Invezz cited 17.2%. Energy is driving the inflation: diesel prices have risen almost 70% since the Iran war began in February, according to NBC.</p>
+<p class="note"><b>Why it matters:</b> The Fed is likely to skip October and keep December open, which leaves front-end yields vulnerable to every oil headline. That is why Washington’s Russia sanctions waiver counts as monetary news too. Watch October flash PMIs and any Warsh comments before the blackout period.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/10/14/cpi-inflation-report-september-2026.html">CNBC: CPI inflation report September 2026</a> · <a href="https://finance.yahoo.com/economy/live/cpi-prices-rose-37-in-september-042819608.html">Yahoo Finance: CPI — prices rose 3.7% in September</a> · <a href="https://invezz.com/news/2026/10/19/treasury-yields-ease-as-oil-prices-retreat-amid-fading-fed-rate-hike-bets/">Invezz: Treasury yields ease as oil retreats amid fading Fed rate-hike bets</a> · <a href="https://www.nbcnews.com/politics/trump-administration/trump-suspends-new-russia-sanctions-deal-purchase-diesel-citing-nation-rcna603991">NBC News: Trump doubles down after waiving new Russia sanctions</a></p>
+</details>
+<details><summary>Junk-bond stress is rising, with AI-infrastructure debt at the center.<span class="tag">MarketWatch / Dow Jones / Bloomberg Law / Reuters</span></summary>
+<p class="body">MarketWatch reports that credit markets have entered ‘uncharted territory’ as the riskiest junk bonds flash a warning. Bloomberg Law reported in late September that spreads on US CCC-rated bonds were approaching 1,000 basis points. Market watchers expect more widening if further Fed hikes squeeze earnings and refinancing. AI borrowing is now the clearest pressure point. CoreWeave’s $2.75 billion of 9.75% notes issued in April traded at 81 cents on the dollar, yielding more than 15%, during last week’s selloff, according to Dow Jones.</p>
+<p class="body">S&amp;P rates CoreWeave B+. On Monday its 2031 bond yield fell 19.5 bp to 15.13% (Tradeweb data cited by Reuters). Reuters puts CoreWeave’s debt at about $50 billion, and The Block cites $35.6 billion outstanding at the end of June. Oracle, the only non-investment-grade name among the large AI-capex issuers, had 2032 notes yielding about 7.24% after its shares fell nearly 9% in the selloff.</p>
+<p class="note"><b>Why it matters:</b> The test is whether stress spreads from B-rated neoclouds to investment-grade hyperscaler spreads. If it does, the AI capex cycle starts to cost more to fund, and data-center buildouts slow. Watch record CDS levels on CoreWeave and Oracle and new-issue concessions on AI-linked debt.</p>
+<p class="src">Sources: <a href="https://www.marketwatch.com/story/credit-markets-have-entered-uncharted-territory-as-the-riskiest-junk-bonds-send-a-warning-to-investors-816a05d5">MarketWatch: Credit markets have entered uncharted territory as the riskiest junk bonds send a warning</a> · <a href="https://www.itiger.com/news/2675032245">Dow Jones via Tiger: CoreWeave sparks worry about broader credit-market stress</a> · <a href="https://news.bgov.com/bankruptcy-law/distress-watch-pain-grows-in-junk-rated-credit-as-spreads-soar">Bloomberg Law: Distress Watch — pain grows in junk-rated credit as spreads soar</a></p>
+</details>
+<details><summary>Homebuilder sentiment drops to 29 as 5%-plus long rates hit housing.<span class="tag">NAHB via CoinDesk</span></summary>
+<p class="body">The NAHB Housing Market Index fell to 29 in October from 32. Forecasts had expected no change. Some 43% of builders cut prices this month, the highest share recorded in the 2020–2026 period. The transmission is direct: with the 10-year near 5.1%, 30-year fixed mortgage rates reached about 7.45% in late September, their highest since April 2024, according to a CNBC-cited report.</p>
+<p class="body">Price cuts protect sales volume at the expense of margins. That points to lower residential investment and weaker earnings for builders and building-products companies in Q4.</p>
+<p class="note"><b>Why it matters:</b> Housing is the sector most sensitive to Fed and term-premium moves. Weak starts and permits this week would support the view that the September hike is already biting, which would argue against a second move. Watch builder guidance in this earnings season.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/markets/2026/10/19/live-updates-bitcoin-tags-usd83-000-and-slips-back-as-chip-stocks-lead-a-rebound">CoinDesk live blog (NAHB index reading)</a> · <a href="https://www.cnn.com/2026/09/23/investing/us-bond-market-fed">CNN: 10-year Treasury yield hits 5.1% for first time in 19 years</a></p>
+</details>
+<details><summary>Japan’s PM Takaichi rejects the ‘Takaichi weak yen’ label as JGB yields sit at multi-decade highs.<span class="tag">Bloomberg / CNBC / Seoul Economic Daily / Kyodo</span></summary>
+<p class="body">In the upper house on October 19, Prime Minister Sanae Takaichi said she ‘categorically’ rejected criticism that her policies cause a weak yen and high interest rates. She said a strong economy would restore confidence in the currency. She pledged to ‘appropriately control’ annual bond issuance but did not rule out issuing government bonds to fund a cut in the food consumption tax.</p>
+<p class="body">She also declined to commit to a second supplementary budget for fiscal 2026. The comments come with JGB yields at their highest in several decades and the yen having hit its weakest level since 1986, which prompted joint Tokyo–Washington currency intervention. Kyodo polling shows cabinet approval down to 49.1%, the lowest since she took office.</p>
+<p class="note"><b>Why it matters:</b> Debt-funded tax cuts with yields this high could keep pressure on the long end of the JGB curve. That would pull Japanese money home and add to upward pressure on US term premia. Watch 30-year JGB auctions and USD/JPY near intervention levels.</p>
+<p class="src">Sources: <a href="https://www.bloomberg.com/news/articles/2026-10-19/japan-pm-takaichi-denies-she-s-driving-weak-yen-high-rates">Bloomberg: Japan PM Takaichi denies she’s driving weak yen, high rates</a> · <a href="https://www.cnbc.com/2026/10/19/takaichi-weak-yen-jgb-yields.html">CNBC: Takaichi rejects criticism around weak yen and high interest rates</a> · <a href="https://en.sedaily.com/international/2026/10/19/takaichi-signals-deficit-bonds-to-fund-japans-tax-cuts">Seoul Economic Daily: Takaichi signals deficit bonds to fund Japan’s tax cuts</a></p>
+</details>
+</section>
+<section id="geo"><h2>🌐 Geopolitics &amp; the Economy <span class="cnt">3 items</span></h2>
+<details open><summary>Saudi Arabia postpones its flagship FII investment summit to 2027 after Houthi attacks.<span class="tag">CNBC / CNN / Times of Israel</span></summary>
+<p class="body">The Future Investment Initiative, known as ‘Davos in the Desert’ and scheduled for October 26–29 in Riyadh, has been moved to 2027. Organizers say registrations and partnerships remain valid and new dates will come soon. The decision follows an October 10 Houthi attack on Riyadh’s King Khalid International Airport that killed at least 12 people and injured more than 300. It is part of a campaign of missile and drone strikes on Saudi airports and energy infrastructure that has prompted travel warnings from several governments.</p>
+<p class="body">Speakers had included JPMorgan’s Jamie Dimon, Citi’s Jane Fraser, Goldman’s David Solomon and BlackRock’s Larry Fink. The delay hurts the kingdom’s effort to attract foreign capital and diversify away from oil.</p>
+<p class="note"><b>Why it matters:</b> Attacks on Saudi energy sites keep a security premium in Brent, which is still around $105–110. Watch whether Gulf sovereign funds slow foreign deployments or pivot to domestic spending, and whether insurers reprice Red Sea and Gulf cover again.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/10/19/saudi-arabia-postpones-fii-investor-conference-to-2027.html">CNBC: Saudi Arabia postpones big investor conference to 2027</a> · <a href="https://www.cnn.com/2026/10/19/economy/saudi-arabia-cancels-investment-conference-houthi-attacks">CNN: Saudi Arabia cancels next week’s ‘Davos in the Desert’ conference</a> · <a href="https://thehill.com/policy/international/6159092-saudi-arabia-postpones-investment-conference/">The Hill: Saudis postpone investment conference until 2027</a></p>
+</details>
+<details><summary>Russian strikes have cost Ukrainian businesses $7.7 billion in 2026, and power rationing is spreading to industry.<span class="tag">Kyiv Independent / Suspilne / Ekonomichna Pravda</span></summary>
+<p class="body">Prime Minister Serhii Koretskyi put 2026 business losses from Russian attacks at $7.7 billion. The total covers premises, factories and warehoused goods, and more than 1 million square meters of mostly logistics real estate has been destroyed or badly damaged. An IER survey of 467 firms found the share running near full capacity fell from 55% to 47%. Some 22.6% reported lower output, and 49.5% have had to halt production during air-raid alerts.</p>
+<p class="body">The government has proposed a one-percentage-point VAT increase to fund war-risk insurance compensation for businesses. Zelensky said the latest wave hit 28 critical energy facilities. Ukrenergo scheduled hourly household outages on October 20 from 06:00 to 23:59 and capacity limits for industry in all regions. Poland’s Cersanit fully halted its Zviahel plant after a repeat strike.</p>
+<p class="note"><b>Why it matters:</b> A VAT increase plus rationed power is a stagflationary mix for Ukraine’s economy going into winter, raising the need for external budget support. Watch the IMF program reviews, EU financing decisions, and whether foreign manufacturers follow Cersanit in suspending Ukrainian operations.</p>
+<p class="src">Sources: <a href="https://kyivindependent.com/russian-attacks-cost-ukrainian-businesses-7-7-billion-in-2026-prime-minister-says/">Kyiv Independent: Russian attacks cost Ukrainian businesses $7.7 billion in 2026</a> · <a href="https://kyivindependent.com/russia-strikes-28-critical-energy-facilities-across-ukraine-in-latest-wave-of-attacks-zelensky-says/">Kyiv Independent: Russia strikes 28 critical energy facilities across Ukraine</a> · <a href="https://t.me/suspilnenews/77814">Suspilne (Telegram): Ukrenergo outage schedule for October 20</a> · <a href="https://epravda.com.ua/biznes/polska-cersanit-povnistyu-zupinila-zavod-u-zvyageli-826724/">Ekonomichna Pravda: Cersanit halts Zviahel plant</a></p>
+</details>
+<details><summary>French riots push OAT spreads to a two-week high, and European stocks lag.<span class="tag">CoinDesk / BBC / Guardian</span></summary>
+<p class="body">Rioting across France led authorities to impose curfews in parts of central Paris and other cities. In Italy, luxury shops in Milan closed as the government prepared to deploy troops after days of youth protests. The market reaction was clear. France’s 10-year OAT yield rose 11 bp to 4.89% against 3.44% on the German Bund, widening the spread to 145 bp, the highest in two weeks. The CAC 40 fell 1.65% and the Stoxx 600 0.8% while US tech rallied. In Bologna, damage from the October 17 protests alone was estimated at €250,000.</p>
+<p class="note"><b>Why it matters:</b> With debt already high, French spread widening raises sovereign borrowing costs at a time when euro-area rates are under pressure from US yields. Watch whether luxury and retail stocks price in lost footfall, and whether the ECB is asked about tools to calm spreads.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/markets/2026/10/19/live-updates-bitcoin-tags-usd83-000-and-slips-back-as-chip-stocks-lead-a-rebound">CoinDesk live blog (OAT/Bund and European equities)</a> · <a href="https://www.bbc.co.uk/news/articles/cx30ez03djyqo">BBC: Curfew imposed in parts of central Paris and other cities</a> · <a href="https://www.theguardian.com/world/2026/oct/20/milan-luxury-shops-close-italy-to-deploy-troops-youth-protests-europe">Guardian: Milan luxury shops close as Italy prepares to deploy troops</a></p>
+</details>
+</section>
+<section id="trade"><h2>🚢 Trade, Tariffs &amp; Policy <span class="cnt">4 items</span></h2>
+<details open><summary>China’s Q3 GDP grows 4.5% on an export surge while domestic demand stays weak.<span class="tag">NBS via Xinhua / FXStreet / Vantage / Eastern Herald</span></summary>
+<p class="body">China’s economy grew 4.5% year on year in Q3, beating the 4.4% consensus and accelerating from 4.3% in Q2, the weakest pace in about three years. Quarter-on-quarter growth was 1.2%, up from 0.9%. Nine-month growth of 4.6% sits within the 4.5%–5% target. Exports drove the beat: September shipments reached $447.18 billion, up 36.3% from a year earlier, and the January–September trade surplus was about $938 billion.</p>
+<p class="body">Domestic demand remained weak. Retail sales rose only 1.1% in September, and fixed-asset investment fell 7.2% to 33.41 trillion yuan, though industrial output rose 5.5%. Analysts quoted by Seoul Economic Daily said the beat reduces pressure for aggressive Q4 stimulus.</p>
+<p class="note"><b>Why it matters:</b> A $938 billion surplus built on export volume adds to trade friction and pushes deflation abroad. It may also come up at the Trump–Xi–Putin meeting Trump floated. Less stimulus also means less support for metals demand. Watch the yuan fixing and any Western trade defenses on Chinese goods.</p>
+<p class="src">Sources: <a href="https://english.news.cn/20261019/89cd3cbf51d94ed7bc3156fa7c628667/c.html">Xinhua: China’s GDP expands 4.5 pct year on year in Q3</a> · <a href="https://www.fxstreet.com/news/breaking-chinas-gdp-expands-by-45-yoy-in-q3-vs-44-expected-202610190200">FXStreet: China’s GDP expands by 4.5% YoY in Q3 vs 4.4% expected</a> · <a href="https://www.vantagemarkets.com/market-news/china-gdp-q3-grows-4-5-percent-exports-rise-october-19-2026/">Vantage Markets: China GDP Q3 grows 4.5% as September exports rise 36.3%</a> · <a href="https://easternherald.com/2026/10/19/china-q3-gdp-investment-decline-nbs/">Eastern Herald: China Q3 GDP up 4.5%, but investment down 7.2%</a></p>
+</details>
+<details><summary>Indonesia’s stock market is being repriced over a possible MSCI downgrade.<span class="tag">Trading Economics / CNBC / China Daily (Bloomberg)</span></summary>
+<p class="body">The IDX Composite fell 270 points (5.2%) to 4,915 early Monday, its third straight decline and weakest level since October 2020. It had lost about 10.8% on Friday, the steepest one-day fall since January 1998, which triggered a 30-minute trading halt. The trigger is MSCI’s consultation on moving Indonesia from Emerging to Standalone market status, citing transparency, concentrated ownership and insider trading.</p>
+<p class="body">A decision is due by June 30, 2027. Goldman Sachs estimates passive outflows of up to $13 billion. Regulators cut the daily auto-rejection limit to 7% from 15%, plan to raise the minimum free float to 15%, and fined coordinated-trading cases IDR 2.1 trillion. Bank Central Asia fell 6.9% on Monday.</p>
+<p class="note"><b>Why it matters:</b> A forced passive exit of that size could weaken the rupiah and push Bank Indonesia to defend the currency with rates. Other frontier-adjacent markets will be watched for similar governance reviews. The thing to watch is how credible the reforms look before MSCI decides.</p>
+<p class="src">Sources: <a href="https://tradingeconomics.com/indonesia/stock-market/news/592593">Trading Economics: Stocks in Indonesia hit near 6-year low</a> · <a href="https://www.cnbc.com/2026/10/19/indonesian-stocks-msci-downgrade-fears-mount.html">CNBC: Indonesian stocks plunge to six-year low as MSCI downgrade fears mount</a> · <a href="https://www.chinadailyhk.com/article/641258">China Daily HK (Bloomberg): Indonesia selloff</a></p>
+</details>
+<details><summary>Black Sea trade route: Kyiv will cover up to 80% of ship damage, and Russia rejects a neutral-flag food corridor.<span class="tag">Kyiv Independent / Reuters</span></summary>
+<p class="body">Ukraine’s Infrastructure Ministry will compensate shipowners, operators and charterers, whether Ukrainian or foreign-flagged, for up to 80% of assessed Russian strike damage that insurers do not cover. Covered losses include hull, cargo and rescue costs. Turkey, India and Egypt offered to carry food from Ukrainian and Russian ports under their own flags, but Zelensky told Bloomberg that Moscow declined to guarantee safe passage.</p>
+<p class="body">Russia hit 52 vessels in six weeks in July–August. Romania says four merchant ships were struck in 24 hours on October 15, killing eight people. London’s marine market widened its high-risk zone on September 18, and Black Sea premiums have risen sharply. According to the agriculture ministry, about 32 million tonnes of farm products worth roughly $10 billion are at risk because the Danube and rail routes lack capacity.</p>
+<p class="note"><b>Why it matters:</b> Without enough Black Sea capacity, Ukraine loses export earnings and wheat and corn supply tightens just as fuel costs lift farm input prices. Watch whether state compensation brings shippers back, and how grain futures respond to any corridor talks.</p>
+<p class="src">Sources: <a href="https://kyivindependent.com/ukraine-to-compensate-damaged-cargo-ships-as-russia-rejects-black-sea-proposal/">Kyiv Independent: Ukraine to compensate damaged cargo ships as Russia rejects Black Sea proposal</a></p>
+</details>
+<details><summary>DHS orders DeepSeek removed from federal IT systems, widening the US–China tech wall.<span class="tag">The Hill / Ekonomichna Pravda</span></summary>
+<p class="body">The Department of Homeland Security ordered the removal of Chinese AI model DeepSeek from government agency IT systems, according to The Hill. Ekonomichna Pravda reported it as a ban on US government employees using the leading Chinese AI. Some agencies, including the Navy and NASA, had already blocked the app, Texas was the first state to ban it on government devices, and the proposed ‘No DeepSeek on Government Devices Act’ would make removal standard across federal agencies.</p>
+<p class="body">The same day, AI-chip startup Tenstorrent said its servers run DeepSeek models, which shows how far Chinese open-weight models have spread commercially.</p>
+<p class="note"><b>Why it matters:</b> Federal bans tend to spread to contractors and regulated industries, which helps US model vendors in government and enterprise procurement. Watch for an OMB-wide rule and for Beijing’s response through export controls on chips or materials.</p>
+<p class="src">Sources: <a href="https://thehill.com/policy/technology/6159116-dhs-bans-chinese-deepseek-ai/">The Hill: DHS orders removal of DeepSeek from government agency IT systems</a> · <a href="https://epravda.com.ua/svit/derzhustanovam-ssha-zaboronili-kitayskiy-shi-deepseek-826713/">Ekonomichna Pravda: US agencies banned from using Chinese AI DeepSeek</a> · <a href="https://legilist.com/bill/119/hr/1121">Legilist: No DeepSeek on Government Devices Act (H.R. 1121)</a></p>
+</details>
+</section>
+<section id="trump"><h2>🎙 Trump &amp; Policy Signals <span class="cnt">3 items</span></h2>
+<details open><summary>Trump defends waiving Graham Act sanctions on Russia, and oil falls about 2%.<span class="tag">NBC / CNBC / The Hill / IBTimes (Yahoo) / Ukrainska Pravda</span></summary>
+<p class="body">Trump’s October 16 executive order waived the Lindsey O. Graham Sanctioning Russia and Iran Act of 2026 two days before it took effect. The law would have allowed tariffs of up to 100% on all goods from the five largest buyers of Russian oil and gas, potentially including China and India. It passed the Senate 86–11, a margin Sen. Tillis highlighted. It is the second Russia waiver in two weeks and follows a Trump–Putin deal to release hundreds of thousands of tons of Russian diesel onto world markets.</p>
+<p class="body">On Monday, Ukrainska Pravda quoted Trump saying that lifting the sanctions helps end the war. He called the waiver ‘a very good decision’ on Saturday, according to NBC. The market reaction was immediate: Brent fell almost 2% to $107.69 and WTI 1.71% to $97.32 by 9:27 a.m. ET (IBTimes via Yahoo), and Reuters cited easing crude as one support for the tech rebound. Rubio said Trump wants 60 days to study the sanctions’ economic impact.</p>
+<p class="note"><b>Why it matters:</b> Removing the threat of secondary tariffs on China and India takes a major trade-war risk off the table and weakens the pressure on Russian oil revenue. Watch Urals discounts, Indian and Chinese crude purchases, and whether Congress tries to override the waiver after the November 3 midterms.</p>
+<p class="src">Sources: <a href="https://www.nbcnews.com/politics/trump-administration/trump-suspends-new-russia-sanctions-deal-purchase-diesel-citing-nation-rcna603991">NBC News: Trump doubles down after waiving new Russia sanctions</a> · <a href="https://www.cnbc.com/2026/10/17/trump-waives-russia-related-sanctions-tariffs-before-they-take-effect-.html">CNBC: Trump waives broad new Russia sanctions</a> · <a href="https://www.ibtimes.com/trump-eased-sanctions-russian-energy-oil-prices-are-climbing-down-3808722">IBTimes: Trump eased sanctions on Russian energy. Oil prices are climbing down</a> · <a href="https://t.me/ukrpravda_news/85497">Ukrainska Pravda (Telegram): Trump says lifting sanctions helps end the war</a></p>
+</details>
+<details><summary>Trump is open to a trilateral meeting with Xi and Putin, with trade likely on the agenda.<span class="tag">The Hill / WSJ / Moscow Times</span></summary>
+<p class="body">On October 19, Trump told reporters he had not agreed to a three-way summit with Xi Jinping and Vladimir Putin but would do it, according to The Hill. He said its focus would be weapons and denuclearization, that trade would likely also be discussed, and that it would probably be held in China. The Wall Street Journal reported that Putin proposed the meeting, possibly on the sidelines of November’s APEC summit in Shenzhen and without Zelensky.</p>
+<p class="body">The Moscow Times reported Kremlin comments that it could take place next month. Trump also said Russia ‘has been fine on Ukraine’ and that it may be time for someone else to negotiate for Kyiv. Ukraine’s foreign minister warned that such a meeting would encourage Putin to continue the war.</p>
+<p class="note"><b>Why it matters:</b> A US–China–Russia summit with trade on the agenda points to a deal-based framework covering tariffs, energy flows and possibly sanctions relief. That would lower geopolitical risk premia for China-exposed assets and oil importers. Watch APEC logistics and any tariff concessions announced beforehand.</p>
+<p class="src">Sources: <a href="https://www.yahoo.com/news/politics/articles/trump-says-open-trilateral-meeting-200715639.html">The Hill via Yahoo: Trump says he would be open to trilateral meeting with Putin, Xi</a> · <a href="https://kyivindependent.com/what-russias-doing-to-ukraine-is-fine-trump-says/">Kyiv Independent: What Russia’s doing to Ukraine is ‘fine,’ Trump says</a></p>
+</details>
+<details><summary>On Truth Social, Trump blames Ukrainian refinery strikes for fuel costs and promotes falling grocery prices.<span class="tag">Ukranews / Trump’s Truth archive / Guardian</span></summary>
+<p class="body">In a Truth Social post on October 19, Trump argued that Ukraine’s strikes on Russian oil refineries are hurting global fuel markets, including American farmers, and criticized Zelensky’s willingness to make peace. He also posted a chart titled ‘REAL FOOD, REAL SAVINGS’ citing USDA ERS and Circana scanner data through September 27. It showed olive oil down 18%, butter down 15.7%, chicken breast down 7.0% and wholesale eggs down 90%.</p>
+<p class="body">These posts did not produce a separate, measurable market move. The waiver they defend had already lowered oil prices that morning. The message is that the White House is managing fuel prices directly before the November 3 midterms, even at the cost of Russia sanctions. With diesel prices up about 70% since February, according to NBC, fuel prices are the most politically sensitive inflation component.</p>
+<p class="note"><b>Why it matters:</b> Using sanctions policy to target diesel prices means more energy-supply interventions are likely before the midterms. Watch for possible SPR or product-export measures, and pressure on Kyiv to limit refinery strikes. Either would affect crack spreads more than crude.</p>
+<p class="src">Sources: <a href="https://ukranews.com/en/news/1182071-trump-accused-zelenskyy-of-being-unwilling-to-make-peace-and-criticized-the-strikes-on-russian-oil">Ukranews: Trump accuses Zelenskyy of being unwilling to make peace and criticizes strikes on Russian refineries</a> · <a href="https://www.trumpstruth.org/statuses/42445">Trump’s Truth archive: posts of October 19, 2026</a> · <a href="https://www.theguardian.com/us-news/live/2026/oct/19/donald-trump-kansas-roger-marshall-golf-ukraine-midterms-latest-news-updates">Guardian live: Trump slams Zelenskyy amid Russia sanctions rift</a></p>
+</details>
+</section>
+<section id="corp"><h2>🏢 Corporate &amp; Earnings <span class="cnt">3 items</span></h2>
+<details><summary>Chip stocks end their longest losing streak since 2008. Micron rises about 3% and Intel 4.5% on a JPMorgan upgrade.<span class="tag">Reuters / MarketWatch / TradingKey / IBTimes</span></summary>
+<p class="body">The Philadelphia semiconductor index fell more than 11% last week and lost about $2 trillion in market value over eight sessions. On Monday it was up 2.4% intraday and closed nearly 2% higher, ending its longest losing streak since October 2008. Micron closed up about 2.97% after rising as much as 4.2%, following a weekly drop of nearly 15% that was tied to fears of Chinese memory competition.</p>
+<p class="body">Intel rose 4.5% after JPMorgan upgraded it to neutral from underweight, citing agentic-AI workloads and tight advanced-chip supply. AMD rose 3.6%, Broadcom 2.4% and Nvidia 1.5%. Morgan Stanley projects total AI investment of $1.6 trillion in 2027 and $1.8 trillion in 2028 (forecast). Great Hill’s Thomas Hayes warned the move could be a ‘dead cat bounce’ while bond markets remain doubtful about funding AI.</p>
+<p class="note"><b>Why it matters:</b> Monday’s gains came from short covering and upgrades, not new earnings information. Lam Research, Texas Instruments and Western Digital report this week and will test whether AI capex orders are holding up. A weak semiconductor-equipment outlook would revive the selloff.</p>
+<p class="src">Sources: <a href="https://www.investing.com/news/stock-market-news/us-chip-stocks-rise-after-steepest-weekly-selloff-in-months-4957420">Reuters via Investing.com: US chip stocks rise after steepest weekly selloff in months</a> · <a href="https://www.marketwatch.com/story/micron-and-other-chip-stocks-spring-back-to-life-after-bruising-selloff-16486541">MarketWatch: Micron and other chip stocks spring back to life</a> · <a href="https://www.tradingkey.com/analysis/stocks/us-stocks/262224387-us-stock-market-close-nasdaq-rise-memory-micron-sandisk-tradingkey">TradingKey: Nasdaq rises 1.1% as memory stocks lead</a></p>
+</details>
+<details><summary>Goldman upgrades CoreWeave to buy after its 25% weekly drop, but the stock still hit a 52-week low.<span class="tag">Reuters / CoinDesk / The Block</span></summary>
+<p class="body">Goldman Sachs upgraded CoreWeave to buy from neutral. It cited tight compute capacity and a performance edge it expects to lift annual recurring revenue per megawatt over two years, and called the pullback a buying opportunity. The stock rose 2.4% after losing about a quarter of its value last week, though CoinDesk noted it touched a 52-week low below $60 during the session. Other neoclouds rebounded: Nebius rose 3.4% after a two-week drop of more than 31%, Applied Digital 8.5% and IREN 5%.</p>
+<p class="body">The risk extends to partners. Galaxy Digital, whose West Texas Helios campus has CoreWeave as sole tenant for the first 800 MW, fell about 30% in two weeks. StoneX reiterated a Buy rating and $57 target, citing CoreWeave’s backlog, which nearly quadrupled to $104 billion. GLXY rose 2.5% to $16.57.</p>
+<p class="note"><b>Why it matters:</b> CoreWeave is now the main credit counterparty for AI infrastructure, so lessors, chip vendors and miners that host its compute all carry its cost of capital. Watch CoreWeave’s next debt raise and covenant terms. Any refinancing above 15% would reprice the whole neocloud group.</p>
+<p class="src">Sources: <a href="https://www.investing.com/news/stock-market-news/us-chip-stocks-rise-after-steepest-weekly-selloff-in-months-4957420">Reuters via Investing.com: CoreWeave, Nebius and neoclouds rebound</a> · <a href="https://www.theblock.co/news/markets/2026-10-19-galaxy-digital-glxy-stonex-buy-coreweave-helios-ai-data-center-421045">The Block: Galaxy’s AI data center business is undervalued amid CoreWeave debt concerns, StoneX says</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/1014045/coreweave-stock-debt-sector-ai">The Verge: CoreWeave’s debt is becoming the whole AI industry’s problem</a></p>
+</details>
+<details><summary>Earnings week: SpaceX reports Tuesday and Tesla Wednesday, and AI capex is the main theme.<span class="tag">Teslanorth / Basenor / Proactive / MarketWatch / Reuters</span></summary>
+<p class="body">SpaceX (SPCX), listed on Nasdaq since June 12 at $135 a share, reports Q3 results after the close on Tuesday, October 20, its second report as a public company. In its first report, revenue of $7.8 billion beat estimates of $6.93 billion, and it posted a GAAP loss of $0.09 a share against an expected $0.23 loss. MarketWatch says this report will be ‘all about AI’. Most calendars have Tesla reporting Wednesday, October 21.</p>
+<p class="body">Investors want updates on Robotaxi, the Cybercab ramp and FSD, which had 1.5 million paid users last quarter, against 2026 capex of more than $25 billion. Calendars disagree on Meta, listing either October 21 or October 28. Reuters also lists Lam Research, Texas Instruments and Western Digital this week.</p>
+<p class="note"><b>Why it matters:</b> These are the first large AI-capex reports since the credit scare. Guidance on spending, depreciation and financing will matter more than EPS. Higher capex paired with weaker free cash flow would extend the debt-markets stress into large-cap tech.</p>
+<p class="src">Sources: <a href="https://teslanorth.com/2026/10/16/spacex-q3-2026-results-webcast/">TeslaNorth: SpaceX sets Tuesday, Oct. 20 for its Q3 earnings webcast</a> · <a href="https://www.basenor.com/blogs/news/spacex-and-tesla-both-report-q3-2026-earnings-this-week">Basenor: SpaceX and Tesla both report Q3 2026 earnings this week</a> · <a href="https://www.proactiveinvestors.com/companies/news/1096536/spacex-tops-revenue-estimates-in-first-quarterly-report-since-ipo-1096536.html">Proactive: SpaceX tops revenue estimates in first quarterly report since IPO</a> · <a href="https://www.marketwatch.com/story/spacex-earnings-will-be-all-about-ai-for-better-or-for-worse-89bbc772">MarketWatch: SpaceX earnings will be all about AI</a></p>
+</details>
+</section>
+<section id="crypto"><h2>₿ Digital Assets <span class="cnt">5 items</span></h2>
+<details><summary>Bitcoin is turned back at $83,000 as yields rise, while treasury companies keep buying.<span class="tag">CoinDesk / Cointelegraph / The Block</span></summary>
+<p class="body">Bitcoin was at $81,654 (-0.7% over 24 hours) and ether at $2,398.30 (-0.6%) by evening. Earlier, BTC briefly topped $83,000 on the tech rebound and then fell back when US bond yields turned higher, according to Cointelegraph. Dip buyers defended the 50-day moving average near $81,000, and $84,000 remains the ceiling from October 13–14. FxPro’s Alex Kuptsikevich called the move ‘a rebound rather than a resumption of upward momentum’.</p>
+<p class="body">Corporate buying continued. Strategy added 267 BTC ($22 million) for a total of 848,517, bought back $193 million of STRC preferred, and raised its buyback authorization to $3 billion. Strive bought 1,223 BTC for a total of 36,818. Metaplanet will put 2,100 BTC into a 93.7% stake in Super League, and Bitmine’s ether holdings reached 6.04 million.</p>
+<p class="note"><b>Why it matters:</b> Bitcoin is trading like a high-beta Nasdaq stock that responds to real yields. Treasury companies are now funding themselves partly with preferred stock, which ties crypto demand to credit conditions. Watch STRC and SATA prices as a gauge of that funding.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/markets/2026/10/19/live-updates-bitcoin-tags-usd83-000-and-slips-back-as-chip-stocks-lead-a-rebound">CoinDesk: Live updates — Bitcoin holds near $82,000</a> · <a href="https://cointelegraph.com/markets/bitcoin-is-rejected-at-83k-as-us-bond-yields-reverse-higher-with-equities">Cointelegraph: Bitcoin is rejected at $83K as US bond yields reverse higher</a> · <a href="https://www.theblock.co/news/business/2026-10-19-strive-scoops-1223-bitcoin-100-million-total-holdings-reach-36818-btc-421020">The Block: Strive scoops up another 1,223 bitcoin</a></p>
+</details>
+<details><summary>JPMorgan brings its JPM Coin deposit token to Ethereum mainnet.<span class="tag">The Block / CoinDesk (Bloomberg)</span></summary>
+<p class="body">Kinexys by JPMorgan extended JPMD, a token representing USD deposits at the bank, from Base to Ethereum. Institutional clients can now make peer-to-peer transfers across the EVM ecosystem. JPMorgan cited Ethereum’s ‘established depth of onchain liquidity and tokenized assets’. The timeline: JPMD launched on Base in November 2025, JPMorgan issued tokenized money-market funds on Ethereum in December 2025 and May 2026, and today’s move adds mainnet.</p>
+<p class="body">Kinexys has processed more than $4 trillion in cumulative transactions and averages about $7 billion a day. JPMorgan did not disclose JPMD-specific volumes.</p>
+<p class="note"><b>Why it matters:</b> Tokenized bank deposits compete directly with stablecoins for institutional settlement and keep money inside the regulated banking system. If other banks follow, stablecoin issuers’ growth in that market may slow. Watch for interoperability with tokenized fund collateral.</p>
+<p class="src">Sources: <a href="https://www.theblock.co/news/business/2026-10-19-jpmorgan-jpm-coin-deposit-token-ethereum-418874">The Block: JPMorgan expands JPM Coin deposit token to Ethereum</a> · <a href="https://www.coindesk.com/markets/2026/10/19/jpmorgan-s-jpm-coin-representing-dollar-deposits-is-coming-to-ethereum-bloomberg">CoinDesk: JPMorgan brings JPM Coin to Ethereum</a></p>
+</details>
+<details><summary>BlackRock files for a downside-protected bitcoin ETF built on its $65 billion IBIT.<span class="tag">The Block</span></summary>
+<p class="body">BlackRock filed with the SEC for the iShares Bitcoin Managed Protect ETF. The fund seeks upside exposure to the iShares Bitcoin Trust (IBIT) or similar bitcoin exposure, capped at ‘an approximate limit’, with ‘a level of downside protection’. The filing does not yet give buffer or cap levels. It is BlackRock’s third bitcoin ETF filing, after IBIT, which launched in January 2024 and holds more than $65 billion, and the iShares Bitcoin Premium Income ETF launched in June 2026, according to Bloomberg Intelligence’s James Seyffart. Buffered products are aimed at retirement and advisory accounts that need defined outcomes.</p>
+<p class="note"><b>Why it matters:</b> Options-based buffer ETFs increase listed bitcoin options activity and may dampen volatility near strike levels. Watch the cap and buffer terms in the amended filing and the SEC review timeline.</p>
+<p class="src">Sources: <a href="https://www.theblock.co/news/regulation/2026-10-19-blackrock-files-bitcoin-managed-protect-etf-downside-protection-ibit-421087">The Block: BlackRock files for bitcoin ETF offering downside protection</a></p>
+</details>
+<details><summary>CFTC challenges CME in court over US perpetual futures.<span class="tag">CoinDesk</span></summary>
+<p class="body">In a brief filed Friday, the CFTC argued that CME lacks standing to challenge its policy allowing crypto perpetual futures. It said CME claims competitive harm without showing imminent financial injury, and asked a federal judge to dismiss the case, as it requested in September. CME argues that perps have no expiry, so they are swaps rather than futures and fall under a different regime.</p>
+<p class="body">The CFTC approved the first US bitcoin perp, Kalshi’s, in May 2026 and regulates them case by case as futures. It also says volume in CME’s own crypto futures has risen since the policy change. TD Cowen’s Jaret Seiberg says CME may still have the stronger standing and swaps arguments. He also warns that continued growth in perp volumes during the case would make the market harder to unwind if CME wins.</p>
+<p class="note"><b>Why it matters:</b> The ruling decides whether the leveraged trading that has lived offshore moves onshore under futures rules or swaps rules. That matters for exchange revenue at CME, Coinbase and Kalshi. Watch the judge’s ruling on standing.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/policy/2026/10/19/u-s-cftc-rebuffs-cme-legal-stance-in-consequential-fight-over-perpetual-futures">CoinDesk: U.S. CFTC rebuffs CME legal stance in fight over perpetual futures</a></p>
+</details>
+<details><summary>Card networks move into crypto: Visa and Mesh open 175 million merchants, and Mastercard launches stablecoin risk screening.<span class="tag">Cointelegraph / The Block</span></summary>
+<p class="body">Visa and Mesh will let users spend crypto and stablecoin balances directly from digital wallets at Visa’s more than 175 million merchant locations in over 200 countries, with no separate card or bank transfer. Mesh handles conversion, funding and KYC, and wallets and launch dates are still to be announced. Mesh was valued at $1 billion after a $75 million round led by Dragonfly in January.</p>
+<p class="body">At Money20/20, Mastercard launched Stablecoin Security, an API that scores the source of stablecoin funds for fraud and sanctions exposure before they move onchain. It launches first in North America, with global availability in 2027. Partners include Borderless.xyz, which covers more than 113 countries, and Keyrails. Mastercard cited a BIS finding that nearly 60% of 593 million stablecoin transfer events in 2025 were part of complex multi-step transactions.</p>
+<p class="note"><b>Why it matters:</b> Card networks are making themselves the compliance and acceptance layer for stablecoins so they keep their fee income rather than being bypassed. Watch whether stablecoin settlement volumes on Visa and Mastercard rails show up in Q4 disclosures. Mastercard’s $1.8 billion BVNK deal shows how much it is investing in that position.</p>
+<p class="src">Sources: <a href="https://cointelegraph.com/news/visa-mesh-partner-crypto-spending-175m-merchant-locations">Cointelegraph: Visa, Mesh partner to enable crypto spending at 175M merchant locations</a> · <a href="https://www.theblock.co/news/business/2026-10-19-mastercard-unveils-stablecoin-security-tool-to-screen-payments-for-fraud-and-sanctions-risks-420658">The Block: Mastercard unveils Stablecoin Security tool</a></p>
+</details>
+</section>
+<section id="ai"><h2>🤖 The AI Economy <span class="cnt">4 items</span></h2>
+<details><summary>Anthropic and Nscale are reportedly in talks on a second $45 billion compute deal.<span class="tag">Bloomberg via TechCrunch</span></summary>
+<p class="body">Bloomberg reports, citing people familiar with the matter, that Anthropic and AI-infrastructure provider Nscale are negotiating another compute agreement worth about $45 billion. The talks are ongoing and terms could change. Neither company had commented when TechCrunch published. It would follow a $45 billion deal the two announced in August 2026 and add to a long list of large compute commitments Anthropic has made over the past year.</p>
+<p class="body">Nscale is pursuing an IPO at a proposed $30 billion valuation, and Bloomberg reported pushback from investors on that price. TechCrunch notes Anthropic is still expected to go public this year.</p>
+<p class="note"><b>Why it matters:</b> Compute commitments this large rely on a lender base that is getting nervous after CoreWeave. If the deal is signed, it would test whether neoclouds can still borrow at workable rates. Watch Nscale’s IPO pricing as a market gauge of AI-infrastructure valuations.</p>
+<p class="src">Sources: <a href="https://techcrunch.com/2026/10/19/nscale-and-anthropic-are-reportedly-in-talks-for-yet-another-45-billion-compute-deal/">TechCrunch: Nscale and Anthropic reportedly in talks for yet another $45 billion compute deal</a></p>
+</details>
+<details><summary>Power, not chips, is the constraint: Microsoft drops Nscale’s UK site because grid access is a decade away.<span class="tag">CoinDesk / Guardian / Ofgem</span></summary>
+<p class="body">Microsoft dropped a planned 50 MW Nscale data center at Loughton, Essex, which was to hold 23,040 Nvidia chips and serve Azure by early 2027. UK Power Networks said it may not have capacity until the early-to-mid 2030s. Nscale’s other Microsoft contracts remain in place. In the UK, data-center grid-connection requests total about 73 GW, and Ofgem is considering stricter rules to remove speculative applications.</p>
+<p class="body">Across former bitcoin miners moving into AI, CoinShares counts more than 4 GW of AI capacity under contract but only about 550 MW billing, with backlogs above $100 billion and annualized AI revenue just over $1 billion. AI-ready sites cost an estimated $8–15 million per MW, compared with $0.7–1 million for bitcoin mining.</p>
+<p class="note"><b>Why it matters:</b> The gap between contracted and energized capacity is where AI credit risk sits, because debt is serviced from powered megawatts, not signed contracts. This is why gas-fired generation is coming back, as The Verge reports. Watch utility interconnection queues and on-site gas turbine orders.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/tech/2026/10/19/bitcoin-mining-offshoot-nscale-loses-microsoft-ai-deal-as-power-delay-stretches-into-2030s">CoinDesk: Nscale loses Microsoft AI deal as power delay stretches into 2030s</a> · <a href="https://www.theverge.com/science/1013954/fossil-fuel-power-infrastructure-data-centers-report">The Verge: The fossil fuel comeback is here</a></p>
+</details>
+<details><summary>Amazon’s TorchNeuron targets Nvidia’s CUDA advantage by running PyTorch on Trainium with a one-line change.<span class="tag">TechCrunch</span></summary>
+<p class="body">AWS released TorchNeuron, a PyTorch adaptation that Amazon says lets PyTorch applications run on its Trainium chips by changing one line of configuration, without rewriting code. Amazon says about 85% of AI applications are written in PyTorch. It is also contributing upstream changes to remove chip-specific code from the framework, which undercuts the CUDA integration that has tied PyTorch users to Nvidia.</p>
+<p class="body">Voice-AI company Deepgram moved to Trainium and reports processing 70% more audio per dollar at production accuracy. AWS argues that combining training and inference on one platform lowers total costs, even if its price per token is not the lowest, and named Nvidia-dependent neoclouds CoreWeave, Nebius and Firmus as competitors.</p>
+<p class="note"><b>Why it matters:</b> Lower switching costs threaten Nvidia’s pricing power more than its unit volumes, and they make neocloud GPU fleets less unique. Watch Trainium utilization disclosures in Amazon’s Q3 results and any response on Nvidia’s pricing.</p>
+<p class="src">Sources: <a href="https://techcrunch.com/2026/10/19/amazon-is-taking-its-biggest-shot-at-nvidia-yet-with-new-torchneuron-dev-tool/">TechCrunch: Amazon is taking its biggest shot at Nvidia yet with TorchNeuron</a></p>
+</details>
+<details><summary>Tenstorrent more than doubles its valuation to $6.2 billion with a $1.5 billion raise for inference chips.<span class="tag">TechCrunch</span></summary>
+<p class="body">Jim Keller’s Tenstorrent raised $1.5 billion at a $6.2 billion valuation, up from $2.6 billion in late 2024. The round was led by Trace Capital and Innovation X, with Fidelity, T. Rowe Price, SanDisk, Cadence Ventures and Eclipse participating. Intel and Qualcomm reportedly explored acquiring it at up to $5 billion five months ago, and Keller said the company chose to stay independent.</p>
+<p class="body">The money will fund chips for serving open-weight models and video generation, a market where its Galaxy servers already run DeepSeek models. Earlier in October, rival Etched reportedly received funding offers at $40 billion or more.</p>
+<p class="note"><b>Why it matters:</b> Private money is still flowing to inference silicon even as public AI-infrastructure stocks and bonds sell off. That shows a split between equity and credit appetite for AI. Watch whether inference-specialist chips win hyperscaler or neocloud orders that cut into GPU share.</p>
+<p class="src">Sources: <a href="https://techcrunch.com/2026/10/19/tenstorrent-hits-6-2b-valuation-to-scale-open-weight-ai-chips/">TechCrunch: Tenstorrent hits $6.2B valuation to scale open-weight AI chips</a></p>
+</details>
+</section>
+<section id="energy"><h2>⚡ Energy &amp; Commodities <span class="cnt">3 items</span></h2>
+<details><summary>Crude falls back from five-month highs on the Russia waiver, but Middle East risk keeps Brent above $105.<span class="tag">IBTimes (Yahoo) / CoinDesk / Trading Economics / NBC</span></summary>
+<p class="body">Brent fell almost 2% to $107.69 and WTI 1.71% to $97.32 by 9:27 a.m. ET Monday, after Brent hovered near $110 on Friday. CoinDesk later had WTI at $98.55 (-0.5%), after an Asian-session low of $96.72, and Brent moving off a five-month high. The selling came from the Graham Act waiver and the Trump–Putin diesel release. Supply risk is still high: the US issued security alerts covering 12 Middle East locations, raising concern about new strikes on Iran and disruption in the Strait of Hormuz, and Houthi attacks on Saudi energy sites continue.</p>
+<p class="body">Diesel has risen almost 70% since the Iran war began in February, according to NBC. At $97–110 crude, energy is the main driver of 3.7% CPI. Settlement prices for October 19 were not available in our sources at publication.</p>
+<p class="note"><b>Why it matters:</b> Diesel is the bottleneck, not crude. Refinery strikes and Russian product flows matter more for US inflation than OPEC policy right now, so crack spreads are the indicator to watch. Any Hormuz incident would quickly undo the waiver-driven decline.</p>
+<p class="src">Sources: <a href="https://www.ibtimes.com/trump-eased-sanctions-russian-energy-oil-prices-are-climbing-down-3808722">IBTimes: Trump eased sanctions on Russian energy. Oil prices are climbing down</a> · <a href="https://www.coindesk.com/markets/2026/10/19/live-updates-bitcoin-tags-usd83-000-and-slips-back-as-chip-stocks-lead-a-rebound">CoinDesk live blog (WTI, Middle East alerts)</a> · <a href="https://www.nbcnews.com/politics/trump-administration/trump-suspends-new-russia-sanctions-deal-purchase-diesel-citing-nation-rcna603991">NBC News: diesel prices and the Russia waiver</a></p>
+</details>
+<details><summary>The Trump administration uses the Defense Production Act to put up to $42 million into reviving the Constitution gas pipeline.<span class="tag">The Hill / Washington Examiner / Fox Business / RTO Insider</span></summary>
+<p class="body">On October 19, the Energy Department committed up to $42 million in Defense Production Act Title III funds to permitting and pre-construction work on Williams’ Constitution Pipeline. The money can be used for gas infrastructure once permits are secured. The proposed 125-mile line would carry up to 650,000 dekatherms a day from northeastern Pennsylvania into New York. Williams is targeting service in Q4 2028, pending approvals.</p>
+<p class="body">The project won federal approval in 2014, but New York denied a water-quality certificate in 2016, and the developers abandoned it in 2020. Constitution asked FERC in December 2025 to reissue its certificate. The funding builds on an April presidential determination that invoked the DPA for gas infrastructure. Trump says the line will significantly lower Northeast energy costs, while New York’s water permit remains the main obstacle.</p>
+<p class="note"><b>Why it matters:</b> Using national-security authority to finance gas pipelines sets a precedent for overriding state-level permitting delays, and that would help Appalachian gas producers and Northeast utilities. Watch New York’s Department of Environmental Conservation and FERC’s ruling on the certificate.</p>
+<p class="src">Sources: <a href="https://thehill.com/policy/energy-environment/6159109-trump-boosts-constitution-pipeline/">The Hill: Trump gives contentious New York pipeline a Defense Production Act boost</a> · <a href="https://www.foxbusiness.com/energy/trump-administration-commits-42m-revive-stalled-northeast-natural-gas-pipeline">Fox Business: Trump administration commits $42M to revive stalled Northeast pipeline</a> · <a href="https://www.rtoinsider.com/148946-trump-admin-announces-42m-constitution-pipeline/">RTO Insider: Trump admin gives $42M to help build Constitution Pipeline</a></p>
+</details>
+<details><summary>The EU’s draft Arctic strategy drops its call for a moratorium on new oil and gas drilling.<span class="tag">Bloomberg via Ekonomichna Pravda</span></summary>
+<p class="body">According to Bloomberg, the European Commission’s draft Arctic strategy no longer mentions the moratorium on new Arctic oil and gas drilling that was part of the EU’s 2021 position. It still calls for keeping fossil fuels in the ground. Instead of refusing to buy Arctic hydrocarbons, the draft says the EU will give ‘priority’ to renewables and to oil and gas produced outside the Arctic.</p>
+<p class="body">It also seeks an international agreement against Arctic development that threatens the ecosystem. Norway lobbied hard for the change. Norway supplied almost a third of EU gas imports last year, awarded five Barents Sea exploration licenses, and opened 38 blocks for applications in 2026. Separately, Russian Arctic crude shipments to northern China via the Northern Sea Route are taking three weeks longer than last year.</p>
+<p class="note"><b>Why it matters:</b> Dropping the moratorium removes a demand-side threat to Norwegian Barents investment, which supports Europe’s long-term non-Russian gas supply. Watch the final text on October 20 and Equinor’s Arctic licensing decisions.</p>
+<p class="src">Sources: <a href="https://epravda.com.ua/energetika/yes-vidmovlyayetsya-vid-zaboroni-vidobuvati-vuglevodni-v-arktici-826716/">Ekonomichna Pravda (citing Bloomberg): EU drops Arctic oil and gas moratorium</a> · <a href="https://www.engineeringnews.co.za/article/eu-to-keep-opposing-new-arctic-oil-drilling-despite-pressure-from-norway-2026-09-22">Engineering News (Reuters): EU to keep opposing new Arctic oil drilling, despite pressure from Norway (Sept.)</a></p>
+</details>
+</section>
+<footer>Compiled automatically on 19.10.2026 at 21:11 New York time. Window: last ~26 hours · Feeds collected: 29/29. <a href="#top">↑ back to top</a></footer></div>
+</body>
+</html>
