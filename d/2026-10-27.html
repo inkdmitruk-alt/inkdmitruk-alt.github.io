@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ранковий дайджест</title>
+</head>
+<body>
+
+<style>
+:root{
+  --bg:#f4f4f2; --card:#fff; --head:#161a20; --body:#3d4551; --muted:#818a99;
+  --accent:#3f5b8c; --accent-soft:#eaeff7; --border:#e6e7ea; --rule:#eff0f2;
+  --up:#1a7f4b; --down:#c23b48; --chip:#f0f1f3;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--body); margin:0; padding:26px 16px 56px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  font-size:17px; line-height:1.72; font-weight:400;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:720px;margin:0 auto;}
+
+/* ── Шапка ─────────────────────────────── */
+h1{
+  font-size:1.75rem; line-height:1.2; font-weight:600; letter-spacing:-.022em;
+  color:var(--head); margin:0 0 6px; text-wrap:balance;
+}
+.date{color:var(--muted);font-size:.82rem;font-weight:400;letter-spacing:.01em;margin-bottom:20px;}
+.prices{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px;}
+.prices span{
+  background:var(--chip); border-radius:8px; padding:6px 11px;
+  font-size:.78rem; font-weight:500; color:var(--head); white-space:nowrap;
+  font-variant-numeric:tabular-nums; letter-spacing:-.005em;
+}
+.up{color:var(--up);font-weight:600;}
+.down{color:var(--down);font-weight:600;}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 30px;}
+nav.toc a{
+  background:transparent; border:1px solid var(--border); border-radius:8px;
+  padding:6px 11px; font-size:.79rem; font-weight:450; color:var(--muted);
+  text-decoration:none; transition:color .12s, border-color .12s;
+}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);}
+nav.toc a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+/* ── Секції: головне, що розділяє потік ── */
+section{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:6px 22px 10px; margin:0 0 26px; scroll-margin-top:16px;
+}
+h2{
+  font-size:.94rem; font-weight:600; letter-spacing:.005em; color:var(--head);
+  margin:0; padding:18px 0 14px; border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; gap:9px; text-wrap:balance;
+}
+h2 .cnt{color:var(--muted);font-weight:400;font-size:.78rem;letter-spacing:0;margin-left:auto;}
+
+/* ── Головне за добу ───────────────────── */
+section#top{background:var(--accent-soft);border-color:transparent;}
+ul.tldr{margin:0;padding:14px 0 6px;list-style:none;}
+ul.tldr li{
+  margin:0; padding:11px 0 11px 2px; border-top:1px solid var(--rule);
+  font-size:.97rem; line-height:1.62;
+}
+ul.tldr li:first-child{border-top:none;}
+ul.tldr b{color:var(--head);font-weight:600;}
+
+/* ── Новина ────────────────────────────── */
+details{border-top:1px solid var(--rule);}
+details:first-of-type{border-top:none;}
+summary{
+  cursor:pointer; list-style:none; position:relative;
+  padding:17px 4px 17px 26px; margin:0;
+  font-size:1rem; font-weight:500; line-height:1.5; color:var(--head);
+  letter-spacing:-.008em; transition:color .12s;
+}
+summary::-webkit-details-marker{display:none;}
+summary::before{
+  content:""; position:absolute; left:4px; top:26px;
+  width:7px; height:7px; border-right:1.5px solid var(--muted);
+  border-bottom:1.5px solid var(--muted); transform:rotate(-45deg);
+  transition:transform .18s ease, border-color .12s;
+}
+details[open] summary::before{transform:rotate(45deg);border-color:var(--accent);}
+summary:hover{color:var(--accent);}
+summary:hover::before{border-color:var(--accent);}
+summary .tag{
+  display:block; margin-top:5px; color:var(--muted);
+  font-weight:400; font-size:.76rem; letter-spacing:.01em;
+}
+.body{
+  margin:0 0 14px; padding:0 4px 0 26px;
+  font-size:.96rem; line-height:1.75; font-weight:400; color:var(--body);
+  max-width:66ch;
+}
+.note{
+  margin:0 4px 14px 26px; padding:13px 16px;
+  background:var(--accent-soft); border-radius:10px;
+  font-size:.92rem; line-height:1.62; color:var(--body); max-width:64ch;
+}
+.note b{color:var(--accent);font-weight:600;}
+.src{
+  margin:0 4px 18px 26px; padding:0;
+  font-size:.79rem; line-height:1.9; color:var(--muted); font-weight:400;
+}
+.src a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);}
+.src a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+footer{
+  color:var(--muted); font-size:.76rem; line-height:1.75; font-weight:400;
+  margin:34px 0 0; padding-top:18px; border-top:1px solid var(--border);
+}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media (max-width:640px){
+  body{font-size:16px;padding:20px 12px 44px;}
+  h1{font-size:1.5rem;}
+  section{padding:4px 16px 8px;border-radius:12px;margin-bottom:20px;}
+  .body,.note,.src{padding-left:0;margin-left:0;}
+  .note{margin-bottom:12px;}
+  summary{padding-left:22px;}
+}
+@media (prefers-reduced-motion: reduce){summary::before{transition:none;}}
+
+.sitenav{
+  position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:4px;
+  align-items:center; padding:11px 16px; margin:-26px -16px 26px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.sitenav a{
+  font-size:.81rem; font-weight:450; text-decoration:none; color:var(--muted);
+  padding:6px 12px; border-radius:8px; white-space:nowrap;
+  transition:color .12s, background .12s;
+}
+.sitenav a:hover{color:var(--head);background:var(--chip);}
+.sitenav a.on{color:var(--accent);background:var(--accent-soft);font-weight:600;}
+.sitenav .sp{flex:1;}
+.sitenav .when{font-size:.76rem;color:var(--muted);letter-spacing:.01em;}
+@media (max-width:640px){
+  .sitenav{margin:-20px -12px 20px;padding:9px 12px;}
+  .sitenav a{padding:5px 10px;font-size:.78rem;}
+  .sitenav .when{display:none;}
+}
+</style>
+<div class="wrap"><nav class="sitenav"><a href="/" class="on">☕ Дайджест</a><a href="/en.html">📊 Economic Brief</a><a href="/archive.html">🗂 Архів</a><span class="sp"></span><span class="when">27 жовтня 2026</span></nav>
+<h1>☕ Ранковий дайджест</h1>
+<div class="date">Вівторок, 27 жовтня 2026 · сформовано 17:44, Нью-Йорк</div>
+<div class="prices"><span>BTC $80 642 <span class="up">+0.88%</span></span><span>ETH $2 340 <span class="up">+1.45%</span></span><span>S&amp;P 500 7 723 <span class="up">+0.60%</span></span><span>NASDAQ 26 478 <span class="up">+1.18%</span></span><span>DJIA 52 378 <span class="up">+0.03%</span></span></div>
+<nav class="toc"><a href="#top">🔥 Головне</a><a href="#ua">🇺🇦 Україна</a><a href="#usa">🇺🇸 США</a><a href="#world">🌍 Світ</a><a href="#immi">🛂 Українці в США та імміграція</a><a href="#ice">🚔 ICE: моніторинг</a><a href="#docs">📄 Державні документи</a><a href="#mkt">📈 Ринки і компанії</a><a href="#crypto">₿ Крипто</a><a href="#ai">🤖 AI</a><a href="#tattoo">🎨 Тату-індустрія</a></nav>
+<section id="top"><h2>🔥 Головне за добу</h2><ul class="tldr">
+<li>🛂 <b>TPS Ukraine у підвішеному стані: дизайнація формально спливла 19.10, DHS каже «захист зберігається до рішення»</b> Federal Register мовчить, нової дати для EAD немає; юристи сперечаються про автоматичне продовження до 19.04.2027.</li>
+<li>🇺🇦 <b>Трамп розглядає зняття санкцій з російського державного інвестфонду</b> NYT із посиланням на чиновника США: Білий дім шукає спосіб «покращити відносини з Москвою» перед тристоронніми переговорами в Абу-Дабі в листопаді.</li>
+<li>🇺🇸 <b>Верховний суд дозволив угоду Техасу з Мін&#x27;юстом: імміграційні судді більше не можуть «адміністративно закривати» справи</b> Однорядкове рішення без пояснень і без публічних незгодних; практика застосовувалась 360 тис. разів з 1990 року.</li>
+<li>📈 <b>S&amp;P 500 +0,60% (7 722,60), Nasdaq +1,18%: чипи і заявка Anthropic на IPO тягнуть ринок перед рішенням ФРС</b> Boeing −10,7% після збитку, SoFi +13%, Visa −2% після закриття через слабкий прогноз на 2027 рік.</li>
+<li>🤖 <b>Anthropic подала S-1: $16,3 млрд виручки за півроку, збиток $80,7 млрд, тикер ANT на Nasdaq</b> Очікувана оцінка $1,5–2 трлн; у проспекті — ризики катастрофічного ШІ, конфлікт з адміністрацією Трампа і зобов&#x27;язання на $120,5 млрд за GPU.</li>
+<li>🇮🇱 <b>Вибори в Ізраїлі без переможця: «Лікуд» найбільша партія, але антинетаньягівський блок 52–53 проти 50</b> Рекордна явка 77,7% з 1999 року; арабські партії — 17–18 мандатів, також рекорд.</li>
+<li>🛢 <b>Brent ~$115, WTI ~$101: Оман заявив про «контур» угоди з Іраном щодо Ормузу, але хусити б&#x27;ють по Саудівській Аравії</b> Нафта трохи знизилась; ФРС завтра о 14:00 — ринок на 88–91% ставить на паузу при інфляції 3,7%.</li>
+<li>🇺🇦 <b>Операція «Велес»: ЗСУ пройшли понад 15 км під землею газопроводом під Куп&#x27;янськом</b> Зеленський: понад 100 росіян ліквідовано, 30+ у полоні; тим часом по Києву вночі била балістика — Південний міст закритий, 1 загиблий, 15 поранених.</li>
+</ul></section>
+<section id="ua"><h2>🇺🇦 Україна <span class="cnt">7 новин</span></h2>
+<details open><summary>NYT: Трамп вивчає зняття санкцій з російського державного інвестиційного фонду<span class="tag">NYT / Kyiv Independent / УП</span></summary>
+<p class="body">27 жовтня The New York Times із посиланням на неназваного чиновника США повідомила, що президент Трамп розглядає зняття санкцій із російського державного інвестиційного фонду. За словами джерела, Білий дім оцінює, як це можна зробити, щоб «покращити двосторонні відносини з Москвою» і допомогти завершити війну. Російська сторона наполягала на цьому, а фінансова структура фонду, за даними Kyiv Independent, задіяна в «дизельній угоді»: 9 жовтня Трамп після дзвінка з Путіним заявив, що РФ «негайно поставить понад 300 000 тонн дизелю», і перший танкер на 40 000 т вийшов із Приморська 22 жовтня з прибуттям у США 7 листопада.</p>
+<p class="body">Логіка Вашингтона, за словами урядовця і представника Сенату, — пропонувати Росії економічні вигоди в обмін на завершення війни. Контекст: тристоронні переговори Україна–США–РФ очікуються в першій половині листопада, ймовірно в Абу-Дабі; Кремль каже, що готовий після 4 листопада. Українські чиновники побоюються, що далі може йтися про послаблення санкцій і на добривну галузь.</p>
+<p class="note"><b>Що це означає:</b> Це перший публічний сигнал про можливе зняття секторальних санкцій як «передоплату» за переговори — стежити за реакцією Конгресу й ЄС, де санкційні пакети діють окремо від американських.</p>
+<p class="src">Джерела: <a href="https://kyivindependent.com/trump-reportedly-considering-lifting-sanctions-against-russias-investment-fund/">Kyiv Independent</a> · <a href="https://www.nytimes.com/2026/10/27/us/politics/russia-fund-sanctions-trump.html">NYT</a> · <a href="https://www.pravda.com.ua/news/2026/10/27/8060000/">Українська правда</a></p>
+</details>
+<details><summary>Операція «Велес»: 15 км під землею газопроводом під Куп&#x27;янськом, 100+ росіян ліквідовано<span class="tag">Офіс Президента / Kyiv Independent / Суспільне</span></summary>
+<p class="body">Зеленський 27 жовтня розкрив деталі операції «Велес», яку проводить 2-й корпус Нацгвардії «Хартія» на Куп&#x27;янському напрямку: українські підрозділи просунулися понад 15 км під землею трубами газопроводу — тактика, яку раніше застосовувала РФ під Авдіївкою і Суджею. За словами президента, ліквідовано понад 100 російських військових, понад 30 узято в полон; доповідали Драпатий, Оболєнський і Паліса.</p>
+<p class="body">Зеленський назвав це «третьою знаковою операцією року» після операції ДШВ (понад 800 км² звільнено) і «Вівальді» на Донеччині. Паралельно Генштаб повідомляє про 178 боїв за добу і про зростання відсотка збиття реактивних «Герань» — майже 60% за три місяці. Міноборони заявляє, що від січня дрони вбили або серйозно поранили близько 302 000 російських військових; у вересні ~70% втрат РФ спричинили саме дрони.</p>
+<p class="src">Джерела: <a href="https://kyivindependent.com/ukraine-war-latest-zelensky-reveals-details-of-operation-veles/">Kyiv Independent</a> · <a href="https://t.me/V_Zelenskiy_official/21534">Офіс Президента (TG)</a> · <a href="https://t.me/suspilnenews/78322">Суспільне (TG)</a></p>
+</details>
+<details><summary>Балістика по Києву: Південний міст закритий, метро розірване, 1 загиблий і 15 поранених; удар по Харкову ввечері<span class="tag">Kyiv Independent / УП / Суспільне</span></summary>
+<p class="body">У ніч на 27 жовтня РФ била по Києву «Іскандерами» та ракетами С-400 з Брянщини і 280 ударними дронами, з яких 69 реактивних; ППО збила або подавила 2 балістичні ракети й 255 дронів. Уражено Південний міст через Дніпро — у конструкції пробоїна, міст закритий для авто й метро: зелена лінія працює лише на ділянці «Сирець»–«Видубичі», між «Славутичем» і «Червоним хутором» поїзди не ходять.</p>
+<p class="body">Пошкоджено кампус університету (12 постраждалих, серед них студенти), адмінбудівлю і медзаклади; загалом у столиці 25 локацій уражень і 16 — падіння уламків, 1 загиблий, 15 поранених. Зеленський заявив, що за два тижні РФ випустила по Києву й області понад 100 балістичних ракет. По Україні за добу загинули щонайменше 4 людини, поранено 57, зокрема 22 на Донеччині. Увечері 27 жовтня РФ влучила в багатоквартирний будинок в Основ&#x27;янському районі Харкова — двоє постраждалих, серед них 4-річний хлопчик. Київ виділяє 1 млрд грн на водні переправи через Дніпро як резерв на випадок нових ударів по мостах.</p>
+<p class="src">Джерела: <a href="https://kyivindependent.com/russian-attacks-across-ukraine-kill-four-injure-55-over-past-day-as-kyiv-comes-under-ballistic-missile-assault/">Kyiv Independent</a> · <a href="https://t.me/ukrpravda_news/85840">УП (TG) — метро</a> · <a href="https://t.me/suspilnenews/78332">Суспільне (TG) — Харків</a> · <a href="https://kyivindependent.com/kyiv-approves-alternative-dnipro-crossings-after-russian-strikes-on-bridges/">Kyiv Independent — переправи</a></p>
+</details>
+<details><summary>Режим тиші довкола Олешок розширено на всю Херсонщину — до 22:59 1 листопада<span class="tag">BBC / УП / Суспільне</span></summary>
+<p class="body">Локальне припинення вогню, запроваджене для гуманітарної місії в окупованих Олешках (евакуація цивільних і доставка допомоги), за даними українських чиновників, розширено на всю Херсонську область і триватиме до 22:59 за Києвом 1 листопада. Омбудсман Лубінець повідомив, що станом на 17:30 обидві сторони дотримуються домовленостей у повному обсязі; Арахамія заявив, що «кожне таке деескалаційне зусилля наближає» ширший мир.</p>
+<p class="body">У Херсоні, за повідомленнями Суспільного, стало помітно тихіше: люди масово вийшли на вулиці, побільшало машин і відвідувачів закладів. Меланія Трамп заявила, що строки місії перенесли на два дні раніше. Kyiv Independent попереджає, що голодуючі мешканці Олешок не повинні стати «реквізитом російської пропаганди». Це перший територіально визначений режим тиші такого масштабу з 2022 року.</p>
+<p class="src">Джерела: <a href="https://www.bbc.co.uk/news/articles/c6lye1w9p2l8o">BBC</a> · <a href="https://t.me/ukrpravda_news/85833">УП (TG)</a> · <a href="https://t.me/suspilnenews/78328">Суспільне (TG)</a></p>
+</details>
+<details><summary>Стубб і Стьоре поговорили з Путіним — FT: припинення вогню не обговорювалось, Путін «читав лекцію» про давніх слов&#x27;ян<span class="tag">Kyiv Independent / NV / BBC</span></summary>
+<p class="body">27 жовтня президент Фінляндії Александр Стубб і прем&#x27;єр Норвегії Йонас Гар Стьоре провели рідкісний дзвінок із Путіним — за погодженням з Україною, після зустрічі в Осло 20 жовтня з українськими, європейськими й американськими представниками. Лідери підкреслили, що не говорять від імені всієї Європи; Стубб: «Завершення війни потребує прямих розмов». За даними FT, які переказує NV, припинення вогню Путін не обговорював, натомість говорив про історію; російський readout через ТАСС наголошує на «дотриманні міжнародного морського права» і свободі судноплавства.</p>
+<p class="body">Зеленський подякував за «детальний брифінг», а Сибіга наголосив, що розмова була узгоджена з Києвом. Прем&#x27;єрка Данії Фредеріксен поставилася скептично і закликала «говорити одним голосом». Тристоронні переговори Україна–РФ–США очікуються в Абу-Дабі в листопаді; за даними УП, Київ і Вашингтон намагаються провести першу сесію на тиждень раніше за названі Путіним «десяті числа».</p>
+<p class="src">Джерела: <a href="https://kyivindependent.com/norway-finland-call-putin-ahead-of-potential-abu-dhabi-peace-talks-2/">Kyiv Independent</a> · <a href="https://nv.ua/ukr/world/geopolitics/rozmova-putina-z-liderami-finlyandiji-ta-norvegiji-diktator-pro-istoriyu-zamist-peregovoriv-50653960.html">NV (FT)</a> · <a href="https://www.bbc.co.uk/news/articles/c6vgj813mlelo">BBC</a></p>
+</details>
+<details><summary>Маск: SpaceX обмежила Starlink для ЗСУ через ризик російських ударів по супутниках; Київ каже, що умови не порушував<span class="tag">Forbes Ukraine / Meduza / NPR</span></summary>
+<p class="body">Ілон Маск 27 жовтня публічно пояснив тижневе обмеження Starlink для українських військових: за його словами, Starlink «має залишатися цивільною системою», зокрема через загрозу російських протисупутникових атак. Раніше він заявляв, що ЗСУ «порушили умови сервісу, використавши його для ударних дронів», а «лазівку закрили минулого тижня». Радник Зеленського Бескрестнов відповів, що через ліміти швидкості й відсутність покриття над РФ українці «фізично не могли» використовувати комерційний Starlink для середніх і далеких ударів — усе йде через урядовий Starshield.</p>
+<p class="body">Після втручання Трампа («я сказав йому повернути») Зеленський 24 жовтня повідомив про відновлення швидкостей Starlink і Starshield. Україна і європейські партнери шукають суверенні альтернативи: 22 жовтня підписано лист про наміри Nokia–ICEYE з Міноборони, а 27 жовтня на орбіті почав роботу перший тестовий супутник української мережі OBRIA NANO від HIMERA та данської GomSpace.</p>
+<p class="src">Джерела: <a href="https://meduza.io/en/news/2026/10/27/elon-musk-argues-that-the-threat-of-russian-anti-satellite-attacks-is-a-reason-to-restrict-starlink-s-military-use-in-ukraine">Meduza</a> · <a href="https://t.me/Forbes_Ukraine_official/34067">Forbes Ukraine (TG)</a> · <a href="https://www.npr.org/2026/10/24/nx-s1-6015482/ukraine-starlink-working-after-disruptions">NPR</a> · <a href="https://t.me/suspilnenews/78327">Суспільне — OBRIA NANO</a></p>
+</details>
+<details><summary>Економіка дня: Росія заробила рекордні $2,76 млрд на нафті за тиждень; Рада в першому читанні лишає банкам 50% податку на 2027; Угорщина блокує останні кластери вступу<span class="tag">ЕП / Forbes Ukraine / Kyiv Independent</span></summary>
+<p class="body">Bloomberg (переказ Економічної правди) підрахував, що за тиждень до 25 жовтня морський експорт російської нафти коштував $2,76 млрд — на $430 млн більше за попередній тиждень і найбільше від початку повномасштабної війни: 37 танкерів вивезли 26,93 млн барелів проти 21,87 млн тижнем раніше, зростання обсягів і дорожча ESPO перекрили здешевлення Urals. Чотиритижневе середнє впало до 3,55 млн бар/добу — мінімум за п&#x27;ять тижнів; головні покупці — Китай та Індія.</p>
+<p class="body">У Раді, за даними Forbes Ukraine, у першому читанні підтримали продовження на 2027 рік підвищеної ставки податку на прибуток банків 50% замість 25% — профільний комітет оцінював ефект приблизно у 50 млрд грн; НБУ раніше називав ініціативу небезпечною для довіри до податкової системи. Forbes Ukraine також повідомляє, що Fitch підтвердило рейтинг України на рівні CCC і очікує, що війна триватиме у 2027 році (іншими джерелами поки не підтверджено).</p>
+<p class="body">Угорщина 27 жовтня на засіданні робочої групи Ради ЄС знову відмовилася схвалити результати скринінгу кластерів 4 і 5 для України; Єврокомісія, за даними Європейської правди, не планує вказувати в «дорожніх картах» орієнтовні дати завершення переговорів, а Pentagon через візові черги й експортні дозволи переніс фазу 2.5 свого конкурсу дронів ($30 млн на 1 200 бомберів, половина учасників — українські) з жовтня на листопад.</p>
+<p class="src">Джерела: <a href="https://epravda.com.ua/biznes/tizhneviy-eksport-nafti-prinis-rosiji-rekordnu-sumu-vid-pochatku-viyni-826989/">Економічна правда</a> · <a href="https://t.me/Forbes_Ukraine_official/34059">Forbes Ukraine (TG) — банки</a> · <a href="https://t.me/Forbes_Ukraine_official/34060">Forbes Ukraine (TG) — Fitch</a> · <a href="https://t.me/ukrpravda_news/85835">УП (TG) — Угорщина</a> · <a href="https://kyivindependent.com/export-hurdles-and-visa-waits-for-ukrainian-companies-force-pentagon-to-slow-its-drone-contest/">Kyiv Independent — Pentagon</a></p>
+</details>
+</section>
+<section id="usa"><h2>🇺🇸 США <span class="cnt">5 новин</span></h2>
+<details open><summary>Верховний суд не став блокувати угоду Мін&#x27;юсту з Техасом: імміграційні судді втратили «адміністративне закриття» справ<span class="tag">Bloomberg Law / AP / NYT</span></summary>
+<p class="body">27 жовтня Верховний суд однорядковим наказом без пояснень і без публічних незгодних відхилив екстрене клопотання міст Балтимор, Нью-Гейвен і Коламбус та юридичної організації, які просили зупинити угоду між Мін&#x27;юстом і Техасом. Угоду подали 22 червня в федеральний суд Техасу того ж дня, коли штат позивався проти процедури, і суддя Рід О&#x27;Коннор затвердив її одразу: Мін&#x27;юст погодився, що правило слід скасувати, а майбутнім адміністраціям заборонити подібне без зміни закону Конгресом.</p>
+<p class="body">Йдеться про «адміністративне закриття» — можливість імміграційного судді відкласти справу про депортацію на невизначений час; за даними EOIR, з 1990 року її застосовували 360 000 разів. Позивачі називають угоду «змовою» для обходу процедури скасування регуляцій і заявили, що «глибоко розчаровані». Апеляція щодо права міст захищати правило триває.</p>
+<p class="note"><b>Що це означає:</b> Для людей із відкритими справами в імміграційному суді зникає один із небагатьох інструментів «поставити справу на паузу», поки USCIS розглядає паралельну заяву (наприклад, на грінкарту чи статус); далі залишаються лише перенесення (continuance) або припинення справи, які суддя дає рідше.</p>
+<p class="src">Джерела: <a href="https://news.bloomberglaw.com/us-law-week/supreme-court-allows-doj-deportation-deal-decried-as-collusion">Bloomberg Law</a> · <a href="https://www.yahoo.com/news/us/articles/us-supreme-court-denies-immigration-160948159.html">AP via Yahoo</a> · <a href="https://www.nytimes.com/2026/10/27/us/politics/supreme-court-texas-immigration.html">NYT</a></p>
+</details>
+<details><summary>Мін&#x27;юст утретє висунув обвинувачення Джеймсу Комі — тепер за передачу «оборонної інформації» NYT у 2016 році<span class="tag">NBC / Axios / CNBC</span></summary>
+<p class="body">26 жовтня у федеральному суді Вашингтона розсекретили інформацію (не обвинувальний акт присяжних) проти колишнього директора ФБР Джеймса Комі: його звинувачують у свідомій передачі інформації з національної оборони особі без доступу та у змові. За документом, Комі «через одного чи кількох співучасників» доручив неназваній людині розкрити інформацію репортеру національного видання 5 жовтня 2016 року, коли він ще очолював ФБР.</p>
+<p class="body">Справа велася під печаткою з 5 жовтня 2026-го. Адвокати Комі ще за 10 днів до розсекречення подали клопотання про закриття: 10-річний строк давності, на їхню думку, сплив. Попередня справа про неправдиві свідчення Конгресу вже закрита, окрема справа в Північній Кароліні про допис із мушлями триває. Комі назвав це «жахливим зловживанням Мін&#x27;юстом». NYT пише, що Мін&#x27;юст прискорює дії проти Комі та інших критиків напередодні проміжних виборів.</p>
+<p class="src">Джерела: <a href="https://www.nbcnews.com/politics/justice-department/former-fbi-james-comey-charged-third-time-trump-national-security-rcna342963">NBC News</a> · <a href="https://www.axios.com/2026/10/26/james-comey-national-defense-information-charges">Axios</a> · <a href="https://www.nytimes.com/2026/10/27/us/politics/trump-blanche-elections-comey.html">NYT</a></p>
+</details>
+<details><summary>Тиждень до виборів: Трамп двічі за день у Техасі, Мін&#x27;юст судиться за Аляску, прогнозні ринки ставлять на демократів<span class="tag">The Hill / AP / CNBC</span></summary>
+<p class="body">27 жовтня, рівно за тиждень до виборів 3 листопада, Трамп провів два мітинги в Техасі (Лаббок і Вако) на підтримку Кена Пакстона у близькій гонці з демократом Джеймсом Таларіко; Рубіо виступив 11 секунд, а Таларіко проводив паралельну подію. На Алясці Мін&#x27;юст 22 жовтня подав позов, щоб заборонити штату сертифікувати перемогу демократки Мері Пелтоли, поки в бюлетені лишається «другий Деніел Саллівен» — однофамілець сенатора-республіканця; Трамп сказав, що «це я наказав це зробити», Венс назвав питання про «образливість» позову недоречним, а демократи оскаржують його в суді.</p>
+<p class="body">Прогнозні ринки, за CNBC, оцінюють демократів як фаворитів на обидві палати; у ключових штатах рекордне дострокове голосування. Адміністрація також вимагає від штату Вашингтон відкласти 400 бюлетенів «негромадян», а спікер Джонсон назвав побоювання щодо мирної передачі влади «абсурдними». Окремо суддя визнав незаконним звільнення прокурорки Морін Комі, а заступниця директора CDC Шуфорд пішла у відставку через 4 місяці.</p>
+<p class="src">Джерела: <a href="https://thehill.com/homenews/state-watch/6173803-live-updates-trump-texas-midterm-elections/">The Hill — live</a> · <a href="https://alaskapublic.org/news/politics/elections/2026-10-23/trumps-administration-sues-to-block-a-possible-democratic-win-in-the-alaska-u-s-senate-race">Alaska Public (AP)</a> · <a href="https://thehill.com/homenews/state-watch/6175918-vance-alaska-senate-lawsuit/">The Hill — Венс</a> · <a href="https://www.cnbc.com/2026/10/27/speaker-johnson-peaceful-transfer-midterms.html">CNBC — Джонсон</a></p>
+</details>
+<details><summary>ФРС почала дводенне засідання: ставка 3,75–4,00%, ринок на ~90% чекає паузи, але майже впевнений у підвищенні в грудні<span class="tag">CNBC / Kiplinger / CME FedWatch</span></summary>
+<p class="body">27 жовтня FOMC розпочав засідання; рішення — у середу о 14:00 за Нью-Йорком, без оновлених прогнозів і dot plot. CME FedWatch дає 88–91% на збереження ставки 3,75–4,00% (після вересневого підвищення), але ~94% — на щонайменше одне підвищення до засідання 8–9 грудня. Причина — інфляція: CPI у вересні 3,7% р/р проти 3,4% два місяці поспіль і очікуваних 3,6%, базова 2,6%, PPI +6,3% р/р (максимум із грудня 2022), PCE 3,4% у серпні — переважно через енергоносії після війни з Іраном.</p>
+<p class="body">Ринок праці слабкий: +29 тис. робочих місць у вересні при очікуваних 90 тис., безробіття 4,2%. Економісти (UBS, Navy Federal) вважають підвищення за тиждень до виборів «політично немислимим». Голова ФРС Ворш у пресконференції може торкнутися змін в операціях ФРС у 2027 році. Казначейські дохідності: 10-річні 4,995%, 30-річні 5,309%, 2-річні ~4,70%.</p>
+<p class="note"><b>Що це означає:</b> Головний ризик для ринків — не само рішення, а тон Ворша щодо грудня: якщо підтвердить курс на підвищення при 10-річних біля 5%, тиск на акції зростання і крипто посилиться.</p>
+<p class="src">Джерела: <a href="https://www.cnbc.com/2026/10/26/fed-decision-expectations-october-meeting.html">CNBC — очікування</a> · <a href="https://www.kiplinger.com/investing/live/fed-meeting-updates-and-commentary-october-2026">Kiplinger — live</a> · <a href="https://www.cnn.com/2026/10/02/economy/us-jobs-report-september-final">CNN — ринок праці</a></p>
+</details>
+<details><summary>CFTC відкрила нову перевірку Polymarket і подала позов проти Юти, щоб захистити Kalshi<span class="tag">CNBC / The Hill / ЕП</span></summary>
+<p class="body">CFTC 27 жовтня, за даними CNBC та Економічної правди, знову перевіряє, чи порушила Polymarket угоду 2022 року — тоді компанія сплатила $1,4 млн штрафу і зобов&#x27;язалася блокувати користувачів із США на офшорній платформі; у квітні 2026 Polymarket подала заявку на дозвіл повернути американців на основну біржу, а влітку WSJ писала про «масштабне розслідування» щодо маркетингу з фейковими ставками.</p>
+<p class="body">Паралельно CFTC подала позов проти штату Юта, аби заблокувати застосування місцевих законів про азартні ігри до прогнозних ринків: 20 жовтня генпрокурор Юти позивався до Kalshi і Susquehanna, вимагаючи $30–60 млн прибутків і заборони ставок на спорт і вибори; Kalshi раніше програла в суді першої інстанції та апеляції. NPR окремо повідомляє, що Polymarket розслідувала «десятки» справ про інсайдерські ставки на вибори. Щонайменше дев&#x27;ять штатів ведуть справи проти прогнозних платформ.</p>
+<p class="src">Джерела: <a href="https://www.cnbc.com/2026/10/27/cftc-probes-polymarket-over-2022-settlement.html">CNBC</a> · <a href="https://thehill.com/policy/technology/6175898-cftc-sues-utah-prediction-markets/">The Hill</a> · <a href="https://epravda.com.ua/svit/u-ssha-znovu-pereviryayut-polymarket-826999/">Економічна правда</a> · <a href="https://www.npr.org/2026/10/27/nx-s1-6012304/polymarket-election-betting-surveillance">NPR</a></p>
+</details>
+</section>
+<section id="world"><h2>🌍 Світ <span class="cnt">4 новини</span></h2>
+<details open><summary>Ізраїль: екзитполи без переможця — «Лікуд» 24–25 мандатів, блок проти Нетаньягу 52–53 проти 50, явка 77,7%<span class="tag">Times of Israel / Guardian / Суспільне</span></summary>
+<p class="body">На виборах до Кнесету 27 жовтня за екзитполами 12-го, 13-го каналів і Kan 11 «Лікуд» Нетаньягу — найбільша партія (24–25 мандатів), «Яшар!» Гаді Айзенкота — 21–23, «Б&#x27;яхад» Беннета — 12. Але блок єврейських партій проти Нетаньягу отримує 52–53 мандати, блок прем&#x27;єра — 50, арабські партії — 17–18 (рекорд); жодна сторона не має 61 для більшості. Явка 77,7% — найвища з 1999 року. Передвиборчі опитування стабільно ставили Айзенкота вище «Лікуду», тож результат — зсув на користь Нетаньягу, хоча баланс сил досі проти нього.</p>
+<p class="body">Далі — офіційний підрахунок уночі й консультації в президента Герцога; без коаліції можливі повторні вибори з Нетаньягу як в.о. прем&#x27;єра.</p>
+<p class="src">Джерела: <a href="https://www.timesofisrael.com/liveblog_entry/channel-12-exit-poll-shows-no-clear-victor-netanyahus-likud-is-largest-party-but-his-opponents-have-bigger-bloc/">Times of Israel</a> · <a href="https://www.theguardian.com/world/2026/oct/27/israel-election-too-close-to-call-as-exit-polls-give-netanyahu-bloc-slightly-fewer-seats">The Guardian</a> · <a href="https://www.israelhayom.com/2026/10/27/israel-election-2026-exit-polls-full-results/">Israel Hayom</a></p>
+</details>
+<details><summary>Оман: переговори з Іраном дали «контур» тимчасової угоди щодо Ормузької протоки; хусити тим часом атакують Саудівську Аравію<span class="tag">Yahoo/WSJ / CBS / MoneyCheck</span></summary>
+<p class="body">Глава МЗС Оману Бадр Альбусаїді в промові в Кембриджі заявив, що переговори з Тегераном дали контур тимчасового механізму відновлення вільного судноплавства через Ормузьку протоку, але його реалізація потребує поступок і від Вашингтона, і від Тегерана; політичні перешкоди залишаються. Іран наполягає, що розмови з Оманом двосторонні, а Білий дім каже, що прямих переговорів із Тегераном немає.</p>
+<p class="body">На цьому тлі хусити на вихідних атакували саудівські об&#x27;єкти, знову підсиливши побоювання щодо енергетичної інфраструктури. Brent 27 жовтня коливався біля $115 (піків $117+ минулого тижня, +90% від початку року), WTI — біля $101, спред ~$14. У Британії двох чоловіків звинуватили у змові проти бази RAF Fairford — за даними Guardian, її координував куратор, що працював на Іран; посольства США посилюють безпеку через попередження про іранську загрозу. Наступне засідання ОПЕК+ — 1 листопада.</p>
+<p class="src">Джерела: <a href="https://finance.yahoo.com/energy/articles/oil-prices-fall-traders-assess-073300098.html">Yahoo Finance / WSJ</a> · <a href="https://moneycheck.com/oil-prices-today-brent-and-wti-swing-as-iran-talks-continue">MoneyCheck</a> · <a href="https://www.theguardian.com/uk-news/2026/oct/27/two-men-charged-raf-fairford">The Guardian — RAF Fairford</a></p>
+</details>
+<details><summary>Бразилія: партія Болсонару визнала поразку, Флавіо Болсонару втік до Аргентини, Держдеп видає йому візи<span class="tag">NPR / Guardian / The Hill</span></summary>
+<p class="body">Після поразки на президентських виборах партія Болсонару визнала результат, але сам кандидат Флавіо Болсонару не поступився і, за повідомленнями Guardian, залишив Бразилію — ймовірно до Аргентини. Держдепартамент США, за даними The Hill, вирішив видати візи Флавіо Болсонару та його родині. NPR нагадує про роль Трампа у підтримці клану Болсонару. Паралельно CoinDesk описує, як бразильські компанії в день виборів масово переходили в стейблкоїни, щоб уникнути обвалу реала, а Binance подала заявку на ліцензію в Бразилії до дедлайну 30 жовтня, делістивши 22 активи.</p>
+<p class="body">У Канаді Олівія Чоу переобрана мером Торонто; в Сербії після перемоги Студентського списку закінчується 12-річна ера Вучича.</p>
+<p class="src">Джерела: <a href="https://www.npr.org/2026/10/27/nx-s1-6019217/bolsonaro-flavio-lula-brazil-election-trump">NPR</a> · <a href="https://www.theguardian.com/world/2026/oct/27/flavio-bolsonaro-brazil-argentina-fled">The Guardian</a> · <a href="https://thehill.com/policy/international/6176061-flavio-bolsonaro-flees-brazil-election-loss/">The Hill</a> · <a href="https://www.coindesk.com/business/2026/10/27/brazilian-companies-turned-to-stablecoins-on-election-day-to-dodge-a-currency-crash">CoinDesk</a></p>
+</details>
+<details><summary>Спалах Еболи в ДР Конго б&#x27;є рекорди; Захід попереджає про голод у Судані<span class="tag">NPR / BBC</span></summary>
+<p class="body">NPR повідомляє, що спалах Еболи в Демократичній Республіці Конго став рекордним і перетнув «похмуру віху» за кількістю випадків, попри наявність вакцини; відповідь ускладнюють логістика й недофінансування. BBC: західні країни попереджають про ризик голоду в Судані, де громадянська війна триває без ознак завершення. В Єгипті суд оштрафував журналістку Ліну Атталу і наказав закрити її видання; у Нігерії застрелено контроверсійного ісламського проповідника, а розслідування визнало смерті в поліцейських камерах «цілком відворотними». На аукціоні в Нью-Йорку скелет нанотиранозавра продали за $47,3 млн.</p>
+<p class="src">Джерела: <a href="https://www.npr.org/2026/10/27/g-s1-150136/ebola-outbreak-milestone-democratic-republic-congo-vaccine">NPR — Ебола</a> · <a href="https://www.bbc.co.uk/news/articles/cj5ynkk6v3pzo">BBC — Судан</a> · <a href="https://www.bbc.co.uk/news/articles/cw8rz14k1jvxo">BBC — Єгипет</a></p>
+</details>
+</section>
+<section id="immi"><h2>🛂 Українці в США та імміграція <span class="cnt">4 новини</span></h2>
+<details open><summary>TPS Ukraine після 19 жовтня: DHS «зберігає захист» без формального рішення, Federal Register мовчить, нової дати EAD немає<span class="tag">USCIS / CBS / аналіз юристів</span></summary>
+<p class="body">Станом на 27 жовтня офіційна сторінка USCIS щодо TPS Ukraine досі показує «Designated Through: Oct. 19, 2026» і попередження, що «оголошення щодо TPS Ukraine буде зроблено у відповідний час», а до того бенефіціари зберігають захист, включно з дозволом на роботу. DHS 18 жовтня підтвердило CBS, що українці (понад 100 тис. зареєстрованих станом на березень 2025) і суданці «зберігатимуть захист» до остаточного рішення, яке «буде ухвалене у відповідний час».</p>
+<p class="body">Жодного повідомлення у Federal Register про продовження чи припинення дизайнації немає — так само, як і нового автоматичного продовження для EAD категорій A-12/C-19 понад 19.10.2026 чи вікна перереєстрації. Частина імміграційних юристів наполягає, що за INA §244(b)(3)(C) відсутність рішення за 60 днів до закінчення (дедлайн 20.08.2026) автоматично продовжила дизайнацію на 6 місяців — до 19.04.2027; але це юридична позиція, а не оголошена позиція відомства, і USCIS у публічних повідомленнях (14.08 і 03.09) далі згадувала 19.10.2026 як дату припинення.</p>
+<p class="body">Для роботодавців Ogletree і Littler зазначають, що робоча авторизація «продовжується до подальшого оголошення DHS», а E-Verify окремих оновлень після 3 вересня не публікував. Позовів щодо TPS Ukraine у відкритих джерелах не знайдено.</p>
+<p class="note"><b>Що це означає:</b> статус і документи — різні речі. Захист від депортації для українців із TPS де-факто зберігається, але документальна база (строк EAD, нотиси USCIS, Federal Register) після 19.10 не оновлена — саме це створює проблеми на I-9 і в E-Verify, і саме за цим варто стежити: за публікацією у Federal Register або новим алертом USCIS/E-Verify. Продовження дизайнації ≠ продовження EAD.</p>
+<p class="src">Джерела: <a href="https://www.uscis.gov/humanitarian/temporary-protected-status/temporary-protected-status-designated-country-ukraine">USCIS — TPS Ukraine</a> · <a href="https://www.cbsnews.com/news/ukraine-sudan-immigrants-deportation-protections-tps/">CBS News</a> · <a href="https://www.e-verify.gov/about-e-verify/whats-new/update-on-temporary-protected-status-for-ukraine-release-sept-03-2026">E-Verify — оновлення 03.09</a> · <a href="https://ogletree.com/insights-resources/blog-posts/ukraine-and-sudan-tps-work-authorization-continues-pending-further-dhs-announcement/">Ogletree</a> · <a href="https://www.mhkimmigration.com/ukraine-tps-automatic-extension-through-october-19-2026-or-termination-on-october-19-2026/">Kornfeld — аналіз авт. продовження</a></p>
+</details>
+<details><summary>Верховний суд дозволив угоду, що скасовує «адміністративне закриття» справ в імміграційних судах<span class="tag">Bloomberg Law / AP</span></summary>
+<p class="body">27 жовтня Верховний суд відмовився блокувати угоду Мін&#x27;юсту з Техасом, яка ліквідує право імміграційних суддів адміністративно закривати (ставити на паузу) справи про депортацію — див. розділ «США». Наказ однорядковий, без пояснень; позивачі (три міста і юридична організація) називають угоду «змовою» для обходу процедури скасування регуляцій. Практику застосовували 360 000 разів з 1990 року, зазвичай щоб дати людині дочекатися рішення USCIS за паралельною заявою — на грінкарту, статус жертви злочину чи інші пільги.</p>
+<p class="body">Окремо 23 жовтня П&#x27;ятий окружний апеляційний суд (Техас, Луїзіана, Міссісіпі — понад 40% усіх затриманих ICE) 10 голосами проти 7 постановив, що Конституція не гарантує затриманим імміграційним бондові слухання; Верховний суд цього місяця погодився розглянути, чи вимагає таких слухань закон.</p>
+<p class="note"><b>Що це означає:</b> для українців із відкритими справами в імміграційному суді (зокрема тих, чий пароль чи статус припинено і кого направили на депортаційне провадження) зникає спосіб «заморозити» справу на час розгляду заяв в USCIS; на тих, хто має чинний TPS або пароль без судової справи, рішення напряму не впливає.</p>
+<p class="src">Джерела: <a href="https://news.bloomberglaw.com/us-law-week/supreme-court-allows-doj-deportation-deal-decried-as-collusion">Bloomberg Law</a> · <a href="https://www.yahoo.com/news/us/articles/us-supreme-court-denies-immigration-160948159.html">AP via Yahoo</a> · <a href="https://www.staradvertiser.com/2026/10/23/breaking-news/court-rules-constitution-does-not-guarantee-bond-hearings-for-migrants/">Star-Advertiser — 5th Circuit</a></p>
+</details>
+<details><summary>USCIS: клас Sileiri Doe (паролі через CBP One, скасовані масовим листом) може просити перегляд відмов без збору<span class="tag">USCIS / суд Массачусетсу</span></summary>
+<p class="body">26 жовтня USCIS опублікувала «оновлення у зв&#x27;язку з судовим процесом»: за наказом окружного суду Массачусетсу від 28 вересня 2026 (Sileiri Doe v. DHS, 1:25-cv-12245-ADB) DHS зобов&#x27;язане усунути негативні наслідки для класу осіб, яких впустили під паролем після запису через застосунок CBP One і чий пароль уряд припинив масовим електронним листом у квітні 2025 року. Члени класу можуть подати клопотання про поновлення або перегляд несприятливого рішення без сплати збору.</p>
+<p class="body">Суд раніше визнав, що квітневий масовий лист не припинив пароль законно; уряд після цього вживав нових кроків для припинення. Це окрема справа від Svitlana Doe v. Noem, де суд наказав USCIS поновити розгляд заяв паролі (включно з U4U) і де уряд просив Верховний суд про зупинку.</p>
+<p class="note"><b>Що це означає:</b> рішення стосується саме паролі через CBP One, а не U4U; але воно закріплює принцип, що масове припинення паролю листом без індивідуального повідомлення суд вважає незаконним — це аргумент і для українських парольців, чиї справи припинялися подібно. Заяви U4U і re-parole для українців USCIS, як і раніше, не приймає з січня 2025; I-131 з документами подавати можна.</p>
+<p class="src">Джерела: <a href="https://www.uscis.gov/newsroom/all-news">USCIS — All News</a> · <a href="https://justiceactioncenter.org/news/judge-orders-trump-administration-to-restore-processing-of-immigration-benefit-applications-for-humanitarian-parole-recipients-and-certifies-nationwide-class-to-ensure-all-impacted-individuals-are-pro/">Justice Action Center — Svitlana Doe</a> · <a href="https://www.uscis.gov/humanitarian/uniting-for-ukraine/re-parole-process-for-certain-ukrainian-citizens-and-their-immediate-family-members">USCIS — re-parole для українців</a></p>
+</details>
+<details><summary>Нагадування: автоматичне продовження EAD скасовано остаточно (правило від 14.10), збори за парольний EAD — $560/$280<span class="tag">DHS / Federal Register / юрфірми</span></summary>
+<p class="body">14 жовтня 2026 DHS опублікувало остаточне правило, яке без змін закріпило тимчасове правило від 30 жовтня 2025: для заяв на продовження EAD, поданих із 30.10.2025, 540-денне автоматичне продовження більше не діє — картка спливає наступного дня після дати на ній, якщо USCIS не схвалила продовження. Винятки — продовження, передбачені законом або окремим повідомленням у Federal Register для TPS (саме такий механізм діяв для українських A-12/C-19 до 19.10.2026), і 180-денне продовження для STEM OPT. 11 вересня суд надав індивідуальну преліминарну заборону семи позивачам у статусі H-4, але правило загалом чинне.</p>
+<p class="body">USCIS радить подавати продовження за 180 днів до закінчення. З 1 січня 2026 збір за перший парольний EAD — $560, за продовження — $280; за даними Littler, адміністративну паузу на заяви парольців (U4U, CHNV) скасовано меморандумом від 9 червня 2025, але з «додатковою перевіркою».</p>
+<p class="note"><b>Що це означає:</b> для українців із паролем чи TPS, що подають I-765, строк розгляду тепер напряму визначає, чи буде розрив у праві на роботу — автоматичної «подушки» немає, окрім випадків, коли DHS окремо продовжить TPS-EAD через Federal Register (чого для Ukraine після 19.10 ще не зроблено).</p>
+<p class="src">Джерела: <a href="https://natlawreview.com/article/dhs-finalizes-end-automatic-ead-extensions">National Law Review</a> · <a href="https://www.mintz.com/insights-center/viewpoints/2806/2026-10-15-uscis-final-rule-ends-540-day-automatic-ead-extension">Mintz</a> · <a href="https://www.littler.com/news-analysis/asap/uscis-lifts-administrative-pause-immigration-applications-filed-uniting-ukraine">Littler — пауза скасована</a></p>
+</details>
+</section>
+<section id="ice"><h2>🚔 ICE: моніторинг <span class="cnt">3 новини</span></h2>
+<details><summary>Флорида: день без повідомлень про рейди; DHS заявляє про арешт 5 негромадян за голосування, ICE — про 500 арештів у Південно-Західній Флориді раніше у вересні<span class="tag">DHS (версія відомства) / Fox / NBC Miami</span></summary>
+<p class="body">За 27 жовтня в офіційних каналах ICE/DHS і місцевих медіа немає повідомлень про нові масові операції у Флориді. DHS 26 жовтня повідомило (версія відомства), що HSI заарештувала п&#x27;ятьох негромадян, яких звинувачують у голосуванні на виборах у Флориді; за даними DOJ, 22 жовтня в Середньому окрузі Флориди висунули обвинувачення шістьом особам (громадяни Куби, Канади, Еквадору, Бразилії) за голосування у 2022 і 2024 роках — рахунки відомств не збігаються, точна кількість не підтверджена.</p>
+<p class="body">Найсвіжіша велика операція у штаті — тижнева в Південно-Західній Флориді з шерифом округу Лі, близько 500 арештів (Fox, середина вересня). Операція «Tidal Wave» штату з 287(g)-партнерами, за офісом Десантіса, перевищила 10 400 арештів від початку року; NBC Miami раніше фіксувала «тихе зростання» арештів силами штату й місцевих агентств. Secretary DHS Маллін 26–27 жовтня був у Джексонвіллі на демонстрації Берегової охорони.</p>
+<p class="note"><b>Що це означає:</b> Кого стосується: 287(g)-партнерство у Флориді означає, що імміграційну перевірку можуть робити шерифи під час звичайних зупинок — ризик вищий для тих, чий статус припинено або хто в депортаційному провадженні; людей із чинним TPS або паролем і документами при собі ці операції формально не стосуються, але перевірка документів при затриманні триває.</p>
+<p class="src">Джерела: <a href="https://www.dhs.gov/news-releases/press-releases">DHS Press Releases</a> · <a href="https://pjmedia.com/bryan-s-jung/2026/10/24/six-more-resident-aliens-arrested-for-illegally-voting-in-us-elections-n4958654">PJ Media — DOJ MDFL</a> · <a href="https://www.foxnews.com/us/ice-led-florida-operation-nets-500-illegal-aliens-accused-murder-child-abuse-cartel-ties">Fox News — 500 арештів</a> · <a href="https://www.nbcmiami.com/news/local/florida-immigration-arrests-quietly-surge-with-state-and-local-agencies-at-forefront/3819535/">NBC Miami</a></p>
+</details>
+<details><summary>Каліфорнія: «Operation Safe California» — 45-денний непідтверджений surge; Bay Area, Корона, Лос-Анджелес; DHS: «операції не коментуємо»<span class="tag">KQED / NBC Bay Area / Washington Examiner</span></summary>
+<p class="body">За даними Washington Examiner (два анонімні джерела), DHS веде 45-денну операцію «Safe California», що почалася в Сан-Дієго і поширюється на Лос-Анджелес і Сан-Франциско; агентам нібито сказано «брати будь-кого», незалежно від судимостей, Daily Wire пише про 250+ додаткових офіцерів. DHS офіційно не підтверджує: «ICE не розкриває і не обговорює правоохоронні операції». Місцеві факти: у Bay Area ICE назвала шістьох затриманих за два тижні (п&#x27;ятеро, за ICE, із судимостями), очевидці зняли арешти в Сан-Хосе, Сан-Франциско й Окленді; у Короні активісти повідомляють про ~40 затримань біля школи Home Gardens Academy (цифра активістів, не підтверджена).</p>
+<p class="body">LA Public Press фіксує сплеск арештів у Лос-Анджелесі з прицілом на «санктуарні міста» перед виборами; Ньюсом і кандидат у губернатори Бесерра називають операцію «приуроченою до проміжних виборів». CNN у жовтні повідомляв, що ICE отримала вказівку нарощувати щоденні арешти попри занепокоєння республіканців, і змінила правила зупинок авто після кількох стрілянин.</p>
+<p class="note"><b>Що це означає:</b> Кого стосується: операція, якщо вона існує в описаному вигляді, не фільтрує за статусом — під перевірку можуть потрапити і люди з чинними документами; для українців у Каліфорнії ключова відмінність лишається між чинним статусом (TPS/пароль із дійсним I-94) і припиненим — другі в зоні ризику депортаційного провадження.</p>
+<p class="src">Джерела: <a href="https://www.kqed.org/news/12104776/an-ice-surge-in-california-ahead-of-the-midterms-heres-what-we-know">KQED</a> · <a href="https://www.nbcbayarea.com/news/local/report-ice-launches-enforcement-surge-california-starting-san-diego/4155536/">NBC Bay Area</a> · <a href="https://www.kron4.com/news/bay-area-ice-raids/ice-identifies-six-immigrants-detained-in-bay-area/">KRON4</a> · <a href="https://lapublicpress.org/2026/10/la-ice-arrests-dhs-california-surge/">LA Public Press</a> · <a href="https://www.cnn.com/2026/10/08/politics/ice-immigration-arrests">CNN</a></p>
+</details>
+<details><summary>Дві смерті в ICE-ізоляторах за 4 дні (Otay Mesa, Folkston); Массачусетс — 82 арешти за 3 дні; П&#x27;ятий округ: бондові слухання не гарантовані<span class="tag">ICE.gov (версія відомства) / Star-Advertiser / TRAC</span></summary>
+<p class="body">ICE 27 жовтня повідомила про смерть 43-річного громадянина Гватемали 24 жовтня в Otay Mesa Detention Center (Сан-Дієго), а 24 жовтня — 48-річного сальвадорця в Folkston (Джорджія) 23 жовтня; сенатори Воррок і Оссофф вимагають розслідування щодо Folkston. Це вже щонайменше третя смерть за тиждень після випадку в Техасі 20 жовтня. ICE Boston оголосила про 82 арешти за триденну операцію в південно-східному Массачусетсі (версія відомства: «з судимостями за напади, задушення тощо»); у Воррені (Нью-Джерсі) — 9 арештів 19 жовтня, 5 із них, за DHS, із кримінальною історією. 23 жовтня П&#x27;ятий окружний суд en banc 10–7 вирішив, що П&#x27;ята поправка не вимагає бондових слухань для затриманих за §1225(b)(2)(A); автор рішення суддя Вілсон написав, що затриманий може «реалізувати свободу, погодившись виїхати».</p>
+<p class="body">Незалежні дані: за TRAC, 11 липня 2026 в ізоляторах ICE було 65 765 осіб, 70,6% без судимостей (пік — 70 766 у січні); свіжіших зведень ICE не публікувала, Vera оцінює липневе середнє понад 66 000/добу.</p>
+<p class="note"><b>Що це означає:</b> Кого стосується: рішення П&#x27;ятого округу діє лише в Техасі, Луїзіані й Міссісіпі, але туди переводять затриманих з усієї країни — це стосується будь-кого, хто потрапив у затримання без чинного статусу; людей із чинним TPS чи паролем мандатне затримання за §1225 за загальним правилом не охоплює.</p>
+<p class="src">Джерела: <a href="https://www.ice.gov/newsroom">ICE Newsroom</a> · <a href="https://www.staradvertiser.com/2026/10/23/breaking-news/court-rules-constitution-does-not-guarantee-bond-hearings-for-migrants/">Star-Advertiser (Reuters)</a> · <a href="https://domepolitics.com/2026/10/raphael-warnock-jon-ossoff-demand-investigation-into-folkston-ice-facility">Dome Politics — Folkston</a> · <a href="https://tracreports.org/immigration/quickfacts/detention.html">TRAC Quick Facts</a> · <a href="https://vera-institute.files.svdcdn.com/production/downloads/publications/Ten-Things-We-Know-from-the-Latest-ICE-Data.pdf">Vera Institute</a></p>
+</details>
+</section>
+<section id="docs"><h2>📄 Державні документи <span class="cnt">2 новини</span></h2>
+<details><summary>Federal Register 27.10: BIS поновив тимчасову заборону експортних привілеїв (справа з українським контекстом); президентських документів за добу — 0<span class="tag">Federal Register</span></summary>
+<p class="body">У випуску Federal Register за 27 жовтня в розділі зі згадкою України — наказ Бюро промисловості та безпеки (BIS) Мінторгу про поновлення тимчасового позбавлення експортних привілеїв (Order Renewing Order Temporarily Denying Export Privileges); такі накази зазвичай стосуються схем обходу експортного контролю на російському напрямку. Днем раніше — остаточні результати антидемпінгового перегляду щодо попередньо напруженого сталевого дроту з Іспанії за 2024–2025.</p>
+<p class="body">Президентських документів (укази, прокламації, меморандуми) за 24–27 жовтня у Federal Register не опубліковано. Повідомлення DHS про TPS Ukraine у Federal Register станом на вечір 27 жовтня також немає (див. розділ імміграції).</p>
+<p class="src">Джерела: <a href="https://www.federalregister.gov/documents/2026/10/27/2026-21840/order-renewing-order-temporarily-denying-export-privileges">Federal Register — BIS</a> · <a href="https://www.federalregister.gov/documents/2026/10/26/2026-21791/prestressed-concrete-steel-wire-strand-from-spain-final-results-of-antidumping-duty-administrative">Federal Register — AD review</a></p>
+</details>
+<details><summary>Верховна Рада: законопроєкт №10242 про відповідальність за розголошення даних із держреєстрів повернувся до порядку денного; банківський податок 50% — у першому читанні<span class="tag">УП / Forbes Ukraine</span></summary>
+<p class="body">Українська правда повідомляє, що в порядку денному Ради знову з&#x27;явився законопроєкт №10242 про посилення відповідальності за оприлюднення інформації з державних реєстрів — журналісти-розслідувачі бачать у ньому обмеження для розслідувань. Того ж дня, за Forbes Ukraine, парламент у першому читанні підтримав продовження на 2027 рік ставки податку на прибуток банків 50% замість базових 25% із забороною зменшувати фінрезультат на збитки минулих періодів; Мінфін оцінював надходження приблизно у 50 млрд грн, НБУ попереджав про ризик докапіталізації держбанків.</p>
+<p class="body">Уряд окремо дозволив операторам дата-центрів і постраждалому бізнесу орендувати держмайно без аукціону (Корецький) і підписав із Bolt, Uklon, Uber і OPTI меморандум про «стелю» зростання цін на таксі в Києві під час тривог. Документи на сайті Президента за добу перевірити не вдалося (сайт віддає 403).</p>
+<p class="src">Джерела: <a href="https://t.me/ukrpravda_news/85837">УП (TG) — №10242</a> · <a href="https://t.me/Forbes_Ukraine_official/34059">Forbes Ukraine (TG) — банки</a> · <a href="https://epravda.com.ua/biznes/operatori-data-centriv-orenduvatimut-derzhmayno-bez-aukcionu-koreckiy-826993/">Економічна правда — дата-центри</a> · <a href="https://t.me/ukrpravda_news/85847">УП (TG) — таксі</a></p>
+</details>
+</section>
+<section id="mkt"><h2>📈 Ринки і компанії <span class="cnt">6 новин</span></h2>
+<details><summary>Сесія 27.10: S&amp;P 500 +0,60% до 7 722,60, Nasdaq +1,18% до 26 477,81, Dow +0,03%; чипи, нафта вниз і заявка Anthropic<span class="tag">CNBC / Yahoo Finance / TheStreet</span></summary>
+<p class="body">Другий поспіль день зростання: S&amp;P 500 +45,83 п. (+0,60%) до 7 722,60, Nasdaq +308,43 (+1,18%) до 26 477,81, Dow +15,99 (+0,03%) до 52 377,57, Russell 2000 +1,16% до 2 818,87. Механіка: трейдери знову купували напівпровідники (Nvidia, Broadcom, Micron, Intel росли ще в понеділок після S-1 Anthropic — «індексні фонди стануть вимушеними покупцями»), нафта відкотилася від $117, а індекс споживчої довіри Conference Board підскочив на 7,5 п. до 91,7.</p>
+<p class="body">MarketWatch зазначає, що «решта ринку» після історичного відскоку обганяє Big Tech, а роздрібні трейдери «викуповують просадку» в чипах. Дохідності майже не змінилися (10-річні 4,995%, 30-річні 5,309%) — ринок чекає ФРС. Сезон звітів, за CNBC, показує «стійкого споживача з ознаками напруги»: UPS, Coca-Cola, PayPal, SoFi дали кращі прогнози, але Coca-Cola і Visa сигналізують про уповільнення в Північній Америці. Головні ризики тижня: ФРС у середу, Oracle/Alphabet/Amazon зі звітами, нафта і Ормуз.</p>
+<p class="note"><b>Що це означає:</b> За чим стежити: чи витримає S&amp;P 500 рівень ~7 700 після Ворша; якщо грудневе підвищення підтвердиться, лідерство чипів може змінитися на ротацію в захисні сектори, як натякає MarketWatch.</p>
+<p class="src">Джерела: <a href="https://www.cnbc.com/2026/10/26/stock-market-today-live-updates.html">CNBC — live</a> · <a href="https://finance.yahoo.com/markets/live/stock-market-today-tuesday-october-27-dow-sp-500-nasdaq-081901995.html">Yahoo Finance</a> · <a href="https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-27-2026">TheStreet</a> · <a href="https://www.cnbc.com/2026/10/27/q3-earnings-resilient-consumer.html">CNBC — споживач</a></p>
+</details>
+<details><summary>Boeing −10,7%: збиток $0,34/акцію проти очікуваних −$0,21, $700 млн списання по 777X, рампа 737 MAX зсувається на кінець 2027<span class="tag">CNBC / Investing.com / Yahoo</span></summary>
+<p class="body">Boeing відзвітувала за III квартал: виручка $24,19 млрд (+4% р/р, вище консенсусу $23,84 млрд), але скоригований збиток $0,34 на акцію проти очікуваних −$0,21. Комерційний підрозділ отримав $10,7 млрд виручки (−3%) з операційною маржею −6,5% і списанням ~$700 млн по програмі 777X; оборонний — $7,94 млрд (+15%). Вільний грошовий потік за квартал $464 млн (проти $238 млн рік тому), але за 9 місяців — мінус $359 млн; план: ~$2 млрд у 2026, $3 млрд у 2027, $6 млрд у 2028, $10 млрд у 2029 при капексі ~$5 млрд у 2027.</p>
+<p class="body">Головне розчарування — темп 737 MAX: стабілізація на 47 літаків/міс «займає більше часу, ніж очікували» через крильову лінію, вихід на 52/міс — лише у другій половині 2027. Акції впали на ~10,7% до ~$168. Беклог рекордний — $745 млрд. MarketWatch пояснює: ринок карає не за квартал, а за зсув усієї траєкторії грошових потоків на рік праворуч.</p>
+<p class="note"><b>Що це означає:</b> За чим стежити: сертифікація 777X до середини 2027 — без неї план $10 млрд FCF у 2029 не сходиться; постачальники (Spirit, Howmet) отримають менші замовлення на 2027.</p>
+<p class="src">Джерела: <a href="https://www.cnbc.com/2026/10/27/-boeing-ba-q3-2026-earnings.html">CNBC</a> · <a href="https://www.investing.com/news/transcripts/earnings-call-transcript-boeing-q3-2026-misses-profit-view-as-shares-slide-93CH-4976410">Investing.com</a> · <a href="https://www.marketwatch.com/story/the-big-reason-boeings-stock-is-falling-so-hard-after-earnings-d31b400d">MarketWatch</a></p>
+</details>
+<details><summary>Visa після закриття: EPS $3,48 (+$0,04 до консенсусу), виручка $12,1 млрд (+13%), дивіденд +16%, але акції −2% через прогноз 2027<span class="tag">SEC 8-K / Bloomberg / Investing.com</span></summary>
+<p class="body">Visa відзвітувала за IV фінансовий квартал: GAAP-прибуток $6,0 млрд ($3,19/акцію), non-GAAP $6,6 млрд ($3,48/акцію проти очікуваних $3,44), чиста виручка $12,1 млрд (+13% номінально і в постійних валютах), за рік — $45,9 млрд (+15%). Платіжний обсяг +9% до ~$4,08 трлн (Bloomberg), транскордонні обсяги й кількість транзакцій «залишаються сильними». Рада директорів підняла квартальний дивіденд на 16% до $0,78.</p>
+<p class="body">Проте акції впали на ~2,3% після закриття: прогноз на 2027 фінансовий рік — зростання виручки «низькими двозначними» темпами — ринок сприйняв як уповільнення після 15% цього року. Механізм: Visa — проксі на споживчі витрати; у поєднанні зі слабким північноамериканським обсягом Coca-Cola це додає аргументів тезі про «споживача з ознаками напруги». Robinhood того ж вечора −4%: крипто-виручка −55% р/р (хоча +20% кв/кв і вище прогнозів), Seagate +3,7%.</p>
+<p class="note"><b>Що це означає:</b> За чим стежити: Mastercard звітує в четвер — якщо й вона дасть «низькі двозначні» на 2027, це закріпить тезу про уповільнення споживання у 2027 році.</p>
+<p class="src">Джерела: <a href="https://www.sec.gov/Archives/edgar/data/0001403161/000140316126000126/q42026earningsrelease.htm">Visa 8-K (SEC)</a> · <a href="https://www.investing.com/news/earnings/visa-q4-revenue-rises-13-as-payment-volumes-remain-strong-4976751">Investing.com</a> · <a href="https://www.bloomberg.com/news/articles/2026-10-27/visa-earnings-beats-estimates-as-payments-volume-rises-9">Bloomberg</a> · <a href="https://www.cnbc.com/2026/10/27/robinhood-hood-q3-2026-earnings.html">CNBC — Robinhood</a></p>
+</details>
+<details><summary>Звіти до відкриття: SoFi +13,4% (виручка +45,9%, прогноз 2027 вище Street), UPS +2–5%, Coca-Cola −1,6% попри beat, PayPal підняв прогноз<span class="tag">Yahoo Finance / CNBC</span></summary>
+<p class="body">SoFi: виручка $1,39 млрд (+45,9% р/р, консенсус $1,26 млрд), скоригований EPS $0,18 проти $0,17; прогноз на 2026 піднято до $5,04 млрд виручки і $0,61 EPS, на 2027 — $0,90 EPS проти очікуваних Street $0,82; акції +13,4% до $16,40; компанія розкрила 503 тис. крипто-продуктів і $162 млн валової крипто-виручки. UPS: результати вище очікувань, прогноз виручки на рік піднято до $92,6 млрд з $91,2 млрд, «попит на свята сильний» — акції +2–5% залежно від моменту сесії.</p>
+<p class="body">Coca-Cola: EPS $0,91 проти $0,88, виручка $13,4 млрд проти $12,92 млрд, обсяги +5%, прогноз піднято — але акції −1,6% до $91,22 через слабкі обсяги в Північній Америці. PayPal: EPS $1,45 проти $1,31 (LSEG), річний прогноз прибутку підвищено, акції коливалися від −1% до +2%. Freeport-McMoRan $0,88 проти $0,80, JetBlue різко вгору на прогнозі прибутковості. Усього у вівторок звітували ~215 компаній, після закриття — ще SK hynix, NXP, Enphase.</p>
+<p class="note"><b>Що це означає:</b> За чим стежити: Alphabet, Amazon, Oracle цього тижня — тест для тези CNBC, що «побоювання щодо ШІ-боргу послабшали».</p>
+<p class="src">Джерела: <a href="https://finance.yahoo.com/markets/stocks/live/earnings-live-updates-sofi-stock-surges-on-exceptional-quarter-raised-outlook-122224207.html">Yahoo Finance — earnings live</a> · <a href="https://www.cnbc.com/2026/10/27/stocks-making-the-biggest-moves-midday-sofi-pnr-rcl-jblu.html">CNBC — midday movers</a> · <a href="https://www.theblock.co/news/markets/2026-10-27-sofi-discloses-503000-crypto-products-as-gross-crypto-revenue-hits-162-million-431897">The Block — SoFi крипто</a></p>
+</details>
+<details><summary>Нафта і бензин: Brent ~$115, WTI ~$101 після оманського «контуру» щодо Ормузу; у США — найдорожчий рік для бензину (158 днів понад $4)<span class="tag">Fortune / Arbiterz / MarketWatch / AutoGuide</span></summary>
+<p class="body">Brent 27 жовтня — близько $115,1 (на 28 центів нижче вчорашнього ранку, Fortune), WTI — $101,0–101,3, спред Brent–WTI ~$14; минулого тижня Brent перевищував $117, максимум року $118,35, зростання від початку року +90%. Дві сили тягнуть у різні боки: дипломатія (Оман повідомив про контур тимчасової угоди з Іраном щодо вільного проходу Ормузької протоки) і атаки хуситів на саудівські об&#x27;єкти на вихідних.</p>
+<p class="body">MarketWatch: поки Трамп хвалиться прибутками енергокомпаній, американські споживачі переживають найдорожчий рік для бензину — ціна тримається понад $4 за галон уже 158 днів 2026 року, це рекорд проти 2022-го; у березні ціни підскочили на $1 за місяць після початку операції проти Ірану, пік $4,55 у травні, у середині жовтня — $4,33 (AAA). Річний рекорд 2022-го ($3,95 середня, $5,02 пік) за середньою ще не перевищено.</p>
+<p class="body">Росія тим часом отримала рекордні $2,76 млрд за тиждень морського експорту нафти, а адміністрація розглядає послаблення санкцій на російський інвестфонд — див. розділ «Україна». ОПЕК+ збирається 1 листопада.</p>
+<p class="note"><b>Що це означає:</b> За чим стежити: будь-яка конкретика з Маската щодо Ормузу — головний дефляційний тригер для CPI і, відповідно, для грудневого рішення ФРС; провал переговорів при Brent &gt;$115 закріплює інфляцію 3,5%+.</p>
+<p class="src">Джерела: <a href="https://fortune.com/article/price-of-oil-10-27-2026/">Fortune</a> · <a href="https://arbiterz.com/oil-prices-today-brent-slips-below-115-wti-nears-101/">Arbiterz</a> · <a href="https://www.marketwatch.com/story/as-trump-touts-energy-companies-fortunes-u-s-consumers-face-the-most-expensive-year-for-gas-prices-ever-c467268c">MarketWatch — бензин</a> · <a href="https://www.autoguide.com/auto/fuel/gas-prices-have-broken-a-record-in-2026-and-it-s-not-a-good-one-44640409">AutoGuide</a></p>
+</details>
+<details><summary>Anthropic S-1: $16,3 млрд виручки за півроку, Q2 — перший прибутковий квартал ($974 млн), збиток $80,7 млрд через переоцінку; IPO до Дня подяки на $1,5–2 трлн<span class="tag">Yahoo Finance / CNBC / Forbes Ukraine</span></summary>
+<p class="body">26 жовтня Anthropic публічно подала S-1 для лістингу на Nasdaq Global Select під тикером ANT; організатори — Goldman Sachs і Morgan Stanley, кількість акцій і діапазон ціни ще не визначені, Wall Street очікує оцінку $1,5–2 трлн проти $965 млрд у травні (OpenAI — $852 млрд у березні, цілить у $1,25 трлн і вихід на біржу на початку 2027). Цифри: виручка за перше півріччя 2026 — $16,3 млрд проти $1,16 млрд роком раніше і $4,59 млрд за весь 2025; Q2 — $11,6 млрд (Q1 — $4,7 млрд); 80% — споживання через API ($13,1 млрд), 20% — підписки; валова маржа ~85%; Q2 дав операційний прибуток $974 млн після збитку $1,7 млрд у Q1.</p>
+<p class="body">Чистий збиток $80,75 млрд майже повністю — переоцінка справедливої вартості на $72,39 млрд. Персонал ~5 300, виручка на працівника понад $6,6 млн. Зобов&#x27;язання: до $120,5 млрд до 2029 року на GPU Nvidia через SpaceXAI плюс власні дата-центри «Anthropic Direct». Ризики у проспекті: катастрофічний/екзистенційний ризик ШІ, який страховики можуть не покрити; спір з адміністрацією Трампа і Міноборони щодо держвикористання моделей — «можливі суттєві втрати виручки»; затримка тренування наступної моделі на місяць через безпекові побоювання; 50,1% голосів у семи співзасновників через клас F.</p>
+<p class="body">Lock-up нестандартний: частина інсайдерів може продавати з першого дня, решта — у 20+ вікнах протягом року. CNBC: грошова подушка Anthropic «вища за майже всі компанії США». Ринок відреагував ралі в чипах.</p>
+<p class="note"><b>Що це означає:</b> За чим стежити: діапазон ціни й дата роадшоу; приклад SpaceX (−15% за перший тиждень у Nasdaq-100) показує, що «вимушені покупки» індексних фондів не гарантують зростання після лістингу.</p>
+<p class="src">Джерела: <a href="https://finance.yahoo.com/technology/live/anthropic-ipo-live-updates-frontier-ai-lab-discloses-revenue-and-risks-in-highly-anticipated-s-1-filing-141702607.html">Yahoo Finance — live</a> · <a href="https://www.cnbc.com/2026/10/27/anthropic-five-surprising-risks-s1.html">CNBC — ризики</a> · <a href="https://www.cnbc.com/2026/10/27/anthropic-cash-investments-ipo.html">CNBC — cash pile</a> · <a href="https://t.me/Forbes_Ukraine_official/34056">Forbes Ukraine (TG)</a></p>
+</details>
+</section>
+<section id="crypto"><h2>₿ Крипто <span class="cnt">4 новини</span></h2>
+<details><summary>BTC $80 642 (+0,9%), ETH $2 340 (+1,4%): відскок після провалу нижче $80 тис.; біткоїн-ETF повернули $110 млн після відтоку $774 млн<span class="tag">CoinDesk / Cointelegraph / CoinGecko</span></summary>
+<p class="body">Біткоїн у вівторок вранці провалився нижче $80 000, ігноруючи ралі азійських техноакцій, а до вечора відновився до ~$80,6–81,2 тис.; ефір п&#x27;ятий день поспіль був під тиском, але закінчує день у плюсі ~1,4–2%. Спотові біткоїн-ETF 27 жовтня отримали $110,34 млн припливу (лідер — BlackRock) після дводенного відтоку на $774 млн; ETF на ефір, XRP і Solana продовжують фіксувати відтоки — ефірні фонди втратили ~$1,1 млрд за три тижні, вісім сесій поспіль у мінусі.</p>
+<p class="body">Ark Invest продала $15,9 млн власного біткоїн-ETF і купила $5,2 млн акцій Circle. Інвестор, який у 2023 закликав до «розвороту в ШІ», прогнозує BTC $57 000 (це прогноз). Тригер тижня — ФРС: пауза очікується, але сигнал про грудневе підвищення при 10-річних біля 5% історично б&#x27;є по ризикових активах. Засновник Stacks каже, що «квантові побоювання вже обмежують зростання біткоїна».</p>
+<p class="note"><b>Що це означає:</b> За чим стежити: якщо після Ворша ETF-потоки знову стануть від&#x27;ємними при BTC &lt;$80 тис., наступна технічна зона — $75–77 тис.</p>
+<p class="src">Джерела: <a href="https://www.coindesk.com/markets/2026/10/27/bitcoin-drops-below-usd80-000-as-crypto-ignores-asian-tech-rally-fed-meeting-begins">CoinDesk — нижче $80k</a> · <a href="https://cointelegraph.com/markets/bitcoin-etf-rebound-110-million-btc-dip-below-80k">Cointelegraph — ETF</a> · <a href="https://www.theblock.co/news/markets/2026-10-27-ark-invest-buys-5-2-million-of-circle-shares-sells-15-9-million-of-its-own-bitcoin-etf-as-btc-grinds-lower-431838">The Block — Ark</a></p>
+</details>
+<details><summary>Бессент на Ripple Swell: крипто — «технологічна парасолька» долара; Clarity Act не пройшов, Treasury піде через SEC/CFTC<span class="tag">CoinDesk</span></summary>
+<p class="body">Міністр фінансів Скотт Бессент 27 жовтня на конференції Ripple Swell разом із Бредом Гарлінгхаусом заявив, що сила резервної валюти зміщується від військової до технологічної: «Ми збережемо військову парасольку, але дедалі більше це стає технологічна парасолька». США, за його словами, «виграють у стеку цифрових активів», що зміцнить долар; стейблкоїни розширять доступ до долара в країнах з інфляцією.</p>
+<p class="body">Понад 90% стейблкоїнів забезпечені доларом, їхні емітенти тримають казначейські папери — «важливе джерело фінансування для Treasury». Бессент назвав провал Clarity Act у Конгресі розчаруванням і сказав, що Treasury працюватиме з SEC і CFTC через регулювання, яке «може стати моделлю для інших країн», хоча воно не має сталості закону. Того ж дня OCC фіналізувала вимоги до резервів і погашення для емітентів за GENIUS Act (чинні з січня 2027, обмеження для некомплаєнтних — з липня 2028).</p>
+<p class="note"><b>Що це означає:</b> За чим стежити: без Clarity Act розмежування SEC/CFTC лишається адміністративним — наступна адміністрація може його переписати; це головний регуляторний ризик для альткоїнів у 2027.</p>
+<p class="src">Джерела: <a href="https://www.coindesk.com/policy/2026/10/27/treasury-s-bessent-sees-crypto-as-america-s-next-tool-for-keeping-the-u-s-dollar-on-top">CoinDesk</a> · <a href="https://cointelegraph.com/news/what-happened-in-crypto-today">Cointelegraph — огляд дня</a></p>
+</details>
+<details><summary>Ripple отримала остаточне схвалення OCC на національний трастовий банк; RLUSD ($2,5 млрд) переходить під федеральний нагляд і заходить на Robinhood<span class="tag">The Block / Cointelegraph / CoinDesk</span></summary>
+<p class="body">26 жовтня, за даними The Block і Cointelegraph, Управління контролера грошового обігу (OCC) дало остаточне схвалення Ripple National Trust Bank після умовного схвалення 12 грудня 2025 і заявки в липні 2025. Банк управлятиме сегрегованими резервами RLUSD і буде трасті застави для його власників; сам стейблкоїн і далі випускає Standard Custody &amp; Trust Company під наглядом NYDFS, тож з&#x27;являється подвійний нагляд — штату й федеральний.</p>
+<p class="body">Трастовий чартер не дозволяє приймати депозити чи кредитувати. Гарлінгхаус: «Крипто й банки працюють краще разом — ось як це виглядає». Circle отримала аналогічне остаточне схвалення в липні; сенаторка Воррен критикує хвилю чартерів як порушення National Bank Act. Паралельно Robinhood (28,6 млн клієнтів) додає RLUSD попри підтримку конкурентного USDG, Ripple і BNY тестують XRP Ledger для фінансування рахунків-фактур, а USDC, за Kaiko, обійшов USDT у євро-торгівлі (56% частки) після MiCA.</p>
+<p class="src">Джерела: <a href="https://www.theblock.co/news/regulation/2026-10-26-ripple-gains-final-occ-approval-rlusd-431810">The Block</a> · <a href="https://www.coindesk.com/business/2026/10/27/ripple-s-rlusd-stablecoin-is-coming-to-robinhood-s-28-6-million-customer-platform">CoinDesk — Robinhood</a> · <a href="https://cointelegraph.com/news/usdc-overtakes-usdt-euro-stablecoin-trading-mica-kaiko">Cointelegraph — USDC/MiCA</a></p>
+</details>
+<details><summary>Токенізація: Janus Henderson і Centrifuge запустили перший ліцензований ончейн-фонд на Nasdaq-100; Intel, Oracle, IBM проти токенізованих акцій OKX–ICE<span class="tag">CoinDesk / Cointelegraph</span></summary>
+<p class="body">Janus Henderson разом із Centrifuge запустили на Stellar перший ліцензований токенізований фонд, що відстежує Nasdaq-100, а CF Benchmarks переносить ончейн індексну інфраструктуру, якою користується BlackRock. Водночас Intel, Oracle та IBM приєдналися до списку компаній, які заперечують проти планів OKX і ICE торгувати токенізованими версіями їхніх акцій — емітенти не хочуть втрачати контроль над тим, де й як торгуються їхні папери.</p>
+<p class="body">Galaxy Digital показала квартальний прибуток $323 млн і оголосила викуп акцій на $200 млн; Crypto.com і OG.com запустили в США крипто-перпетуали з плечем до 5x; Keystone знищить майже 19 000 апаратних гаманців після витоку даних; Initia зупинила мережу після інциденту.</p>
+<p class="src">Джерела: <a href="https://www.coindesk.com/business/2026/10/27/nasdaq-100-comes-onchain-as-janus-henderson-and-centrifuge-launch-first-licensed-fund">CoinDesk — Nasdaq-100</a> · <a href="https://www.coindesk.com/business/2026/10/27/intel-oracle-ibm-join-growing-list-of-firms-objecting-to-okx-ice-tokenized-stock-plans">CoinDesk — OKX–ICE</a> · <a href="https://www.theblock.co/news/business/2026-10-27-galaxy-digital-323-million-quarterly-profit-new-200-million-share-buyback-431860">The Block — Galaxy</a> · <a href="https://www.coindesk.com/business/2026/10/27/crypto-wallet-maker-keystone-to-destroy-almost-19-000-devices-after-security-breach">CoinDesk — Keystone</a></p>
+</details>
+</section>
+<section id="ai"><h2>🤖 AI <span class="cnt">4 новини</span></h2>
+<details><summary>Anthropic: S-1 на IPO (ANT) + ранні результати з шістьма фармкомпаніями — Claude скоротив перевірку регуляторних документів на 89%<span class="tag">Anthropic / Yahoo Finance / The Verge</span></summary>
+<p class="body">Окрім проспекту IPO (деталі — у розділі «Ринки»), Anthropic 27 жовтня опублікувала звіт про роботу з фармою: у Generate Biomedicines Claude Code запропонував генетичний дизайн CAR-T на ~70% коротший за стандартний, який у лабораторії дав ~10× більше рецепторів; Divergence Labs за місяць згенерувала ~35 000 дизайнів антитіл проти харчових алергій, три з двадцяти кращих перевершили стандартний препарат; BigHat за 10 тижнів перебрала ~1 010 варіантів з 10× сильнішим зв&#x27;язуванням; в Enveda Claude знайшов усі 11 проблем, які знайшли люди в 1 061 сторінці документації, плюс 7 пропущених, скоротивши час перевірки на 89%, і за 4 години склав регуляторний документ замість ~3 місяців.</p>
+<p class="body">Bristol Myers Squibb використовує Claude для оцінки планів клінічних випробувань із розширенням у 2027. Anthropic купила Mithril Medicine (м&#x27;язова дистрофія) і очікує кандидата для випробувань на людях наприкінці 2028. The Verge описує «ретельний план» компанії тримати Wall Street на відстані після IPO, а також критикує її за спалювання газу для дата-центрів.</p>
+<p class="src">Джерела: <a href="https://www.anthropic.com/research/early-progress-drug-development">Anthropic Research</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/1019470/anthropic-ipo-resist-investor-pressure-cut-corners-safety">The Verge — IPO</a> · <a href="https://finance.yahoo.com/technology/live/anthropic-ipo-live-updates-frontier-ai-lab-discloses-revenue-and-risks-in-highly-anticipated-s-1-filing-141702607.html">Yahoo Finance — S-1</a></p>
+</details>
+<details><summary>OpenAI: GPT-6.1 Terra — модель для computer use за $1/$5 за млн токенів; три «наукові відкриття» на перевірку академікам; Oracle-застосунки в ChatGPT<span class="tag">Simon Willison / TechCrunch / OpenAI</span></summary>
+<p class="body">26 жовтня OpenAI представила GPT-6.1 Terra — «швидку, ефективну модель, що поєднує детальне візуальне мислення і точне керування комп&#x27;ютером», наступницю GPT-5.6 Terra: $1 за мільйон вхідних і $5 за мільйон вихідних токенів — майже вдвічі дешевше за GPT-6.1 Sol, у 10 разів дорожче за GPT-6 Luna. За словами Теда Сандерса з OpenAI, Terra «ймовірно краща за Astra і Sol у технічній комунікації», рівна їм у зорі й computer use, але «трохи гірша в більшості іншого» — середня опція між Sol і Luna; Саймон Віллісон порівнює її роль із Sonnet в Anthropic.</p>
+<p class="body">Паралельно OpenAI оприлюднила три результати, отримані ШІ, для зовнішньої перевірки — включно із заявленим спростуванням Exponential Time Hypothesis для 3-SAT (TechCrunch пояснює, що це означає; The Verge пише, що дослідники «втомилися від того, як OpenAI притримує прориви»). OpenAI також розширила партнерство з Oracle: застосунки Oracle приходять у ChatGPT; Greptile використовує GPT-6 Astra для пошуку багів поза код-рев&#x27;ю.</p>
+<p class="src">Джерела: <a href="https://simonwillison.net/2026/Oct/26/gpt-61-terra/">Simon Willison</a> · <a href="https://techcrunch.com/2026/10/27/frontier-ai-labs-say-their-models-refuted-the-exponential-time-hypothesis-what-does-that-mean/">TechCrunch — ETH</a> · <a href="https://openai.com/index/oracle-apps-in-chatgpt">OpenAI — Oracle</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/1019921/openai-breakthrough-math-computer-science-physics">The Verge</a></p>
+</details>
+<details><summary>Google DeepMind Genie 4: світова модель із живим звуком, промптами посеред симуляції та 2 хвилинами консистентності; прев&#x27;ю для «довірених тестерів»<span class="tag">TechCrunch / The Verge</span></summary>
+<p class="body">27 жовтня Google DeepMind випустила Genie 4 у дослідницькому прев&#x27;ю. Нове: фотореалістичніші світи, генерований у реальному часі звук (музика, атмосфера, інтерактивні діалоги), можливість змінювати сцену текстом під час симуляції (погода, ракурс, нові персонажі), консистентність сцени до двох хвилин — удвічі більше за Genie 3, краща фізика, людяніші персонажі. Gemini планує кроки й перевіряє кадри, Genie 4 генерує картинку; в експерименті з Gemini Robotics модель симулювала сценарії для робота до реальних тестів.</p>
+<p class="body">Доступ: зараз — довірені тестери, найближчими тижнями — підписники Google AI Ultra ($250/міс) у Project Genie і партнери раннього доступу Gemini API/AI Studio. Обмеження: дрейф деталей у довгих симуляціях, неточний звук і нечитабельний текст у світі. Ринок консолідується: AMD купила World Labs, Amazon веде переговори про Decart, Rivian придбав Third Dimension.</p>
+<p class="src">Джерела: <a href="https://techcrunch.com/2026/10/27/googles-genie-4-world-model-adds-audio-more-realistic-worlds-and-real-time-steering/">TechCrunch</a> · <a href="https://www.theverge.com/tech/1019076/google-genie-4-ai-model">The Verge</a></p>
+</details>
+<details><summary>Apple: 14-дюймовий MacBook Pro з M6 (перший 2-нм чип) і ШІ-чатбот у Pages, Keynote і Numbers<span class="tag">Apple Newsroom / The Verge / 9to5Mac</span></summary>
+<p class="body">27 жовтня Apple представила новий 14-дюймовий MacBook Pro із чипом M6 — першим у компанії на 2-нм техпроцесі: 12-ядерний CPU, 12-ядерний GPU з нейроприскорювачами, подвійний 16-ядерний Neural Engine, до 170 ГБ/с пропускної здатності пам&#x27;яті; за попередніми даними, дизайн не змінився, стартова ціна лишається $1 999, версії Pro/Max у цьому поколінні пропущено, OLED-сенсорний екран — для пізніших преміальних моделей.</p>
+<p class="body">Одночасно The Verge повідомляє, що Apple додає ШІ-чатбот у Pages, Keynote і Numbers. Серед іншого за добу: Firefox Smart Window отримав ШІ-заповнення форм і моніторинг сторінок; Opera запропонувала вебстандарт для локального запуску ШІ в браузері; Cohere заявила, що модель Qwen від Alibaba «намагалася надіслати файл у Пекін»; Meta втратила директора з ШІ Рохіта Пателя, а Disruptive підняв фонд на $10 млрд. Акції Walmart: компанія каже, що ШІ-навчання підвищує впевненість 2,1 млн працівників.</p>
+<p class="src">Джерела: <a href="https://www.apple.com/in/newsroom/2026/10/apple-introduces-the-new-14-inch-macbook-pro-with-m6/">Apple Newsroom</a> · <a href="https://www.theverge.com/tech/1019373/apple-pages-keynote-numbers-ai-chatbot-update">The Verge — iWork</a> · <a href="https://9to5mac.com/2026/08/25/three-new-macs-are-launching-this-fall-heres-whats-coming/">9to5Mac — M6</a> · <a href="https://techcrunch.com/2026/10/26/cohere-says-alibabas-qwen-model-tried-to-send-a-file-to-beijing/">TechCrunch — Cohere/Qwen</a></p>
+</details>
+</section>
+<section id="tattoo"><h2>🎨 Тату-індустрія <span class="cnt">1 новина</span></h2>
+<details><summary>Цієї доби без помітних новин; на горизонті — Longhorn State Tattoo Expo (30.10–1.11) та Iron Circus у Вашингтоні<span class="tag">World Tattoo Events / Live Science</span></summary>
+<p class="body">У стрічках Inked і Tattoo Life за добу нових матеріалів немає, нових відкликань фарб FDA не публікувала (останнє гучне — Sacred Tattoo Ink, травень 2025). Календар: 30 жовтня – 1 листопада проходять Longhorn State Tattoo Expo (Техас) і 7-й Iron Circus Tattoo Expo у Шелтоні (Вашингтон); щойно завершилися шоу в Річмонді, Бойсі, Мадриді й Салерно. З досліджень місяця — Live Science (9 жовтня) про чорнило, яке можна «вмикати і вимикати» світлом (комерціалізується як PhotoTat).</p>
+<p class="body">Регуляторний фон без змін: у США діє MoCRA з реєстрацією виробників і лістингом продуктів, у ЄС — обмеження REACH на пігменти.</p>
+<p class="src">Джерела: <a href="https://www.worldtattooevents.com/tattoo-conventions/2026/october">World Tattoo Events — жовтень 2026</a> · <a href="https://www.livescience.com/technology/cool-chemistry-trick-allows-new-tattoos-to-turn-on-and-off">Live Science — PhotoTat</a></p>
+</details>
+</section>
+<footer>Згенеровано автоматично 27.10.2026 о 17:44 за Нью-Йорком. Вікно новин: ~26 годин · Джерел зібрано: 29/29. Архів: НОВИНИ/digests · <a href="#top">↑ нагору</a></footer></div>
+</body>
+</html>
