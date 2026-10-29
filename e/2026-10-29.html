@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Daily Economic Brief</title>
+</head>
+<body>
+
+<style>
+:root{
+  --bg:#f4f4f2; --card:#fff; --head:#161a20; --body:#3d4551; --muted:#818a99;
+  --accent:#3f5b8c; --accent-soft:#eaeff7; --border:#e6e7ea; --rule:#eff0f2;
+  --up:#1a7f4b; --down:#c23b48; --chip:#f0f1f3;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--body); margin:0; padding:26px 16px 56px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  font-size:17px; line-height:1.72; font-weight:400;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:720px;margin:0 auto;}
+
+/* ── Шапка ─────────────────────────────── */
+h1{
+  font-size:1.75rem; line-height:1.2; font-weight:600; letter-spacing:-.022em;
+  color:var(--head); margin:0 0 6px; text-wrap:balance;
+}
+.date{color:var(--muted);font-size:.82rem;font-weight:400;letter-spacing:.01em;margin-bottom:20px;}
+.prices{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px;}
+.prices span{
+  background:var(--chip); border-radius:8px; padding:6px 11px;
+  font-size:.78rem; font-weight:500; color:var(--head); white-space:nowrap;
+  font-variant-numeric:tabular-nums; letter-spacing:-.005em;
+}
+.up{color:var(--up);font-weight:600;}
+.down{color:var(--down);font-weight:600;}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 30px;}
+nav.toc a{
+  background:transparent; border:1px solid var(--border); border-radius:8px;
+  padding:6px 11px; font-size:.79rem; font-weight:450; color:var(--muted);
+  text-decoration:none; transition:color .12s, border-color .12s;
+}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);}
+nav.toc a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+/* ── Секції: головне, що розділяє потік ── */
+section{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:6px 22px 10px; margin:0 0 26px; scroll-margin-top:16px;
+}
+h2{
+  font-size:.94rem; font-weight:600; letter-spacing:.005em; color:var(--head);
+  margin:0; padding:18px 0 14px; border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; gap:9px; text-wrap:balance;
+}
+h2 .cnt{color:var(--muted);font-weight:400;font-size:.78rem;letter-spacing:0;margin-left:auto;}
+
+/* ── Головне за добу ───────────────────── */
+section#top{background:var(--accent-soft);border-color:transparent;}
+ul.tldr{margin:0;padding:14px 0 6px;list-style:none;}
+ul.tldr li{
+  margin:0; padding:11px 0 11px 2px; border-top:1px solid var(--rule);
+  font-size:.97rem; line-height:1.62;
+}
+ul.tldr li:first-child{border-top:none;}
+ul.tldr b{color:var(--head);font-weight:600;}
+
+/* ── Новина ────────────────────────────── */
+details{border-top:1px solid var(--rule);}
+details:first-of-type{border-top:none;}
+summary{
+  cursor:pointer; list-style:none; position:relative;
+  padding:17px 4px 17px 26px; margin:0;
+  font-size:1rem; font-weight:500; line-height:1.5; color:var(--head);
+  letter-spacing:-.008em; transition:color .12s;
+}
+summary::-webkit-details-marker{display:none;}
+summary::before{
+  content:""; position:absolute; left:4px; top:26px;
+  width:7px; height:7px; border-right:1.5px solid var(--muted);
+  border-bottom:1.5px solid var(--muted); transform:rotate(-45deg);
+  transition:transform .18s ease, border-color .12s;
+}
+details[open] summary::before{transform:rotate(45deg);border-color:var(--accent);}
+summary:hover{color:var(--accent);}
+summary:hover::before{border-color:var(--accent);}
+summary .tag{
+  display:block; margin-top:5px; color:var(--muted);
+  font-weight:400; font-size:.76rem; letter-spacing:.01em;
+}
+.body{
+  margin:0 0 14px; padding:0 4px 0 26px;
+  font-size:.96rem; line-height:1.75; font-weight:400; color:var(--body);
+  max-width:66ch;
+}
+.note{
+  margin:0 4px 14px 26px; padding:13px 16px;
+  background:var(--accent-soft); border-radius:10px;
+  font-size:.92rem; line-height:1.62; color:var(--body); max-width:64ch;
+}
+.note b{color:var(--accent);font-weight:600;}
+.src{
+  margin:0 4px 18px 26px; padding:0;
+  font-size:.79rem; line-height:1.9; color:var(--muted); font-weight:400;
+}
+.src a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);}
+.src a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+footer{
+  color:var(--muted); font-size:.76rem; line-height:1.75; font-weight:400;
+  margin:34px 0 0; padding-top:18px; border-top:1px solid var(--border);
+}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media (max-width:640px){
+  body{font-size:16px;padding:20px 12px 44px;}
+  h1{font-size:1.5rem;}
+  section{padding:4px 16px 8px;border-radius:12px;margin-bottom:20px;}
+  .body,.note,.src{padding-left:0;margin-left:0;}
+  .note{margin-bottom:12px;}
+  summary{padding-left:22px;}
+}
+@media (prefers-reduced-motion: reduce){summary::before{transition:none;}}
+
+.sitenav{
+  position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:4px;
+  align-items:center; padding:11px 16px; margin:-26px -16px 26px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.sitenav a{
+  font-size:.81rem; font-weight:450; text-decoration:none; color:var(--muted);
+  padding:6px 12px; border-radius:8px; white-space:nowrap;
+  transition:color .12s, background .12s;
+}
+.sitenav a:hover{color:var(--head);background:var(--chip);}
+.sitenav a.on{color:var(--accent);background:var(--accent-soft);font-weight:600;}
+.sitenav .sp{flex:1;}
+.sitenav .when{font-size:.76rem;color:var(--muted);letter-spacing:.01em;}
+@media (max-width:640px){
+  .sitenav{margin:-20px -12px 20px;padding:9px 12px;}
+  .sitenav a{padding:5px 10px;font-size:.78rem;}
+  .sitenav .when{display:none;}
+}
+</style>
+<div class="wrap"><nav class="sitenav"><a href="/">☕ Дайджест</a><a href="/en.html" class="on">📊 Economic Brief</a><a href="/archive.html">🗂 Архів</a><span class="sp"></span><span class="when">29 жовтня 2026</span></nav>
+<h1>📊 Daily Economic Brief</h1>
+<div class="date">Thursday, 29 October 2026 · compiled 12:19 New York time</div>
+<div class="prices"><span>BTC $81 653 <span class="up">+1.51%</span></span><span>ETH $2 364 <span class="up">+1.46%</span></span><span>S&amp;P 500 7 724 <span class="down">−0.26%</span></span><span>NASDAQ 26 250 <span class="down">−1.13%</span></span><span>DJIA 52 302 <span class="down">−0.33%</span></span></div>
+<nav class="toc"><a href="#top">🔥 Top</a><a href="#macro">📊 Macro &amp; Rates</a><a href="#geo">🌐 Geopolitics &amp; Energy</a><a href="#trade">🚢 Trade, Tariffs &amp; Policy</a><a href="#trump">🎙 Trump &amp; Policy Signals</a><a href="#corp">🏢 Corporate &amp; Earnings</a><a href="#crypto">₿ Digital Assets</a><a href="#ai">🤖 The AI Economy</a></nav>
+<section><h2>🧭 The throughline</h2><p class="body" style="padding-left:0">Thursday is the day the AI trade stopped rewarding beats. Alphabet grew revenue 25% and fell 13%, Caterpillar posted a record $78 billion backlog and fell 9%, ServiceNow lost a quarter of its value in a session — the market is no longer pricing growth, it is pricing the bill: negative free cash flow at Google, unchanged guidance at Caterpillar, seat-based software models that AI agents can hollow out. The macro backdrop sharpens the squeeze: a hawkish Fed hold with two dissents for a hike, PCE at 3.6%, Q3 GDP at 3.4%, 10-year Treasuries pinned at 5% — strong data now reads as December-hike ammunition, not a reason to buy. Oil sits at $110–115 on the Iran pendulum between Vance&#x27;s letter and post-midterm strikes, Shell&#x27;s record $42 refining margin says the shortage is in diesel, not crude, and Ukraine&#x27;s central bank just confirmed a wartime recession with a rate hike to 16.5%. Amazon and Apple after the close decide whether this is a rotation or a repricing.</p></section>
+<section id="top"><h2>🔥 Top of the brief</h2><ul class="tldr">
+<li>📉 <b>Alphabet −13% (worst day on record), ServiceNow −25%, Caterpillar −9%: beats are being sold</b> Google showed negative free cash flow and slowing Search; Microsoft disclosed Azure at $33.2B (+48%) and trimmed capex; Amazon and Apple report after the bell.</li>
+<li>🏦 <b>Fed holds 3.75–4.00% on a 10–2 vote with Cook and Hammack dissenting for a hike; December hike odds 87.5%</b> Warsh: &#x27;if you think we&#x27;re tolerating some inflation target above 2%, let us disabuse you of it.&#x27; 10-year at 5.00%, 30-year 5.30%.</li>
+<li>📊 <b>Q3 GDP +3.4%, September PCE 3.6% (core 3.1%), jobless claims 194k — lowest since the late 1960s</b> Nominal spending +0.5% but income +0.2% and the saving rate down to 3.8%; September payrolls were only +29k.</li>
+<li>🛢 <b>Brent $110–115 on the Iran pendulum: Vance&#x27;s letter to Rezaei opens a talks window, Trump says post-midterm strikes are &#x27;possible&#x27;</b> Four tankers hit mines in Hormuz; Shell nearly doubled profit on a record $42/bbl refining margin; Treasury widened shadow-fleet sanctions.</li>
+<li>🤝 <b>DoorDash buys Instacart for $17B at $65/share (26% premium), ≥75% cash, close end-2027 to H1 2028</b> JPMorgan bridge, no financing condition; 19% of Instacart shares already committed; FTC review is the long pole.</li>
+<li>🇺🇦 <b>Ukraine&#x27;s central bank hikes to 16.5% and declares recession: 2026 GDP −0.4% (was +1.8%), inflation 12.5%</b> Russian strikes on logistics and a sea-trade blockade; meanwhile Russia&#x27;s own fuel shortages ease as Ukrainian refinery strikes pause under U.S. pressure.</li>
+<li>🏛 <b>Utah files criminal charges against Kalshi and its CEO/COO a day after the CFTC sued Utah; NYSE&#x27;s parent brings Hyperliquid perps to the U.S.</b> HYPE +15%; Bitcoin dipped to $79.6k and rebounded to ~$81.6k; $10B of options expire Friday.</li>
+<li>🤖 <b>Google&#x27;s Gemini 4 Carbon takes #1 on the Intelligence Index; Mistral open-sources a 1-trillion-parameter model at a tenth of the price</b> Anthropic&#x27;s S-1 ($16.3B H1 revenue, $80.7B loss incl. $72.4B non-cash) heads for a November Nasdaq listing as &#x27;ANT&#x27;.</li>
+</ul></section>
+<section id="macro"><h2>📊 Macro &amp; Rates <span class="cnt">4 items</span></h2>
+<details open><summary>Fed holds at 3.75–4.00% on a 10–2 vote; Cook and Hammack dissent for a quarter-point hike; FedWatch puts December hike odds at 87.5%<span class="tag">CNBC / Fortune / Semafor / Yahoo Finance</span></summary>
+<p class="body">The FOMC left the funds rate unchanged on October 28 after September&#x27;s unanimous hike to the same range, but Governor Lisa Cook and Cleveland Fed President Beth Hammack both voted for an additional 25 bp increase — Cook&#x27;s first dissent ever, which some economists read as a protest vote amid the Trump administration&#x27;s legal campaign against her. The statement called inflation elevated and said &#x27;the accumulation of more information will help the Committee determine the policy stance appropriate.&#x27; Chair Kevin Warsh was unambiguously hawkish: &#x27;If you think that we&#x27;re tolerating some inflation target somewhere above 2%, let us disabuse you of it,&#x27; adding that he does not believe in forward guidance &#x27;absent exigent circumstances&#x27; and that politics played &#x27;no role&#x27; six days before the midterms.</p>
+<p class="body">CME FedWatch moved the probability of a December 9 hike to 87.5% from 73% the day before. Two-year yields rose on the day; the 10-year touched 5.05% during the presser before slipping back under 5.00% on Thursday (−3 bp), with the 30-year at 5.30–5.33%. CNN describes a bond market caught between renewed inflation fears, an oil shock tied to Iran, widening deficits and the AI capex boom.</p>
+<p class="note"><b>Why it matters:</b> a central bank hiking into an election with the 10-year at 5% compresses equity multiples and mortgage demand simultaneously — every strong data print now raises the December-hike probability rather than the earnings outlook, which is the mechanism behind Thursday&#x27;s &#x27;good GDP, red tape&#x27; session.</p>
+</details>
+<details><summary>Q3 GDP +3.4% annualized on the AI investment boom; September PCE 3.6% y/y (core 3.1%), spending +0.5% nominal, income only +0.2%, saving rate 3.8%<span class="tag">CNBC / Morningstar / The Hill / NPR / MarketWatch</span></summary>
+<p class="body">The advance estimate of third-quarter GDP came in at 3.4% annualized, above consensus, with The Hill attributing the upside largely to AI-related capital spending. The September PCE price index rose 0.5% m/m and 3.6% y/y (Dow Jones consensus 3.7%); core PCE rose 0.3% m/m and 3.1% y/y, up from 3.0% in August and in line with forecasts. Quarterly PCE inflation was 2.1% headline and 2.5% core.</p>
+<p class="body">Nominal consumer spending rose 0.5%, slightly below forecasts, while personal income rose only 0.2% and the saving rate fell to 3.8% — MarketWatch&#x27;s read is that spending is &#x27;flattening out&#x27; after the inflation surge, i.e. households are funding consumption by saving less. Initial jobless claims for the week to October 24 fell to 194,000, a level last seen in the late 1960s, but that sits against September payrolls of just +29,000 and 4.2% unemployment — low firing, low hiring. NPR&#x27;s framing: five days before the midterms the data say the economy is strong, but voters say affordability is not.</p>
+<p class="note"><b>Why it matters:</b> the next data point that can change the December call is the October jobs report on November 7 — a second sub-50k payroll print would make a hike politically and economically awkward even for Warsh; a strong print locks it in.</p>
+</details>
+<details><summary>Ukraine&#x27;s central bank hikes to 16.5% and cuts its 2026 GDP forecast to −0.4% from +1.8%; inflation forecast raised to 12.5% from 10%<span class="tag">Ekonomichna Pravda / Forbes Ukraine</span></summary>
+<p class="body">The National Bank of Ukraine raised its key rate by 50 bp to 16.5% on October 29 — its second consecutive hike — and for the first time officially forecast a 2026 contraction: GDP −0.4% versus +1.8% in the July forecast. The 2026 inflation forecast was lifted to 12.5% (from 10%), easing to 7.3% in 2027. The NBU cites intensified price pressure and deteriorating expectations after Russian strikes on economic infrastructure, a collapse in exports from attacks and a de facto blockade of sea logistics, and delayed international financing tied to slipped reforms; the stated aim is to keep hryvnia assets attractive and the FX market stable.</p>
+<p class="body">Governor Pyshnyi said the bank could transfer up to UAH 70 billion of profit to the budget in 2027. The 2027 budget passed first reading a day earlier assumes 1.3% growth and 8% inflation — both now look optimistic. The same day Russia struck Dnipro&#x27;s railway station (14 dead) and Chernihiv, and Ukraine launched 600+ drones at Moscow; Russia&#x27;s own fuel shortages are easing as Ukrainian refinery strikes paused after Trump&#x27;s October 11 &#x27;energy truce&#x27;.</p>
+<p class="note"><b>Why it matters:</b> Ukraine&#x27;s deficit (~$37B in the draft budget) is almost entirely externally financed, so the recession call raises the stakes for the EU&#x27;s €70B 2027 funding gap and the &#x27;reparations loan&#x27; from frozen Russian assets — and the refinery-strike pause is the single biggest swing factor for global diesel margins this quarter.</p>
+</details>
+<details><summary>ECB holds at 2.5% as Lagarde&#x27;s early-exit politics resurface; Bank of England consults on tokenized collateral; Shell&#x27;s $42/bbl refining margin is the inflation signal to watch<span class="tag">CNBC / Cointelegraph / HL</span></summary>
+<p class="body">CNBC reports the ECB kept its key rate at 2.5% on Thursday, with attention shifting to the politics of Christine Lagarde&#x27;s possible early departure before her term ends in October 2027 and who might replace her — in July she said &#x27;you are not going to see the back of me before 2027,&#x27; but the FT has reported otherwise. The Bank of England opened a consultation on accepting tokenized collateral for clearing, a sign that central banks are moving from pilots toward plumbing.</p>
+<p class="body">On the inflation side, the most telling European print was corporate: Shell nearly doubled quarterly profit year-on-year as its indicative refining margin hit a record $42 per barrel versus $24 in Q2, a direct read-through of Middle East supply disruption and Russian refinery outages into product prices. With Brent up ~11% in October to its highest since April, energy is the component keeping headline inflation sticky on both sides of the Atlantic.</p>
+<p class="note"><b>Why it matters:</b> refining margins, not crude, drive what consumers pay for diesel and jet fuel — a $42 margin means product shortages that cuts in crude prices will not fix quickly, which is why the Fed&#x27;s &#x27;elevated inflation&#x27; language has staying power.</p>
+</details>
+</section>
+<section id="geo"><h2>🌐 Geopolitics &amp; Energy <span class="cnt">4 items</span></h2>
+<details open><summary>Iran: Vance&#x27;s letter to Rezaei opens a talks window in Qatar or Turkey &#x27;as early as next week&#x27;; Trump says post-midterm strikes are &#x27;possible&#x27;; four tankers hit mines in Hormuz<span class="tag">WSJ via Fox / CBS / The Hill / The American Conservative</span></summary>
+<p class="body">Per the Wall Street Journal and NYT, Vice President Vance wrote to Mohsen Rezaei, secretary of Iran&#x27;s Supreme National Security Council, proposing to revive peace talks; the letter was received October 25 and officials on both sides say talks could begin next week in Doha or Ankara if Tehran agrees — Iranian media confirm receipt but no reply. Trump denied directing the outreach, framed it as help &#x27;with medical supplies&#x27; and said any decision on renewed strikes comes after the November 3 midterms: &#x27;anything&#x27;s possible.&#x27; Karl Rove expects &#x27;kinetic action&#x27; to resume immediately after the vote; reports say Washington has warned Gulf states of a possible &#x27;short, intense&#x27; campaign, and an additional carrier strike group and a Marine expeditionary unit join roughly 20 U.S. warships in the region next month.</p>
+<p class="body">Tehran rejected Qatari proposals as unacceptable but continues mediated talks on reopening Hormuz; its military said at least four tankers caught fire after striking mines a day after the U.S. declared key lanes cleared. The Hill puts the war&#x27;s cost to the U.S. at $47 billion. Treasury expanded sanctions on Iran&#x27;s shadow fleet.</p>
+<p class="note"><b>Why it matters:</b> oil is trading the headline pendulum — talks signals knock $1–3 off Brent, strike signals put it back toward $115 — and with Israel&#x27;s election deadlocked (53/48/19 at 93% counted), the coalition partner for any post-midterm campaign has no stable government.</p>
+</details>
+<details><summary>Brent $110–115 and WTI ~$101–102 after an 11% October gain; Shell nearly doubles profit on record $42/bbl refining margins; Trump–Putin diesel deal has not lowered U.S. pump prices<span class="tag">CNBC / Arbiterz / HL / Ukrainska Pravda</span></summary>
+<p class="body">Brent traded between $110 and $115 on Thursday (Arbiterz: $114.30, −0.9%; other trackers show $109.7) and WTI around $101–102 after Wednesday&#x27;s 2.9% settlement gain; Brent is up about 11% in October and touched its highest since April. The two-way drivers are the Vance letter (down) and preparations for a post-election campaign plus Treasury&#x27;s new shadow-fleet designations (up).</p>
+<p class="body">Shell&#x27;s Q3 results show the real tightness: refining margin at a record $42/bbl versus $24 in Q2, with profit nearly doubling year-on-year, refinery utilization guided at 93–97% and integrated gas output raised to 740–780 kboe/d after the ARC Resources acquisition. Meanwhile Ukrainska Pravda reports the Trump–Putin diesel arrangement — a Treasury license allowing Russian diesel through April 2027, roughly 300,000 tonnes immediately and 500,000 more in November — has not moved U.S. prices: average diesel is up 7 cents since the deal, and analysts (GasBuddy, Pickering) call the volumes a day or two of global demand and the move &#x27;more politics than a game changer.&#x27;</p>
+<p class="note"><b>Why it matters:</b> the shortage is in middle distillates, not crude — which is why diesel does not fall when Brent dips, why refiners and integrated majors are printing records, and why the Ukrainian refinery-strike pause is worth more to Moscow than any sanctions waiver.</p>
+</details>
+<details><summary>Russia takes 600+ drones at Moscow, three airports restricted; Kremlin says war &#x27;must continue&#x27; and talks timing depends on the battlefield; Europe excluded from the next round<span class="tag">Kyiv Independent / Kyiv Post</span></summary>
+<p class="body">Moscow mayor Sobyanin claimed 613 drones launched at the capital overnight with 231 downed (unverifiable); Vnukovo, Domodedovo and Zhukovsky restricted flights and Istanbul-bound traffic turned back — the third mass attack on the Moscow region this month after October 6 (650 drones, oil-facility fire) and October 23 (all four airports closed). Ukraine also hit a &#x27;drone port&#x27; in Bryansk.</p>
+<p class="body">Kremlin spokesman Peskov replied that the war &#x27;must continue so that we are protected,&#x27; and that the timing of the next trilateral round will be &#x27;determined by the battlefield situation&#x27;; aide Ushakov said the round could be in Abu Dhabi after November 4 (Kyiv has floated November 10) and that European states will not be invited. On the fuel side, Izvestia reports free sales resumed in 15 Russian regions including occupied Crimea as Ukrainian refinery strikes slowed sharply after Trump&#x27;s October 11 energy truce (last Ryazan hit October 15, St.</p>
+<p class="body">Petersburg October 18); Zelensky says no stop order was given but acknowledges U.S. pressure, and a KIIS poll shows most Ukrainians want strikes to continue even at the cost of U.S. support. Separately, the Pentagon inspector general declined a bipartisan request to investigate October&#x27;s Starlink/Starshield throttling.</p>
+<p class="note"><b>Why it matters:</b> Russia&#x27;s refining recovery and Ukraine&#x27;s pause are the swing variable for European diesel cracks into winter; if Kyiv resumes strikes after Thursday&#x27;s attacks on Dnipro and Chernihiv, Shell&#x27;s $42 margin has further to run.</p>
+</details>
+<details><summary>China&#x27;s Central Committee plenum: Xi demands &#x27;party discipline&#x27; amid record purges — 42 of 44 military-linked CC members from 2022 removed; Nvidia&#x27;s Huang reportedly targeted by a Chinese spy plot<span class="tag">BBC / NPR / NYT / Guardian</span></summary>
+<p class="body">Beijing&#x27;s four-day closed-door plenum, a year before the 2027 congress expected to hand Xi a fourth term, opened with a work report and a draft decision on &#x27;full and rigorous party self-governance&#x27;; Xi warned against &#x27;two-faced people&#x27; who profess loyalty and act otherwise. Analysts call the purges record-breaking — 42 of the 44 military-affiliated full members elected in 2022 have been removed or disappeared — and estimate attendance could fall below 80%, a post-Mao low (estimate, not official).</p>
+<p class="body">Separately, the NYT and Guardian report U.S. officials believe Nvidia CEO Jensen Huang was the target of a Chinese espionage plot; details are not yet public. On the trade front, DHS added three Chinese genomics companies to the Uyghur Forced Labor Prevention Act entity list, barring their goods absent proof they are not made with forced labor, and suspended visa-free entry for Chinese nationals to the Northern Mariana Islands from October 30.</p>
+<p class="body">The ITC also scheduled expedited sunset reviews of anti-dumping duties on cut-to-length steel plate from China, Russia and Ukraine.</p>
+<p class="note"><b>Why it matters:</b> a leadership consolidating power through purges is less, not more, likely to make trade concessions before 2027 — and the Huang story lands as Washington debates chip-export rules, with Nvidia&#x27;s China exposure already the AI trade&#x27;s biggest policy risk.</p>
+</details>
+</section>
+<section id="trade"><h2>🚢 Trade, Tariffs &amp; Policy <span class="cnt">3 items</span></h2>
+<details open><summary>Proclamation 11074: wind turbines and components declared a Section 232 national-security threat — no new tariffs yet, 180 days of negotiations, existing steel/aluminum/copper duties still apply<span class="tag">Federal Register (Oct 22, published Oct 28)</span></summary>
+<p class="body">Trump concurred with a Commerce Department finding that imports of wind turbines, components and subcomponents &#x27;threaten to impair the national security&#x27;: the report calls wind &#x27;unreliable and intermittent,&#x27; says imported inverters are a cybersecurity vector for remote grid interference, that turbines create radar clutter affecting air defense and weather forecasting, and that U.S. reliance on imported blades and parts has grown.</p>
+<p class="body">Rather than impose duties now, the proclamation directs Commerce and USTR to negotiate agreements with trading partners and report within 180 days, reserving &#x27;alternative remedies&#x27; if talks fail — the same template used before the copper and lumber actions. Section 232 tariffs on steel, aluminum and copper embedded in turbine components remain in force. The same day&#x27;s Federal Register carried a Defense Production Act determination designating petroleum production, refining and logistics as &#x27;essential to the national defense,&#x27; waiving standard DPA procedures and authorizing the Secretary of War to make purchases and financial commitments to expand capacity — the industrial-policy mirror image of the wind action.</p>
+<p class="note"><b>Why it matters:</b> the 180-day clock runs to April 2027, leaving U.S. offshore and onshore wind developers under tariff threat through the next construction season; the DPA move signals federal financing for refining capacity, which bears directly on the distillate squeeze.</p>
+</details>
+<details><summary>Executive Order 14438 on housing costs: automatic PMI cancellation pilot at Fannie/Freddie, a manufactured-housing task force with 180-day deadline, automated title review replacing title insurance on refinances<span class="tag">Federal Register (EO 14438)</span></summary>
+<p class="body">The order directs the FHFA director — subject to a safety-and-soundness finding — to have Fannie Mae and Freddie Mac run a pilot that uses automated valuation models to identify borrowers who have reached the equity threshold and cancel private mortgage insurance proactively, with servicers required to notify borrowers and drop documentation and appraisal hurdles. It creates a Task Force on Manufactured Housing Innovation (HUD and FHFA co-chairs, with USDA, Commerce and VA) to recommend within 180 days reciprocal recognition of certifications across federal programs, elimination of duplicative inspections for factory-built housing, and whether federal grants can be conditioned on standardized state permitting.</p>
+<p class="body">FHFA is to convert the &#x27;title acceptance&#x27; pilot into a permanent nationwide program accepting automated title-risk assessment in lieu of lender&#x27;s title insurance on eligible refinances, extend it above 80% LTV, waive appraisals and income re-verification on rate-reducing refinances, and cut loan-level price adjustments — with savings passed to borrowers. USDA and VA are told to lower rates on their direct loans. The preamble invokes &#x27;Super Intelligence&#x27; risk models.</p>
+<p class="note"><b>Why it matters:</b> this is a demand-side cost cut aimed at title insurers and PMI providers rather than at rates — with the 10-year at 5% and mortgages well above 6.5%, it is the administration&#x27;s substitute for the rate relief the Fed is not delivering before the election.</p>
+</details>
+<details><summary>DHS suspends visa-free entry for Chinese nationals to the Northern Mariana Islands from October 30; UFLPA list adds three Chinese genomics firms; ITC schedules steel-plate sunset reviews on China, Russia, Ukraine<span class="tag">DHS / Newsweek / SCMP / Federal Register</span></summary>
+<p class="body">DHS&#x27;s October 27 notice suspends the CNMI Economic Vitality &amp; Security Travel Authorization Program — 14-day visa-free entry for pre-screened PRC nationals — effective 2 p.m. EDT October 30, including for travelers with existing approvals; over 3,000 PRC nationals used it in FY2025 and Chinese visitors were more than 20% of FY2026 arrivals, so the islands&#x27; tourism authority is &#x27;deeply concerned&#x27; while Senator Mike Lee hails the closure of a &#x27;birth tourism&#x27; loophole.</p>
+<p class="body">On October 28 DHS, for the Forced Labor Enforcement Task Force, added three Chinese genomics companies to the UFLPA Entity List, creating a rebuttable presumption that their goods are made with forced labor. The ITC&#x27;s October 29 Federal Register notice schedules expedited five-year reviews of anti-dumping orders on cut-to-length carbon steel plate from China, Russia and Ukraine.</p>
+<p class="body">Separately, NPR reports automakers are flagging tariffs, diesel and chips as the three cost pressures in this earnings season.</p>
+<p class="note"><b>Why it matters:</b> each of these is small on its own, but together they show trade policy running on autopilot in the final week before the midterms — enforcement actions continue regardless of the Vance-letter diplomacy or the earnings tape.</p>
+</details>
+</section>
+<section id="trump"><h2>🎙 Trump &amp; Policy Signals <span class="cnt">3 items</span></h2>
+<details open><summary>Reuters: Bloomberg and two trading firms pay Trump Media up to $100,000 a month for earlier access to the president&#x27;s Truth Social posts<span class="tag">Reuters via WTVB / Yahoo Finance</span></summary>
+<p class="body">Reuters reported October 28 that Bloomberg and two Wall Street trading firms agreed to pay Trump Media up to $100,000 per month for faster delivery of the president&#x27;s Truth Social posts — a latency edge of milliseconds on a feed that has repeatedly moved markets, most dramatically in April when oil futures sank on his Truth Social announcement of an Iran ceasefire. Critics say selling priority access to statements by a sitting president that move prices creates swings and an edge unavailable to ordinary investors; Trump Media calls the reporting &#x27;misleading&#x27; while confirming &#x27;significant demand.&#x27; The business context is weak: the stock hit an all-time low of $6.40 last week as users fled.</p>
+<p class="body">No single Trump post moved markets on Thursday; the day&#x27;s policy signals came through Fox (Iran strikes &#x27;possible&#x27; after the midterms) and the Fed press conference.</p>
+<p class="note"><b>Why it matters:</b> this formalizes &#x27;Trump latency&#x27; as a paid data product — watch whether the SEC or CFTC takes an interest, since there is no precedent for monetizing early access to market-moving statements by a head of state.</p>
+</details>
+<details><summary>Five days out: dueling Trump and Talarico rallies in Lubbock, Democrats lead Texas and Michigan Senate polls, Ninth Circuit refuses to set aside 20,000 California ballots, Alaska probes the &#x27;two Dans&#x27;<span class="tag">Newsweek / Guardian / NYT / AP</span></summary>
+<p class="body">Trump campaigned in Lubbock for Ken Paxton on October 27 an hour before Democrat James Talarico held his own rally; most polls show Talarico up 2–5 points after a record $64 million Q3 haul, and a new Guardian poll has Democrats leading the Texas and Michigan Senate races with South Carolina tied. The Ninth Circuit on October 26 declined 2–1 to order ~20,000 California mail ballots set aside on the DOJ&#x27;s claim they &#x27;likely&#x27; came from non-citizens, citing lack of jurisdiction and, in two concurrences, doubts about the government&#x27;s list; the NYT reports the district judge rejected the request on October 28.</p>
+<p class="body">Alaska&#x27;s governor ordered an investigation into Mary Peltola&#x27;s campaign over allegations Democrats recruited a second &#x27;Dan Sullivan&#x27; to split the incumbent&#x27;s vote. The NYT describes a &#x27;grim mood&#x27; in the White House and ethics experts saying cabinet members&#x27; campaigning violates the Hatch Act; voter-enthusiasm surveys are at records and NC-1 is the most expensive House race in the country.</p>
+<p class="body">DHS, meanwhile, issued a flurry of enforcement-statistics releases (2.2 million USCIS &#x27;enforcement actions,&#x27; &#x27;worst of the worst&#x27; arrests) and ICE announced &#x27;dozens&#x27; of voter-fraud arrests.</p>
+<p class="note"><b>Why it matters:</b> Senate control decides the next two years of tax, crypto-market-structure and tariff legislation; The Block separately flags that a Democratic House would shift crypto oversight. Markets price the result on election night, not before.</p>
+</details>
+<details><summary>Fed independence subtext: Cook&#x27;s first-ever dissent read as a &#x27;protest vote&#x27;; Warsh insists politics played &#x27;no role&#x27;; Trump&#x27;s &#x27;energy truce&#x27; pressure on Kyiv now shows up in Russian fuel data<span class="tag">Fortune / Yahoo Finance / Kyiv Independent</span></summary>
+<p class="body">Governor Lisa Cook&#x27;s dissent in favor of a hike — her first in any Fed vote — came as the administration&#x27;s legal effort to remove her continues; one economist told Fortune it may reflect anger at the president&#x27;s actions, which would make it as much a governance signal as a policy one. Chair Warsh, Trump&#x27;s appointee, took the opposite tack in substance (hawkish) while denying any political influence on holding before the vote.</p>
+<p class="body">Abroad, Trump&#x27;s October 11 &#x27;energy truce&#x27; declaration and his public pressure on Kyiv to stop striking refineries — alongside the Starlink/Starshield throttling that the WSJ says he ordered Musk to lift on October 21 — have produced a measurable result: Ukrainian refinery strikes slowed sharply after mid-October and Russian regions are lifting fuel rationing. Trump has blamed Ukrainian strikes, rather than the Iran war, for high global fuel prices; the diesel-license deal with Moscow has not lowered U.S. pump prices.</p>
+<p class="note"><b>Why it matters:</b> two independent levers on inflation — the Fed&#x27;s reaction function and the flow of Russian diesel — are now both visibly shaped by White House pressure, which is exactly the setup that keeps term premia and the 30-year yield elevated.</p>
+</details>
+</section>
+<section id="corp"><h2>🏢 Corporate &amp; Earnings <span class="cnt">5 items</span></h2>
+<details><summary>Alphabet: revenue $127.6B (+25%) but negative free cash flow, capex $51.4B, &#x27;first real sign AI is taking a bite out of Search&#x27; — stock −13%, worst day on record if it closes below −9.77%<span class="tag">CNBC / Quartz / TechCrunch</span></summary>
+<p class="body">Alphabet grew revenue 25% to $127.6 billion but reported negative free cash flow as capital expenditure hit $51.4 billion (below the ~$55 billion expected) with the $195–205 billion full-year guide maintained rather than raised. The problem is the core: Search growth is decelerating, CNBC calls the quarter the first real evidence that AI answers are eroding paid clicks, and TechCrunch notes Google is rolling AI-Search ads out globally to monetize the shift.</p>
+<p class="body">Cloud grew but cannot offset. Shares fell ~10% after hours and extended to ~13% on Thursday — a close below −9.77% would be the worst day in the company&#x27;s history. Google also shipped Gemini 4 Carbon (now #1 on the Artificial Analysis Intelligence Index), opened Gemini and Search to third-party apps, and added Gmail-powered autofill to Chrome; Finland opened a criminal probe into Google&#x27;s clearing of ~250,000 trees for a data center.</p>
+<p class="note"><b>Why it matters:</b> Alphabet pays for AI twice — capex for the infrastructure and lost monetization as AI answers reduce ad clicks. Until AI-ad RPM proves comparable to classic Search, every quarter of Search deceleration gets punished; watch Q4 Search growth and whether January&#x27;s capex guide moves.</p>
+</details>
+<details><summary>Microsoft: revenue $92.3B, Azure disclosed in dollars for the first time at $33.2B (+48% vs 44–45% guided), $10B of revenue from OpenAI, capex $45.2B below the $50.7B expected, FY capex trimmed to $170B<span class="tag">TechCrunch / CNBC / Quartz</span></summary>
+<p class="body">Microsoft logged its tenth straight record quarter with $92.3 billion of revenue and beats on both lines. For the first time it broke out Azure in dollars: $33.2 billion for the quarter, up 48% against CFO Amy Hood&#x27;s 44–45% guide and a $32.3 billion consensus, now 36% of total revenue; the new &#x27;Agents and Infra&#x27; segment (Azure plus cloud Microsoft 365) was $76.8 billion, +25%. Microsoft also disclosed $10 billion of revenue from OpenAI.</p>
+<p class="body">Capex of $45.2 billion came in well under the $50.7 billion expected and the full-year plan was trimmed to $170 billion, which Hood attributed to third-party GPU providers delaying capacity into the first half of 2027. Shares rose; the neoclouds that supply that capacity fell — CoreWeave and Nebius ~−5%, IREN ~−3%. Quartz&#x27;s summary: both giants undershot AI-spend estimates — Microsoft showed the spend working, Google showed the bill.</p>
+<p class="note"><b>Why it matters:</b> for the first time two hyperscalers deferred raising capex guidance in the same evening. For Nvidia, neoclouds and data-center power suppliers that is the first sign demand has a logistics ceiling (GPUs, power, construction), not just a dollar one — the bull case needs Amazon to contradict it tonight.</p>
+</details>
+<details><summary>Beat-and-fall day: Caterpillar (EPS $7.20 vs ~$7.08, revenue $20.7B +17%, record $78B backlog) −9% to −12% on unchanged guidance; ServiceNow −25% in its worst day ever on AI-disruption fears; Eli Lilly raises outlook on $24.4B revenue (+39%)<span class="tag">Benzinga / 24/7 Wall St / CNBC / MarketWatch / Lilly 8-K</span></summary>
+<p class="body">Caterpillar earned an adjusted $7.20 per share (vs $4.95 a year ago and ~$7.04–7.16 consensus) on revenue of $20.7 billion (+17%) with a record $78 billion backlog — and fell as much as 12% premarket, trading ~9.5% lower near $645, its worst day in seven years and the Dow&#x27;s biggest drag, because it left 2026 revenue-growth and tariff-cost guidance unchanged while flagging capacity, freight and tariff pressure on margins. 24/7 Wall St notes it fell alongside Vertiv and GE Vernova: the AI-power trade hit the same wall as software.</p>
+<p class="body">ServiceNow lost ~25% after Wednesday&#x27;s report, its largest drop on record, as investors priced AI agents hollowing out seat-based SaaS subscription models; JPMorgan sees a bright spot but the sector sold off broadly. Eli Lilly went the other way: Q3 revenue $24.4 billion (+39%) on Mounjaro and Zepbound, non-GAAP EPS $7.48 including $4.57 of acquired IPR&amp;D charges, guidance raised from $85–87 billion revenue, and CEO talk of &#x27;dramatic&#x27; obesity-market expansion with the oral Foundayo (orforglipron) launch — though ~$900 million of the quarter was one-time (a $410 million Jardiance milestone, rebate adjustments).</p>
+<p class="body">Restaurant Brands was mixed with Burger King&#x27;s U.S. turnaround showing progress; Weil, Gotshal &amp; Manges, a storied Wall Street law firm, plans to wind down.</p>
+<p class="note"><b>Why it matters:</b> winners are companies with proven AI monetization (Microsoft) or none needed (Lilly); losers are models that depend on human seat counts and companies that will not raise guidance on record orders. Tonight&#x27;s Amazon print (consensus EPS $1.96 on ~$202B revenue, ~$220B FY capex, 7.4% implied move) is the tiebreaker.</p>
+</details>
+<details><summary>DoorDash to acquire Instacart for ~$17B: $65.00 per share, 26% premium to the pre-leak close, at least 75% cash with a JPMorgan bridge, close expected end-2027 to H1 2028<span class="tag">DoorDash release / CNBC</span></summary>
+<p class="body">DoorDash and Instacart (Maplebear) agreed a deal at $65.00 per Instacart share — an equity value of about $17 billion and a 26% premium to the October 22 close, the last session before media reports. Holders elect $65 in cash, 0.3372 DoorDash shares, or $48.75 cash plus 0.0843 shares, with stock capped at 25% of total consideration and prorated; the cash is funded from balance sheet and debt under a 364-day JPMorgan bridge, with no financing condition.</p>
+<p class="body">The pitch: combine DoorDash&#x27;s delivery network with Instacart&#x27;s grocery fulfillment technology for retailers of all sizes, add 50,000+ stores to Instacart customers&#x27; choice, merge DashPass and Instacart+ (an estimated $100 million a year in member savings), keep the Instacart brand, app and enterprise products, and retain CEO Chris Rogers. Post-close commitments include no grocery exclusivity and shopper flexibility.</p>
+<p class="body">Conditions: HSR clearance, Canadian and Israeli approvals, and an Instacart shareholder vote with ~19% already committed.</p>
+<p class="note"><b>Why it matters:</b> this merges the two largest U.S. grocery-delivery platforms under an FTC that has already blocked retail consolidation (Kroger–Albertsons); the 12-to-18-month close window is the price of that risk, and the ≥75% cash structure tells you DoorDash wanted certainty over currency.</p>
+</details>
+<details><summary>Anthropic post-S-1: $16.3B H1 revenue (vs ~$1.2B a year earlier), $80.7B net loss including a $72.4B non-cash charge, $112.4B cash, Nasdaq &#x27;ANT&#x27; with Goldman and Morgan Stanley; Claude Enterprise adds spend-visibility tools<span class="tag">The Verge / Yahoo Finance / TechCrunch</span></summary>
+<p class="body">A week after the October 26 filing, analysts are parsing the numbers: first-half 2026 revenue of about $16.3 billion against ~$1.2 billion a year earlier ($4.6 billion for all of 2025, audited), a net loss of $80.7 billion of which $72.4 billion is a one-time non-cash charge, Q2 operating income of $974 million, cash of $112.4 billion plus $19.3 billion of short-term investments, and the seven co-founders retaining 50.1% of voting power via Class F shares.</p>
+<p class="body">The last company-stated valuation is $965 billion from May&#x27;s $65 billion Series H; the $1.5–2 trillion IPO range is press speculation with no price range filed, and trading could start mid-to-late November. The Verge&#x27;s two pieces frame the bet on recursive self-improvement and hundreds of billions in compute commitments as &#x27;build God or die trying&#x27; and &#x27;asking Wall Street to believe in AGI.&#x27; Operationally, Anthropic made smart reports and pooled budgets generally available for Claude Enterprise on October 28 — tools that show companies what their AI spend buys — and launched a Claude Duet research preview.</p>
+<p class="note"><b>Why it matters:</b> the amended S-1 with a price range is the next catalyst — and it will be read against a tape that just took 13% off Alphabet for capex. A company with ~$266 billion of compute obligations is the purest test of whether the market still pays for AI scale.</p>
+</details>
+</section>
+<section id="crypto"><h2>₿ Digital Assets <span class="cnt">3 items</span></h2>
+<details><summary>Bitcoin dipped to $79,600 on the Fed dissents and the Alphabet/Samsung tape, rebounded to ~$81,600 after GDP; $337M liquidated; spot BTC ETFs +$137M (third straight day), ETH ETFs bleed again; $10B options expire Friday<span class="tag">CoinDesk / Cointelegraph / Farside / The Block</span></summary>
+<p class="body">Bitcoin fell ~1.4% overnight to about $80,100 with a $79,600 low as two FOMC dissents for a hike and Nasdaq-100 futures (−1.1% on Alphabet; Samsung −4% despite record profit) hit risk appetite; ether slipped to $2,300–2,320. After the 3.4% GDP print and in-line PCE, BTC bounced to ~$81,600 (+1.5% on the day at noon) and ETH to ~$2,365. Liquidations rose 84% to $337.4 million (BTC $72.5M, ETH $71.6M); futures volume +21.8% to $198.8 billion while open interest fell 1.9% — positions being closed, not added.</p>
+<p class="body">AI tokens led the downside (NEAR −7.8%, TAO −3.1%) with DeFi weak (RAY −8.9%, JTO −6.8%) and JASMY −10%; the altcoin-season index dropped to 54 from 60. U.S. spot bitcoin ETFs took in $137 million on October 28, a third straight day ($423.7 million cumulative, per Farside), while ether ETFs saw a $21.4 million outflow after $60.2 million and $88.6 million the two prior days, with October outflows near $1.08 billion — the worst month this year.</p>
+<p class="body">About $10 billion of bitcoin options expire October 30: the $82,500 call is the most-traded contract, while five of the six most-traded ETH options are puts struck from $2,280 down to $1,500. Bitwise raised its 2036 bitcoin target to $1.6 million (a forecast, not a fact).</p>
+<p class="note"><b>Why it matters:</b> BTC is trading as a high-beta Nasdaq proxy again — Amazon and Apple after the close and Friday&#x27;s expiry decide the week. Above $82,500 dealers chase; below $80,000 the ETH put wall makes ether&#x27;s downside self-reinforcing.</p>
+</details>
+<details><summary>NYSE&#x27;s parent ICE partners with and invests in TradeXYZ to bring Hyperliquid-based perpetual futures to the U.S. under its own exchange and clearing; HYPE +15% to ~$91<span class="tag">The Block / CoinDesk</span></summary>
+<p class="body">Intercontinental Exchange announced it will operate regulated perpetual-futures markets on crypto, equities, indices, commodities and FX built by TradeXYZ on Hyperliquid&#x27;s HIP-3 framework, with dedicated ICE exchange and clearing infrastructure, a strategic investment in TradeXYZ, and access through participating brokers — all subject to regulatory approval, with no launch date.</p>
+<p class="body">CEO Jeffrey Sprecher called perps &#x27;additive to our futures markets, not a replacement.&#x27; The path was cleared by the CFTC&#x27;s May staff advisory and no-action relief and by Trump&#x27;s September remark about bringing Hyperliquid to the U.S. &#x27;in a fully compliant and legal fashion.&#x27; HYPE rose 15–18% to around $91 against a $97.96 all-time high set last month; HIP-3 markets had $2.38 billion of open interest in April.</p>
+<p class="body">Adjacent moves: Polymarket launched ultra-short crypto prediction markets on its U.S. platform, Uniswap opened its TJAR fee-conversion tool to apps starting with Robinhood, Curve deployed on Stellar (its first non-EVM chain), and Walmart and Eli Lilly joined the pushback against OKX–ICE tokenized-stock plans while a Canton-based venue may beat them to the first trade under the SEC framework.</p>
+<p class="note"><b>Why it matters:</b> perps are the most profitable product of offshore crypto exchanges; moving them under U.S. clearing with an NYSE brand is both legitimation and the strongest competitor Binance, Bybit and Hyperliquid itself have faced — watch the CFTC approval timeline and whether equities perps survive SEC scrutiny.</p>
+</details>
+<details><summary>Utah files criminal charges against Kalshi, CEO Tarek Mansour and COO Luana Lopes Lara for &#x27;illegal gambling&#x27; a day after the CFTC sued Utah to assert exclusive jurisdiction; CFTC has now sued 10+ states<span class="tag">The Block / The Hill</span></summary>
+<p class="body">Utah Attorney General Derek Brown filed criminal charges accusing Kalshi and its two top executives of promoting online gambling and allowing an undercover agent to place wagers (count totals undisclosed), following the state&#x27;s October 20 civil complaint over sports, election and political contracts and separate suits against two Susquehanna trading firms. Brown: calling it a &#x27;prediction market&#x27; does not change what it is, and federal registration does not put a company above the law.</p>
+<p class="body">Kalshi called the move a &#x27;crazy overreach&#x27; and &#x27;politics,&#x27; citing its win in Arizona; in February, though, a judge denied Kalshi&#x27;s own bid to block Utah enforcement. The day before, the CFTC sued Utah, with Chair Michael Selig arguing Congress made the agency the sole federal regulator of event contracts; the CFTC has now sued at least ten states. The first criminal — rather than civil — case against prediction-market executives lands as Polymarket and Robinhood expand such products in the U.S.</p>
+<p class="body">Elsewhere: OFAC sanctioned Russian nationals who laundered crypto for North Korean IT-worker schemes, the French Senate adopted automatic crypto tax-data sharing, HTX agreed to halt unlawful UK promotions after an FCA case, Coinbase is seeking a Brazilian license ahead of the October 31 deadline, and Alice &amp; Bob estimated ~30,000 physical qubits could break a bitcoin key in 62 minutes (17x less hardware than Google&#x27;s March estimate; theoretical, early-2030s horizon).</p>
+<p class="note"><b>Why it matters:</b> if a Utah court rejects federal preemption, every state gets a template to prosecute prediction-market executives, and The Block&#x27;s warning that a Democratic House would reshape crypto oversight after November 3 turns the midterms into a direct regulatory event for the sector.</p>
+</details>
+</section>
+<section id="ai"><h2>🤖 The AI Economy <span class="cnt">3 items</span></h2>
+<details><summary>Google&#x27;s Gemini 4 Carbon takes #1 on the Artificial Analysis Intelligence Index (59, +9 vs Argon), second to Claude Opus 5.5 in coding; $4/$20 per million tokens, 1M context, not yet publicly available<span class="tag">Artificial Analysis / The Verge</span></summary>
+<p class="body">Google launched Gemini 4 Carbon with a pitch on cybersecurity capability. Artificial Analysis scores it 59 on Intelligence Index v5 — nine points above Gemini 4 Argon and first on four of nine evaluations (HLE-Diamond, Terminal-Bench-Science, AA-Omniscience, AutomationBench). On the Coding Agent Index it posts 59 with Antigravity CLI, three behind Claude Code with Claude Opus 5.5 (max) at 62; Terminal-Bench 4.0 64% (second), FrontierCode 51% vs Opus 5.5&#x27;s 56%.</p>
+<p class="body">It leads AA-Omniscience at 54 (Opus 5.5: 48) with 58% accuracy and an 11% hallucination rate, second-lowest. On knowledge work (AA-Briefcase) it scores 1609 Elo, up 126 from Argon but behind Grok 4.7, Muse Wonder and Kimi K3.1 Pro. Cost per Index task is $7.76 — 23% below Opus 5.5 (max, $10.04) and ~1.2x GPT-6 Astra (max, $6.25) — at $4 input / $20 output per million tokens with a 95% cached-input discount and a 50% launch promo; inputs span text, image, video and speech with a 1M-token context. Rollout is to selected users only.</p>
+<p class="note"><b>Why it matters:</b> the model arrives the same day Alphabet&#x27;s stock is punished for Search erosion — the question for investors is whether Carbon shows up in Search and Workspace monetization by Q4, not where it sits on a leaderboard.</p>
+</details>
+<details><summary>Mistral open-weights Large 4 &#x27;Le Chonk&#x27;: 1 trillion parameters (~52B active MoE), modified-MIT license, best open model for coding by its own benchmarks, $0.70/$2.10 per million tokens — roughly a tenth of Gemini 4 Carbon<span class="tag">Mistral AI / Hacker News</span></summary>
+<p class="body">Mistral Large 4 is a natively multimodal 1T-parameter model with three reasoning modes; the repo name (1T-A52B) implies a mixture-of-experts with ~52 billion active parameters. Weights are released under the Mistral Ecosystem Open-Weight license (modified MIT): use, fine-tuning and commercial deployment are free, but model-as-a-service providers need a separate commercial license.</p>
+<p class="body">Vendor-reported results: leads open models on FrontierCode 2.0 (19.7%) and Terminal-Bench 4.0 (41%, up from 28% in preview); 48% on the Coding Agent Index (level with GLM-5.3 at ~47% fewer tokens per task); beat GLM-5.3, Kimi K3 and DeepSeek V4.1 Flash in blind code-preference tests, behind only Claude Opus 5.5; 96.6% refusal of malicious cyber requests; 73.3% on Finch (finance spreadsheets); 84.5% on BrowseComp.</p>
+<p class="body">Available on Mistral Studio and API, OpenRouter, Hugging Face for self-hosting (vLLM/SGLang), NVIDIA NIM and Microsoft Foundry. Pricing: $0.70 input, $0.07 cached, $2.10 output per million tokens.</p>
+<p class="note"><b>Why it matters:</b> a European trillion-parameter open model at a tenth of frontier API prices compresses the margin available to closed-model API providers and strengthens the enterprise case for self-hosting — pressure that lands on the same day hyperscalers trimmed capex.</p>
+</details>
+<details><summary>The bill comes due: Finland opens a criminal probe into Google&#x27;s clearing of ~250,000 trees for a data center; two hyperscalers defer capex raises; neoclouds −5%; only 40% of AI-cited statistics trace to a real study<span class="tag">Yle / Quartz / NPR / The Verge / Trakkr</span></summary>
+<p class="body">Finnish police are investigating Google over forest clearance for a data-center site (Yle: ~250,000 trees), the first criminal case against a hyperscaler&#x27;s build-out in the EU. The same week Microsoft trimmed FY capex to $170 billion citing third-party GPU delays and Alphabet held its $195–205 billion guide rather than raising it — Quartz&#x27;s read is that the AI build-out &#x27;hit a snag,&#x27; and CoreWeave, Nebius and IREN fell 3–5% in sympathy.</p>
+<p class="body">NPR examines who actually benefits when massive data centers arrive in small towns (tax base and jobs vs power prices), The Verge how AI and TSMC &#x27;came for Arizona&#x27;s water,&#x27; and The Hill runs an op-ed on the &#x27;dangerous financial web&#x27; behind Nvidia-centered AI financing. Trakkr&#x27;s research finds only 40% of statistics cited by AI assistants trace back to an actual study. Deals continue regardless: Wabi, an agent that builds mini-apps, is valued at $1.25 billion; Deepgram is buying Pipecat-maker Daily for voice-AI infrastructure; Google opened Gemini and Search to third-party apps and added Gmail-powered autofill to Chrome; Microsoft is ending Copilot on smart TVs. A Dartmouth provost resigned over AI-use violations, and the NYT finds candidate websites filled with AI-written text.</p>
+<p class="note"><b>Why it matters:</b> the physical constraints — GPUs, power, water, land permits — are now showing up in guidance and in courtrooms at the same time; for the AI-infrastructure trade (Vertiv, GE Vernova, Caterpillar&#x27;s power business, neoclouds) that is a harder ceiling than any valuation argument.</p>
+</details>
+</section>
+<footer>Compiled automatically on 29.10.2026 at 12:19 New York time. Window: last ~26 hours · Feeds collected: 29/29. <a href="#top">↑ back to top</a></footer></div>
+</body>
+</html>
