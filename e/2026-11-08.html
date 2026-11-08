@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Daily Economic Brief</title>
+</head>
+<body>
+
+<style>
+:root{
+  --bg:#f4f4f2; --card:#fff; --head:#161a20; --body:#3d4551; --muted:#818a99;
+  --accent:#3f5b8c; --accent-soft:#eaeff7; --border:#e6e7ea; --rule:#eff0f2;
+  --up:#1a7f4b; --down:#c23b48; --chip:#f0f1f3;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--body); margin:0; padding:26px 16px 56px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  font-size:17px; line-height:1.72; font-weight:400;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:720px;margin:0 auto;}
+
+/* ── Шапка ─────────────────────────────── */
+h1{
+  font-size:1.75rem; line-height:1.2; font-weight:600; letter-spacing:-.022em;
+  color:var(--head); margin:0 0 6px; text-wrap:balance;
+}
+.date{color:var(--muted);font-size:.82rem;font-weight:400;letter-spacing:.01em;margin-bottom:20px;}
+.prices{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px;}
+.prices span{
+  background:var(--chip); border-radius:8px; padding:6px 11px;
+  font-size:.78rem; font-weight:500; color:var(--head); white-space:nowrap;
+  font-variant-numeric:tabular-nums; letter-spacing:-.005em;
+}
+.up{color:var(--up);font-weight:600;}
+.down{color:var(--down);font-weight:600;}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 30px;}
+nav.toc a{
+  background:transparent; border:1px solid var(--border); border-radius:8px;
+  padding:6px 11px; font-size:.79rem; font-weight:450; color:var(--muted);
+  text-decoration:none; transition:color .12s, border-color .12s;
+}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);}
+nav.toc a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+/* ── Секції: головне, що розділяє потік ── */
+section{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:6px 22px 10px; margin:0 0 26px; scroll-margin-top:16px;
+}
+h2{
+  font-size:.94rem; font-weight:600; letter-spacing:.005em; color:var(--head);
+  margin:0; padding:18px 0 14px; border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; gap:9px; text-wrap:balance;
+}
+h2 .cnt{color:var(--muted);font-weight:400;font-size:.78rem;letter-spacing:0;margin-left:auto;}
+
+/* ── Головне за добу ───────────────────── */
+section#top{background:var(--accent-soft);border-color:transparent;}
+ul.tldr{margin:0;padding:14px 0 6px;list-style:none;}
+ul.tldr li{
+  margin:0; padding:11px 0 11px 2px; border-top:1px solid var(--rule);
+  font-size:.97rem; line-height:1.62;
+}
+ul.tldr li:first-child{border-top:none;}
+ul.tldr b{color:var(--head);font-weight:600;}
+
+/* ── Новина ────────────────────────────── */
+details{border-top:1px solid var(--rule);}
+details:first-of-type{border-top:none;}
+summary{
+  cursor:pointer; list-style:none; position:relative;
+  padding:17px 4px 17px 26px; margin:0;
+  font-size:1rem; font-weight:500; line-height:1.5; color:var(--head);
+  letter-spacing:-.008em; transition:color .12s;
+}
+summary::-webkit-details-marker{display:none;}
+summary::before{
+  content:""; position:absolute; left:4px; top:26px;
+  width:7px; height:7px; border-right:1.5px solid var(--muted);
+  border-bottom:1.5px solid var(--muted); transform:rotate(-45deg);
+  transition:transform .18s ease, border-color .12s;
+}
+details[open] summary::before{transform:rotate(45deg);border-color:var(--accent);}
+summary:hover{color:var(--accent);}
+summary:hover::before{border-color:var(--accent);}
+summary .tag{
+  display:block; margin-top:5px; color:var(--muted);
+  font-weight:400; font-size:.76rem; letter-spacing:.01em;
+}
+.body{
+  margin:0 0 14px; padding:0 4px 0 26px;
+  font-size:.96rem; line-height:1.75; font-weight:400; color:var(--body);
+  max-width:66ch;
+}
+.note{
+  margin:0 4px 14px 26px; padding:13px 16px;
+  background:var(--accent-soft); border-radius:10px;
+  font-size:.92rem; line-height:1.62; color:var(--body); max-width:64ch;
+}
+.note b{color:var(--accent);font-weight:600;}
+.src{
+  margin:0 4px 18px 26px; padding:0;
+  font-size:.79rem; line-height:1.9; color:var(--muted); font-weight:400;
+}
+.src a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);}
+.src a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+footer{
+  color:var(--muted); font-size:.76rem; line-height:1.75; font-weight:400;
+  margin:34px 0 0; padding-top:18px; border-top:1px solid var(--border);
+}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media (max-width:640px){
+  body{font-size:16px;padding:20px 12px 44px;}
+  h1{font-size:1.5rem;}
+  section{padding:4px 16px 8px;border-radius:12px;margin-bottom:20px;}
+  .body,.note,.src{padding-left:0;margin-left:0;}
+  .note{margin-bottom:12px;}
+  summary{padding-left:22px;}
+}
+@media (prefers-reduced-motion: reduce){summary::before{transition:none;}}
+
+.sitenav{
+  position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:4px;
+  align-items:center; padding:11px 16px; margin:-26px -16px 26px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.sitenav a{
+  font-size:.81rem; font-weight:450; text-decoration:none; color:var(--muted);
+  padding:6px 12px; border-radius:8px; white-space:nowrap;
+  transition:color .12s, background .12s;
+}
+.sitenav a:hover{color:var(--head);background:var(--chip);}
+.sitenav a.on{color:var(--accent);background:var(--accent-soft);font-weight:600;}
+.sitenav .sp{flex:1;}
+.sitenav .when{font-size:.76rem;color:var(--muted);letter-spacing:.01em;}
+@media (max-width:640px){
+  .sitenav{margin:-20px -12px 20px;padding:9px 12px;}
+  .sitenav a{padding:5px 10px;font-size:.78rem;}
+  .sitenav .when{display:none;}
+}
+</style>
+<div class="wrap"><nav class="sitenav"><a href="/">☕ Дайджест</a><a href="/en.html" class="on">📊 Economic Brief</a><a href="/archive.html">🗂 Архів</a><span class="sp"></span><span class="when">8 листопада 2026</span></nav>
+<h1>📊 Daily Economic Brief</h1>
+<div class="date">Sunday, 8 November 2026 · Sunday edition · compiled 14:18 New York time</div>
+<div class="prices"><span>BTC $75 778 <span class="up">+0.06%</span></span><span>ETH $2 230 <span class="down">−0.09%</span></span><span>S&amp;P 500 7 377 <span class="up">+0.31%</span></span><span>NASDAQ 24 579 <span class="up">+1.09%</span></span><span>DJIA 51 286 <span class="down">−0.46%</span></span></div>
+<nav class="toc"><a href="#top">🔥 Top</a><a href="#macro">📊 Macro &amp; Rates</a><a href="#energy">⚡ Energy &amp; Geopolitics</a><a href="#trump">🎙 Trump &amp; Policy Signals</a><a href="#trade">🚢 Trade, Tariffs &amp; Policy</a><a href="#corp">🏢 Corporate &amp; Earnings</a><a href="#ai">🤖 The AI Economy</a><a href="#crypto">₿ Digital Assets</a></nav>
+<section><h2>🧭 The throughline</h2><p class="body" style="padding-left:0">The market is repricing two regime changes at once. Politically, a Democratic sweep of Congress turns Washington into a divided government that will contest tariffs, Iran war funding and the December 11 budget deadline, and oil has already dumped its war premium on the view that the conflict will be constrained. Economically, a 165,000 October payrolls print with unemployment at 4.1% and inflation at 3.7% has flipped the Fed debate from cuts to a likely December hike, pushing the 10-year to 4.85%. Caught between higher discount rates and doubts about AI capex payback, the Nasdaq slipped into correction before a Friday chip bounce. The setup for the coming weeks is asymmetric: oil has priced peace, bonds have priced a hike, and AI megacaps have priced perfection, so the surprises that matter most are an Iran flare-up, a hot CPI, or another wobble in AI spending.</p></section>
+<section id="top"><h2>🔥 Top of the brief</h2><ul class="tldr">
+<li>📉 <b>Worst week in a month:</b> S&amp;P 500 −2.7%, Nasdaq −3.4% (correction on Thursday), Dow −0.9%; Friday close S&amp;P 7,376.86 (+0.3%), Nasdaq 24,579.42 (+1.1%).</li>
+<li>💼 <b>Hot jobs, hawkish Fed:</b> +165K payrolls vs ~60–70K expected, unemployment 4.1%; FedWatch puts a December 9 hike near 74%.</li>
+<li>🏦 <b>10-year Treasury at 4.85%,</b> up 2 bp on Friday as markets price a longer high-rate path.</li>
+<li>🛢 <b>Oil sheds its war premium:</b> Brent ~$98, WTI ~$91 after a 12–13% weekly drop, triggered by Vance blaming the GOP rout on the Iran war.</li>
+<li>🏛 <b>Divided government is back:</b> Democrats take both chambers; Jeffries backs impeaching Hegseth over the Iran war, and tariff rollback efforts are coming.</li>
+<li>🤖 <b>Anthropic buys 1.7 GW of gas generators for ~$3.4B (FT),</b> the largest known power-equipment purchase by an AI lab; unconfirmed by the company.</li>
+<li>₿ <b>Treasury cuts MEXC off from US finance</b> over $16B in alleged illicit flows; BTC ~$75.8K, ETH ~$2,230 in the shadow of Binance&#x27;s $6.3B hack.</li>
+</ul></section>
+<section id="macro"><h2>📊 Macro &amp; Rates <span class="cnt">4 items</span></h2>
+<details open><summary>October payrolls +165K crush consensus; unemployment falls to 4.1%<span class="tag">BLS / Yahoo Finance / Morningstar</span></summary>
+<p class="body">The BLS reported 165,000 jobs added in October against consensus of roughly 59,000–70,000, with August and September revised up by a combined 84,000. Unemployment slipped to 4.1% from 4.2%, staying in the 4.1–4.3% band it has held since March. Average hourly earnings rose 0.4% on the month and 3.1% year over year. With inflation running at 3.7%, real wages are still falling, which is a squeeze on households but not a signal of labor-market slack.</p>
+<p class="body">The report removes the main argument doves had for waiting: there is no visible cooling in hiring. It also undercuts the narrative that tariffs and the Iran war oil shock were tipping the economy toward recession.</p>
+<p class="note"><b>Why it matters:</b> a strong labor market alongside 3.7% inflation means the Fed&#x27;s next move is more likely up than down, which raises borrowing costs across mortgages, credit cards and corporate debt and pressures long-duration growth stocks.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/economy/policy/article/blockbuster-october-jobs-report-keeps-fed-rate-hike-in-play-for-december-135325070.html">Yahoo Finance</a> · <a href="https://www.morningstar.com/economy/hot-october-jobs-report-raises-odds-december-rate-hike">Morningstar</a> · <a href="https://www.stocktitan.net/articles/october-2026-jobs-report">StockTitan</a></p>
+</details>
+<details><summary>Markets price ~74% odds of a Fed hike on December 9<span class="tag">CME FedWatch / Kiplinger</span></summary>
+<p class="body">After the jobs data, CME&#x27;s FedWatch tool showed roughly 74% probability of a rate increase at the December 9 FOMC meeting. That is a sharp reversal from a year ago, when the debate was about how many cuts to expect in 2026. The November jobs report and the next CPI print both land before the meeting and can still swing the decision. Some analysts argue a single report will not move the Fed on its own, so the probability is a market estimate, not a done deal. A hike into a divided government and a possible shutdown deadline two days later would be an unusual policy mix.</p>
+<p class="note"><b>Why it matters:</b> a December hike would extend the high-rate regime into 2027, keep the dollar firm, and raise the hurdle rate for every capex-heavy story, AI infrastructure included.</p>
+<p class="src">Sources: <a href="https://www.kiplinger.com/investing/economy/jobs-report-october-2026-what-to-expect">Kiplinger</a> · <a href="https://rollingout.com/2026/11/07/jobs-report-shows-165000-hires-rate-hike/">Rolling Out</a></p>
+</details>
+<details><summary>10-year yield climbs to 4.85%; the 5% line is back in view<span class="tag">TipRanks / Schwab</span></summary>
+<p class="body">The 10-year Treasury yield rose 2 basis points to 4.85% on Friday as the payrolls beat fed into rate expectations. The week&#x27;s oil collapse partly offset the move by lowering inflation expectations, which is why yields did not spike harder. Fiscal uncertainty adds a term-premium layer: government funding only runs to December 11, and the new Congress makes a smooth budget deal less likely.</p>
+<p class="body">Mortgage rates track the 10-year closely, so housing affordability gets no relief. Equity valuations are the other transmission channel: higher risk-free rates compress the multiples investors will pay for distant AI earnings.</p>
+<p class="note"><b>Why it matters:</b> 5% on the 10-year has historically been a pain threshold for equities and real estate; a hot CPI could push yields there quickly.</p>
+<p class="src">Sources: <a href="https://www.tipranks.com/news/the-week-that-was-the-week-ahead-macro-and-markets-november-8">TipRanks</a> · <a href="https://www.schwab.com/learn/story/stock-market-update-open">Schwab</a></p>
+</details>
+<details><summary>Shutdown clock: government funded only through December 11<span class="tag">CREFC / Multibagg</span></summary>
+<p class="body">The current continuing resolution funds the federal government through December 11, 2026. As of November 3, the Senate had passed none of the 12 FY2027 appropriations bills. Lawmakers return November 9 for a lame-duck session, while the new Democratic-majority Congress is sworn in January 3. Democrats now have an incentive to delay a full-year deal until they control both chambers, which raises the odds of another stopgap or a lapse.</p>
+<p class="body">The US has had three funding lapses since October 2025, including a 43-day shutdown, so markets know the playbook: delayed data releases, slower government payments, and a short-term bid for T-bills.</p>
+<p class="note"><b>Why it matters:</b> a December shutdown could delay the very data (jobs, CPI) the Fed needs for its December 9 decision and adds fiscal risk premium at the long end.</p>
+<p class="src">Sources: <a href="https://www.crefc.org/cre/content/News/Items/advocacy-items/2026/Congress_Funds_Government_Through_December_1_1.aspx">CREFC</a> · <a href="https://www.multibagg.ai/market-pulse/articles/lame-duck-funding-deadline-shutdown-risk-cmw1vbcno0008l82rygkakqi0">Multibagg</a></p>
+</details>
+</section>
+<section id="energy"><h2>⚡ Energy &amp; Geopolitics <span class="cnt">4 items</span></h2>
+<details open><summary>Oil falls 12–13% on the week; Brent ~$98, WTI ~$91<span class="tag">CNBC / EnergyNow / Oilprice</span></summary>
+<p class="body">WTI December settled at $90.83 (+0.3%) and Brent at $98.32 on Friday, capping a weekly drop of more than 12%. Brent had peaked at $113.17 on October 22, its highest since May, on fears of renewed US strikes on Iran. The collapse accelerated Wednesday when Brent lost about 9% in a session after VP Vance wrote that the GOP lost &#x27;because of the war&#x27;, which traders read as a signal that both the White House and the incoming Congress would rein in the conflict.</p>
+<p class="body">Lower crude feeds directly into gasoline and headline CPI, the one piece of good news for the Fed this week. But the drop is built on expectations, not a signed deal.</p>
+<p class="note"><b>Why it matters:</b> with peace largely priced in, the skew is now to the upside; any escalation re-inserts a risk premium fast, and the inflation relief from cheaper fuel would reverse with it.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/07/iran-war-midterm-election-oil-price-trump.html">CNBC</a> · <a href="https://energynow.com/2026/11/oil-prices-fall-again-as-u-s-election-results-fuel-hopes-of-middle-east-peace-wti-below-90-brent-near-98">EnergyNow</a> · <a href="https://oilprice.com/Latest-Energy-News/World-News/Oil-Crashes-9-as-Trump-and-Vance-Blame-Iran-War-for-Midterm-Rout.html">Oilprice.com</a></p>
+</details>
+<details><summary>Iran: deal track via Qatar vs. a wider US blockade<span class="tag">Gulf News / Economic Pravda / CNBC</span></summary>
+<p class="body">Qatar is circulating a draft agreement that could restart US–Iran talks, and a senior Iranian official told Reuters Tehran has sent a nuclear proposal to Washington. Trump is reportedly weighing three options: new strikes, a deal, or continued pressure. At the same time, Ukrainian outlet Economic Pravda reports the US plans to extend its naval blockade of Iranian ports to overland trade, which would hit Iran&#x27;s workaround routes.</p>
+<p class="body">Iran has kept some exports flowing by letting Chinese- and Indian-linked ships through Hormuz. Eurasia Group puts the odds of a US–Iran agreement at just 10% and warns Brent could reach $110–125 if fighting escalates.</p>
+<p class="note"><b>Why it matters:</b> the gap between market pricing (peace) and analyst odds (10% deal) is the single biggest mispricing risk in commodities right now.</p>
+<p class="src">Sources: <a href="https://gulfnews.com/world/mena/trump-weighs-iran-strikes-or-deal-after-midterm-loss-as-vance-urges-agreement-qatar-mediates-brent-oil-falls-to-93-1.500736556">Gulf News</a> · <a href="https://epravda.com.ua/svit/ssha-hochut-posiliti-blokadu-iranu-827414/">Economic Pravda</a> · <a href="https://oilprice.com/Energy/Energy-General/Iran-Opens-Strait-of-Hormuz-to-China-and-India-as-U.S.-Blockade-Continues.html">Oilprice.com (Hormuz)</a></p>
+</details>
+<details><summary>Shipping and Gulf infrastructure: ships hit, Aramco on alert<span class="tag">CNBC / Oilprice</span></summary>
+<p class="body">Both the US and Iran reported vessels hit over the weekend, while Iran suggested the blasts were not US attacks, leaving attribution unclear. Aramco reportedly told staff to evacuate its Dhahran headquarters and work remotely after falling debris damaged an office building, with no casualties and no reported production outage. An earlier strike on Ras Tanura had added around 1% to crude.</p>
+<p class="body">Saudi strikes in Yemen, where the Houthis claim 33 dead, keep Red Sea shipping risk elevated. Each incident is small on its own, but together they show the physical supply chain remains exposed even as futures price de-escalation.</p>
+<p class="note"><b>Why it matters:</b> tanker insurance and freight rates react before crude does; watch war-risk premiums for Gulf and Red Sea routes as an early warning signal.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/08/saudi-aramco-riyadh-building-attack.html">CNBC</a> · <a href="https://oilprice.com/Energy/Energy-General/How-Iran-Just-Broke-the-US-Oil-Shield-In-Saudi-Arabia-Yet-Again.html">Oilprice.com</a> · <a href="https://www.bbc.co.uk/news/articles/c65yn1v99ypmo?at_medium=RSS&amp;at_campaign=rss">BBC (Yemen)</a></p>
+</details>
+<details><summary>Russia–Ukraine: Abu Dhabi talks Nov 10–11 while energy strikes escalate<span class="tag">Kyiv Independent / Economic Pravda</span></summary>
+<p class="body">US-mediated trilateral talks between Ukraine and Russia take place in Abu Dhabi on November 10–11, with France saying Europe will be at the table. Meanwhile, Russian strikes knocked out power for more than 600,000 customers in Ukraine&#x27;s Dnipropetrovsk region and caused another blackout at the Zaporizhzhia nuclear plant, while Ukrainian drones hit a key bridge and power stations in Russia&#x27;s Rostov region.</p>
+<p class="body">Ukraine&#x27;s central bank sold $1.7 billion on the interbank market in a week to support the hryvnia. A credible ceasefire track would matter for European gas, grain and reconstruction plays; a breakdown keeps the energy-infrastructure war running into winter.</p>
+<p class="note"><b>Why it matters:</b> progress in Abu Dhabi would compress the geopolitical premium in European energy and lift reconstruction-linked equities; failure means more infrastructure damage and continued FX pressure in Ukraine.</p>
+<p class="src">Sources: <a href="https://kyivindependent.com/europeans-will-participate-in-abu-dhabi-peace-talks-french-foreign-minister-says/">Kyiv Independent</a> · <a href="https://epravda.com.ua/energetika/blekaut-na-dnipropetrovshchini-svitlo-zniklo-u-ponad-600-tisyach-spozhivachiv-827409/">Economic Pravda (blackout)</a> · <a href="https://epravda.com.ua/finances/nacbank-znovu-prodav-ponad-milyard-dolariv-na-mizhbanku-827418/">Economic Pravda (NBU)</a></p>
+</details>
+</section>
+<section id="trump"><h2>🎙 Trump &amp; Policy Signals <span class="cnt">3 items</span></h2>
+<details open><summary>Vance and Trump tie the midterm rout to the Iran war, and oil reacts<span class="tag">NBC / Axios / Fox</span></summary>
+<p class="body">Vance wrote on X that &#x27;the reason we lost is the war&#x27;, adding the president had said as much the night before; Axios reported oil prices plunged after the post. Trump acknowledged the war likely hurt Republicans through higher gasoline prices but defended the strikes, and on election night first pointed to &#x27;the gasoline price&#x27;. It is rare for a sitting administration to so directly link a policy to an electoral defeat, and traders took it as a signal of de-escalation.</p>
+<p class="body">Brent fell about 9% on the day. Trump has also warned he could &#x27;finish the job&#x27; if Iran rejects a nuclear deal, so the signal is not one-directional.</p>
+<p class="note"><b>Why it matters:</b> official statements are now moving crude more than battlefield news; the next Trump remark on Iran is a direct oil-price catalyst in either direction.</p>
+<p class="src">Sources: <a href="https://www.nbcnews.com/politics/2026-election/vance-says-ranger-iran-war-caused-gop-midterm-losses-rcna607446">NBC News</a> · <a href="https://www.axios.com/2026/11/04/oil-prices-plunge-midterms-vance-democrats-iran">Axios</a> · <a href="https://www.foxnews.com/live-news/iran-war-news-trump-elections-oil-prices-november-4">Fox News</a></p>
+</details>
+<details><summary>Jeffries backs impeaching Hegseth; Democrats move to choke off Iran war funding<span class="tag">The Hill / Bloomberg</span></summary>
+<p class="body">House Democratic leader Hakeem Jeffries, in line to become Speaker, called himself a &#x27;hard yes&#x27; on impeaching Defense Secretary Pete Hegseth, accusing him of engineering an Iran war that raised prices. The resolution is led by Republican Thomas Massie and could come up as soon as November 10. The Hill reports Democrats are also plotting, with some GOP help, to cut off funding for the Iran war.</p>
+<p class="body">Impeachment needs only a House majority, but removal requires two-thirds of the Senate, which Democrats lack. The economic channel is defense spending and war duration rather than Hegseth&#x27;s job itself.</p>
+<p class="note"><b>Why it matters:</b> congressional pressure on war funding is what the oil market is betting on; defense contractors face headline risk on supplemental spending.</p>
+<p class="src">Sources: <a href="https://thehill.com/homenews/house/6206617-jeffries-supports-hegseth-impeachment/">The Hill</a> · <a href="https://www.bloomberg.com/news/articles/2026-11-08/hegseth-impeachment-backed-by-house-democratic-leader-jeffries">Bloomberg</a> · <a href="https://thehill.com/policy/defense/6205731-democrats-end-iran-war-spending-fight/">The Hill (Iran funding)</a></p>
+</details>
+<details><summary>Personnel signals: Miller elevated, Dana White offered press secretary<span class="tag">The Hill / NPR / NYT</span></summary>
+<p class="body">The Hill reports Trump is promoting Stephen Miller, with senators already discussing a possible chief-of-staff role; a GOP lawmaker called it &#x27;a mistake&#x27;. Trump has offered UFC chief Dana White the White House press secretary job, and White says he will meet the president on Monday. The Guardian reports Trump described the election as a &#x27;giant step back&#x27; for the country and is set to lurch further right rather than moderate.</p>
+<p class="body">Attorney General Blanche suggested the DOJ could investigate lawmakers as Democrats promise oversight. For markets, the signal is confrontation, not compromise, between the White House and the new Congress.</p>
+<p class="note"><b>Why it matters:</b> a confrontational White House facing a hostile Congress raises the odds of shutdowns, veto fights and policy-by-executive-order, all of which add volatility to fiscal and trade outcomes.</p>
+<p class="src">Sources: <a href="https://thehill.com/homenews/house/6206725-stutzman-decries-miller-promotion/">The Hill</a> · <a href="https://www.npr.org/2026/11/08/nx-s1-6033900/ufc-dana-white-trump-white-house-press-secretary">NPR</a> · <a href="https://www.theguardian.com/us-news/2026/nov/08/trump-midterm-elections-loss-democrats-immigration">Guardian</a></p>
+</details>
+</section>
+<section id="trade"><h2>🚢 Trade, Tariffs &amp; Policy <span class="cnt">3 items</span></h2>
+<details open><summary>Democrats map out a path to unwind Trump&#x27;s tariffs<span class="tag">CNBC</span></summary>
+<p class="body">CNBC lays out how the incoming Democratic majority plans to attack Trump&#x27;s tariffs, chiefly through resolutions terminating the emergency declarations that underpin some duties, including those on Canada. Trump can veto such resolutions, and Democrats lack the two-thirds needed to override, so outright repeal is unlikely in the near term. The practical effect is prolonged uncertainty and pressure for negotiated carve-outs. Importers, automakers and retailers with North American supply chains are the most exposed to the outcome.</p>
+<p class="note"><b>Why it matters:</b> even failed votes can push the White House toward deals with Canada and Mexico; any sign of a compromise would be a tailwind for autos, industrials and consumer importers.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/08/trump-tariffs-democrats-congress-canada.html">CNBC</a></p>
+</details>
+<details><summary>Commerce opens anti-dumping case on seamless steel pipe from Georgia and India<span class="tag">Federal Register</span></summary>
+<p class="body">The Commerce Department has initiated less-than-fair-value investigations into seamless carbon and alloy steel standard, line and pressure pipe from Georgia and India, published in the November 9 Federal Register. These cases typically lead to preliminary duties within months if dumping margins are found. The product is a key input for oil and gas drilling, pipelines and construction. Domestic pipe producers benefit from protection, while energy companies face higher input costs.</p>
+<p class="note"><b>Why it matters:</b> trade remedies keep expanding even as tariff politics shift, adding cost pressure to the US energy sector just as oil prices fall.</p>
+<p class="src">Sources: <a href="https://www.federalregister.gov/documents/2026/11/09/2026-22835/seamless-carbon-and-alloy-steel-standard-line-and-pressure-pipe-from-georgia-and-india-initiation-of">Federal Register</a></p>
+</details>
+<details><summary>Nvidia&#x27;s China &#x27;spy&#x27; story feeds the export-control debate<span class="tag">NYT / CNBC / TechCrunch</span></summary>
+<p class="body">The NYT reports Secretary of State Rubio warned officials about Nvidia CEO Jensen Huang&#x27;s ties to Alice Huang, a former executive at Singapore cloud provider Megaspeed whom US intelligence believes was working for Beijing. Republicans Mast, Moolenaar and Crawford and Senator Warren want Huang to brief Congress this month. Nvidia denies sharing any sensitive information, no charges have been filed, and China calls the reports groundless.</p>
+<p class="body">Megaspeed buys Nvidia hardware and rents compute across Asia, which is exactly the kind of intermediary channel export hawks want to restrict.</p>
+<p class="note"><b>Why it matters:</b> tighter rules on Southeast Asian intermediaries would hit Nvidia&#x27;s Asia revenue and strengthen the case for further chip export limits.</p>
+<p class="src">Sources: <a href="https://www.nytimes.com/2026/11/08/us/politics/rubio-nvidia-ceo-chinese-spy.html">NYT</a> · <a href="https://www.cnbc.com/2026/11/08/jensen-huang-nvidia-china-spy-congress.html">CNBC</a> · <a href="https://techcrunch.com/2026/11/07/chinese-exec-was-recruited-to-spy-on-nvidia-ceo-according-to-us-intelligence-memo/">TechCrunch</a></p>
+</details>
+</section>
+<section id="corp"><h2>🏢 Corporate &amp; Earnings <span class="cnt">3 items</span></h2>
+<details><summary>Week in stocks: Nasdaq correction, Friday chip rebound<span class="tag">AP / CNBC</span></summary>
+<p class="body">On Friday the S&amp;P 500 rose 0.3% to 7,376.86, the Nasdaq Composite 1.1% to 24,579.42, and the Dow fell 0.5% to 51,285.73. For the week, the S&amp;P lost 2.7%, the Nasdaq 3.4% and the Dow 0.9%. The selloff turned into an &#x27;AI tech wreck&#x27; on November 4, when the Dow dropped about 1,800 points, and on Thursday the Nasdaq closed in correction territory, more than 10% below its peak. Friday&#x27;s bounce was led by semiconductors, with the SOX up roughly 3–4%. The driver mix is rates plus doubts over whether AI capex is earning its keep.</p>
+<p class="note"><b>Why it matters:</b> index concentration means AI megacaps set the tone for the whole market; a failed rebound would pull passive and retirement portfolios lower with them.</p>
+<p class="src">Sources: <a href="https://au.finance.yahoo.com/news/major-us-stock-indexes-fared-212037857.html">Yahoo/AP</a> · <a href="https://cnbc.com/2026/11/04/stock-market-today-live-updates.html">CNBC</a> · <a href="https://eurasiabusinessnews.com/2026/11/07/stock-market-today-ai-stocks-rebound-after-brutal-nasdaq-selloff/">Eurasia Business News</a></p>
+</details>
+<details><summary>Earnings season: profits are only &#x27;barely&#x27; beating expectations<span class="tag">MarketWatch</span></summary>
+<p class="body">MarketWatch reports that corporate America&#x27;s profit numbers are just barely beating Wall Street&#x27;s expectations this season, a thinner margin than the usual beat rate. With the S&amp;P near record valuations, small beats offer little support when macro headwinds rise. A separate MarketWatch piece notes stocks are moving in sync again, meaning correlations have risen, which tends to happen when a single macro factor such as rates dominates. Another indicator that flagged the earlier tech selloff is reportedly flashing a new warning.</p>
+<p class="note"><b>Why it matters:</b> rising correlation plus thin earnings beats leaves little diversification cushion; a rate shock would hit most sectors at once.</p>
+<p class="src">Sources: <a href="https://www.marketwatch.com/story/corporate-americas-profit-numbers-are-just-barely-beating-wall-streets-expectations-eaa67fe2?mod=mw_rss_topstories">MarketWatch (earnings)</a> · <a href="https://www.marketwatch.com/story/stocks-are-moving-in-sync-again-for-the-first-time-in-a-while-theres-just-one-problem-c953bf72?mod=mw_rss_topstories">MarketWatch (correlation)</a></p>
+</details>
+<details><summary>Goldman Sachs pulls Claude Code and Copilot from traders and bankers<span class="tag">Bloomberg via Dealroom</span></summary>
+<p class="body">Goldman Sachs has restricted Anthropic&#x27;s Claude Code and Microsoft&#x27;s GitHub Copilot to its roughly 12,000 engineers, according to Bloomberg, removing access for traders and bankers who had used them for trade monitoring and model building. The bank cited a review of productivity and risk. Only months ago its CIO praised &#x27;vibe coding&#x27; on the trading floor. It is not a ban on AI at the bank, but it is a visible reversal by a bellwether enterprise customer.</p>
+<p class="note"><b>Why it matters:</b> enterprise adoption is the revenue thesis behind AI capex; high-profile pullbacks on risk grounds feed the exact doubts that drove this week&#x27;s Nasdaq correction.</p>
+<p class="src">Sources: <a href="https://dealroom.co/news/169162-goldman-restricts-claude-code-github-for-traders-and-bankers/">Dealroom</a> · <a href="https://aiweekly.co/alerts/goldman-sachs-pulls-claude-code-and-github-copilot-from-traders-and-bankers">AI Weekly</a></p>
+</details>
+</section>
+<section id="ai"><h2>🤖 The AI Economy <span class="cnt">3 items</span></h2>
+<details><summary>Anthropic secures 1.7 GW of gas generation for about $3.4B (FT)<span class="tag">FT via CNBC / Bloomberg</span></summary>
+<p class="body">The Financial Times reports Anthropic took over Caterpillar heavy-duty generator orders totaling 1.7 gigawatts from San Antonio&#x27;s OnePWR Solutions in late September, for about $3.4 billion, including engineering and installation support. It would be the largest known single purchase of power-generation equipment by an AI lab. Neither company has confirmed the deal, and Reuters could not verify it. The move shows that power, not chips, is becoming the binding constraint, pushing AI labs into behind-the-meter gas generation.</p>
+<p class="note"><b>Why it matters:</b> AI-driven demand is reshaping the market for turbines and generators (Caterpillar and peers) and adds gas demand just as data-center politics turn more hostile.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/08/anthropic-generator-deal-ai-data-centers.html">CNBC</a> · <a href="https://www.bloomberg.com/news/articles/2026-11-08/anthropic-buys-power-for-ai-data-centres-in-3-4b-deal-ft-says">Bloomberg</a></p>
+</details>
+<details><summary>Data centers become a political target after the midterms<span class="tag">TechCrunch / Cointelegraph</span></summary>
+<p class="body">TechCrunch argues the Democratic wave makes life harder for Elon Musk and data-center builders, as power prices, grid strain and environmental permitting move up the agenda. In Amsterdam, protesters broke into a Microsoft data-center construction site. Local opposition to power-hungry facilities is turning into votes and permitting delays on both sides of the Atlantic. Combined with rising rates, this raises the cost and timeline risk of the AI build-out.</p>
+<p class="note"><b>Why it matters:</b> slower permitting and higher power costs stretch AI payback periods, which is the core worry behind the tech selloff.</p>
+<p class="src">Sources: <a href="https://techcrunch.com/2026/11/07/after-the-midterms-things-are-looking-rocky-for-elon-musk-and-data-centers/">TechCrunch</a> · <a href="https://cointelegraph.com/news/amsterdam-data-center-protesters-break-into-construction-site-report?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">Cointelegraph</a></p>
+</details>
+<details><summary>Elvis and Eminem rights holders sue Suno as AI copyright fights widen<span class="tag">The Verge / Guardian</span></summary>
+<p class="body">Rights holders for Elvis Presley and Eminem have sued AI music generator Suno over alleged cloning of their works and voices. A global music body separately warned Australia that weakening copyright for AI would be a &#x27;disaster for creativity&#x27;. Licensing costs and legal liability are becoming real line items for generative-AI business models. Outcomes will set precedents for training-data rights across media.</p>
+<p class="note"><b>Why it matters:</b> adverse rulings would raise content costs for model developers and shift value toward rights owners such as labels and publishers.</p>
+<p class="src">Sources: <a href="https://www.theverge.com/ai-artificial-intelligence/1029533/elvis-eminem-suno-ai-music-clone-lawsuit">The Verge</a> · <a href="https://www.theguardian.com/technology/2026/nov/09/weakening-ai-copyright-law-will-spell-disaster-for-creativity-australia">Guardian</a></p>
+</details>
+</section>
+<section id="crypto"><h2>₿ Digital Assets <span class="cnt">3 items</span></h2>
+<details><summary>Treasury moves to cut MEXC off from the US financial system<span class="tag">CoinDesk / 24/7 Wall St.</span></summary>
+<p class="body">FinCEN designated MEXC Global a &#x27;primary money laundering concern&#x27; tied to Russian illicit finance, ordering US financial institutions to stop processing its transactions. Treasury alleges at least $16 billion in illicit activity, including sanctions evasion and cybercrime. The order takes effect 30 days after Federal Register publication. Customer wallets are not frozen by the order, but banking and market-making partners are likely to exit. MEXC has not publicly responded.</p>
+<p class="note"><b>Why it matters:</b> it signals Washington will use its harshest AML tools against large offshore exchanges, pushing liquidity toward regulated venues.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/business/2026/11/07/u-s-treasury-moves-to-cut-off-crypto-exchange-mexc-over-usd16-billion-in-alleged-illicit-flows">CoinDesk</a> · <a href="https://247wallst.com/investing/2026/11/07/treasury-says-crypto-exchange-mexc-moved-at-least-16-billion-tied-to-illicit-activity/">24/7 Wall St.</a></p>
+</details>
+<details><summary>Binance after the $6.3B hack: CFO exits, EU accounts closing<span class="tag">The Block / Cointelegraph / TechSpot</span></summary>
+<p class="body">Binance lost about $6.3 billion in an October 29 hack, roughly four times the 2025 Bybit theft; TRM Labs, Chainalysis and Elliptic attribute it to North Korea, while governments have not formally confirmed. Binance says it will cover losses from its SAFU fund and company capital, and about $3 billion has been frozen on-chain. CFO Kaiser Ng is leaving nine days after the hack, which the co-CEO says was planned six months ago.</p>
+<p class="body">Binance France is closing user accounts on December 31, and users in some other European countries are being told to withdraw before fees apply.</p>
+<p class="note"><b>Why it matters:</b> the hack and the EU retreat erode Binance&#x27;s market share and could push volume to regulated competitors; it also tightens the regulatory mood around exchanges.</p>
+<p class="src">Sources: <a href="https://www.theblock.co/news/business/2026-11-07-binance-cfo-steps-down-nine-days-after-record-hack-co-ceo-says-transition-was-planned-six-months-ago-435992">The Block</a> · <a href="https://www.techspot.com/news/114392-binance-loses-63-billion-largest-crypto-heist-ever">TechSpot</a> · <a href="https://cointelegraph.com/news/binance-france-emails-announce-closure-of-its-users-accounts-on-dec-31?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">Cointelegraph</a></p>
+</details>
+<details><summary>BTC ~$75.8K, ETH ~$2,230: flat weekend, Buterin reframes ETH<span class="tag">CoinGecko / The Block / CoinDesk</span></summary>
+<p class="body">Bitcoin traded near $75,778 (+0.1% over 24 hours) and Ether near $2,230 (−0.1%), little changed over the weekend. Vitalik Buterin argued ETH should be valued as a store of value rather than a fee-burning token, a narrative shift as fee revenue migrates to layer-2 networks. CoinDesk notes Finnish homes heated by bitcoin miners get free heat only while BTC stays above $70,000, a reminder of how close miner economics sit to current prices. Higher real yields and a firm dollar remain headwinds for non-yielding assets.</p>
+<p class="note"><b>Why it matters:</b> with Fed hike odds rising, crypto lacks a macro tailwind; $70K is the level where miner economics and sentiment start to crack.</p>
+<p class="src">Sources: <a href="https://www.theblock.co/news/ecosystems/2026-11-08-vitalik-buterin-says-eth-should-be-valued-as-a-store-of-value-not-a-fee-burning-token-436022">The Block</a> · <a href="https://www.coindesk.com/markets/2026/11/08/these-finland-homes-get-free-heat-from-bitcoin-miners-as-long-as-btc-stays-above-usd70-000">CoinDesk</a></p>
+</details>
+</section>
+<footer>Compiled automatically on 08.11.2026 at 14:18 New York time. Window: last ~26 hours · Feeds collected: 29/29. <a href="#top">↑ back to top</a></footer></div>
+</body>
+</html>
