@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Daily Economic Brief</title>
+</head>
+<body>
+
+<style>
+:root{
+  --bg:#f4f4f2; --card:#fff; --head:#161a20; --body:#3d4551; --muted:#818a99;
+  --accent:#3f5b8c; --accent-soft:#eaeff7; --border:#e6e7ea; --rule:#eff0f2;
+  --up:#1a7f4b; --down:#c23b48; --chip:#f0f1f3;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--body); margin:0; padding:26px 16px 56px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  font-size:17px; line-height:1.72; font-weight:400;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:720px;margin:0 auto;}
+
+/* ── Шапка ─────────────────────────────── */
+h1{
+  font-size:1.75rem; line-height:1.2; font-weight:600; letter-spacing:-.022em;
+  color:var(--head); margin:0 0 6px; text-wrap:balance;
+}
+.date{color:var(--muted);font-size:.82rem;font-weight:400;letter-spacing:.01em;margin-bottom:20px;}
+.prices{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px;}
+.prices span{
+  background:var(--chip); border-radius:8px; padding:6px 11px;
+  font-size:.78rem; font-weight:500; color:var(--head); white-space:nowrap;
+  font-variant-numeric:tabular-nums; letter-spacing:-.005em;
+}
+.up{color:var(--up);font-weight:600;}
+.down{color:var(--down);font-weight:600;}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 30px;}
+nav.toc a{
+  background:transparent; border:1px solid var(--border); border-radius:8px;
+  padding:6px 11px; font-size:.79rem; font-weight:450; color:var(--muted);
+  text-decoration:none; transition:color .12s, border-color .12s;
+}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);}
+nav.toc a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+/* ── Секції: головне, що розділяє потік ── */
+section{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:6px 22px 10px; margin:0 0 26px; scroll-margin-top:16px;
+}
+h2{
+  font-size:.94rem; font-weight:600; letter-spacing:.005em; color:var(--head);
+  margin:0; padding:18px 0 14px; border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; gap:9px; text-wrap:balance;
+}
+h2 .cnt{color:var(--muted);font-weight:400;font-size:.78rem;letter-spacing:0;margin-left:auto;}
+
+/* ── Головне за добу ───────────────────── */
+section#top{background:var(--accent-soft);border-color:transparent;}
+ul.tldr{margin:0;padding:14px 0 6px;list-style:none;}
+ul.tldr li{
+  margin:0; padding:11px 0 11px 2px; border-top:1px solid var(--rule);
+  font-size:.97rem; line-height:1.62;
+}
+ul.tldr li:first-child{border-top:none;}
+ul.tldr b{color:var(--head);font-weight:600;}
+
+/* ── Новина ────────────────────────────── */
+details{border-top:1px solid var(--rule);}
+details:first-of-type{border-top:none;}
+summary{
+  cursor:pointer; list-style:none; position:relative;
+  padding:17px 4px 17px 26px; margin:0;
+  font-size:1rem; font-weight:500; line-height:1.5; color:var(--head);
+  letter-spacing:-.008em; transition:color .12s;
+}
+summary::-webkit-details-marker{display:none;}
+summary::before{
+  content:""; position:absolute; left:4px; top:26px;
+  width:7px; height:7px; border-right:1.5px solid var(--muted);
+  border-bottom:1.5px solid var(--muted); transform:rotate(-45deg);
+  transition:transform .18s ease, border-color .12s;
+}
+details[open] summary::before{transform:rotate(45deg);border-color:var(--accent);}
+summary:hover{color:var(--accent);}
+summary:hover::before{border-color:var(--accent);}
+summary .tag{
+  display:block; margin-top:5px; color:var(--muted);
+  font-weight:400; font-size:.76rem; letter-spacing:.01em;
+}
+.body{
+  margin:0 0 14px; padding:0 4px 0 26px;
+  font-size:.96rem; line-height:1.75; font-weight:400; color:var(--body);
+  max-width:66ch;
+}
+.note{
+  margin:0 4px 14px 26px; padding:13px 16px;
+  background:var(--accent-soft); border-radius:10px;
+  font-size:.92rem; line-height:1.62; color:var(--body); max-width:64ch;
+}
+.note b{color:var(--accent);font-weight:600;}
+.src{
+  margin:0 4px 18px 26px; padding:0;
+  font-size:.79rem; line-height:1.9; color:var(--muted); font-weight:400;
+}
+.src a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);}
+.src a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+footer{
+  color:var(--muted); font-size:.76rem; line-height:1.75; font-weight:400;
+  margin:34px 0 0; padding-top:18px; border-top:1px solid var(--border);
+}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media (max-width:640px){
+  body{font-size:16px;padding:20px 12px 44px;}
+  h1{font-size:1.5rem;}
+  section{padding:4px 16px 8px;border-radius:12px;margin-bottom:20px;}
+  .body,.note,.src{padding-left:0;margin-left:0;}
+  .note{margin-bottom:12px;}
+  summary{padding-left:22px;}
+}
+@media (prefers-reduced-motion: reduce){summary::before{transition:none;}}
+
+.sitenav{
+  position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:4px;
+  align-items:center; padding:11px 16px; margin:-26px -16px 26px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.sitenav a{
+  font-size:.81rem; font-weight:450; text-decoration:none; color:var(--muted);
+  padding:6px 12px; border-radius:8px; white-space:nowrap;
+  transition:color .12s, background .12s;
+}
+.sitenav a:hover{color:var(--head);background:var(--chip);}
+.sitenav a.on{color:var(--accent);background:var(--accent-soft);font-weight:600;}
+.sitenav .sp{flex:1;}
+.sitenav .when{font-size:.76rem;color:var(--muted);letter-spacing:.01em;}
+@media (max-width:640px){
+  .sitenav{margin:-20px -12px 20px;padding:9px 12px;}
+  .sitenav a{padding:5px 10px;font-size:.78rem;}
+  .sitenav .when{display:none;}
+}
+</style>
+<div class="wrap"><nav class="sitenav"><a href="/">☕ Дайджест</a><a href="/en.html" class="on">📊 Economic Brief</a><a href="/archive.html">🗂 Архів</a><span class="sp"></span><span class="when">9 листопада 2026</span></nav>
+<h1>📊 Daily Economic Brief</h1>
+<div class="date">Monday, 9 November 2026 · compiled 08:21 New York time</div>
+<div class="prices"><span>BTC $74 814 <span class="down">−1.42%</span></span><span>ETH $2 120 <span class="down">−5.24%</span></span><span>S&amp;P 500 7 377 <span class="up">+0.31%</span></span><span>NASDAQ 24 579 <span class="up">+1.09%</span></span><span>DJIA 51 286 <span class="down">−0.46%</span></span></div>
+<nav class="toc"><a href="#top">🔥 Top</a><a href="#macro">📊 Macro &amp; Rates</a><a href="#geo">🌐 Geopolitics &amp; the Economy</a><a href="#trade">🚢 Trade, Tariffs &amp; Policy</a><a href="#trump">🎙 Trump &amp; Policy Signals</a><a href="#corp">🏢 Corporate &amp; Earnings</a><a href="#crypto">₿ Digital Assets</a><a href="#ai">🤖 The AI Economy</a><a href="#energy">⚡ Energy &amp; Commodities</a></nav>
+<section><h2>🧭 The throughline</h2><p class="body" style="padding-left:0">Monday opens with a relief bid built on one sentence from Trump — that new Iran strikes are &#x27;highly unlikely&#x27; while talks progress — which took 3% out of oil and put 500 points into Dow futures, even as the Strait of Hormuz remains effectively closed and Rubio calls Tehran&#x27;s terms &#x27;outrageous and ridiculous.&#x27; Underneath, the regime is still risk-off with rotation: a week in which retail stopped buying dips, the Nasdaq fell 3.4%, spot Bitcoin ETFs turned negative for the year and Berkshire outperformed the S&amp;P 500 by 17 points in a month. The week&#x27;s hinge is Tuesday&#x27;s CPI, published without a year-over-year figure, against a 77% priced December Fed hike, with CoreWeave&#x27;s earnings the same evening as the credit-side referendum on AI. Nvidia&#x27;s governance shock and the post-midterm regulatory turn mean AI money is migrating from the ecosystem&#x27;s anchor and its leveraged tenants toward foundries (TSMC +5–6%) and power (Constellation&#x27;s beat and raise). Treasuries are the swing factor: Goldman&#x27;s 4.75–5.0% range call only holds if oil and equity volatility stay down, which puts the bond market, the Fed and the Strait of Hormuz on the same hinge.</p></section>
+<section id="top"><h2>🔥 Top of the brief</h2><ul class="tldr">
+<li>🛢 <b>Oil −3% (Brent ~$95) and Dow futures +500 after Trump calls new Iran strikes &#x27;highly unlikely&#x27;.</b> Brent just had its worst week since the pandemic (−16%) despite fresh Hormuz incidents; JPMorgan sees a 1.4 mb/d surplus.</li>
+<li>📊 <b>October CPI lands Tuesday with no year-over-year print; markets price a 77% chance of a December Fed hike.</b> Consensus +0.2–0.3% m/m headline, +0.2% core, after Friday&#x27;s +165k payrolls; PPI follows Friday, bond market closed Wednesday.</li>
+<li>🏢 <b>Nvidia −5% premarket as the board probes Jensen Huang&#x27;s ties to an alleged Chinese spy; TSMC, SK Hynix rally.</b> Huang stays CEO; Trump calls him &#x27;an honorable guy&#x27;; House chairs want a closed briefing Nov 18, earnings Nov 17.</li>
+<li>📉 <b>Worst week in a month for US stocks (S&amp;P −2.7%, Nasdaq −3.4%) and the first week retail did not buy the dip.</b> Vanda measured the biggest retail selling day since Covid; Morgan Stanley says final phase of the correction, Citi says sit out global tech.</li>
+<li>🏛 <b>Congress is back: funding expires Dec 11, debt at $40T against a $41.1T ceiling, a $1.5T defense request and a Hegseth impeachment vote.</b> Democrats plan to target the 50% Canada tariffs first in January; a veto override needs two-thirds.</li>
+<li>₿ <b>Bitcoin tests $74K, lowest since August; spot BTC ETFs lose $1.28B in a week and turn negative for 2026.</b> Coinbase wins a full OCC national trust charter; Trump says he knows &#x27;nothing&#x27; about World Liberty&#x27;s $500M UAE deal.</li>
+<li>⚡ <b>Power is the AI commodity: Constellation beats by $1.20 and raises guidance; Anthropic buys 1.7GW of gas generators; SpaceX proposes a $24B gas-powered supercomputer.</b> CoreWeave reports Tuesday with 2031 bonds yielding 16% and CDS above 1,240bp.</li>
+<li>🇨🇳 <b>China&#x27;s factory-gate inflation jumps to 5.7%, the highest since June 2022, while consumer inflation slips to 0.7%.</b> The China-exports-deflation cushion for US goods prices may be disappearing just as the Fed debates a hike.</li>
+</ul></section>
+<section id="macro"><h2>📊 Macro &amp; Rates <span class="cnt">4 items</span></h2>
+<details open><summary>October CPI lands Tuesday with no year-over-year print; markets price a 77% chance the Fed hikes in December<span class="tag">CME FedWatch / Morningstar / BLS</span></summary>
+<p class="body">October CPI is due Tuesday Nov 10 at 8:30 ET. Bloomberg consensus is +0.3% m/m headline (FactSet 0.24%, CoinDesk&#x27;s survey 0.2%) and +0.2% core; RBC sees core at 0.3%, BofA headline at 0.4%; September printed +0.6%/+0.3%. BLS did not collect October 2025 prices during the shutdown, so only month-on-month changes will be published, which guarantees confused headlines. The fed funds target is 3.75–4.00%.</p>
+<p class="body">After Friday&#x27;s payrolls (+165k vs ~60k expected, unemployment 4.1%, average hourly earnings +0.4% m/m and +3.1% y/y, +84k in revisions), CME FedWatch odds of a 25bp hike at the Dec 8–9 FOMC rose to 76.8% from 66.9% a week earlier. The Oct 28 hold was 10–2 with Cook and Hammack dissenting for a hike; Daly says the Fed &#x27;will likely have to tighten further,&#x27; echoed by Williams and Musalem.</p>
+<p class="body">Goldman expects a December hike and an every-other-meeting pace. PPI follows Friday Nov 13 after +6.3% y/y in September, the largest in more than three years; the bond market is closed Wednesday for Veterans Day. Trump on 60 Minutes: &#x27;I&#x27;d like to see the interest rates lower… we have a board that was largely composed of Obama and Biden people.&#x27;</p>
+<p class="note"><b>Why it matters:</b> a core print at or below 0.2% could knock the December hike off the table and relieve the dollar, Treasuries and crypto in one move; a 0.3%+ print cements the hike and extends the tech de-rating.</p>
+<p class="src">Sources: <a href="https://www.morningstar.com/economy/october-cpi-forecasts-show-inflation-softening-december-rate-hike-still-looks-likely">Morningstar: October CPI forecasts</a> · <a href="https://247wallst.com/investing/2026/11/07/odds-of-a-december-rate-hike-jump-to-77-after-a-blowout-jobs-report/">24/7 Wall St: December hike odds 77%</a> · <a href="https://www.cnbc.com/2026/11/06/jobs-report-october-2026.html">CNBC: October jobs report</a> · <a href="https://www.coindesk.com/markets/2026/11/09/u-s-inflation-corporate-earnings-crypto-week-ahead">CoinDesk: Week ahead</a></p>
+</details>
+<details><summary>Treasuries: 10-year ~4.86% after a 5.31% October peak; Goldman sees a 4.75–5.0% range if risk assets and energy stay calm<span class="tag">CNBC / Forbes / Saxo</span></summary>
+<p class="body">Friday close: 2-year 4.51% (+5bp on the day, −7bp on the week), 10-year ~4.86% (+2bp), 30-year ~5.26%. The 10-year peaked at 5.31% on Oct 5 and the 30-year at 5.67% on Oct 7; yields have since fallen on equity turbulence and cheaper energy. Goldman&#x27;s rates team (William Marshall) wrote late Friday that &#x27;the pieces are in place for yields to settle into a range and rate volatility to decline,&#x27; though this &#x27;hinges somewhat on some diminished risk asset volatility and energy price relief holding.&#x27; The MOVE index has dropped from above 113 in early October to ~93.</p>
+<p class="body">If risk assets stabilize, Goldman sees the 10-year settling at 4.75–5.0% and favors 5-year Treasuries on the curve. Markets have priced out ~40bp of ECB hike risk through end-2027 since late September, but Goldman says front-end pricing is &#x27;approaching a limit&#x27; absent energy-supply progress or clarity on winter weather. High-yield spreads tightened to 336bp. Fiscal backdrop: debt crossed $40 trillion in September against a $41.1 trillion ceiling.</p>
+<p class="note"><b>Why it matters:</b> lower, less volatile yields are the precondition for any durable equity rebound, but Goldman&#x27;s own caveat makes the call hostage to Iran and winter weather; watch the 2-year&#x27;s reaction to CPI.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/09/goldman-treasury-yields-bonds.html">CNBC: Goldman on Treasury yields</a> · <a href="https://www.forbes.com/advisor/investing/treasury-rates/">Forbes: Treasury rates Nov 6</a> · <a href="https://www.etftrends.com/fixed-income-content-hub/treasury-yields-snapshot-november-6-2026/">ETF Trends: Yields snapshot</a></p>
+</details>
+<details><summary>China&#x27;s factory-gate inflation jumps to 5.7%, the highest since June 2022, while consumer inflation slips to 0.7%<span class="tag">CNBC / Reuters poll / NBS</span></summary>
+<p class="body">October PPI rose 5.7% y/y versus 5.3% expected and 5.0% in September, accelerating for a third straight month on mining and raw-materials prices. CPI eased to 0.7% (0.8% expected, 0.9% prior), with core down to 0.8% from 1.0%; gasoline was the largest contributor to the CPI rise, offset by a sharper-than-expected fall in food prices (NBS&#x27;s Dong Lijuan). The roughly five-point gap between producer and consumer prices points to squeezed manufacturer margins and weak domestic demand; Pinpoint&#x27;s Zhang Zhiwei says there is &#x27;no clear sign of stabilization&#x27; in property.</p>
+<p class="body">Analysts disagree on the driver: strong external demand versus the Iran-war energy shock feeding through input costs. The CSI 300 gained 0.56% after the data. China&#x27;s October trade figures are due Tuesday, alongside US CPI; the export-price component will show whether China is exporting inflation for the first time in years.</p>
+<p class="note"><b>Why it matters:</b> Chinese PPI is an upstream input to US goods inflation via import prices, complicating the Fed&#x27;s path just as it weighs a December hike; it also signals that war-driven energy costs are now embedded in global supply chains.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/09/china-wholesale-inflation-rises-consumer.html">CNBC: China wholesale inflation highest in 4+ years</a> · <a href="https://www.fxstreet.com/news/breaking-chinas-cpi-inflation-eases-to-07-yoy-in-october-vs-08-expected-202611090131">FXStreet: China CPI 0.7% vs 0.8%</a></p>
+</details>
+<details><summary>Lame-duck Congress returns: funding expires Dec 11, defense fight over a $1.5T request, debt-limit X-date seen around November 2027<span class="tag">CNBC / Bipartisan Policy Center / BofA</span></summary>
+<p class="body">Congress returned Monday with government funding set to lapse Dec 11 under P.L. 119-103; the House has passed 3 of 12 FY2027 appropriations bills and the Senate none, and any CR needs 60 Senate votes. The administration wants a record $1.5 trillion for defense, which Senate Democrats reject (Schumer: war in Iran &#x27;with no authorization, no plan, and no exit strategy&#x27;); the House passed an NDAA above $1 trillion in July.</p>
+<p class="body">Federal debt topped $40 trillion in September against the $41.1 trillion ceiling; BPC expects Treasury to exhaust borrowing capacity &#x27;by mid-summer,&#x27; BofA (Nov 6) sees the X-date around November 2027. Republicans (Cramer, Thune) and Trump want the ceiling raised before Democrats take the House on Jan 3. Defense Secretary Hegseth faces an impeachment vote this week after Rep. Massie refiles eight articles.</p>
+<p class="body">Democrats hold at least 255 House seats and up to 56 Senate seats; Appropriations chair Susan Collins lost her seat, with Patty Murray (&#x27;It&#x27;s NOT Trump&#x27;s money&#x27;) in line to take over. Also pending: FISA Section 702 reauthorization, the Farm Bill and a Senate procedural vote on permitting reform Monday evening.</p>
+<p class="note"><b>Why it matters:</b> a Dec 11 shutdown deadline sits in the same week as the Dec 8–9 FOMC, stacking fiscal and monetary risk; a lame-duck debt-limit hike would remove a 2027 tail risk but is now a bargaining chip against the defense number.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/09/congress-government-funding-debt-limit-elections.html">CNBC: Congress returns</a> · <a href="https://www.crfb.org/blogs/lame-duck-session-shouldnt-be-excuse-borrow-more">CRFB: Lame duck shouldn&#x27;t be an excuse to borrow more</a> · <a href="https://abcnews.com/Politics/congress-returns-crowded-lame-duck-session-hegseth-impeachment/story?id=137918357">ABC News: Crowded lame-duck session</a></p>
+</details>
+</section>
+<section id="geo"><h2>🌐 Geopolitics &amp; the Economy <span class="cnt">3 items</span></h2>
+<details open><summary>Oil falls 3% as Trump calls new Iran strikes &#x27;highly unlikely&#x27;; Brent just had its worst week since the pandemic (−16%) despite fresh Hormuz attacks<span class="tag">Reuters / Yahoo Finance / JPMorgan</span></summary>
+<p class="body">Brent traded $95–96.7 and WTI $87.3–89.9 on Monday, down 1.7–3% intraday depending on timestamp, after Trump told CNN he is highly unlikely to authorize further strikes while talks on Iran&#x27;s nuclear program and reopening Hormuz progress. Brent&#x27;s January contract fell 16% last week. Yet both Washington and Tehran reported vessels hit in or near the Strait over the weekend, a tanker was reported burning after a Nov 8 strike, the US conducted limited strikes on an air-defense site on Qeshm Island, and the Houthis claimed an attack on Aramco&#x27;s Riyadh tower.</p>
+<p class="body">Rubio on Nov 8 called Iran&#x27;s demands (lifting the naval blockade, suspending oil sanctions, releasing frozen assets) &#x27;outrageous and ridiculous,&#x27; while Tehran proposed cutting the pause before talks resume from seven days to two and offered to reopen Hormuz to commercial traffic within two days if its conditions are met. JPMorgan estimates the global surplus widened from 1.1 mb/d in September to 1.4 mb/d in October as Middle East output recovers and demand stays subdued.</p>
+<p class="body">SS WealthStreet&#x27;s Sugandha Sachdeva sees Brent support at $93. Hedge funds cut net longs across 25 commodity futures by 33% in the week to Nov 3. Ukraine&#x27;s drone strike on Russia&#x27;s Kirishi refinery (over 6% of Russian refining) added a supply headline on the other side.</p>
+<p class="note"><b>Why it matters:</b> oil is the single input that links the Iran war to US inflation, Fed hike odds and Treasury yields; a 16% weekly drop into a 1.4 mb/d surplus says the market is pricing de-escalation that the Strait itself has not yet delivered.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/energy/articles/oil-prices-decline-trump-signals-100337079.html">Yahoo Finance: Oil declines as Trump signals restraint</a> · <a href="https://www.cnbc.com/2026/11/09/us-iran-war-trump-hormuz.html">CNBC: Rubio sees little hope of breakthrough</a> · <a href="https://fxstreet.com/news/wti-oil-extends-losses-nearing-8700-amid-efforts-to-resume-us-iran-negotiations-202611091233">FXStreet: WTI near $87</a> · <a href="https://kyivindependent.com/ukrainian-forces-reportedly-strike-russias-second-largest-oil-refinery-in-overnight-drone-attack/">Kyiv Independent: Kirishi refinery</a></p>
+</details>
+<details><summary>Hormuz still effectively closed to commercial traffic: war-risk cover at 3–10% of hull value vs 0.25% pre-war, Gulf-to-Asia crude freight ~$37/bbl<span class="tag">UNCTAD / IEA / Khaleej Times</span></summary>
+<p class="body">Trackers dated Nov 9 describe the Strait as closed to commercial shipping. War-risk premiums are quoted at 3–10% of hull value (vs 0.25% before the war), i.e. $3–10 million per voyage for a $100 million tanker, and underwriters are reluctant to write spot cover. UNCTAD&#x27;s Oct 29 report found reduced tanker availability, longer routes and ship-to-ship transfers have lifted freight costs; the IEA put Middle East Gulf-to-Asia crude freight at ~$37/bbl by mid-October, roughly five times pre-war.</p>
+<p class="body">Insurers say they need months of stability before normal cover returns, so a diplomatic reopening would not quickly cut shipping costs. Separately, Russia is rationing fuel at home: Rosneft capped sales at 30 litres of 95-octane, 50 of 92 and 100 of diesel per customer in Krasnoyarsk, Karelia, Buryatia, Zabaikalsky and Novosibirsk after Ukrainian strikes on four of its refineries since Oct 30.</p>
+<p class="note"><b>Why it matters:</b> even a deal leaves a lagging cost shock in freight and insurance that feeds Asian import prices (see China PPI) and keeps a floor under global goods inflation into 2027.</p>
+<p class="src">Sources: <a href="https://safety4sea.com/unctad-tanker-freight-rates-and-bunker-costs-surge-amid-hormuz-disruptions/">Safety4Sea: UNCTAD on tanker freight and Hormuz</a> · <a href="https://www.khaleejtimes.com/world/strait-hormuz-reopening-shipping-costs-insurance-premiums">Khaleej Times: Reopening won&#x27;t mean cheaper shipping</a> · <a href="https://kyivindependent.com/russia-imposes-gasoline-sales-restrictions-amid-ukrainian-oil-refinery-attacks-russian-media-report/">Kyiv Independent: Russia gasoline restrictions</a></p>
+</details>
+<details><summary>Europe: UniCredit beats with €3.3B profit and lifts guidance; Crédit Agricole proposes a Banco BPM merger; EU activates emergency aid for Ukraine&#x27;s grid<span class="tag">CNBC / Kyiv Independent</span></summary>
+<p class="body">UniCredit Q3 net profit rose 24% y/y to €3.3 billion vs €2.78 billion consensus, revenue €6.9 billion (+12%), with full-year profit guidance raised to &#x27;well above&#x27; €11.5 billion; shares +4.7%. Crédit Agricole proposed merging its Italian unit with Banco BPM, lifting its stake from 29.6% to ~45% of the combined group, with a 20% premium, a €1 billion special dividend, €800 million in annual synergies and ~24% 2027 EPS accretion.</p>
+<p class="body">Hochtief −5.3% after ACS ruled out a tender offer. The Stoxx 600 recovered to +0.4% by 8:20 London after a lower open; miners +1.7% on gold ($4,122, +1.25%) and copper rebounds. Friday: Stoxx 600 −1%, DAX −1.9%. In Ukraine, Russia hit energy infrastructure 128 times in the week to Nov 8, leaving parts of 12 regions without power on Monday; the EU agreed to channel emergency funding through its Civil Protection Mechanism, the Netherlands pledged €1.2 billion of non-military aid over three years, and the IMF began a review of Ukraine&#x27;s EFF program with a possible $1.67 billion tranche (per Forbes Ukraine). US-brokered Ukraine–Russia talks open in Abu Dhabi Tuesday.</p>
+<p class="note"><b>Why it matters:</b> European bank consolidation and beats are where the &#x27;rotate out of US tech&#x27; money is going; Citi&#x27;s strategists now explicitly favor Europe over the US. Ukraine&#x27;s winter energy bill is becoming an EU fiscal line item.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/08/stock-market-today-live-updates.html">CNBC live blog Nov 9</a> · <a href="https://kyivindependent.com/eu-to-activate-emergency-mechanism-to-back-ukraine-amid-deepening-energy-crisis/">Kyiv Independent: EU emergency mechanism</a></p>
+</details>
+</section>
+<section id="trade"><h2>🚢 Trade, Tariffs &amp; Policy <span class="cnt">2 items</span></h2>
+<details open><summary>Democrats plan to make repeal of Trump&#x27;s 50% Canada tariffs their first trade move in January; veto math requires two-thirds<span class="tag">CNBC / Benzinga / The Hill / Marketplace</span></summary>
+<p class="body">CNBC reports Democrats intend to pursue tariff legislation and investigations as soon as the new Congress convenes in January 2027, starting with the 50% tariffs on Canadian goods, and to rush to the House floor a bill reasserting congressional authority over trade. Incoming Senate Finance chair Ron Wyden says he is already drafting legislation and support for repeal is &#x27;overwhelming&#x27;; Rep.</p>
+<p class="body">Jamie Raskin wants the tariffs ended within 100 days; DNC chair Ken Martin calls repeal the first priority. The obstacle is a presidential veto requiring two-thirds in both chambers, plus the Senate filibuster on a standalone bill; analysts see northern-border Republicans as potential allies. Tax Foundation estimates tariffs raised the average household&#x27;s tax burden by $820 in 2026; Penn Wharton says tariffs brought in about $300 billion from January 2025 to July 2026, of which about $138 billion has been refunded after the February Supreme Court ruling.</p>
+<p class="body">In a CNBC Voter Poll, 65% said the tariffs hurt the economy versus 22% who said they helped. A lawsuit filed Oct 20 over the 50% Canada tariffs is pending. Trump on 60 Minutes credited tariffs for &#x27;the highest stock market in history.&#x27;</p>
+<p class="note"><b>Why it matters:</b> a credible repeal path for Canada tariffs would lower input costs for autos, lumber and energy and ease goods inflation, but until veto-proof votes exist the market impact is sentiment, not cash flow.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/08/trump-tariffs-democrats-congress-canada.html">CNBC: How Democrats will try to end Trump&#x27;s tariffs</a> · <a href="https://www.benzinga.com/news/politics/26/11/62966210/trumps-canada-tariffs-to-become-democrats-first-target-after-midterm-victory-wyden-says-repeal-support-is-overwhelming-report">Benzinga: Canada tariffs first target, Wyden</a> · <a href="https://www.marketplace.org/story/2026/11/05/repealing-trumps-tariffs-wont-be-easy">Marketplace: Repealing tariffs won&#x27;t be easy</a></p>
+</details>
+<details><summary>China trade data due Tuesday alongside US CPI; a two-month US–China truce extension is reported ahead of an expected Xi–Trump meeting at APEC<span class="tag">CNBC / CoinDesk (Reuters) / Saxo</span></summary>
+<p class="body">China&#x27;s October trade figures land Tuesday together with US CPI. With Chinese PPI at +5.7% y/y (highest since June 2022) and analysts split between strong external demand and energy-shock pass-through, the export-price component will show whether China is exporting inflation for the first time in years. CoinDesk, citing Reuters, reports China is extending its US trade truce by two months, with Xi and Trump expected to meet at APEC next week.</p>
+<p class="body">Iron ore and metals face margin pressure as Chinese CPI stays at 0.7%. Elsewhere in trade policy, the Commerce Department initiated antidumping investigations Monday into seamless carbon and alloy steel pipe from Georgia and India (Federal Register notice 2026-22835).</p>
+<p class="note"><b>Why it matters:</b> if Chinese export prices rise, the long-standing &#x27;China exports deflation&#x27; cushion for US goods prices disappears exactly when the Fed is debating a hike; a truce extension removes one tail risk for the week.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/09/china-wholesale-inflation-rises-consumer.html">CNBC: China wholesale inflation</a> · <a href="https://www.coindesk.com/daybook-us/2026/11/09/bitcoin-bulls-can-t-rely-on-etf-flows">CoinDesk Daybook (truce extension)</a> · <a href="https://www.federalregister.gov/documents/2026/11/09/2026-22835/seamless-carbon-and-alloy-steel-standard-line-and-pressure-pipe-from-georgia-and-india-initiation-of">Federal Register: steel pipe investigations</a></p>
+</details>
+</section>
+<section id="trump"><h2>🎙 Trump &amp; Policy Signals <span class="cnt">3 items</span></h2>
+<details open><summary>60 Minutes (Nov 8): Trump blames Democrats for a &#x27;$3 trillion&#x27; post-election selloff, wants lower rates, says he knows &#x27;nothing&#x27; about World Liberty&#x27;s UAE deal<span class="tag">CBS / Roll Call Factba.se / Yahoo Finance</span></summary>
+<p class="body">In his first sit-down after the midterms, with Ross Douthat, Trump said: &#x27;We have the highest stock market in history. Now, we lost yesterday because of the election, $3 trillion. The market lost almost 2,000 points because of the Democrats.&#x27; CNN had estimated the Thursday loss at ~$2.5 trillion; the Nasdaq, S&amp;P 500 and Dow had their worst day since April 2025. On rates: &#x27;I&#x27;d like to see the interest rates lower.</p>
+<p class="body">The problem with interest rates is we have a board that was largely composed of Obama and Biden people.&#x27; He attributed the midterm loss to the Iran war and gasoline prices (&#x27;They didn&#x27;t like the war. They didn&#x27;t like the fact that gasoline went up&#x27;) and to &#x27;bad messaging, maybe by me&#x27; on the economy. Asked about Aryam Investment&#x27;s $500 million purchase of 49% of World Liberty Financial, he said &#x27;Because I know nothing about it.&#x27; On AI: &#x27;I don&#x27;t mind guardrails.</p>
+<p class="body">But I don&#x27;t wanna put us in a deep second position.&#x27; He called Nvidia&#x27;s Huang an &#x27;honorable guy&#x27; who &#x27;probably has an excuse,&#x27; confirmed Cabinet changes are coming (Stephen Miller replaced Susie Wiles as chief of staff about an hour after taping), and said further Iran strikes are &#x27;highly unlikely&#x27; while talks progress — the comment that sent oil down 3% Monday. Trump Media fell 16% to an all-time intraday low on Thursday and reports earnings after the close today.</p>
+<p class="note"><b>Why it matters:</b> the Iran remark moved oil and futures more than anything else over the weekend; the Fed remark signals renewed pressure on the FOMC right before a possible hike; the WLFI answer keeps the ethics fight that stalled crypto legislation alive.</p>
+<p class="src">Sources: <a href="https://rollcall.com/factbase/trump/transcript/donald-trump-interview-ross-douthat-cbs-news-60-minutes-november-8-2026/">Roll Call Factba.se transcript, Nov 8, 2026</a> · <a href="https://www.cbsnews.com/news/10-takeaways-from-trump-60-minutes-interview/">CBS: 10 takeaways</a> · <a href="https://finance.yahoo.com/markets/stocks/articles/trump-blames-democratic-win-3t-013105074.html">Yahoo Finance: Trump blames Democratic win for $3T rout</a></p>
+</details>
+<details><summary>Rubio: &#x27;I wouldn&#x27;t say we&#x27;re on the verge of a breakthrough&#x27; with Iran, demands &#x27;outrageous and ridiculous&#x27;; G7 foreign ministers meet in Paris through Tuesday<span class="tag">CNBC / Al Jazeera / France 24</span></summary>
+<p class="body">Speaking in Florida on Nov 8 before leaving for the G7 foreign ministers&#x27; meeting, Rubio said talks are not close to a breakthrough and that Iranian demands are &#x27;not just unacceptable, but in some cases, outrageous and ridiculous, and really not realistic,&#x27; while stressing Trump would prefer to solve &#x27;this and every problem diplomatically.&#x27; Iran&#x27;s spokesman Baghaei said Monday that talks require US sanctions lifted and the war ended &#x27;on all fronts&#x27; first; Tehran floated a two-day plan to restore Hormuz security if seven demands are met.</p>
+<p class="body">Rubio told Al Jazeera the war is unpopular but &#x27;necessary.&#x27; The two-day G7 meeting under French chairmanship is Rubio&#x27;s first foreign trip since the midterms; Europeans plan to press Washington on Ukraine settlement terms (parallel to the Abu Dhabi talks Nov 10–11) and against new Iran strikes. France has said there will be no joint communiqué. The contrast between Rubio&#x27;s tone and Trump&#x27;s &#x27;highly unlikely&#x27; strike comment is what oil traders are weighing.</p>
+<p class="note"><b>Why it matters:</b> Rubio is the hawkish signal, Trump the dovish one; the spread between them is the oil risk premium, with Brent support seen at $93.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/09/us-iran-war-trump-hormuz.html">CNBC: Rubio sees little hope of breakthrough</a> · <a href="https://www.aljazeera.com/news/2026/11/9/rubio-says-war-on-iran-unpopular-but-necessary-to-stop-nuclear-threat">Al Jazeera: Rubio says war unpopular but &#x27;necessary&#x27;</a> · <a href="https://www.france24.com/en/france/20261109-europa-us-ukraine-peace-iran-paris-g7-ministers">France 24: Europe to press US at Paris G7</a></p>
+</details>
+<details><summary>Post-midterm Washington: Miller as chief of staff, Hegseth impeachment vote by midweek, GOP leadership votes Tuesday, Palantir hires Tester ahead of oversight<span class="tag">ABC News / Axios / NPR / The Hill</span></summary>
+<p class="body">Stephen Miller started Monday as White House chief of staff, replacing Susie Wiles; a deputy chief of staff departed in the shake-up. Rep. Thomas Massie plans to refile a privileged resolution with eight articles of impeachment against Defense Secretary Hegseth, forcing a House vote within two legislative days; Minority Leader Jeffries is a &#x27;hard yes&#x27; and Axios reports GOP leaders are bracing for defections, though removal needs two-thirds of the Senate.</p>
+<p class="body">House Republicans pick a new minority leader Tuesday (Scalise vs. Jordan) and Senate Republicans hold their leadership vote the same morning; The Hill reports Senate Republicans returning &#x27;furious with Trump.&#x27; House Democrats vote Nov 18, with Jeffries the presumptive Speaker nominee. Democrats won at least 255 House seats and up to 56 Senate seats. Palantir hired former Democratic senator Jon Tester as it faces scrutiny in the new Congress (NPR); Sen. Chris Coons, in line to chair Foreign Relations, says &#x27;Congress will investigate&#x27; Nvidia.</p>
+<p class="note"><b>Why it matters:</b> Miller&#x27;s promotion signals continuity on enforcement and tariffs despite the election result, while the leadership and impeachment votes define how much the lame duck can legislate before Dec 11.</p>
+<p class="src">Sources: <a href="https://abcnews.com/Politics/congress-returns-crowded-lame-duck-session-hegseth-impeachment/story?id=137918357">ABC News: Crowded lame-duck session</a> · <a href="https://www.axios.com/2026/11/08/pete-hegseth-impeachment-house-republicans-massie">Axios: House poised to impeach Hegseth</a> · <a href="https://www.npr.org/2026/11/09/nx-s1-6029641/palantir-congress-jon-tester-investigations">NPR: Palantir hires Tester</a> · <a href="https://thehill.com/homenews/senate/6206790-senate-gop-blames-trump-losses/">The Hill: Senate GOP furious with Trump</a></p>
+</details>
+</section>
+<section id="corp"><h2>🏢 Corporate &amp; Earnings <span class="cnt">4 items</span></h2>
+<details><summary>Nvidia board probe into Jensen Huang: stock −4.8% premarket, ~$250B of a $5T valuation; Ives calls it a &#x27;black eye moment,&#x27; Asian rivals rally<span class="tag">CNBC / Reuters / TechCrunch</span></summary>
+<p class="body">Nvidia&#x27;s board launched an independent investigation Sunday after NYT/FT reports that Huang was targeted by a foreign intelligence effort via MegaSpeed executive Alice Huang, whom US agencies say passed information to Beijing; MegaSpeed is accused of helping restricted Chinese firms acquire Nvidia chips. Huang admitted an affair in a staff email (&#x27;There is no excuse for what I did&#x27;); Nvidia says he remains CEO, &#x27;fully supports the review,&#x27; and that no company secrets or national security were compromised; Beijing calls the spy narrative unsubstantiated.</p>
+<p class="body">Shares fell 4.8% premarket and 6%+ in Frankfurt, 22% below the October peak and at the lowest since April. Dan Ives: &#x27;black eye moment for Jensen,&#x27; replacement talk is &#x27;comedy,&#x27; but portfolio managers will trim. Gary Black: Huang could step down, &#x27;no natural successor.&#x27; Yale&#x27;s Jeffrey Sonnenfeld puts his survival odds at &#x27;about a 50-50&#x27; and floats Eric Schmidt as an outside option.</p>
+<p class="body">Panmure&#x27;s Klement: contagion to other semis if Huang&#x27;s position is endangered. A source close to Huang told CNBC a leave of absence is possible. TSMC +5.6–6.5%, SK Hynix +4.7%, Samsung +2.9%, Taiex +4.94%. Next catalysts: Q3 earnings Nov 17, a closed House briefing Nov 18, a Washington keynote Dec 1.</p>
+<p class="note"><b>Why it matters:</b> key-man risk at the company that anchors the AI capex cycle arrives in the same week CoreWeave, Cisco and Applied Materials report; the rotation into TSMC/Hynix shows money staying in AI hardware but leaving the governance risk.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/09/nvidia-jensen-huang-chinese-spy-investigation.html">CNBC: Nvidia falls 5%</a> · <a href="https://www.cnbc.com/2026/11/09/nvidia-jensen-huang-affair-congress-scrutiny.html">CNBC: Congress scrutiny</a> · <a href="https://techcrunch.com/2026/11/08/is-jensen-huangs-job-on-the-line-yales-jeffrey-sonnenfeld-estimates-its-about-a-50-50/">TechCrunch: Sonnenfeld 50-50</a></p>
+</details>
+<details><summary>Berkshire Q3: operating earnings −5.8% to $12.7B, buybacks doubled to $9.6B, cash a record $377B; BRK.A +12% in a month vs S&amp;P −5.5%<span class="tag">CNBC / SEC 8-K</span></summary>
+<p class="body">Operating earnings $12.705B vs $13.485B a year ago; insurance underwriting −43% to $1.352B, insurance investment income −14% to $2.734B; BNSF $1.729B vs $1.449B, energy and manufacturing up. Net earnings $22.112B (−28%) on investment gains of $9.407B vs $17.311B. Total cash $377.435B (+3% q/q, a record); &#x27;adjusted&#x27; cash excluding rail/utility and T-bill payables $352.3B (−1.9%).</p>
+<p class="body">Buybacks $9.6B vs $4.5B in Q2, $14.4B year-to-date under Greg Abel. Top five holdings unchanged (Alphabet, American Express, Apple, Bank of America, Coca-Cola). BRK.A +12% over the past month against −5.5% for the S&amp;P 500, +13% YTD vs +7.8%.</p>
+<p class="note"><b>Why it matters:</b> Abel buying back record amounts while holding record cash is a statement that Berkshire sees its own stock as cheaper than anything in the market, and investors are using it as the rotation trade out of tech; watch the 13F for position changes.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/07/berkshire-hathaway-q3-2026-earnings-buybacks.html">CNBC: Berkshire Q3 2026</a> · <a href="https://www.sec.gov/Archives/edgar/data/0001067983/000119312526452530/brka-ex99_1.htm">SEC 8-K Berkshire Q3 2026</a></p>
+</details>
+<details><summary>Constellation Energy crushes estimates ($5.06 vs ~$3.85) and lifts 2026 guidance to $12.50–12.80; CoreWeave, Cisco, Applied Materials headline the week<span class="tag">Constellation / StockTitan / LSEG</span></summary>
+<p class="body">CEG adjusted EPS $5.06 vs $3.04 a year ago and $3.73–3.90 consensus; revenue $9.55B vs $6.57B (consensus ~$9.47B); FY2026 guidance raised to $12.50–12.80 from $11.50–12.50 on Calpine and favorable markets; a conditional DOE loan commitment of up to $5B for nuclear uprates and the purchase of Rhode Island State Energy Center. Barrick adjusted EPS $0.82 vs $0.79. Still today: KKR ($1.41), NRG ($3.44), Ferguson ($3.28), monday.com; after the close Occidental ($1.43 vs $0.64), Take-Two ($0.49; bookings guide $1.62–1.67B, GTA VI ships Nov 19), Rocket Lab, Skydance (first post-WBD report), MARA, Trump Media.</p>
+<p class="body">Tuesday: CoreWeave after close (−$1.45 EPS; revenue ~$3.55B, +160% y/y per LSEG), SoftBank, TransDigm, Sea. Thursday: Cisco ($1.15; revenue $18.0–18.2B) and Applied Materials ($4.06; ~$10.25B) after close; Nebius before open (~$908M revenue, 6x); Cerebras, Brookfield. Nvidia Nov 17. Airbnb +11.7% Friday on raised guidance; AMD +11% on the chip rebound, with Oppenheimer upgrading AMD to outperform Monday.</p>
+<p class="note"><b>Why it matters:</b> CEG&#x27;s beat is the &#x27;power for AI&#x27; trade working in real earnings; CoreWeave Tuesday is the test of whether the AI build-out can still be financed at 15–16% debt costs.</p>
+<p class="src">Sources: <a href="https://www.constellationenergy.com/news/2026/11/constellation-reports-third-quarter-2026-results.html">Constellation Q3 2026 results</a> · <a href="https://www.stocktitan.net/articles/earnings-calendar-week-of-november-9-2026">StockTitan earnings calendar Nov 9–13</a> · <a href="https://www.cnbc.com/2026/11/09/amd-oppenheimer-upgrade-outperform.html">CNBC: AMD upgrade</a></p>
+</details>
+<details><summary>Strategist split: Morgan Stanley&#x27;s Wilson says the correction is in its final phase; Citi says sit out global tech; Schwab&#x27;s Sonders flags retail capitulation<span class="tag">MarketWatch / CNBC / Vanda</span></summary>
+<p class="body">Mike Wilson (Morgan Stanley) argues the midterms remove a key uncertainty and the correction is entering its final phase, but tells clients to wait before buying the dip. Citi&#x27;s global strategy team tells investors it is better to sit out the global tech trade until AI sentiment improves and positioning is cleaner; Scott Chronert said Nov 4 the AI trade &#x27;isn&#x27;t out of the woods&#x27;; Citi favors Europe over the US.</p>
+<p class="body">Liz Ann Sonders (Schwab) says the Nasdaq is oversold but &#x27;retail has not proven to be the dip buyers that they have been in the past&#x27;; Vanda Research measured Thursday as the biggest retail selling day since the Covid crash. VIX 25.6, curve in backwardation; options imply a ~1.25% S&amp;P move Monday and 2.5% by Friday. Week of Nov 2–6: Nasdaq −3.4%, S&amp;P −2.7%, Dow −0.9%, Russell 2000 −2.1%.</p>
+<p class="body">Friday: Nasdaq +1.09% (24,579.42), S&amp;P +0.31% (7,376.86), Dow −0.46% (51,285.73); Monday premarket: Dow futures +507, S&amp;P and Nasdaq 100 futures +0.7%. Sonders says the next focus should be companies&#x27; capex plans and margin outlooks.</p>
+<p class="note"><b>Why it matters:</b> the disappearance of the retail dip-buyer is a regime change for a market that relied on it; whether Wilson or Citi is right gets decided by CPI and CoreWeave this week.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/08/stock-market-today-live-updates.html">CNBC live blog (Sonders, Vanda)</a> · <a href="https://www.marketwatch.com/story/the-markets-correction-is-entering-its-final-phase-but-wait-before-buying-the-dip-says-morgan-stanley-chief-strategist-2c1be13e">MarketWatch: Morgan Stanley&#x27;s Wilson</a> · <a href="https://www.marketwatch.com/story/until-sentiment-in-the-ai-trade-improves-citi-tells-investors-its-better-to-sit-out-the-global-tech-trade-ed939f30">MarketWatch: Citi on global tech</a></p>
+</details>
+</section>
+<section id="crypto"><h2>₿ Digital Assets <span class="cnt">4 items</span></h2>
+<details><summary>Bitcoin tests $74K, lowest since August; $1B+ weekend liquidations; spot BTC ETFs lose $1.28B in a week and turn negative for 2026<span class="tag">SoSoValue / CoinDesk / Cointelegraph</span></summary>
+<p class="body">BTC hit ~$73,700 over the weekend before recovering to ~$74,800 ($74,814, −1.4% on the day at 08:00 ET); ETH ~$2,120 (−5.2%). Over $1B of positions were liquidated, mostly ETH longs. Spot BTC ETFs saw $1.282B of net outflows Nov 2–6, the worst week since June 22–28, with IBIT accounting for $1.21B (sixth straight session of withdrawals) while Fidelity&#x27;s FBTC drew ~$93M; 2026 cumulative flows swung to −$914M after turning positive on Sept 22.</p>
+<p class="body">ETH ETFs lost $365M, a sixth straight weekly outflow. Drivers cited: 77% December hike odds, the Nvidia-led tech selloff (the Nasdaq is on a five-week losing streak), Binance&#x27;s $6.3B hack fallout, and Democratic control of Congress dimming prospects for the CLARITY Act, which failed cloture 49–50 on Sept 15. Miller Tabak&#x27;s Matt Maley: the 200-day average sits near $73,000 and a close below $75,000 is a &#x27;key lower low.&#x27; Bitfire Research: Fear &amp; Greed at 25, negative Coinbase Premium, a &#x27;breakdown and bottom-seeking phase.&#x27; Marex: the 10-year easing to 4.85% is &#x27;not enough to offset persistent ETF outflows.&#x27;</p>
+<p class="note"><b>Why it matters:</b> crypto is trading as high-beta Nasdaq plus a rates trade; a hot CPI threatens the 200-day line, a soft one is the most likely relief catalyst.</p>
+<p class="src">Sources: <a href="https://cointelegraph.com/markets/bitcoin-etfs-13b-biggest-weekly-outflow-late-june">Cointelegraph: BTC ETFs shed $1.3B</a> · <a href="https://www.coindesk.com/daybook-us/2026/11/09/bitcoin-bulls-can-t-rely-on-etf-flows">CoinDesk Daybook: Bulls can&#x27;t rely on ETF flows</a> · <a href="https://crypto.news/bitcoin-price-below-75000-etf-outflows-liquidations/">crypto.news: BTC toward $74K, liquidations</a></p>
+</details>
+<details><summary>Coinbase wins a full OCC national trust charter, joining Circle and Ripple; community banks are suing over 21 such approvals<span class="tag">CoinDesk / Decrypt / Cointelegraph</span></summary>
+<p class="body">The OCC granted final approval on Nov 6 (announced Nov 9) for Coinbase National Trust Company, a New York national trust bank wholly owned by Coinbase Global; conditional approval dated to April 2. The charter permits custody, trust and payments services under federal supervision but no deposit-taking or lending; Coinbase says it is not becoming a commercial bank. Vice Chairman Ryan VanGrack: &#x27;another major step in integrating digital assets into the core infrastructure of the American financial system.&#x27; Reports conflict on whether the approved plan includes stablecoin issuance.</p>
+<p class="body">Circle got final approval in July, Ripple in October; World Liberty Financial holds a conditional charter from August. The Independent Community Bankers of America has sued the OCC over 21 trust approvals, arguing overreach. With the CLARITY Act stalled, the OCC route under the GENIUS Act is the de facto federal on-ramp. COIN shares remain under pressure with bitcoin.</p>
+<p class="note"><b>Why it matters:</b> federal trust status lets Coinbase custody for banks and asset managers at scale, but a charter granted by regulators rather than Congress is exposed to litigation and to the next administration.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/policy/2026/11/09/coinbase-gets-full-u-s-trust-charter-from-federal-banking-regulator">CoinDesk: Coinbase full trust charter</a> · <a href="https://decrypt.co/382816/coinbase-joins-circle-ripple-with-final-occ-approval-for-federal-trust-bank-charter">Decrypt</a> · <a href="https://cointelegraph.com/news/coinbase-occ-approval-national-trust-bank-charter">Cointelegraph</a></p>
+</details>
+<details><summary>Formation files to run the first tokenized-stock venue on Solana (early 2027); Vitalik recasts ETH as a store of value rather than a fee-burn asset<span class="tag">The Block / CoinDesk</span></summary>
+<p class="body">Formation Securities (created last month by merging Orca and Loopscale) notified the SEC Nov 9 of plans to trade tokenized Exodus Movement, Forward Industries and Galaxy Digital shares via permissioned AMM pools under the SEC innovation exemption, with Superstate and Alpaca distributing and Anchorage and BitGo Bank as custodians; shares carry the same voting and dividend rights and trade around the clock against stablecoins; launch targeted for early 2027, pending licenses.</p>
+<p class="body">Rivals: OKXICE (opposed by 67 firms), TSV on Canton, Perpetuals.com. Formation&#x27;s Christopher Montagano: &#x27;Tokenized stocks will succeed only if public companies see the value in them.&#x27; Vitalik Buterin wrote Nov 8 that the fee-burn thesis &#x27;never was as strong as it seemed,&#x27; that ETH should be valued as a store of value whose key metric is survival, and that EIP-1559 should stay without raising fees to boost burns; Solana&#x27;s Yakovenko agreed that fees are not the product.</p>
+<p class="body">Also: Robinhood opened US IPO access to UK retail investors; the EU tapped industry to set tokenized-securities standards; Russia&#x27;s central bank opens BTC/ETH to retail from Nov 17 with a 300,000-ruble (~$3,700) annual cap.</p>
+<p class="note"><b>Why it matters:</b> tokenized equities under SEC exemptions are the clearest TradFi-crypto bridge being built regardless of Congress; the ETH thesis reset lands during six weeks of ETF outflows, so it is a narrative fix without a flow fix yet.</p>
+<p class="src">Sources: <a href="https://www.theblock.co/news/defi/2026-11-09-formation-tokenized-securities-solana-436060">The Block: Formation notice to SEC</a> · <a href="https://www.theblock.co/news/ecosystems/2026-11-08-vitalik-buterin-says-eth-should-be-valued-as-a-store-of-value-not-a-fee-burning-token-436022">The Block: Vitalik on ETH</a> · <a href="https://cointelegraph.com/news/robinhood-us-ipo-access-uk-retail-investors">Cointelegraph: Robinhood UK IPO access</a></p>
+</details>
+<details><summary>Trump says he knows &#x27;nothing&#x27; about the $500M UAE stake in World Liberty Financial; Justin Sun seeks court sanctions; Senate records deadline for Binance, Tether and WLFI<span class="tag">CoinDesk / The Block / Cointelegraph</span></summary>
+<p class="body">On 60 Minutes Trump confirmed co-owning WLFI but said of Aryam Investment&#x27;s agreement to buy 49% for $500 million (linked to UAE national security adviser Sheikh Tahnoon bin Zayed) that &#x27;I know nothing about it&#x27; and that his sons run the business. Justin Sun&#x27;s lawyers asked a federal court to sanction WLFI and its lawyers, alleging the company first disclosed only Florida citizenship and, after an August hearing, amended its filing to list 22 entities and citizenship in Florida, Delaware, Puerto Rico and the UAE in a bid to defeat federal jurisdiction over his frozen-token suit; Sun plans to refile in California state court once sanctions are resolved.</p>
+<p class="body">Cointelegraph reports Binance, Tether and Trump-linked crypto firms face a deadline to hand records to a Senate investigation. Ethics provisions around officials&#x27; crypto businesses were the reason Democrats blocked CLARITY in September; they control both chambers and the investigative agenda from January.</p>
+<p class="note"><b>Why it matters:</b> WLFI is the political liability that stands between the industry and market-structure legislation; every new disclosure fight lowers the odds of a 2027 bill.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/business/2026/11/09/trump-says-he-knows-nothing-about-world-liberty-s-uae-ties-as-justin-sun-challenges-filings">CoinDesk</a> · <a href="https://www.theblock.co/news/business/2026-11-09-trump-says-he-knows-nothing-about-uae-linked-investment-in-his-crypto-firm-436079">The Block</a> · <a href="https://cointelegraph.com/news/binance-tether-wlfi-senate-crypto-investigation-records-deadline">Cointelegraph: Senate records deadline</a></p>
+</details>
+</section>
+<section id="ai"><h2>🤖 The AI Economy <span class="cnt">3 items</span></h2>
+<details><summary>CoreWeave&#x27;s &#x27;doom cycle&#x27;: $35B debt, CDS above 1,240bp, 2031 bonds yielding 16%+, stock halved in a month — earnings Tuesday<span class="tag">CNBC / Morningstar / HSBC</span></summary>
+<p class="body">At end-June CoreWeave had $5.5B cash against $35B total debt, including $1.3B at 15% due March 2028 and $3.2B at 11% due August 2030. Five-year CDS spreads rose above 1,240bp (+50% in a month), and 2031 bonds yield over 16%. CoreWeave and Nebius have each lost about half their value in the past month. Paul Meeks (Freedom Capital) describes a &#x27;doom cycle&#x27; in which worried creditors raise borrowing costs, feeding the problem, yet still models $42B revenue in 2028 at ~70% EBITDA margin.</p>
+<p class="body">Morningstar&#x27;s Luke Yang says bankruptcy is unlikely near term but five years of growth need more capital and the beaten-down stock makes equity issuance hard; HSBC rates it reduce with a $39 target. CEO Michael Intrator: &#x27;We currently don&#x27;t anticipate any impact to CoreWeave&#x27;s existing customer commitments or associated backlog as a result of shifts in the political landscape.&#x27; Voters rejected data centers in 40 of 41 local ballot measures Nov 3 and Democrats won governorships in Georgia, Iowa, Nevada, Ohio and Texas.</p>
+<p class="body">Tuesday consensus: revenue ~$3.55B (+160%), EPS −$1.45; Nebius Thursday ~$908M. Nscale and SB Energy IPOs have stalled; Firmus dropped its IPO.</p>
+<p class="note"><b>Why it matters:</b> this is the credit channel of the AI trade; if CoreWeave cannot show a financing path, the capex that supports Nvidia, Dell and the power names gets repriced.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/09/coreweave-debt-credit-risk-neoclouds.html">CNBC: CoreWeave confronts &#x27;doom cycle&#x27;</a> · <a href="https://www.marketwatch.com/story/can-the-ai-trade-catch-a-break-nvidia-anthropic-and-coreweave-may-have-a-say-d00c9ab3">MarketWatch: Can the AI trade catch a break?</a></p>
+</details>
+<details><summary>Anthropic commits $3.4B to 1.7GW of gas generators (FT) as power becomes the AI bottleneck; SpaceX proposes a $24B gas-powered supercomputer at Starbase<span class="tag">FT via CNBC / Techzine / CoinDesk</span></summary>
+<p class="body">Per the FT, Anthropic committed ~$3.4B in late September for Caterpillar gas-fired generators covering 1.7GW from Texas supplier OnePWR Solutions, effectively taking over OnePWR&#x27;s orders and its engineering and construction capacity without acquiring the company; Anthropic and OnePWR declined to comment, and Reuters could not verify. Anthropic has said it expects to spend more than $500B on AI infrastructure over 10 years and has a $50B Fluidstack partnership for Texas and New York sites; the FT also reports a listing could come as soon as this month, with Blackstone reportedly warning of a possible speculative-grade rating.</p>
+<p class="body">SpaceX (valued ~$1.25T after merging xAI in February) proposes a gas plant of 35 turbines (748MW) and a &#x27;super-compute facility&#x27; on ~444 acres at Starbase, Texas; first phase ~$24B, tax-abatement hearing Dec 9. Texas governor-elect Gina Hinojosa campaigned against AI data centers and wants a pause on approvals.</p>
+<p class="note"><b>Why it matters:</b> AI labs are becoming power developers, which pulls gas, turbines and nuclear (see Constellation&#x27;s $5B DOE loan) into the AI trade, while local politics is turning against the data centers that need them.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/08/anthropic-generator-deal-ai-data-centers.html">CNBC: Anthropic $3.4B generator deal, FT</a> · <a href="https://www.techzine.eu/news/infrastructure/145661/anthropic-buys-billions-in-gas-generators-for-data-centers/">Techzine</a> · <a href="https://www.coindesk.com/markets/2026/11/09/spacex-proposes-a-usd24-billion-texas-supercomputer-worth-17-times-its-bitcoin-pile">CoinDesk: SpaceX $24B supercomputer</a></p>
+</details>
+<details><summary>Post-midterm AI regulation fear is now the stated reason for the tech selloff; Trump says &#x27;I don&#x27;t mind guardrails&#x27; but won&#x27;t accept &#x27;a deep second position&#x27; to China<span class="tag">CNBC / CBS / Opening Bell Daily</span></summary>
+<p class="body">CNBC attributes last week&#x27;s tech rout (Nasdaq −3.4%) to investor worries that a Democratic Congress will tighten rules on data-center construction, energy use and costs; Thursday Nov 5 was the worst day since April 2025 and Vanda measured record retail selling. Democrats also won five governorships and anti-data-center ballot measures passed almost everywhere. On 60 Minutes Trump said: &#x27;I don&#x27;t mind guardrails.</p>
+<p class="body">But I don&#x27;t wanna put us in a deep second position… China has no guardrails, by the way… whoever wins that race wins,&#x27; and that AI risk &#x27;is not nearly as real as they talk… the risk can be managed.&#x27; Sen. Chris Coons (incoming Foreign Relations chair) says &#x27;Congress will investigate&#x27; Nvidia; Palantir hired former Sen. Jon Tester ahead of oversight. Into that, Nvidia&#x27;s board probe adds key-man risk at the ecosystem&#x27;s anchor one week before its Nov 17 report.</p>
+<p class="body">Model-release trackers show zero confirmed launches in the past 24 hours; Tencent has promised Hy4 (770B) weights &#x27;in the coming days.&#x27;</p>
+<p class="note"><b>Why it matters:</b> the AI trade&#x27;s two props — cheap capital and permissive siting — are both being questioned at once, which is why beats like Constellation&#x27;s are rewarded while neoclouds are not.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/08/stock-market-today-live-updates.html">CNBC live blog</a> · <a href="https://www.cbsnews.com/news/donald-trump-2026-post-midterm-elections-interview-60-minutes-transcript/">CBS: 60 Minutes transcript</a> · <a href="https://www.npr.org/2026/11/09/nx-s1-6029641/palantir-congress-jon-tester-investigations">NPR: Palantir hires Tester</a></p>
+</details>
+</section>
+<section id="energy"><h2>⚡ Energy &amp; Commodities <span class="cnt">2 items</span></h2>
+<details><summary>Brent ~$95–97, WTI ~$87–90 after a 16% weekly drop; JPMorgan sees a 1.4 mb/d October surplus; gold rebounds to $4,122<span class="tag">Reuters / JPMorgan / Saxo</span></summary>
+<p class="body">Monday: Brent −1.7% to $96.67 at 08:30 GMT and as low as ~$95 later; WTI −1–3% to $87.3–89.9. Brent&#x27;s January contract fell 16% last week, the steepest since the pandemic began. JPMorgan (Friday): the global surplus widened from 1.1 mb/d in September to 1.4 mb/d in October on recovering Middle East output and exports, extra non-Gulf supply and subdued demand. Hedge funds cut commodity net longs 33% to 783k contracts in the week to Nov 3; the Bloomberg Commodity Index fell 3.3%.</p>
+<p class="body">Russia&#x27;s Kirishi refinery (Kinef, up to 20 mt/yr, &gt;6% of Russian refining) caught fire after a Ukrainian drone strike Monday and Rosneft is rationing retail fuel in five regions. Gold rebounded 1.25% to $4,122 (central banks bought 321 tonnes in Q3), silver $52.75, copper $6.33/lb off a four-month low.</p>
+<p class="note"><b>Why it matters:</b> oil at $95 with a 1.4 mb/d surplus means the price is almost entirely Hormuz risk premium; de-escalation headlines can take another $10 out, re-escalation puts it back in a day.</p>
+<p class="src">Sources: <a href="https://finance.yahoo.com/energy/articles/oil-prices-decline-trump-signals-100337079.html">Yahoo Finance: Oil declines as Trump signals restraint</a> · <a href="https://home.saxo/en-ch/content/articles/macro/market-quick-take---asian-chipmakers-rebound-and-brent-holds-below-usd-100---9-november-2026-09112026">Saxo Market Quick Take</a> · <a href="https://kyivindependent.com/ukrainian-forces-reportedly-strike-russias-second-largest-oil-refinery-in-overnight-drone-attack/">Kyiv Independent: Kirishi</a></p>
+</details>
+<details><summary>Power is the new AI commodity: Constellation beats and raises on Calpine, lands a $5B DOE loan commitment; Occidental and NRG report; Europe&#x27;s Siemens Energy, E.ON and RWE on Wednesday<span class="tag">Constellation / FT / City of Starbase</span></summary>
+<p class="body">Constellation&#x27;s adjusted EPS of $5.06 (vs ~$3.85 consensus) and raised 2026 guidance ($12.50–12.80) came with a conditional DOE loan commitment of up to $5B for nuclear uprates and the purchase of Rhode Island State Energy Center. Anthropic committed $3.4B for 1.7GW of gas generators; SpaceX proposes a 748MW gas plant plus supercomputer at Starbase ($24B first phase). Occidental reports after the close with oil-price sensitivity in focus ($1.43 consensus vs $0.64 a year ago); NRG reported this morning ($3.44 consensus); Siemens Energy, E.ON and RWE report Wednesday in Europe.</p>
+<p class="body">Moldova said it now buys zero Russian gas and opened a 158-km line to Romania; the EU is to ban Russian gas from next year.</p>
+<p class="note"><b>Why it matters:</b> the AI capex dollar is migrating from GPUs to megawatts, making utilities and turbine makers the beneficiaries while local permitting becomes the binding constraint.</p>
+<p class="src">Sources: <a href="https://www.constellationenergy.com/news/2026/11/constellation-reports-third-quarter-2026-results.html">Constellation Q3 2026</a> · <a href="https://www.cnbc.com/2026/11/08/anthropic-generator-deal-ai-data-centers.html">CNBC: Anthropic generator deal</a> · <a href="https://kyivindependent.com/moldova-buys-zero-russian-gas-launches-new-power-line-to-eu/">Kyiv Independent: Moldova</a></p>
+</details>
+</section>
+<footer>Compiled automatically on 09.11.2026 at 08:21 New York time. Window: last ~26 hours · Feeds collected: 29/29. <a href="#top">↑ back to top</a></footer></div>
+</body>
+</html>
