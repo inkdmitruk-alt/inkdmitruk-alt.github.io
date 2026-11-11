@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Daily Economic Brief</title>
+</head>
+<body>
+
+<style>
+:root{
+  --bg:#f4f4f2; --card:#fff; --head:#161a20; --body:#3d4551; --muted:#818a99;
+  --accent:#3f5b8c; --accent-soft:#eaeff7; --border:#e6e7ea; --rule:#eff0f2;
+  --up:#1a7f4b; --down:#c23b48; --chip:#f0f1f3;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--body); margin:0; padding:26px 16px 56px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  font-size:17px; line-height:1.72; font-weight:400;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:720px;margin:0 auto;}
+
+/* ── Шапка ─────────────────────────────── */
+h1{
+  font-size:1.75rem; line-height:1.2; font-weight:600; letter-spacing:-.022em;
+  color:var(--head); margin:0 0 6px; text-wrap:balance;
+}
+.date{color:var(--muted);font-size:.82rem;font-weight:400;letter-spacing:.01em;margin-bottom:20px;}
+.prices{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px;}
+.prices span{
+  background:var(--chip); border-radius:8px; padding:6px 11px;
+  font-size:.78rem; font-weight:500; color:var(--head); white-space:nowrap;
+  font-variant-numeric:tabular-nums; letter-spacing:-.005em;
+}
+.up{color:var(--up);font-weight:600;}
+.down{color:var(--down);font-weight:600;}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 30px;}
+nav.toc a{
+  background:transparent; border:1px solid var(--border); border-radius:8px;
+  padding:6px 11px; font-size:.79rem; font-weight:450; color:var(--muted);
+  text-decoration:none; transition:color .12s, border-color .12s;
+}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);}
+nav.toc a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+/* ── Секції: головне, що розділяє потік ── */
+section{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:6px 22px 10px; margin:0 0 26px; scroll-margin-top:16px;
+}
+h2{
+  font-size:.94rem; font-weight:600; letter-spacing:.005em; color:var(--head);
+  margin:0; padding:18px 0 14px; border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; gap:9px; text-wrap:balance;
+}
+h2 .cnt{color:var(--muted);font-weight:400;font-size:.78rem;letter-spacing:0;margin-left:auto;}
+
+/* ── Головне за добу ───────────────────── */
+section#top{background:var(--accent-soft);border-color:transparent;}
+ul.tldr{margin:0;padding:14px 0 6px;list-style:none;}
+ul.tldr li{
+  margin:0; padding:11px 0 11px 2px; border-top:1px solid var(--rule);
+  font-size:.97rem; line-height:1.62;
+}
+ul.tldr li:first-child{border-top:none;}
+ul.tldr b{color:var(--head);font-weight:600;}
+
+/* ── Новина ────────────────────────────── */
+details{border-top:1px solid var(--rule);}
+details:first-of-type{border-top:none;}
+summary{
+  cursor:pointer; list-style:none; position:relative;
+  padding:17px 4px 17px 26px; margin:0;
+  font-size:1rem; font-weight:500; line-height:1.5; color:var(--head);
+  letter-spacing:-.008em; transition:color .12s;
+}
+summary::-webkit-details-marker{display:none;}
+summary::before{
+  content:""; position:absolute; left:4px; top:26px;
+  width:7px; height:7px; border-right:1.5px solid var(--muted);
+  border-bottom:1.5px solid var(--muted); transform:rotate(-45deg);
+  transition:transform .18s ease, border-color .12s;
+}
+details[open] summary::before{transform:rotate(45deg);border-color:var(--accent);}
+summary:hover{color:var(--accent);}
+summary:hover::before{border-color:var(--accent);}
+summary .tag{
+  display:block; margin-top:5px; color:var(--muted);
+  font-weight:400; font-size:.76rem; letter-spacing:.01em;
+}
+.body{
+  margin:0 0 14px; padding:0 4px 0 26px;
+  font-size:.96rem; line-height:1.75; font-weight:400; color:var(--body);
+  max-width:66ch;
+}
+.note{
+  margin:0 4px 14px 26px; padding:13px 16px;
+  background:var(--accent-soft); border-radius:10px;
+  font-size:.92rem; line-height:1.62; color:var(--body); max-width:64ch;
+}
+.note b{color:var(--accent);font-weight:600;}
+.src{
+  margin:0 4px 18px 26px; padding:0;
+  font-size:.79rem; line-height:1.9; color:var(--muted); font-weight:400;
+}
+.src a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);}
+.src a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+footer{
+  color:var(--muted); font-size:.76rem; line-height:1.75; font-weight:400;
+  margin:34px 0 0; padding-top:18px; border-top:1px solid var(--border);
+}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media (max-width:640px){
+  body{font-size:16px;padding:20px 12px 44px;}
+  h1{font-size:1.5rem;}
+  section{padding:4px 16px 8px;border-radius:12px;margin-bottom:20px;}
+  .body,.note,.src{padding-left:0;margin-left:0;}
+  .note{margin-bottom:12px;}
+  summary{padding-left:22px;}
+}
+@media (prefers-reduced-motion: reduce){summary::before{transition:none;}}
+
+.sitenav{
+  position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:4px;
+  align-items:center; padding:11px 16px; margin:-26px -16px 26px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.sitenav a{
+  font-size:.81rem; font-weight:450; text-decoration:none; color:var(--muted);
+  padding:6px 12px; border-radius:8px; white-space:nowrap;
+  transition:color .12s, background .12s;
+}
+.sitenav a:hover{color:var(--head);background:var(--chip);}
+.sitenav a.on{color:var(--accent);background:var(--accent-soft);font-weight:600;}
+.sitenav .sp{flex:1;}
+.sitenav .when{font-size:.76rem;color:var(--muted);letter-spacing:.01em;}
+@media (max-width:640px){
+  .sitenav{margin:-20px -12px 20px;padding:9px 12px;}
+  .sitenav a{padding:5px 10px;font-size:.78rem;}
+  .sitenav .when{display:none;}
+}
+</style>
+<div class="wrap"><nav class="sitenav"><a href="/">☕ Дайджест</a><a href="/en.html" class="on">📊 Economic Brief</a><a href="/archive.html">🗂 Архів</a><span class="sp"></span><span class="when">11 листопада 2026</span></nav>
+<h1>📊 Daily Economic Brief</h1>
+<div class="date">Wednesday, 11 November 2026 · compiled 08:07 New York time</div>
+<div class="prices"><span>BTC $73 863 <span class="down">−0.61%</span></span><span>ETH $2 052 <span class="down">−2.11%</span></span><span>S&amp;P 500 7 521 <span class="down">−0.38%</span></span><span>NASDAQ 25 066 <span class="down">−0.74%</span></span><span>DJIA 52 232 <span class="down">−0.30%</span></span></div>
+<nav class="toc"><a href="#top">🔥 Top</a><a href="#macro">📊 Macro &amp; Rates</a><a href="#geo">🌐 Geopolitics &amp; the Economy</a><a href="#trump">🎙 Trump &amp; Policy Signals</a><a href="#corp">🏢 Corporate &amp; Earnings</a><a href="#energy">⚡ Energy &amp; Commodities</a><a href="#crypto">₿ Digital Assets</a><a href="#ai">🤖 The AI Economy</a></nav>
+<section><h2>🧭 The throughline</h2><p class="body" style="padding-left:0">The market is trading in a stagflation-tinged tightening regime: an energy shock from the US–Iran war keeps feeding into prices, and October CPI (+0.4% m/m headline, +0.3% core, both above consensus) pushed odds of a December 9 Fed hike to roughly 90%. Front-end yields reacted most (2-year +14 bp to 4.69%), mortgage rates jumped back to 7.30%, and the S&amp;P 500 sits about 4% below its October record. AI is the swing factor in both directions: Nvidia&#x27;s governance crisis has cut its valuation to a 15-year low, while CoreWeave&#x27;s beat and Anthropic&#x27;s $1.4 trillion IPO pricing show capital still chasing compute. Bitcoin is decoupling to the downside as ETF outflows persist, a sign that higher real rates are draining speculative liquidity first.</p></section>
+<section id="top"><h2>🔥 Top of the brief</h2><ul class="tldr">
+<li>📊 <b>Hot October CPI puts a December Fed hike at ~90%</b> headline +0.4% m/m, core +0.3%; 10-year 4.93%, 2-year 4.69%.</li>
+<li>🏢 <b>CoreWeave jumps ~13% premarket on a Q3 beat and raised 2026 guidance</b> Nasdaq-100 futures +1.9% as the AI complex rebounds.</li>
+<li>🏢 <b>Baird cuts Nvidia to neutral, target $200 from $500</b> shares down 30% from October highs amid the Huang scandal; +5% premarket Wednesday.</li>
+<li>🤖 <b>Anthropic prices IPO range at $70–78, up to $64bn raised at a $1.404tn valuation</b> Nasdaq listing under ANT expected around Nov 19.</li>
+<li>⚡ <b>Brent ~$92, WTI ~$86 as US blockade of Iran persists</b> Treasury Secretary Bessent moved to a military base over Iranian threats.</li>
+<li>🏠 <b>30-year mortgage rate jumps 12 bp to 7.30%</b> biggest one-day rise in over a month, ending a four-week decline.</li>
+<li>₿ <b>Bitcoin stuck near $74k as spot ETFs bleed for a fourth day</b> $725m in liquidations; Fear &amp; Greed at 26.</li>
+</ul></section>
+<section id="macro"><h2>📊 Macro &amp; Rates <span class="cnt">4 items</span></h2>
+<details open><summary>October CPI beats: +0.4% headline, +0.3% core<span class="tag">CoinDesk / CNBC</span></summary>
+<p class="body">Consumer prices rose 0.4% month on month in October versus a 0.3% forecast, after 0.6% in September; core rose 0.3% versus 0.2% expected, matching September. No year-on-year print was published because BLS skipped the October 2025 report during the shutdown, so markets are reading momentum from monthly figures. The energy shock from the US–Iran war remains the main driver, with services inflation sticky underneath.</p>
+<p class="body">Fed Governor Waller had signaled a December hike was likely even on a soft print and that 50 bp could be discussed on a strong one. Combined with Friday&#x27;s stronger-than-expected payrolls, the data leave little room for the Fed to wait.</p>
+<p class="note"><b>Why it matters:</b> the Fed is tightening into an energy supply shock, which raises the odds of an earnings slowdown in 2027 while inflation stays elevated.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/markets/2026/11/10/u-s-cpi-rose-stronger-than-expected-0-4-in-october-core-rate-rose-0-3">CoinDesk</a></p>
+</details>
+<details><summary>Treasuries: 2-year +14 bp to 4.69%, 10-year +6.5 bp to 4.93%; Dec hike odds ~90%<span class="tag">CoinDesk / CME FedWatch</span></summary>
+<p class="body">The front end repriced hardest, with the 2-year up 14 bp to 4.69% and the 10-year up 6.5 bp to 4.93%, flattening the 2s10s curve. CME FedWatch puts the probability of a 25 bp hike at the December 8–9 meeting near 90%. Goldman Sachs is revising its Fed path, per MarketWatch. The bond market is closed Wednesday for Veterans Day, so the next cash-Treasury reaction comes Thursday. A flatter curve with long yields near 5% keeps financial conditions tight for housing, small business credit and leveraged AI infrastructure.</p>
+<p class="note"><b>Why it matters:</b> a hiking Fed plus near-5% long yields raises the discount rate on long-duration equities — exactly the AI names leading the index.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/markets/2026/11/10/u-s-cpi-rose-stronger-than-expected-0-4-in-october-core-rate-rose-0-3">CoinDesk</a> · <a href="https://www.marketwatch.com/story/why-goldman-sachs-is-now-changing-its-federal-reserve-interest-rate-forecast-3753f968">MarketWatch</a></p>
+</details>
+<details><summary>Mortgage rates jump 12 bp to 7.30%; purchase applications -18% y/y<span class="tag">CNBC / MND / MBA</span></summary>
+<p class="body">The average 30-year fixed rate rose 12 bp on Tuesday to 7.30% per Mortgage News Daily, the largest one-day move in over a month and the end of four weekly declines. Last week the MBA average had fallen to 7.21%, a low since mid-September, and applications rose 6.2%. Purchase applications were up 8% on the week but 18% lower than a year ago; refinancing was up 5% weekly but 57% lower year on year. FHA rates remain below 7%. The rebound is a direct pass-through from the CPI-driven rise in yields.</p>
+<p class="note"><b>Why it matters:</b> housing turnover stays depressed, weighing on builders, furniture/appliance retailers and local tax receipts.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/11/mortgage-rates-jump-sharply-higher-after-easing-for-4-straight-weeks.html">CNBC</a></p>
+</details>
+<details><summary>Equities: S&amp;P 500 -0.38% to 7,520.93; Nasdaq -0.74%; futures rebound Wednesday<span class="tag">CNBC</span></summary>
+<p class="body">On Tuesday the Dow fell 0.30% to 52,231.89, the S&amp;P 500 lost 0.38% to 7,520.93 (4.1% below its Oct 6 record of 7,818.93) and the Nasdaq Composite fell 0.74% to 25,065.87 (9.6% below its record). That followed Monday&#x27;s 2.35% S&amp;P rally on lower oil. Wednesday premarket, Nasdaq-100 futures were up 1.9% and S&amp;P futures up 0.9%, driven by CoreWeave. MarketWatch notes investors rotating into low-volatility stocks as the AI trade stumbles. The CNBC/NRF Retail Monitor shows consumers still spending but with signs of strain.</p>
+<p class="note"><b>Why it matters:</b> index leadership is narrow and rate-sensitive; a hawkish December could test whether the rebound holds.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/10/stock-market-today-live-updates.html">CNBC</a> · <a href="https://www.cnbc.com/2026/11/11/october-retail-sales-cnbc-nrf-2026.html">CNBC — Retail Monitor</a></p>
+</details>
+</section>
+<section id="geo"><h2>🌐 Geopolitics &amp; the Economy <span class="cnt">3 items</span></h2>
+<details open><summary>US–Iran: Bessent moved to a military base; &#x27;Operation Economic Outcast&#x27; sanctions continue<span class="tag">CNBC / NYT</span></summary>
+<p class="body">The NYT reported that Treasury Secretary Scott Bessent was moved from his Washington-area home to a military base over Iranian threats; Reuters said the severity was unclear. Bessent runs &#x27;Operation Economic Outcast&#x27;, the Treasury campaign launched in August to isolate Iran financially. The DOJ indicted three Iranian nationals over nearly 20 attacks and attempts in Europe and the US, including a September incident at RAF Fairford.</p>
+<p class="body">Secretary of State Rubio said military action may be unnecessary if sanctions and the naval blockade work, while Trump posted on Truth Social about &#x27;positive momentum&#x27; toward ending the conflict — a claim Iran&#x27;s Mohsen Rezaei denied.</p>
+<p class="note"><b>Why it matters:</b> the war premium in oil is the main channel into US inflation; any credible de-escalation would ease both crude and Fed pricing.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/11/us-iran-war-trump-hormuz-bessent-threats.html">CNBC</a> · <a href="https://www.nytimes.com/2026/11/10/us/politics/bessent-moved-base-iran-threats.html">NYT</a></p>
+</details>
+<details><summary>Ukraine–Russia talks in Abu Dhabi: prisoner swap agreed; US envoys head to Moscow<span class="tag">Kyiv Independent</span></summary>
+<p class="body">The second day of US–Ukraine–Russia talks ended in Abu Dhabi with agreement on a large prisoner exchange (formats of 1,000-for-1,000 or 1,500-for-1,500 discussed). Envoys Kushner and Witkoff fly to Moscow Thursday to meet Putin, then to Dublin to brief Zelensky ahead of an informal EU leaders&#x27; meeting on Nov 13. Ukrainian negotiators called the round one of the hardest. Separately, Russian strikes damaged six major substations and a Naftogaz facility, and Ukraine reportedly hit Russia&#x27;s Ust-Luga Baltic port.</p>
+<p class="note"><b>Why it matters:</b> a durable ceasefire would lower European energy and grain risk premia; Ust-Luga strikes keep Russian refined-product exports under pressure meanwhile.</p>
+<p class="src">Sources: <a href="https://kyivindependent.com/2nd-day-of-trilateral-peace-talks-begins-between-ukraine-russia-us-in-abu-dhabi/">Kyiv Independent</a> · <a href="https://kyivindependent.com/ukraine-reportedly-strikes-ust-luga-baltic-sea-port-as-drones-attack-regions-across-russia/">Kyiv Independent — Ust-Luga</a></p>
+</details>
+<details><summary>Spain&#x27;s first general strike in 14 years; Chile truckers block highways over fuel prices<span class="tag">NPR / BBC / CNBC</span></summary>
+<p class="body">Spain is in its first general strike in 14 years, demanding action on the housing crisis, with clashes ahead of an election campaign. In Chile, transport workers blocked highways to protest surging fuel prices — a direct spillover of elevated crude. Both episodes show how the energy and housing cost squeeze is turning into political risk across economies.</p>
+<p class="note"><b>Why it matters:</b> cost-of-living unrest raises the odds of fiscal giveaways (fuel subsidies, rent controls) that complicate central-bank disinflation.</p>
+<p class="src">Sources: <a href="https://www.npr.org/2026/11/11/nx-s1-6037314/spain-general-strike">NPR</a> · <a href="https://www.bbc.co.uk/news/articles/c6e3d895zne7o">BBC</a></p>
+</details>
+</section>
+<section id="trump"><h2>🎙 Trump &amp; Policy Signals <span class="cnt">3 items</span></h2>
+<details open><summary>Trump touts &#x27;positive momentum&#x27; on Iran; Iran denies talks<span class="tag">CNBC (citing Truth Social)</span></summary>
+<p class="body">On Monday Trump posted on Truth Social about &#x27;positive momentum toward an end to this Conflict&#x27;, per CNBC. Monday&#x27;s 2.35% S&amp;P rally was attributed to lower oil prices easing inflation fears, consistent with de-escalation hopes, though no direct causal link to the post was reported. Iranian security official Mohsen Rezaei denied any talks were underway. Brent remained near $92 on Wednesday.</p>
+<p class="note"><b>Why it matters:</b> oil and equities remain hypersensitive to Washington signals on Iran; denials from Tehran cap how far the relief can run.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/11/us-iran-war-trump-hormuz-bessent-threats.html">CNBC</a></p>
+</details>
+<details><summary>GOP regroups after midterm losses; Democrats prepare to probe Trump&#x27;s corporate equity stakes<span class="tag">CNBC / Politico / NYT</span></summary>
+<p class="body">Republicans chose Jim Jordan to lead the House GOP and John Thune in the Senate after midterm losses; the House blocked an effort to impeach Defense Secretary Hegseth. CNBC reports Democrats, taking control in January, could snarl the administration&#x27;s equity stakes in private-sector companies. Politico notes business leaders preparing for a Democratic Congress, and crypto-friendly Tom Emmer was elected minority whip. Bernie Sanders opposes Schumer as majority leader, signaling intra-party friction over the economic agenda.</p>
+<p class="note"><b>Why it matters:</b> divided government raises odds of budget standoffs and oversight of industrial-policy deals, adding headline risk for firms with federal stakes.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/11/trump-company-equity-takes.html">CNBC — equity stakes</a> · <a href="https://www.cnbc.com/2026/11/10/jim-jordan-congress-republicans-midterm.html">CNBC — leaders</a> · <a href="https://www.politico.com/video/2026/11/11/business-leaders-and-washington-prepare-for-a-democratic-congress-2227260">Politico</a></p>
+</details>
+<details><summary>FinCEN cuts MEXC Global off from US financial system<span class="tag">Federal Register</span></summary>
+<p class="body">A final rule published Nov 10 imposes a special measure prohibiting US financial institutions from transmitting funds involving crypto exchange MEXC Global, using anti-money-laundering authorities. The move effectively severs MEXC&#x27;s dollar access and signals continued use of financial-plumbing tools against offshore venues even as the administration is broadly crypto-friendly.</p>
+<p class="note"><b>Why it matters:</b> offshore liquidity venues face rising compliance risk; flows may shift toward regulated US platforms.</p>
+<p class="src">Sources: <a href="https://www.federalregister.gov/documents/2026/11/10/2026-22962/imposition-of-special-measure-prohibiting-the-transmittal-of-funds-involving-mexc-global">Federal Register</a></p>
+</details>
+</section>
+<section id="corp"><h2>🏢 Corporate &amp; Earnings <span class="cnt">3 items</span></h2>
+<details open><summary>CoreWeave +13%: Q3 revenue beat, 2026 guidance raised, ~$9bn in customer prepayments<span class="tag">CNBC / MarketWatch</span></summary>
+<p class="body">CoreWeave reported third-quarter revenue above analyst estimates and raised its 2026 operating-income and revenue guidance; CEO Michael Intrator called it a &#x27;breakout quarter&#x27; and cited about $9 billion in customer prepayments and deposits. MarketWatch says a new financing approach eased concerns about its heavy debt load. The stock rose about 13–14% premarket and lifted the broader AI complex. Prepayments mean customers are funding capacity up front, reducing CoreWeave&#x27;s reliance on high-cost debt at near-5% rates.</p>
+<p class="note"><b>Why it matters:</b> it is the first hard data point since the Nvidia scandal that AI compute demand remains intact.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/10/stock-market-today-live-updates.html">CNBC</a> · <a href="https://www.marketwatch.com/story/coreweaves-stock-pops-as-new-financing-playbook-eases-debt-concerns-70241525">MarketWatch</a></p>
+</details>
+<details><summary>Nvidia: Baird downgrade to neutral, PT $200 from $500; valuation at 15-year low<span class="tag">CNBC / MarketWatch / Guardian</span></summary>
+<p class="body">Baird cut Nvidia to neutral and slashed its target to $200 from $500, implying ~18% upside from Tuesday&#x27;s close (about $169). Shares are down 30% from October highs; only 3 of 64 analysts rate it hold or worse (LSEG). CEO Jensen Huang admitted an affair, reportedly with a woman US counterintelligence believes is a Chinese spy; the board has hired a leading law firm to investigate.</p>
+<p class="body">Baird expects a new H200 export ban to China and a possible $5bn write-down, and sees hyperscaler capex growth slowing to ~40% in 2027. A bipartisan congressional probe is forming.</p>
+<p class="note"><b>Why it matters:</b> key-person and export-control risk at the AI bellwether now feeds into supplier, hyperscaler and index valuations.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/11/nvidia-baird-downgrade-ceo-ai-capex.html">CNBC</a> · <a href="https://www.theguardian.com/technology/2026/nov/11/nvidia-hires-leading-us-law-firm-to-investigate-jensen-huang-relationship">Guardian</a> · <a href="https://www.marketwatch.com/story/nvidias-valuation-tumbles-to-a-15-year-low-a-bargain-or-a-falling-knife-2ebf6085">MarketWatch</a></p>
+</details>
+<details><summary>Nissan cuts outlook again; Bitmine posts $6.3bn loss; Oura buys Counsel Health for $625m<span class="tag">CNBC / The Block / TechCrunch</span></summary>
+<p class="body">Nissan delivered its second outlook cut in months and laid out plans to counter Chinese competitors. Ether-treasury company Bitmine reported a $6.3bn net loss for fiscal 2026 on a 44% drop in ETH. Oura agreed to acquire AI-native primary-care startup Counsel Health for $625m. In Ukraine, retailer ATB reportedly held sale talks with Lidl, per Forbes Ukraine.</p>
+<p class="note"><b>Why it matters:</b> autos face a China price war, crypto-treasury models are being stress-tested, and health-tech consolidation continues.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/11/nissan-sales-forecast-earnings-china.html">CNBC — Nissan</a> · <a href="https://www.theblock.co/news/business/2026-11-11-bitmine-6-3-billion-net-loss-437812">The Block — Bitmine</a> · <a href="https://techcrunch.com/2026/11/10/oura-to-acquire-ai-native-primary-care-startup-counsel-health-for-625m/">TechCrunch — Oura</a></p>
+</details>
+</section>
+<section id="energy"><h2>⚡ Energy &amp; Commodities <span class="cnt">3 items</span></h2>
+<details><summary>Brent ~$92, WTI ~$86 with the Iran blockade in place<span class="tag">CNBC</span></summary>
+<p class="body">Brent traded near $92 and WTI near $86 in Wednesday&#x27;s Asia session. Prices fell Monday on de-escalation hopes, helping a 2.35% S&amp;P rally, but the US naval blockade and sanctions on Iran keep a geopolitical premium embedded. Elevated crude is flowing through to fuel, heating and transport costs, which is showing up in headline CPI.</p>
+<p class="note"><b>Why it matters:</b> every sustained $10/bbl move shifts US headline inflation and the Fed&#x27;s December calculus.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/11/us-iran-war-trump-hormuz-bessent-threats.html">CNBC</a></p>
+</details>
+<details><summary>ExxonMobil weighs return to Venezuela; US winter heating costs seen up 7%<span class="tag">NPR / NYT</span></summary>
+<p class="body">ExxonMobil, which left Venezuela years ago, is considering a return to the country holding the world&#x27;s largest proven reserves (~300bn barrels), per NPR and Bloomberg via NV. The NYT reports US heating costs will rise about 7% on average this winter. AI data centres are planning on-site gas power plants at large scale, per Guardian research, adding a new source of gas demand.</p>
+<p class="note"><b>Why it matters:</b> new Venezuelan supply would be a medium-term bearish factor for crude; near-term, gas demand from data centres and winter heating supports prices.</p>
+<p class="src">Sources: <a href="https://www.npr.org/2026/11/11/nx-s1-5979080/exxonmobil-oil-mou-venezuela">NPR</a> · <a href="https://www.nytimes.com/2026/11/11/business/energy-environment/winter-heating-oil-costs.html">NYT</a> · <a href="https://www.theguardian.com/world/2026/nov/11/ai-datacentres-on-site-gas-fired-power-stations">Guardian</a></p>
+</details>
+<details><summary>USDA trims Ukraine grain export forecast by 3m tonnes<span class="tag">Forbes Ukraine</span></summary>
+<p class="body">USDA cut its forecast for Ukrainian grain exports by 3 million tonnes and raised expected ending stocks. Continued Russian strikes on energy and port infrastructure constrain Black Sea logistics.</p>
+<p class="note"><b>Why it matters:</b> tighter Black Sea supply supports global wheat and corn prices at the margin.</p>
+<p class="src">Sources: <a href="https://t.me/Forbes_Ukraine_official/34320">Forbes Ukraine (TG)</a></p>
+</details>
+</section>
+<section id="crypto"><h2>₿ Digital Assets <span class="cnt">3 items</span></h2>
+<details><summary>BTC ~$73.9k, ETH ~$2,052: spot ETFs bleed for a fourth day<span class="tag">CoinDesk</span></summary>
+<p class="body">Bitcoin dipped to $72.7k Tuesday and hovers near $74k; ether is near $2,050 (-2.1% on the day). US spot bitcoin ETFs lost $95m Tuesday (SoSoValue), with BlackRock&#x27;s IBIT accounting for $78m in its eighth straight day of redemptions. Futures liquidations jumped 288% to $725m in 24 hours, Deribit puts dominate with the heaviest volume at the $69k strike for Nov 27, and the Fear &amp; Greed index sits at 26. Bitcoin sat out the equity rebound, behaving like a liquidity barometer under a hawkish Fed.</p>
+<p class="note"><b>Why it matters:</b> higher real yields are pulling marginal capital out of non-yielding assets first; $70k is the level options traders are hedging.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/markets/2026/11/11/bitcoin-sits-out-stock-rebound-as-etf-outflows-extend-to-fourth-day">CoinDesk</a></p>
+</details>
+<details><summary>Banks build rails: Deutsche Bank custody live, $270m bank stablecoin venture<span class="tag">The Block / CoinDesk</span></summary>
+<p class="body">Deutsche Bank launched digital-asset custody and signed an asset-management deal. Goldman Sachs, Citi and other banks reportedly committed $270m to a stablecoin venture. Kraken parent Payward added 200+ tokenized UK and EU equities to xStocks, whose assets topped $1.1bn; Barclays raised its IBIT stake by 48%.</p>
+<p class="note"><b>Why it matters:</b> institutional infrastructure keeps expanding despite weak prices, positioning banks to compete with crypto-native stablecoin issuers.</p>
+<p class="src">Sources: <a href="https://www.theblock.co/news/business/2026-11-11-deutsche-bank-goes-live-with-digital-asset-custody-service-signs-asset-management-deal-437851">The Block</a> · <a href="https://www.coindesk.com/business/2026/11/10/goldman-sachs-citi-among-banks-said-to-commit-usd270-million-to-stablecoin-venture">CoinDesk</a></p>
+</details>
+<details><summary>Security: Bitcoin Core discloses three patched flaws; ECB warns digital euro could slip<span class="tag">The Block / Cointelegraph</span></summary>
+<p class="body">Bitcoin Core disclosed three already-patched vulnerabilities, one a high-severity mining bug. The ECB warned legislative delays could postpone the digital euro launch. The FSB urged Turkey to tighten crypto oversight and set stablecoin rules.</p>
+<p class="note"><b>Why it matters:</b> protocol security and regulatory timelines remain the long-run drivers of institutional adoption.</p>
+<p class="src">Sources: <a href="https://www.theblock.co/news/ecosystems/2026-11-11-bitcoin-core-discloses-three-patched-security-flaws-including-high-severity-mining-bug-437862">The Block</a> · <a href="https://cointelegraph.com/news/ecb-warns-legislative-delays-digital-euro-launch">Cointelegraph — ECB</a></p>
+</details>
+</section>
+<section id="ai"><h2>🤖 The AI Economy <span class="cnt">3 items</span></h2>
+<details><summary>Anthropic IPO: $70–78 range, up to $64.35bn raised, $1.404tn valuation<span class="tag">TechCrunch</span></summary>
+<p class="body">Anthropic is offering 825m Class A shares at $70–78, raising $57.75–64.35bn; the top of the range implies a $1.404tn fully diluted valuation, up from $965bn in May. AMD, Broadcom, Google, Micron, Microsoft, Nvidia and TSMC will buy $26bn of non-voting Class N stock at the IPO price, with Google and Nvidia at $10bn each. Net proceeds are estimated at $84.6–93.7bn; Goldman Sachs and Morgan Stanley lead.</p>
+<p class="body">Nasdaq trading under &#x27;ANT&#x27; is expected around Nov 19, with up to 20% allocated to retail. Run-rate revenue reached $81bn at end-October against a nine-month net loss of $104bn.</p>
+<p class="note"><b>Why it matters:</b> the largest IPO on record would absorb significant equity liquidity and set a public benchmark for AI lab valuations.</p>
+<p class="src">Sources: <a href="https://techcrunch.com/2026/11/10/anthropic-sets-ipo-price-range-of-70-to-78-per-share-to-reach-an-implied-valuation-of-1-404-trillion/">TechCrunch</a></p>
+</details>
+<details><summary>New York&#x27;s RAISE Act takes effect: frontier labs must register by Jan 1, 2027<span class="tag">TechCrunch</span></summary>
+<p class="body">New York opened registration Nov 10 for frontier AI developers with over $500m in annual revenue. They must publish safety frameworks, report critical incidents within 72 hours and issue model transparency reports; penalties reach $1m per violation and $3m for repeats. California&#x27;s SB 53 already applies and Illinois&#x27; SB 315 starts in 2027.</p>
+<p class="note"><b>Why it matters:</b> a patchwork of state AI rules raises compliance costs and becomes an IPO-disclosure risk factor.</p>
+<p class="src">Sources: <a href="https://techcrunch.com/2026/11/10/openai-anthropic-face-new-oversight-as-new-yorks-ai-safety-law-takes-effect/">TechCrunch</a></p>
+</details>
+<details><summary>Google launches Gemini 4 Carbon and two new AI chips; Nvidia chips leak to sanctioned Chinese university<span class="tag">The Verge / TechCrunch / EP</span></summary>
+<p class="body">Google began the public rollout of Gemini 4 Carbon with an agent &#x27;swarm&#x27; feature and unveiled two specialized AI chips, deepening its in-house silicon alternative to Nvidia. Media reports say a sanctioned Chinese university managed to buy Nvidia AI chips despite US restrictions, which feeds the bipartisan congressional scrutiny of Nvidia.</p>
+<p class="note"><b>Why it matters:</b> custom silicon at hyperscalers and tighter export enforcement both erode Nvidia&#x27;s pricing power over time.</p>
+<p class="src">Sources: <a href="https://www.theverge.com/ai-artificial-intelligence/1030787/google-gemini-4-carbon-public-rollout">The Verge</a> · <a href="https://techcrunch.com/2026/11/10/google-broadens-its-ai-hardware-portfolio-with-two-new-specialized-chips/">TechCrunch</a> · <a href="https://thehill.com/policy/international/6212128-nvidia-ceo-jensen-huang-china-ai-chips/">The Hill</a></p>
+</details>
+</section>
+<footer>Compiled automatically on 11.11.2026 at 08:07 New York time. Window: last ~26 hours · Feeds collected: 29/29. <a href="#top">↑ back to top</a></footer></div>
+</body>
+</html>
