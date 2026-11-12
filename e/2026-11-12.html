@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Daily Economic Brief</title>
+</head>
+<body>
+
+<style>
+:root{
+  --bg:#f4f4f2; --card:#fff; --head:#161a20; --body:#3d4551; --muted:#818a99;
+  --accent:#3f5b8c; --accent-soft:#eaeff7; --border:#e6e7ea; --rule:#eff0f2;
+  --up:#1a7f4b; --down:#c23b48; --chip:#f0f1f3;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--body); margin:0; padding:26px 16px 56px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  font-size:17px; line-height:1.72; font-weight:400;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:720px;margin:0 auto;}
+
+/* ── Шапка ─────────────────────────────── */
+h1{
+  font-size:1.75rem; line-height:1.2; font-weight:600; letter-spacing:-.022em;
+  color:var(--head); margin:0 0 6px; text-wrap:balance;
+}
+.date{color:var(--muted);font-size:.82rem;font-weight:400;letter-spacing:.01em;margin-bottom:20px;}
+.prices{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px;}
+.prices span{
+  background:var(--chip); border-radius:8px; padding:6px 11px;
+  font-size:.78rem; font-weight:500; color:var(--head); white-space:nowrap;
+  font-variant-numeric:tabular-nums; letter-spacing:-.005em;
+}
+.up{color:var(--up);font-weight:600;}
+.down{color:var(--down);font-weight:600;}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 30px;}
+nav.toc a{
+  background:transparent; border:1px solid var(--border); border-radius:8px;
+  padding:6px 11px; font-size:.79rem; font-weight:450; color:var(--muted);
+  text-decoration:none; transition:color .12s, border-color .12s;
+}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);}
+nav.toc a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+/* ── Секції: головне, що розділяє потік ── */
+section{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:6px 22px 10px; margin:0 0 26px; scroll-margin-top:16px;
+}
+h2{
+  font-size:.94rem; font-weight:600; letter-spacing:.005em; color:var(--head);
+  margin:0; padding:18px 0 14px; border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; gap:9px; text-wrap:balance;
+}
+h2 .cnt{color:var(--muted);font-weight:400;font-size:.78rem;letter-spacing:0;margin-left:auto;}
+
+/* ── Головне за добу ───────────────────── */
+section#top{background:var(--accent-soft);border-color:transparent;}
+ul.tldr{margin:0;padding:14px 0 6px;list-style:none;}
+ul.tldr li{
+  margin:0; padding:11px 0 11px 2px; border-top:1px solid var(--rule);
+  font-size:.97rem; line-height:1.62;
+}
+ul.tldr li:first-child{border-top:none;}
+ul.tldr b{color:var(--head);font-weight:600;}
+
+/* ── Новина ────────────────────────────── */
+details{border-top:1px solid var(--rule);}
+details:first-of-type{border-top:none;}
+summary{
+  cursor:pointer; list-style:none; position:relative;
+  padding:17px 4px 17px 26px; margin:0;
+  font-size:1rem; font-weight:500; line-height:1.5; color:var(--head);
+  letter-spacing:-.008em; transition:color .12s;
+}
+summary::-webkit-details-marker{display:none;}
+summary::before{
+  content:""; position:absolute; left:4px; top:26px;
+  width:7px; height:7px; border-right:1.5px solid var(--muted);
+  border-bottom:1.5px solid var(--muted); transform:rotate(-45deg);
+  transition:transform .18s ease, border-color .12s;
+}
+details[open] summary::before{transform:rotate(45deg);border-color:var(--accent);}
+summary:hover{color:var(--accent);}
+summary:hover::before{border-color:var(--accent);}
+summary .tag{
+  display:block; margin-top:5px; color:var(--muted);
+  font-weight:400; font-size:.76rem; letter-spacing:.01em;
+}
+.body{
+  margin:0 0 14px; padding:0 4px 0 26px;
+  font-size:.96rem; line-height:1.75; font-weight:400; color:var(--body);
+  max-width:66ch;
+}
+.note{
+  margin:0 4px 14px 26px; padding:13px 16px;
+  background:var(--accent-soft); border-radius:10px;
+  font-size:.92rem; line-height:1.62; color:var(--body); max-width:64ch;
+}
+.note b{color:var(--accent);font-weight:600;}
+.src{
+  margin:0 4px 18px 26px; padding:0;
+  font-size:.79rem; line-height:1.9; color:var(--muted); font-weight:400;
+}
+.src a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);}
+.src a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+footer{
+  color:var(--muted); font-size:.76rem; line-height:1.75; font-weight:400;
+  margin:34px 0 0; padding-top:18px; border-top:1px solid var(--border);
+}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media (max-width:640px){
+  body{font-size:16px;padding:20px 12px 44px;}
+  h1{font-size:1.5rem;}
+  section{padding:4px 16px 8px;border-radius:12px;margin-bottom:20px;}
+  .body,.note,.src{padding-left:0;margin-left:0;}
+  .note{margin-bottom:12px;}
+  summary{padding-left:22px;}
+}
+@media (prefers-reduced-motion: reduce){summary::before{transition:none;}}
+
+.sitenav{
+  position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:4px;
+  align-items:center; padding:11px 16px; margin:-26px -16px 26px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.sitenav a{
+  font-size:.81rem; font-weight:450; text-decoration:none; color:var(--muted);
+  padding:6px 12px; border-radius:8px; white-space:nowrap;
+  transition:color .12s, background .12s;
+}
+.sitenav a:hover{color:var(--head);background:var(--chip);}
+.sitenav a.on{color:var(--accent);background:var(--accent-soft);font-weight:600;}
+.sitenav .sp{flex:1;}
+.sitenav .when{font-size:.76rem;color:var(--muted);letter-spacing:.01em;}
+@media (max-width:640px){
+  .sitenav{margin:-20px -12px 20px;padding:9px 12px;}
+  .sitenav a{padding:5px 10px;font-size:.78rem;}
+  .sitenav .when{display:none;}
+}
+</style>
+<div class="wrap"><nav class="sitenav"><a href="/">☕ Дайджест</a><a href="/en.html" class="on">📊 Economic Brief</a><a href="/archive.html">🗂 Архів</a><span class="sp"></span><span class="when">12 листопада 2026</span></nav>
+<h1>📊 Daily Economic Brief</h1>
+<div class="date">Thursday, 12 November 2026 · compiled 13:04 New York time</div>
+<div class="prices"><span>BTC $71 346 <span class="down">−3.59%</span></span><span>ETH $1 997 <span class="down">−3.78%</span></span><span>S&amp;P 500 7 606 <span class="down">−0.17%</span></span><span>NASDAQ 25 371 <span class="down">−0.37%</span></span><span>DJIA 52 525 <span class="up">+0.07%</span></span></div>
+<nav class="toc"><a href="#top">🔥 Top</a><a href="#macro">📊 Macro &amp; Rates</a><a href="#geo">🌐 Geopolitics &amp; the Economy</a><a href="#trump">🎙 Trump &amp; Policy Signals</a><a href="#corp">🏢 Corporate &amp; Earnings</a><a href="#crypto">₿ Digital Assets</a><a href="#ai">🤖 The AI Economy</a><a href="#energy">⚡ Energy &amp; Commodities</a></nav>
+<section><h2>🧭 The throughline</h2><p class="body" style="padding-left:0">Markets are trading in a &#x27;tighter money, shakier leadership&#x27; regime. A hot October CPI (+0.4% headline, +0.3% core for a third straight month) has all but locked in a December Fed hike, and the 10-year Treasury yield is back above 5%. Today that rate shock collided with an idiosyncratic one: Jensen Huang&#x27;s abrupt resignation from Nvidia, the single largest weight in the S&amp;P 500 and the financier of much of the AI build-out. Trump&#x27;s &#x27;we don&#x27;t need a deal with Iran&#x27; post added a war premium back into oil just as crude had shed ~20% this month, feeding the inflation loop that the Fed is fighting. Crypto, now trading as a high-beta tech proxy, is bleeding alongside, with ETF outflows in a fifth day and stablecoin supply shrinking at the fastest pace since 2022.</p></section>
+<section id="top"><h2>🔥 Top of the brief</h2><ul class="tldr">
+<li>💻 <b>Jensen Huang resigns as Nvidia CEO</b> CFO Colette Kress takes over on an interim basis; NVDA fell as much as 14% intraday.</li>
+<li>📊 <b>October CPI runs hot: +0.4% headline, +0.3% core</b> markets now price a Fed hike at the Dec 8–9 meeting; the policy rate is at 3.75–4%.</li>
+<li>🏦 <b>10-year Treasury yield back above 5%</b> driven by inflation, Fed repricing and a renewed oil premium.</li>
+<li>🛢 <b>Trump: &#x27;We don&#x27;t need a deal with Iran… we&#x27;ve got their Strait&#x27;</b> Brent jumped up to 1.6% to ~$94.25 before settling near $93.5.</li>
+<li>₿ <b>Bitcoin slips to ~$71.3K (−3.6%)</b> ETF outflows hit a fifth day; MSCI drops Strategy and Metaplanet from its indexes.</li>
+<li>🤖 <b>Anthropic&#x27;s IPO roadshow is underway</b> a Nasdaq debut is possible next week, with the valuation still unconfirmed.</li>
+<li>🏠 <b>US home sales fall to their lowest since the Great Recession</b> as mortgage rates track 5%+ Treasury yields.</li>
+</ul></section>
+<section id="macro"><h2>📊 Macro &amp; Rates <span class="cnt">4 items</span></h2>
+<details open><summary>October CPI: +0.4% m/m headline, +0.3% core for a third straight month<span class="tag">CNBC / Morningstar</span></summary>
+<p class="body">Consumer prices rose 0.4% in October against a 0.3% consensus, and core rose 0.3% against 0.2%, according to the BLS report released Nov 10. Food and rent drove the overshoot. The BLS did not publish a 12-month rate because of last year&#x27;s shutdown gap; economists estimate year-over-year inflation accelerated toward ~4% from 3.7% in September. Three consecutive 0.3% core prints meet the threshold Governor Waller had set for considering a 50bp December hike. Dallas Fed President Lorie Logan says she sees a need for two more quarter-point increases.</p>
+<p class="note"><b>Why it matters:</b> the Fed is now in a hiking cycle with the policy rate at 3.75–4%. The annual CPI figure returns only on Dec 10, after the Dec 8–9 FOMC decision, so the Fed must act on monthly data.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/10/cpi-inflation-report-october-2026.html">CNBC</a> · <a href="https://www.morningstar.com/economy/october-cpi-report-shows-inflation-04-monthly-rate-above-forecasts">Morningstar</a></p>
+</details>
+<details><summary>10-year yield retakes 5%; the 2-year sits near 4.73%<span class="tag">Saxo / Investrade / mlq</span></summary>
+<p class="body">The 10-year Treasury briefly topped 5% after Tuesday&#x27;s CPI. It closed near 4.98–4.99% before the Veterans Day market holiday on Wednesday, then pushed back above 5% on Thursday after Trump&#x27;s Iran remarks lifted oil. The 2-year was around 4.73% at Tuesday&#x27;s close, keeping the curve positively sloped as term premium rebuilds. In September the 30-year had touched its highest level since 2007. Higher long-end yields feed directly into mortgage rates, corporate refinancing costs and federal interest expense.</p>
+<p class="note"><b>Why it matters:</b> a sustained 5% 10-year is the main valuation headwind for long-duration equities. Today&#x27;s Nvidia shock hits a market that was already losing its rate cushion.</p>
+<p class="src">Sources: <a href="https://www.home.saxo/en-mena/content/articles/macro/market-quick-take---us-treasury-yields-rip-higher---11-november-2026-11112026">Saxo</a> · <a href="https://mlq.ai/news/10-year-treasury-yield-tops-5-and-oil-rises-after-trump-says-the-us-doesnt-need-an-iran-deal/">mlq.ai</a> · <a href="https://investrade.com/morning-preview-november-11-2026/">Investrade</a></p>
+</details>
+<details><summary>Housing: existing home sales sink to their lowest since the Great Recession<span class="tag">MarketWatch</span></summary>
+<p class="body">MarketWatch reports that home sales have fallen to their lowest level since the 2008–09 crisis as buyers leave the market. The transmission is direct: mortgage rates price off the 10-year, which is now around 5%, so affordability has deteriorated again just as the Fed signals hikes rather than cuts. Employers offering down-payment assistance is emerging as a workaround. Weak turnover also hits ancillary spending such as furniture, renovation and brokerage.</p>
+<p class="note"><b>Why it matters:</b> housing is the most rate-sensitive sector and a leading indicator. A frozen market weakens household wealth effects heading into 2027.</p>
+<p class="src">Sources: <a href="https://www.marketwatch.com/story/home-sales-plummet-to-lowest-level-since-the-great-recession-as-buyers-flee-the-market-624e6270?mod=mw_rss_topstories">MarketWatch</a></p>
+</details>
+<details><summary>Fed Chair Warsh discloses wife&#x27;s pet-care investment trades<span class="tag">The Hill</span></summary>
+<p class="body">Fed Chair Kevin Warsh disclosed transactions by his wife tied to a pet-care investment firm, The Hill reports. The disclosure comes as the Fed prepares a politically sensitive December hike after a midterm in which Republicans lost ground. Ethics questions around Fed officials&#x27; trading have been a recurring flashpoint since 2021. There is no indication so far of any rule breach; the filing is a routine disclosure that drew coverage given the timing.</p>
+<p class="note"><b>Why it matters:</b> Fed credibility is an asset in a hiking cycle. Any perceived ethics issue gives political critics more leverage over a central bank already under pressure.</p>
+<p class="src">Sources: <a href="https://thehill.com/business/6215618-fed-chair-warsh-pet-care-trades/">The Hill</a></p>
+</details>
+</section>
+<section id="geo"><h2>🌐 Geopolitics &amp; the Economy <span class="cnt">4 items</span></h2>
+<details open><summary>Trump: no Iran deal needed — oil war premium returns<span class="tag">CNBC / Quartz / TT News</span></summary>
+<p class="body">Trump posted on Truth Social that Washington no longer needs a deal with Iran because the US controls Iranian funds and the Strait of Hormuz: &#x27;we&#x27;ve got their Strait&#x27;. Per CNBC, Brent rose up to 1.6% to $94.25 and WTI 1.3% to $87.62, before Brent eased to ~$93.3–93.7. Before the post, WTI had fallen 16% and Brent 20% in November as markets priced de-escalation. Again Capital&#x27;s John Kilduff expects the security premium to rebuild, while Lipow Oil&#x27;s Andy Lipow warns Iran may keep hitting regional infrastructure to force talks. Another vessel was attacked near Hormuz today.</p>
+<p class="note"><b>Why it matters:</b> oil is the swing input to inflation expectations. Every $10/bbl sustained adds pressure on headline CPI just as the Fed is deciding how hard to hike.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/12/oil-prices-jump-after-trump-says-no-iran-deal-needed-weve-got-their-strait.html">CNBC</a> · <a href="https://qz.com/oil-prices-reverse-trump-iran-deal-brent-111226">Quartz</a> · <a href="https://www.ttnews.com/articles/oil-prices-trump-no-iran-deal">Transport Topics</a></p>
+</details>
+<details><summary>Ukraine strikes Russia&#x27;s largest refinery (Omsk) for the third time<span class="tag">Kyiv Independent</span></summary>
+<p class="body">Ukrainian special forces drones flew nearly 3,000 km to hit the Omsk refinery, Russia&#x27;s largest, in an attack that lasted about eight hours. It is the third strike on the facility. Sustained refinery outages force Russia to export more crude and less product, tighten its domestic fuel market and raise its import needs for refined products. Meanwhile, US envoys Witkoff and Kushner met Putin in Moscow after Abu Dhabi talks ended without an energy-strike moratorium.</p>
+<p class="note"><b>Why it matters:</b> Russian refining disruption supports global diesel cracks. No energy ceasefire means the risk persists for both Russian and Ukrainian infrastructure.</p>
+<p class="src">Sources: <a href="https://kyivindependent.com/russias-largest-oil-refinery-slammed-by-drones-in-8-hr-attack-2-500-km-from-ukraine/">Kyiv Independent</a></p>
+</details>
+<details><summary>Europe keeps buying Russian LNG: Yamal purchases top $9B in 2026<span class="tag">Kyiv Independent</span></summary>
+<p class="body">EU purchases of Russian Yamal LNG exceeded $9 billion in 2026 despite an October dip, and Spain resumed Russian LNG purchases ahead of a key EU phase-out deadline, according to a new report. The flows highlight how dependent southern European gas balances remain on Russian cargoes. Any enforcement of the deadline would tighten European gas supply into the winter heating season.</p>
+<p class="note"><b>Why it matters:</b> European gas prices and industrial costs depend on whether Brussels enforces the cutoff. Spain&#x27;s buying signals that buyers are front-running the ban.</p>
+<p class="src">Sources: <a href="https://kyivindependent.com/eu-purchases-of-russian-yamal-lng-rise-to-over-9-billion-in-2026-despite-october-dip/">Kyiv Independent</a> · <a href="https://kyivindependent.com/spain-resumes-russian-lng-purchases-ahead-of-key-deadline-new-report-reveals/">Kyiv Independent</a></p>
+</details>
+<details><summary>Xi calls for &#x27;complete reunification&#x27; with Taiwan<span class="tag">Reuters via Suspilne</span></summary>
+<p class="body">Chinese leader Xi Jinping said Taiwan must be fully &#x27;reunified&#x27; with the PRC and promised a peaceful process, Reuters reports. The rhetoric lands on the same day that the alleged Chinese-spy angle of the Nvidia scandal puts US-China tech security back in focus. Taiwan hosts TSMC, which makes most of the world&#x27;s leading-edge AI chips, so cross-strait risk is a direct semiconductor supply-chain risk.</p>
+<p class="note"><b>Why it matters:</b> any escalation would hit the AI hardware chain far harder than one CEO change.</p>
+<p class="src">Sources: <a href="https://t.me/suspilnenews/79201">Suspilne (Reuters)</a></p>
+</details>
+</section>
+<section id="trump"><h2>🎙 Trump &amp; Policy Signals <span class="cnt">3 items</span></h2>
+<details open><summary>Vance pulled off the Iran file to lead a &#x27;fraud&#x27; campaign against Democratic cities<span class="tag">NYT / The Hill</span></summary>
+<p class="body">Trump said Vice President JD Vance will stop working on Iran talks and focus solely on &#x27;massive corruption and crime&#x27; in Democratic-led cities and states. The reshuffle coincides with Trump&#x27;s statement that no Iran deal is needed, signalling that Washington is not prioritising a negotiated settlement. Separately, a US attorney threatened Sen. Blumenthal with &#x27;significant legal consequences&#x27; over his probe of the White House ballroom.</p>
+<p class="note"><b>Why it matters:</b> removing the senior negotiator lowers the odds of a near-term Iran deal, which supports the oil premium, while escalating domestic confrontation raises policy uncertainty after the midterms.</p>
+<p class="src">Sources: <a href="https://www.nytimes.com/2026/11/12/us/politics/trump-vance-iran-fraud.html">NYT</a> · <a href="https://thehill.com/homenews/administration/6215680-donald-trump-jd-vance-corruption-fraud-democratic-cities-states-iran-war/">The Hill</a></p>
+</details>
+<details><summary>Post-midterm Washington: lame-duck push on judges; Democrats gain a Mississippi Senate seat<span class="tag">NYT / Politico</span></summary>
+<p class="body">Democrat Scott Colom won Mississippi&#x27;s Senate race in an upset, adding to a midterm night that Politico calls a &#x27;bloodbath&#x27; for Republicans. Senate Republicans are using the lame-duck session to confirm as many Trump judicial nominees as possible before the new Congress convenes. A Republican senator warned colleagues against downplaying the losses. Divided government from January makes major new fiscal legislation less likely and raises the odds of shutdown and debt-ceiling standoffs.</p>
+<p class="note"><b>Why it matters:</b> gridlock limits both new stimulus and new tax cuts. For bond markets, it removes one source of fresh deficit expansion but adds brinkmanship risk.</p>
+<p class="src">Sources: <a href="https://www.politico.com/news/2026/11/11/scott-colom-wins-mississippi-senate-01161555">Politico</a> · <a href="https://www.nytimes.com/2026/11/11/us/politics/trump-federal-judges-senate-republicans.html">NYT</a></p>
+</details>
+<details><summary>Government equity stakes in private companies have surged in Trump&#x27;s second term<span class="tag">MarketWatch</span></summary>
+<p class="body">MarketWatch charts how the US government&#x27;s equity holdings in companies have grown sharply during the second Trump term. Washington has taken stakes in strategic sectors in exchange for subsidies, permits or support. The trend blurs the line between industrial policy and ownership, and it creates a new type of policy risk: shareholders may find the state&#x27;s interests diverging from minority holders&#x27;.</p>
+<p class="note"><b>Why it matters:</b> state ownership can de-risk funding for strategic firms but can also cap returns and politicise capital allocation.</p>
+<p class="src">Sources: <a href="https://www.marketwatch.com/story/how-the-u-s-governments-equity-holdings-have-surged-during-trumps-second-term-in-one-chart-b598c369?mod=mw_rss_topstories">MarketWatch</a></p>
+</details>
+</section>
+<section id="corp"><h2>🏢 Corporate &amp; Earnings <span class="cnt">5 items</span></h2>
+<details open><summary>Nvidia: Huang exits, Kress interim CEO, shares down as much as 14%<span class="tag">Nvidia / CNBC / CoinDesk</span></summary>
+<p class="body">Nvidia announced a CEO transition: Jensen Huang resigned immediately as CEO and board member after reports of an affair with an alleged Chinese spy and a second relationship with a company executive. CFO Colette Kress is interim CEO. Shares fell nearly 10% at the open and as much as 14% intraday, and Nvidia perpetuals on Hyperliquid had already dropped 10% overnight. As the largest S&amp;P 500 constituent and, in CNBC&#x27;s words, the &#x27;central bank of AI&#x27; that funds customers and partners such as CoreWeave, Nvidia&#x27;s turmoil drags on the whole AI financing chain. Congress plans to call Huang to testify on possible leaks to China.</p>
+<p class="note"><b>Why it matters:</b> watch for the permanent CEO pick, any export-control tightening in response to the China angle, and whether hyperscalers reconsider order timing. AMD was upgraded on Nvidia&#x27;s &#x27;leadership vacuum&#x27;.</p>
+<p class="src">Sources: <a href="https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition">NVIDIA Newsroom</a> · <a href="https://www.cnbc.com/2026/11/12/nvidia-nvda-jensen-huang-second-affair.html">CNBC</a> · <a href="https://www.cnbc.com/2026/11/11/nvidia-jensen-huang-ai-financial-system-risk.html">CNBC analysis</a> · <a href="https://www.cnbc.com/2026/11/12/amd-upgraded-because-it-will-benefit-from-nvidias-leadership-vacuum.html">CNBC — AMD upgrade</a></p>
+</details>
+<details><summary>Session recap: Wednesday&#x27;s chip rally (+1.3% S&amp;P) reverses on Thursday<span class="tag">CNBC / Investrade</span></summary>
+<p class="body">On Wednesday the S&amp;P 500 closed at 7,619.38 (+1.31%), the Nasdaq Composite at ~25,466 (+1.6%) and the Dow at 52,486.49 (+0.49%), led by chipmakers after CoreWeave&#x27;s earnings revived the AI trade; recaps differ slightly on exact closes. On Thursday morning the S&amp;P was at 7,606 (−0.17%) and the Nasdaq at 25,371 (−0.37%), while the Dow held flat at 52,525 (+0.07%) on rotation into cyclicals. Index concentration means one megacap now moves the whole benchmark.</p>
+<p class="note"><b>Why it matters:</b> equal-weight resilience versus cap-weight weakness is the tell. If breadth holds, the selloff is a single-name event rather than a regime break.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/11/stock-market-today-live-updates.html">CNBC</a> · <a href="https://investrade.com/market-review-november-11-2026/">Investrade</a></p>
+</details>
+<details><summary>Nebius −16% on a higher capex outlook; CoreWeave leans on customer prepayments<span class="tag">CNBC / TechCrunch</span></summary>
+<p class="body">Nebius fell 16% after guiding to higher 2026 capital spending and a weak outlook. That is the second neocloud this week to show the strain of funding GPU build-outs. CoreWeave is turning to customer prepayments and shorter contracts to fund growth, a sign that debt markets are demanding more for AI-infrastructure risk with 10-year yields at 5%. Investors are now punishing capex without clear revenue visibility.</p>
+<p class="note"><b>Why it matters:</b> neoclouds are the marginal buyers of Nvidia GPUs. Tighter funding for them translates into slower chip demand growth.</p>
+<p class="src">Sources: <a href="https://www.cnbc.com/2026/11/12/nebius-q3-earnings-report-2026.html">CNBC</a> · <a href="https://techcrunch.com/2026/11/11/coreweave-turns-to-customer-prepayments-shorter-contracts-to-fund-ai-growth/">TechCrunch</a></p>
+</details>
+<details><summary>Wendy&#x27;s rejects a takeover bid; Scout Motors has 212K reservations<span class="tag">MarketWatch / CNBC</span></summary>
+<p class="body">Wendy&#x27;s rejected a takeover offer and scaled back breakfast, yet its stock surged as investors bet on a higher bid or a self-help story. VW-backed Scout Motors reported 212,000 vehicle reservations as its $2 billion South Carolina plant nears completion, a sizeable order book for a new US EV/EREV brand at a time of rate pressure on auto loans. Separately, Sen. Cotton urged Commerce Secretary Lutnick to ban Chinese memory maker CXMT from the US.</p>
+<p class="note"><b>Why it matters:</b> M&amp;A interest in consumer brands persists despite higher rates, and the CXMT push signals more chip-sector China restrictions ahead.</p>
+<p class="src">Sources: <a href="https://www.marketwatch.com/story/wendys-rejects-a-takeover-offer-scales-back-breakfast-and-still-sees-its-stock-surge-4e398cde?mod=mw_rss_topstories">MarketWatch</a> · <a href="https://www.cnbc.com/2026/11/12/scout-motors-reservations-south-carolina-plant.html">CNBC</a> · <a href="https://www.cnbc.com/2026/11/12/lutnick-cxmt-china-cotton.html">CNBC</a></p>
+</details>
+<details><summary>Kalshi gets CFTC nod for &#x27;perpetual&#x27; stock trades; SEC enters the turf war<span class="tag">NYT / The Block</span></summary>
+<p class="body">The NYT reports that Kalshi, with the CFTC&#x27;s approval, will allow &#x27;perpetual trades&#x27; on stocks, effectively letting retail users short individual equities outside traditional brokerages. The SEC has entered the fight over who regulates perpetual derivatives on US stocks. Meanwhile, Polymarket is trimming staff under investor pressure as Kalshi pulls ahead.</p>
+<p class="note"><b>Why it matters:</b> the jurisdiction fight decides whether a new, lightly regulated leverage channel on US equities reaches the mass market.</p>
+<p class="src">Sources: <a href="https://www.nytimes.com/2026/11/12/us/politics/kalshi-commodity-futures-stocks.html">NYT</a> · <a href="https://www.theblock.co/news/regulation/2026-11-11-sec-enters-fight-who-regulates-perpetual-derivatives-stocks-in-us-438427">The Block</a></p>
+</details>
+</section>
+<section id="crypto"><h2>₿ Digital Assets <span class="cnt">3 items</span></h2>
+<details><summary>BTC ~$71.3K (−3.6%), ETH ~$1,997 (−3.8%); ETF outflows enter a fifth day<span class="tag">CoinDesk / Cointelegraph</span></summary>
+<p class="body">Bitcoin dipped below $72,000 alongside Nvidia and rising yields and traded around $71,346 (−3.6% over 24h); Ether was near $1,997 (−3.8%). Spot bitcoin ETF outflows reached a fifth straight day, and BlackRock&#x27;s IBIT has shed about $2 billion over nine sessions. Stablecoin supply fell $14.2 billion over 30 days, the biggest drop since June 2022, signalling liquidity leaving the ecosystem. Options traders have raised the odds of sub-$70K by Christmas.</p>
+<p class="note"><b>Why it matters:</b> crypto is trading as high-beta tech. The combination of 5% yields and an AI-leadership shock removes both of its recent tailwinds.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/markets/2026/11/12/bitcoin-dips-with-nvidia-as-etf-outflows-reach-day-five">CoinDesk</a> · <a href="https://cointelegraph.com/markets/stablecoin-supply-drops-worst-slump-since-mid-2022?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">Cointelegraph</a></p>
+</details>
+<details><summary>MSCI removes Strategy and Metaplanet from its indexes at month-end<span class="tag">CoinDesk / The Block</span></summary>
+<p class="body">MSCI confirmed that Strategy and Metaplanet will be dropped in the November reshuffle, forcing passive funds tracking MSCI benchmarks to sell. Strategy funds its bitcoin purchases by issuing equity and convertible debt, so reduced index demand for its shares could slow its &#x27;bitcoin-buying machine&#x27;. Strategy has been one of the largest persistent spot buyers of BTC.</p>
+<p class="note"><b>Why it matters:</b> a slower Strategy bid removes a structural source of demand just as ETF flows have turned negative.</p>
+<p class="src">Sources: <a href="https://www.coindesk.com/markets/2026/11/12/msci-is-dropping-strategy-from-its-index-and-the-exclusion-could-hit-its-bitcoin-buying-machine">CoinDesk</a> · <a href="https://www.theblock.co/news/markets/2026-11-11-strategy-metaplanet-lose-msci-index-membership-november-reshuffle-438437">The Block</a></p>
+</details>
+<details><summary>Institutional rails keep building: DTCC on Solana in 2027, BNY staking, BUIDL liquidity facility<span class="tag">The Block</span></summary>
+<p class="body">DTCC plans to bring tokenized securities to Solana in the second half of 2027. BNY tapped Figment to support staking on its digital asset custody platform. Securitize and Ethena&#x27;s $100 million liquidity facility for BlackRock&#x27;s BUIDL fund went live. SoFi&#x27;s bank-issued stablecoin SoFiUSD launched on Polygon, and BitGo expanded USDC minting and redemption for institutions. On regulation, Thailand proposed a ~$148K daily cap on stablecoin deposits and withdrawals.</p>
+<p class="note"><b>Why it matters:</b> price weakness is not stopping the plumbing build-out. Tokenized securities on public chains are now on a dated roadmap from the core US clearing house.</p>
+<p class="src">Sources: <a href="https://www.theblock.co/news/business/2026-11-12-dtcc-plans-bring-tokenized-securities-solana-second-half-of-2027-438559">The Block — DTCC</a> · <a href="https://www.theblock.co/news/business/2026-11-12-bny-taps-figment-to-support-staking-on-its-digital-asset-custody-platform-438538">The Block — BNY</a> · <a href="https://www.theblock.co/news/ecosystems/2026-11-12-securitize-ethena-buidl-liquidity-facility-live-usdc-438442">The Block — BUIDL</a></p>
+</details>
+</section>
+<section id="ai"><h2>🤖 The AI Economy <span class="cnt">3 items</span></h2>
+<details><summary>Anthropic&#x27;s Nasdaq IPO roadshow is underway; a debut is possible next week<span class="tag">ROIC / Simon Willison</span></summary>
+<p class="body">Anthropic began marketing its IPO around Nov 10, with a roadshow video published, and a Nasdaq debut could come in the week of Nov 16. Its Nov 2 S-1/A still leaves the price range blank. Reported valuation talk ranges from $1.8–2 trillion among bullish investors to well below $2 trillion per the FT; the last private round in May 2026 was $965 billion post-money. Goldman Sachs and Morgan Stanley lead a 22-bank syndicate. Pricing into an AI selloff and 5% yields is the key test.</p>
+<p class="note"><b>Why it matters:</b> the largest AI listing to date will set the public-market price of frontier-model risk. A soft deal would reprice private AI valuations broadly.</p>
+<p class="src">Sources: <a href="https://www.roic.ai/news/anthropic-kicks-off-nasdaq-ipo-roadshow-as-ai-valuation-questions-loom-11-09-2026">ROIC</a> · <a href="https://simonwillison.net/2026/Nov/11/anthropic-ipo-roadshow/">Simon Willison</a></p>
+</details>
+<details><summary>OpenAI quarterly revenue reportedly tops $10B for the first time<span class="tag">TechCrunch</span></summary>
+<p class="body">TechCrunch, citing reports, says OpenAI&#x27;s quarterly revenue crossed $10 billion for the first time; the company has not confirmed the figure. That implies an annualized run-rate above $40 billion, supporting the demand side of the AI capex story even as funding conditions tighten for infrastructure providers. Venture money keeps flowing too: Norwest launched a new $4 billion fund with an AI focus, and UK chip startup Fractile raised $720 million.</p>
+<p class="note"><b>Why it matters:</b> revenue at the model layer is the ultimate justification for GPU spend. Strong prints offset some of the Nvidia governance shock.</p>
+<p class="src">Sources: <a href="https://techcrunch.com/2026/11/11/openais-quarterly-revenue-reportedly-crosses-10b-for-the-first-time/">TechCrunch</a> · <a href="https://techcrunch.com/2026/11/12/norwest-pushes-deeper-into-ai-with-new-4b-fund/">TechCrunch — Norwest</a> · <a href="https://techcrunch.com/2026/11/11/with-720m-round-britains-fractile-gets-a-leg-up-in-the-race-for-ai-chips/">TechCrunch — Fractile</a></p>
+</details>
+<details><summary>Data-center backlash and security incidents add friction to the AI build-out<span class="tag">TechCrunch</span></summary>
+<p class="body">TechCrunch reports that local backlash and red tape continue to slow data-center projects after the &#x27;blue wave&#x27; midterms, with some planned sites unlikely ever to be built. A cyberattack on inference provider Fireworks AI gave hackers access to Notion customers&#x27; chat transcripts. Meta is losing its longtime head of infrastructure. Each item adds execution risk to hyperscaler capex plans.</p>
+<p class="note"><b>Why it matters:</b> power, permits and security, rather than chips, are increasingly the binding constraints on AI capacity growth.</p>
+<p class="src">Sources: <a href="https://techcrunch.com/2026/11/12/cyberattack-on-fireworks-ai-allowed-hackers-to-access-notion-customers-chat-transcripts/">TechCrunch — Fireworks</a> · <a href="https://techcrunch.com/2026/11/11/meta-is-losing-its-longtime-head-of-infrastructure/">TechCrunch — Meta</a></p>
+</details>
+</section>
+<section id="energy"><h2>⚡ Energy &amp; Commodities <span class="cnt">2 items</span></h2>
+<details><summary>OPEC+ output is back to 97% of pre-Iran-war levels<span class="tag">Ekonomichna Pravda</span></summary>
+<p class="body">OPEC+ crude production has recovered to 97% of its pre-Iran-war level, per reporting cited by Ekonomichna Pravda. That supply recovery explains much of November&#x27;s ~20% slide in Brent before today&#x27;s bounce. It also caps the upside from Trump&#x27;s rhetoric: physical barrels are available, so the renewed premium is about tail risk in Hormuz rather than an actual shortage.</p>
+<p class="note"><b>Why it matters:</b> with supply largely restored, oil spikes on headlines are likely to fade unless shipping through Hormuz is physically disrupted.</p>
+<p class="src">Sources: <a href="https://epravda.com.ua/svit/vidobutok-nafti-opek-obsyagi-vidnovilisya-na-97-vidsotkiv-827572/">Ekonomichna Pravda</a> · <a href="https://epravda.com.ua/svit/v-ormuzi-znovu-atakuvali-827581/">Ekonomichna Pravda — Hormuz</a></p>
+</details>
+<details><summary>Ukraine prepares for restricted Black Sea grain exports through July 2027<span class="tag">Forbes Ukraine</span></summary>
+<p class="body">Ukraine&#x27;s agriculture ministry is planning for a scenario in which Black Sea exports stay restricted until July 2027, Forbes Ukraine reports. Russian negotiators in Abu Dhabi said they had no mandate to discuss Black Sea de-escalation. Ukraine is a top global exporter of corn, wheat and sunflower oil, and constrained sea routes raise freight and insurance costs and push more volume onto slower EU rail and Danube routes. Agri-holding MHP is reportedly seeking a buyer for ~100,000 hectares, over a quarter of its land bank.</p>
+<p class="note"><b>Why it matters:</b> a prolonged Black Sea squeeze is a slow-burn upside risk for global grain and vegetable-oil prices.</p>
+<p class="src">Sources: <a href="https://t.me/Forbes_Ukraine_official/34353">Forbes Ukraine</a> · <a href="https://t.me/Forbes_Ukraine_official/34338">Forbes Ukraine — MHP</a></p>
+</details>
+</section>
+<footer>Compiled automatically on 12.11.2026 at 13:04 New York time. Window: last ~26 hours · Feeds collected: 28/29. Unavailable today: Tattoo Life. <a href="#top">↑ back to top</a></footer></div>
+</body>
+</html>
