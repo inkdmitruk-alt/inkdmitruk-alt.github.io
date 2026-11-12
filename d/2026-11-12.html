@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ранковий дайджест</title>
+</head>
+<body>
+
+<style>
+:root{
+  --bg:#f4f4f2; --card:#fff; --head:#161a20; --body:#3d4551; --muted:#818a99;
+  --accent:#3f5b8c; --accent-soft:#eaeff7; --border:#e6e7ea; --rule:#eff0f2;
+  --up:#1a7f4b; --down:#c23b48; --chip:#f0f1f3;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d1014; --card:#161a20; --head:#eef1f6; --body:#bcc4d1; --muted:#7f8898;
+  --accent:#8fb0e8; --accent-soft:#18202c; --border:#232830; --rule:#1e232b;
+  --up:#3fbd77; --down:#e86b76; --chip:#1b2029;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--body); margin:0; padding:26px 16px 56px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  font-size:17px; line-height:1.72; font-weight:400;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:720px;margin:0 auto;}
+
+/* ── Шапка ─────────────────────────────── */
+h1{
+  font-size:1.75rem; line-height:1.2; font-weight:600; letter-spacing:-.022em;
+  color:var(--head); margin:0 0 6px; text-wrap:balance;
+}
+.date{color:var(--muted);font-size:.82rem;font-weight:400;letter-spacing:.01em;margin-bottom:20px;}
+.prices{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px;}
+.prices span{
+  background:var(--chip); border-radius:8px; padding:6px 11px;
+  font-size:.78rem; font-weight:500; color:var(--head); white-space:nowrap;
+  font-variant-numeric:tabular-nums; letter-spacing:-.005em;
+}
+.up{color:var(--up);font-weight:600;}
+.down{color:var(--down);font-weight:600;}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 30px;}
+nav.toc a{
+  background:transparent; border:1px solid var(--border); border-radius:8px;
+  padding:6px 11px; font-size:.79rem; font-weight:450; color:var(--muted);
+  text-decoration:none; transition:color .12s, border-color .12s;
+}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);}
+nav.toc a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+/* ── Секції: головне, що розділяє потік ── */
+section{
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:6px 22px 10px; margin:0 0 26px; scroll-margin-top:16px;
+}
+h2{
+  font-size:.94rem; font-weight:600; letter-spacing:.005em; color:var(--head);
+  margin:0; padding:18px 0 14px; border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; gap:9px; text-wrap:balance;
+}
+h2 .cnt{color:var(--muted);font-weight:400;font-size:.78rem;letter-spacing:0;margin-left:auto;}
+
+/* ── Головне за добу ───────────────────── */
+section#top{background:var(--accent-soft);border-color:transparent;}
+ul.tldr{margin:0;padding:14px 0 6px;list-style:none;}
+ul.tldr li{
+  margin:0; padding:11px 0 11px 2px; border-top:1px solid var(--rule);
+  font-size:.97rem; line-height:1.62;
+}
+ul.tldr li:first-child{border-top:none;}
+ul.tldr b{color:var(--head);font-weight:600;}
+
+/* ── Новина ────────────────────────────── */
+details{border-top:1px solid var(--rule);}
+details:first-of-type{border-top:none;}
+summary{
+  cursor:pointer; list-style:none; position:relative;
+  padding:17px 4px 17px 26px; margin:0;
+  font-size:1rem; font-weight:500; line-height:1.5; color:var(--head);
+  letter-spacing:-.008em; transition:color .12s;
+}
+summary::-webkit-details-marker{display:none;}
+summary::before{
+  content:""; position:absolute; left:4px; top:26px;
+  width:7px; height:7px; border-right:1.5px solid var(--muted);
+  border-bottom:1.5px solid var(--muted); transform:rotate(-45deg);
+  transition:transform .18s ease, border-color .12s;
+}
+details[open] summary::before{transform:rotate(45deg);border-color:var(--accent);}
+summary:hover{color:var(--accent);}
+summary:hover::before{border-color:var(--accent);}
+summary .tag{
+  display:block; margin-top:5px; color:var(--muted);
+  font-weight:400; font-size:.76rem; letter-spacing:.01em;
+}
+.body{
+  margin:0 0 14px; padding:0 4px 0 26px;
+  font-size:.96rem; line-height:1.75; font-weight:400; color:var(--body);
+  max-width:66ch;
+}
+.note{
+  margin:0 4px 14px 26px; padding:13px 16px;
+  background:var(--accent-soft); border-radius:10px;
+  font-size:.92rem; line-height:1.62; color:var(--body); max-width:64ch;
+}
+.note b{color:var(--accent);font-weight:600;}
+.src{
+  margin:0 4px 18px 26px; padding:0;
+  font-size:.79rem; line-height:1.9; color:var(--muted); font-weight:400;
+}
+.src a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);}
+.src a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+footer{
+  color:var(--muted); font-size:.76rem; line-height:1.75; font-weight:400;
+  margin:34px 0 0; padding-top:18px; border-top:1px solid var(--border);
+}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media (max-width:640px){
+  body{font-size:16px;padding:20px 12px 44px;}
+  h1{font-size:1.5rem;}
+  section{padding:4px 16px 8px;border-radius:12px;margin-bottom:20px;}
+  .body,.note,.src{padding-left:0;margin-left:0;}
+  .note{margin-bottom:12px;}
+  summary{padding-left:22px;}
+}
+@media (prefers-reduced-motion: reduce){summary::before{transition:none;}}
+
+.sitenav{
+  position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:4px;
+  align-items:center; padding:11px 16px; margin:-26px -16px 26px;
+  background:var(--bg); border-bottom:1px solid var(--border);
+}
+.sitenav a{
+  font-size:.81rem; font-weight:450; text-decoration:none; color:var(--muted);
+  padding:6px 12px; border-radius:8px; white-space:nowrap;
+  transition:color .12s, background .12s;
+}
+.sitenav a:hover{color:var(--head);background:var(--chip);}
+.sitenav a.on{color:var(--accent);background:var(--accent-soft);font-weight:600;}
+.sitenav .sp{flex:1;}
+.sitenav .when{font-size:.76rem;color:var(--muted);letter-spacing:.01em;}
+@media (max-width:640px){
+  .sitenav{margin:-20px -12px 20px;padding:9px 12px;}
+  .sitenav a{padding:5px 10px;font-size:.78rem;}
+  .sitenav .when{display:none;}
+}
+</style>
+<div class="wrap"><nav class="sitenav"><a href="/" class="on">☕ Дайджест</a><a href="/en.html">📊 Economic Brief</a><a href="/archive.html">🗂 Архів</a><span class="sp"></span><span class="when">12 листопада 2026</span></nav>
+<h1>☕ Ранковий дайджест</h1>
+<div class="date">Четвер, 12 листопада 2026 · сформовано 13:02, Нью-Йорк</div>
+<div class="prices"><span>BTC $71 346 <span class="down">−3.59%</span></span><span>ETH $1 997 <span class="down">−3.78%</span></span><span>S&amp;P 500 7 606 <span class="down">−0.17%</span></span><span>NASDAQ 25 371 <span class="down">−0.37%</span></span><span>DJIA 52 525 <span class="up">+0.07%</span></span></div>
+<nav class="toc"><a href="#top">🔥 Головне</a><a href="#ua">🇺🇦 Україна</a><a href="#usa">🇺🇸 США</a><a href="#world">🌍 Світ</a><a href="#immi">🛂 Українці в США та імміграція</a><a href="#ice">🚔 ICE: моніторинг</a><a href="#docs">📄 Державні документи</a><a href="#mkt">📈 Ринки і компанії</a><a href="#crypto">₿ Крипто</a><a href="#ai">🤖 AI</a><a href="#tattoo">🎨 Тату-індустрія</a></nav>
+<section id="top"><h2>🔥 Головне за добу</h2><ul class="tldr">
+<li>💻 <b>Дженсен Хуанг пішов з посади CEO Nvidia</b> після скандалу зі стосунками, зокрема з імовірною китайською шпигункою; т.в.о. — фінансова директорка Колетт Кресс, акції NVDA падали на 10–14%.</li>
+<li>🇺🇦 <b>Віткофф і Кушнер дві години говорили з Путіним у Москві</b> після дводенного раунду в Абу-Дабі; Путін запропонував «гуманітарну місію» в Костянтинівці за зразком Олешків, в ОП бачать у цьому спробу ротації військ.</li>
+<li>📡 <b>Зеленський: знову обмежили швидкість Starshield над Україною</b> це заважає перехоплювати дрони; FT пише, що США могли зробити це навмисно, щоб тиснути на Київ на переговорах.</li>
+<li>🛢 <b>Трамп: «нам не потрібна угода з Іраном»</b> Brent піднявся до ~$93–94, а дохідність 10-річних облігацій США знову перевищила 5%.</li>
+<li>📈 <b>Інфляція в жовтні прискорилась: CPI +0,4% за місяць, базовий +0,3%</b> ринки майже повністю закладають підвищення ставки ФРС 8–9 грудня.</li>
+<li>🗳 <b>Демократ Скотт Колом переміг на виборах сенатора в Міссісіпі</b> це перший темношкірий сенатор від штату з XIX століття; демократи тепер дивляться на Аляску.</li>
+<li>🛂 <b>Трамп то натякає на імміграційну угоду з демократами, то відступає</b> Джеффріс пропонує почати з Dream and Promise Act для DACA і TPS; конкретних умов поки немає.</li>
+<li>🚨 <b>Стрілянина біля Білого дому та обвал будинку в Брукліні</b> у Логан-Серкл у Вашингтоні поранено п&#x27;ятьох, стрільця не затримали; у Нью-Йорку загинули щонайменше 8 людей.</li>
+</ul></section>
+<section id="ua"><h2>🇺🇦 Україна <span class="cnt">7 новин</span></h2>
+<details open><summary>Віткофф і Кушнер зустрілися з Путіним після переговорів в Абу-Дабі; Кремль висунув ідею «гуманітарної місії» в Костянтинівці<span class="tag">УП / Kyiv Independent / NV</span></summary>
+<p class="body">Американські спецпосланці Стів Віткофф і Джаред Кушнер приблизно дві години говорили з Путіним у Кремлі. Зустріч відбулася одразу після дводенного тристороннього раунду в Абу-Дабі (10–11 листопада). За даними Інтерфаксу, Путін запропонував організувати «гуманітарну місію» в Костянтинівці на Донеччині за прикладом евакуації з Олешків. При цьому він твердить, що місто нібито захоплене, і посилається на потребу розмінування.</p>
+<p class="body">В Офісі Президента вважають, що Росія може використати таку операцію для ротації військ. За повідомленнями з переговорів, російська делегація в Абу-Дабі заявила, що не має повноважень обговорювати деескалацію в Чорному морі чи припинення ударів по енергетиці. Через кілька годин після завершення раунду Росія вдарила по Києву балістикою і дронами.</p>
+<p class="note"><b>Що це означає:</b> Переговорний трек триває, але конкретних домовленостей про припинення вогню чи енергетичне перемир&#x27;я за добу немає.</p>
+<p class="src">Джерела: <a href="https://www.pravda.com.ua/news/2026/11/12/8062542/">Українська правда</a> · <a href="https://kyivindependent.com/witkoff-kushner-arrive-in-moscow-following-ukraine-peace-talks/">Kyiv Independent</a> · <a href="https://nv.ua/ukr/world/geopolitics/rosiya-mozhe-vikoristati-gumanitarnu-operaciyu-v-kostyantinivci-dlya-rotaciji-viysk-50658692.html">NV</a></p>
+</details>
+<details><summary>Збої Starshield: Зеленський говорить про системні обмеження швидкості, FT — про можливий тиск США<span class="tag">ОП / The Hill / FT через NV</span></summary>
+<p class="body">Зеленський повідомив, що підрозділи кілька днів фіксують значні збої в роботі військової версії Starlink — Starshield — над територією України. За його словами, діють системні обмеження швидкості, а «хтось в Америці» ухвалює рішення щодо української території так, ніби вона не українська. Обмеження заважають перехоплювати російські дрони. Financial Times із посиланням на джерела пише, що США могли запровадити обмеження навмисно, щоб тиснути на Київ під час переговорів в Абу-Дабі; офіційного підтвердження Вашингтона немає.</p>
+<p class="body">Прем&#x27;єрка Данії Метте Фредеріксен заявила, що глибоко стурбована, і пообіцяла порушити питання перед американською стороною.</p>
+<p class="note"><b>Що це означає:</b> Версія про навмисний тиск поки спирається лише на анонімні джерела FT; офіційно США її не коментували.</p>
+<p class="src">Джерела: <a href="https://t.me/V_Zelenskiy_official/21792">Офіс Президента (TG)</a> · <a href="https://thehill.com/policy/international/6215721-zelensky-starshield-speed-restrictions/">The Hill</a> · <a href="https://nv.ua/ukr/world/geopolitics/obmezhennya-starshield-dzherela-ft-zayavili-shcho-ssha-navmisno-spovilnili-robotu-zv-yazku-v-ukrajini-50658677.html">NV (за FT)</a></p>
+</details>
+<details><summary>Удари РФ: 10 загиблих і 40 поранених за добу; атака на Київ, енергетику Хмельниччини та автобус на Запоріжжі<span class="tag">Kyiv Independent / Суспільне</span></summary>
+<p class="body">За минулу добу російські атаки вбили 10 людей і поранили 40 у різних регіонах. У Києві вночі працювала ППО. У Солом&#x27;янському районі кількість постраждалих зросла до семи, одна жінка загинула. У Шевченківському районі на дорогу впав дрон, загорілися легковик і автобус. Росія атакувала енергетику Хмельницької області, є відключення. Дрон влучив у рейсовий автобус у Запорізькому районі, поранено трьох жінок.</p>
+<p class="body">У Комишувасі на Запоріжжі на 11-ту добу після авіаудару по школі з-під завалів дістали ще двох загиблих; раніше там знайшли 55 тіл. Окремо росіяни критично пошкодили Ніжинський жиркомбінат, роботу підприємства зупинено.</p>
+<p class="src">Джерела: <a href="https://kyivindependent.com/russian-attacks-kill-10-injure-40-across-ukraine-over-past-day-as-peace-talks-end/">Kyiv Independent</a> · <a href="https://kyivindependent.com/russia-attacks-kyiv-with-ballistic-missiles-hours-after-peace-talks-end/">Kyiv Independent</a> · <a href="https://t.me/suspilnenews/79189">Суспільне (TG)</a> · <a href="https://epravda.com.ua/biznes/rosiyani-kritichno-poshkodili-nizhinskiy-zhirkombinat-robotu-zupineno-827576/">Економічна правда</a></p>
+</details>
+<details><summary>ССО втретє вразили Омський НПЗ — найбільший нафтопереробний завод Росії, за ~3000 км від фронту<span class="tag">УП / Kyiv Independent</span></summary>
+<p class="body">11 листопада підрозділи Deep Strike Сил спеціальних операцій уже втретє атакували Омський НПЗ. Дрони подолали майже 3000 км, атака тривала близько восьми годин. Омський завод — найбільший нафтопереробний у Росії, тож такі удари безпосередньо б&#x27;ють по внутрішньому ринку пального РФ та її експортних доходах. Генштаб ЗСУ оцінює загальні втрати Росії з 24.02.2022 у 1 616 330 військових. Генсек НАТО Рютте заявив, що місячні втрати РФ убитими й пораненими вже майже дорівнюють сукупним втратам США за 14 років війни у В&#x27;єтнамі.</p>
+<p class="src">Джерела: <a href="https://t.me/ukrpravda_news/86528">Українська правда (TG)</a> · <a href="https://kyivindependent.com/russias-largest-oil-refinery-slammed-by-drones-in-8-hr-attack-2-500-km-from-ukraine/">Kyiv Independent</a> · <a href="https://kyivindependent.com/general-staff-russia-has-lost-1-616-330-troops-in-ukraine-since-feb-24-2022/">Kyiv Independent</a></p>
+</details>
+<details><summary>Зеленський на саміті Європейської політичної спільноти в Дубліні; ЄС сперечається, хто представлятиме Європу на переговорах з РФ<span class="tag">ОП / УП / NV</span></summary>
+<p class="body">Зеленський виступив на IX саміті Європейської політичної спільноти в Дубліні та зустрівся з Ільхамом Алієвим. Напередодні він провів зустріч із прем&#x27;єром Ірландії Міхолом Мартіном, який хоче до кінця року відкрити для України всі переговорні кластери щодо вступу до ЄС. Глава дипломатії ЄС Кая Каллас допустила, що може представляти Європу на переговорах із Росією; президент Литви назвав свого кандидата на цю роль.</p>
+<p class="body">Канцлер Німеччини Мерц наполягає, що фінансування України у 2027 році та пізніше має бути спільним завданням усіх країн ЄС у межах довгострокового бюджету; Ірландія цю вимогу підтримала. Естонія виділить ще 6,5 млн євро на підготовку України до зими.</p>
+<p class="src">Джерела: <a href="https://t.me/V_Zelenskiy_official/21796">Офіс Президента (TG)</a> · <a href="https://kyivindependent.com/ukraines-future-is-within-the-european-union-irish-pm-aims-to-open-all-eu-negotiation-clusters-for-kyiv-by-end-of-year/">Kyiv Independent</a> · <a href="https://www.pravda.com.ua/news/2026/11/12/8062544/">Українська правда</a> · <a href="https://www.pravda.com.ua/news/2026/11/12/8062549/">Українська правда</a></p>
+</details>
+<details><summary>Рада ратифікувала участь у Космічній програмі ЄС; уряд оновив правила бронювання і критичності підприємств<span class="tag">Суспільне / Forbes / ЕП</span></summary>
+<p class="body">Верховна Рада 243 голосами ратифікувала угоду про участь України як асоційованої країни в Космічній програмі ЄС. Також ухвалено постанову про санкції проти депутатів усіх регіональних парламентів Росії: пропозиції передадуть до РНБО. Уряд 27 жовтня оновив правила критичності підприємств: тепер статус треба обґрунтувати, а діяльність має належати до однієї з 13 визначених сфер. Мінекономіки пояснило, коли підприємства втрачатимуть критичність за старими правилами.</p>
+<p class="body">Мінагрополітики готує окрему модель бронювання аграріїв за критичністю професій, а не за відсотком працівників. У Краматорську з 16 листопада закриваються останні відділення ПриватБанку та Ощадбанку через безпекову ситуацію.</p>
+<p class="src">Джерела: <a href="https://t.me/suspilnenews/79200">Суспільне (TG)</a> · <a href="https://t.me/suspilnenews/79202">Суспільне (TG)</a> · <a href="https://epravda.com.ua/oborona/uryad-opublikuvav-klyuchovi-detali-novih-pravil-bronyuvannya-827573/">Економічна правда</a> · <a href="https://epravda.com.ua/finances/u-kramatorsku-zakrivayut-ostanni-viddilennya-privatbanku-ta-oshchadbanku-827579/">Економічна правда</a></p>
+</details>
+<details><summary>UForce залучив $700 млн за оцінки $6 млрд — найбільший раунд в історії українських стартапів<span class="tag">Forbes Ukraine</span></summary>
+<p class="body">Оборонно-технологічна компанія UForce залучила $700 млн інвестицій за оцінки $6 млрд. За даними Forbes Ukraine, це найбільший інвестиційний раунд в історії українських стартапів. Водночас Мінагро готується до сценарію, за якого експорт через Чорне море буде обмежений до липня 2027 року. Агрохолдинг МХП Юрія Косюка, за даними Forbes, шукає покупця на понад чверть свого земельного банку — близько 100 тис. га.</p>
+<p class="src">Джерела: <a href="https://t.me/Forbes_Ukraine_official/34345">Forbes Ukraine (TG)</a> · <a href="https://t.me/Forbes_Ukraine_official/34353">Forbes Ukraine (TG)</a> · <a href="https://t.me/Forbes_Ukraine_official/34338">Forbes Ukraine (TG)</a></p>
+</details>
+</section>
+<section id="usa"><h2>🇺🇸 США <span class="cnt">5 новин</span></h2>
+<details open><summary>Демократ Скотт Колом сенсаційно виграв вибори сенатора в Міссісіпі<span class="tag">Politico / NPR / BBC</span></summary>
+<p class="body">Колишній окружний прокурор Скотт Колом переміг на виборах до Сенату в Міссісіпі. Перемога стала несподіванкою: штат вважався надійно республіканським. Колом — перший темношкірий сенатор від Міссісіпі з часів XIX століття. Після проміжних виборів, які Politico називає для Республіканської партії «кровопускáнням», демократи стежать за ще не завершеним підрахунком на Алясці. Серед республіканців у Конгресі набирає силу кампанія «Draft Marco» з висування Марко Рубіо на 2028 рік.</p>
+<p class="src">Джерела: <a href="https://www.politico.com/news/2026/11/11/scott-colom-wins-mississippi-senate-01161555">Politico</a> · <a href="https://www.npr.org/2026/11/12/nx-s1-6037438/scott-colom-defied-the-odds-mississippi-democratic-senator">NPR</a> · <a href="https://www.bbc.co.uk/news/articles/cw7vppyr80eeo?at_medium=RSS&amp;at_campaign=rss">BBC</a></p>
+</details>
+<details><summary>Республіканці в «кульгавій» сесії форсують призначення суддів Трампа; імпічмент Гегсета провалився<span class="tag">NYT / The Hill</span></summary>
+<p class="body">До того як новий Конгрес збереться в січні, сенатори-республіканці намагаються затвердити якомога більше федеральних суддів, номінованих Трампом. Голосування про імпічмент міністра оборони Піта Гегсета в Палаті представників провалилося, і частина демократів, які його пропустили, зіткнулася з критикою; конгресвумен Стенсбері публічно перепросила. Республіканець Томас Мессі, який іде з Конгресу, пообіцяв до кінця каденції ініціювати й інші незручні для партії голосування. Один із сенаторів-республіканців застеріг колег не применшувати поразку на проміжних виборах.</p>
+<p class="src">Джерела: <a href="https://www.nytimes.com/2026/11/11/us/politics/trump-federal-judges-senate-republicans.html">NYT</a> · <a href="https://www.nytimes.com/2026/11/11/us/politics/massie-trump-difficult-republican-votes.html">NYT</a> · <a href="https://thehill.com/homenews/senate/6215464-gop-lame-duck-legislative-push/">The Hill</a></p>
+</details>
+<details><summary>Трамп відкликає Венса з іранського треку — той займеться «корупцією і злочинністю» в демократичних містах<span class="tag">NYT / The Hill</span></summary>
+<p class="body">Трамп заявив, що віцепрезидент Джей Ді Венс більше не займатиметься переговорами щодо Ірану. Натомість Венс зосередиться на кампанії проти «масштабної корупції та злочинності» в містах і штатах, де керують демократи. Паралельно Білий дім попереджає демократів про наслідки майбутніх розслідувань: зокрема, федеральний прокурор пригрозив сенатору Блюменталю «серйозними правовими наслідками» через його розслідування щодо бальної зали Білого дому. Минюст після поразки республіканців на проміжних виборах готується до нових конфліктів.</p>
+<p class="src">Джерела: <a href="https://www.nytimes.com/2026/11/12/us/politics/trump-vance-iran-fraud.html">NYT</a> · <a href="https://thehill.com/homenews/administration/6215680-donald-trump-jd-vance-corruption-fraud-democratic-cities-states-iran-war/">The Hill</a> · <a href="https://thehill.com/homenews/administration/6215399-richard-blumenthal-white-house-ballroom-probe-doj/">The Hill</a></p>
+</details>
+<details><summary>Стрілянина в Логан-Серкл біля Білого дому: п&#x27;ятеро поранених; у Брукліні обвал будинку забрав щонайменше 8 життів<span class="tag">AP через Суспільне / The Hill / Guardian</span></summary>
+<p class="body">На площі Логан-Серкл у Вашингтоні, неподалік від Білого дому, стріляли: за даними AP, поранено п&#x27;ятьох людей. Поліція перекрила значну частину кварталу й закликала мешканців залишатися вдома. За словами речниці поліції, стрільця на момент публікацій не затримали. У Нью-Йорку, в Брукліні, обвалився житловий будинок: загинули щонайменше 8 людей, 17 поранено, пошукова операція триває.</p>
+<p class="src">Джерела: <a href="https://thehill.com/homenews/state-watch/6215462-washington-dc-shooting-logan-circle/">The Hill</a> · <a href="https://www.theguardian.com/us-news/2026/nov/12/dc-shooting-logan-circle">The Guardian</a> · <a href="https://www.theguardian.com/us-news/2026/nov/12/brooklyn-building-collapse-nyc">The Guardian</a></p>
+</details>
+<details><summary>Економіка США: CPI за жовтень +0,4%, базова інфляція третій місяць поспіль +0,3%; продажі житла — на мінімумі з часів Великої рецесії<span class="tag">CNBC / Morningstar / MarketWatch</span></summary>
+<p class="body">Жовтневий індекс споживчих цін, оприлюднений 10 листопада, виріс на 0,4% за місяць при прогнозі 0,3%. Базовий індекс без їжі та енергії додав 0,3% при прогнозі 0,2%, і це вже третій такий місяць поспіль. Найбільше подорожчали продукти й оренда. Річного показника за жовтень BLS не публікує через торішній шатдаун; за оцінками економістів, річна інфляція могла наблизитися до ~4% (у вересні було 3,7%).</p>
+<p class="body">Губернатор ФРС Воллер раніше називав три місяці базової інфляції по 0,3% порогом, за якого розглядатиме підвищення ставки на 0,5 п.п. у грудні. Президентка ФРБ Далласа Логан бачить потребу у двох підвищеннях по 0,25 п.п. Поточна ставка — 3,75–4%, наступне засідання — 8–9 грудня. Окремо MarketWatch повідомляє, що продажі житла впали до мінімуму з часів Великої рецесії.</p>
+<p class="note"><b>Що це означає:</b> Річна інфляція повернеться в статистику з листопадовим звітом 10 грудня, тобто вже після засідання ФРС.</p>
+<p class="src">Джерела: <a href="https://www.cnbc.com/2026/11/10/cpi-inflation-report-october-2026.html">CNBC</a> · <a href="https://www.morningstar.com/economy/october-cpi-report-shows-inflation-04-monthly-rate-above-forecasts">Morningstar</a> · <a href="https://www.marketwatch.com/story/home-sales-plummet-to-lowest-level-since-the-great-recession-as-buyers-flee-the-market-624e6270?mod=mw_rss_topstories">MarketWatch</a></p>
+</details>
+</section>
+<section id="world"><h2>🌍 Світ <span class="cnt">4 новини</span></h2>
+<details open><summary>Сі Цзіньпін: «возз&#x27;єднання» з Тайванем має бути повним, Пекін обіцяє мирний шлях<span class="tag">Reuters через Суспільне</span></summary>
+<p class="body">Лідер Китаю Сі Цзіньпін заявив, що Тайвань має бути повністю «возз&#x27;єднаний» з КНР, і пообіцяв організувати цей процес мирним шляхом. За його словами, розв&#x27;язання тайванського питання є історичним завданням. Заява пролунала на тлі напруги довкола Nvidia та експортного контролю на чипи. Для ринків напівпровідників Тайвань (TSMC) залишається ключовим вузлом ризику.</p>
+<p class="src">Джерела: <a href="https://t.me/suspilnenews/79201">Суспільне (TG, за Reuters)</a></p>
+</details>
+<details><summary>Близький Схід: удар Ізраїлю по лікарні в Газі вбив шістьох; біля Ормузької протоки атаковано судно<span class="tag">BBC / NPR / ЕП</span></summary>
+<p class="body">Ізраїльський удар по лікарні в секторі Газа, за даними місцевого Міністерства охорони здоров&#x27;я, вбив шістьох палестинців. Біля Ормузької протоки знову атакували торговельне судно. Видобуток нафти ОПЕК+ відновився на 97% від рівнів, що були до війни з Іраном. У Великій Британії двох чоловіків визнали винними в допомозі Ірану у спробі «ліквідувати» журналістів, які працюють у Лондоні.</p>
+<p class="src">Джерела: <a href="https://www.bbc.co.uk/news/articles/ckzd9p7e4eqeo?at_medium=RSS&amp;at_campaign=rss">BBC</a> · <a href="https://epravda.com.ua/svit/v-ormuzi-znovu-atakuvali-827581/">Економічна правда</a> · <a href="https://epravda.com.ua/svit/vidobutok-nafti-opek-obsyagi-vidnovilisya-na-97-vidsotkiv-827572/">Економічна правда</a> · <a href="https://www.theguardian.com/uk-news/2026/nov/12/two-men-found-guilty-over-iranian-attempts-to-eliminate-uk-based-journalists">The Guardian</a></p>
+</details>
+<details><summary>Віцепрезидент Індонезії пішов у відставку; в Іспанії загальний страйк зі сутичками в Барселоні<span class="tag">BBC / NPR</span></summary>
+<p class="body">Віцепрезидент Індонезії подав у відставку на тлі питань щодо його права обіймати посаду та справжності його академічних документів. BBC вважає це ознакою того, що правляча коаліція розпадається. В Іспанії тисячі людей долучилися до загального страйку, у Барселоні виникли сутички. Окремо Kyiv Independent повідомляє, що Іспанія відновила закупівлі російського СПГ перед ключовим дедлайном ЄС, а закупівлі ЄС ямальського СПГ у 2026 році перевищили $9 млрд.</p>
+<p class="src">Джерела: <a href="https://www.bbc.co.uk/news/articles/cmvgxgz87qqro?at_medium=RSS&amp;at_campaign=rss">BBC</a> · <a href="https://www.bbc.co.uk/news/articles/cwvg25nypmrvo?at_medium=RSS&amp;at_campaign=rss">BBC</a> · <a href="https://kyivindependent.com/spain-resumes-russian-lng-purchases-ahead-of-key-deadline-new-report-reveals/">Kyiv Independent</a></p>
+</details>
+<details><summary>Лікарі без кордонів: мільйони доларів на боротьбу з Еболою зникають, поки вірус поширюється<span class="tag">BBC</span></summary>
+<p class="body">Медична благодійна організація попереджає, що мільйони доларів, виділених на боротьбу з епідемією Еболи, зникають. Тим часом вірус продовжує поширюватися. Організація закликає донорів посилити контроль за використанням коштів. Подробиці щодо країн і сум — у матеріалі BBC.</p>
+<p class="src">Джерела: <a href="https://www.bbc.co.uk/news/articles/cx98757ymm6zo?at_medium=RSS&amp;at_campaign=rss">BBC</a></p>
+</details>
+</section>
+<section id="immi"><h2>🛂 Українці в США та імміграція <span class="cnt">3 новини</span></h2>
+<details open><summary>Трамп заговорив про імміграційну угоду з демократами, але потім відступив — конкретних умов немає<span class="tag">TIME / America / NYT</span></summary>
+<p class="body">В інтерв&#x27;ю «60 Minutes», яке вийшло 8 листопада, Трамп сказав, що його політика депортацій, можливо, була «занадто жорсткою», і що він готовий працювати з демократами над імміграційним законом. Як приклад «реалістичного» варіанту він назвав якийсь легальний статус для працівників на кшталт садівників і персоналу готелів. Уже 9 листопада він заявив, що політика депортацій не змінилася і «амністії не буде».</p>
+<p class="body">NYT зазначає, що Трамп і раніше натякав на угоди, а потім від них відмовлявся. Лідер демократів у Палаті Хакім Джеффріс пропонує почати з Dream and Promise Act, який мав би відновити захист отримувачів DACA і TPS. Джерело TIME в Конгресі вважає, що сигналом серйозності намірів Трампа було б уповільнення або пауза депортацій.</p>
+<p class="note"><b>Що це означає:</b> для українців у США — тих, хто має TPS чи U4U/парол, — поки нічого не змінилося. Жодного законопроєкту, указу чи правила немає, а парол у цих розмовах не згадується. Реальні зміни можливі лише після ухвалення закону, а для цього в обох палатах потрібні голоси республіканців.</p>
+<p class="src">Джерела: <a href="https://time.com/article/2026/11/09/democratic-congress-immigration-deal-Trump-DACA-mass-deportation-amnesty/">TIME</a> · <a href="https://www.americamagazine.org/news/2026/11/10/trump-60-minutes-immigration-policy-tough/">America Magazine</a> · <a href="https://www.nytimes.com/2026/11/11/us/politics/trump-immigration-election-democrats-republicans.html">NYT</a></p>
+</details>
+<details><summary>USCIS і Federal Register: нових рішень щодо українців за добу немає<span class="tag">Federal Register / USCIS</span></summary>
+<p class="body">Федеральний реєстр за останні 26 годин не опублікував жодного документа зі згадкою України. У стрічці новин USCIS за тиждень — повідомлення про кримінальні справи щодо шахрайства та звіт про правозастосування, а не про зміни в програмах TPS, U4U чи re-parole. Чинне процесуальне тло: подання на re-parole для українців іде через Form I-131. Рішення дискреційні, тобто ухвалюються на розсуд відомства.</p>
+<p class="body">Опрацювання заяв паролянтів відновили в червні 2025 року після рішення федерального суду. У листопаді USCIS для заяв на грінкарту за роботою продовжує користуватися таблицею Dates for Filing Візового бюлетеня; на грудень це не гарантовано.</p>
+<p class="note"><b>Що це означає:</b> суттєвих змін для українців у США за добу немає. Статус TPS Ukraine і строки дії EAD — це окремі рішення з різними датами; актуальні дати слід звіряти зі сторінкою TPS Ukraine на uscis.gov і з Federal Register, а не з пересказами в соцмережах.</p>
+<p class="src">Джерела: <a href="https://www.uscis.gov/newsroom/all-news">USCIS — All News</a> · <a href="https://www.federalregister.gov/">Federal Register</a> · <a href="https://natlawreview.com/article/november-2026-visa-bulletin-modest-advances-final-action-dates-uscis-continues">National Law Review — Visa Bulletin</a></p>
+</details>
+<details><summary>Щонайменше 23 штати цього року розглядали закони про ICE і школи<span class="tag">NPR</span></summary>
+<p class="body">За даними NPR, у 2026 році щонайменше 23 штати розглядали законопроєкти про те, чи можуть імміграційні агенти заходити до шкіл і як школи мають реагувати на їхні запити. Частина штатів обмежує доступ ICE без судового ордера, інші, навпаки, зобов&#x27;язують шкільні округи співпрацювати з федеральними органами. Підходи залежать від політичної належності штату.</p>
+<p class="note"><b>Що це означає:</b> правила щодо дій ICE у школах різняться від штату до штату. Для родин українців із дітьми важить законодавство саме їхнього штату; Флорида належить до штатів, що наголошують на співпраці з федеральною владою.</p>
+<p class="src">Джерела: <a href="https://www.npr.org/2026/11/12/nx-s1-5718547/ice-schools-state-laws-federal-immigration">NPR</a></p>
+</details>
+</section>
+<section id="ice"><h2>🚔 ICE: моніторинг <span class="cnt">3 новини</span></h2>
+<details><summary>Загальна картина: близько 65,8 тис. людей в імміграційному ув&#x27;язненні, рекордні 483 тис. депортацій за 2026 фінансовий рік<span class="tag">CBS / трекери / TRAC</span></summary>
+<p class="body">За даними незалежного трекера, оновленими 9 листопада з посиланням на урядові дані, в імміграційному ув&#x27;язненні перебувають 65 765 людей. Пік — 70 766 осіб 24 січня 2026 року (дані зведеного трекера, не TRAC). CBS з посиланням на DHS повідомляє про рекордні 483 200 депортацій за 2026 фінансовий рік (офіційні дані відомства). Аналіз TRAC показав, що в липні–серпні 2026 року формальні видворення становили лише 63% усіх депортацій; решта — добровільні виїзди та повернення. Найбільше затриманих утримують у Техасі.</p>
+<p class="note"><b>Що це означає:</b> Ці цифри стосуються насамперед людей без чинного статусу або з припиненим статусом. Чинний TPS чи дійсний парол — інша правова категорія, але, за даними трекерів, затримують і людей без кримінальних обвинувачень.</p>
+<p class="src">Джерела: <a href="https://www.cbsnews.com/news/ice-deportations-arrests-hit-record-high/">CBS News</a> · <a href="https://tracreports.org/immigration/quickfacts/">TRAC — Quick Facts</a> · <a href="https://icetracking.org/">icetracking.org (трекер)</a></p>
+</details>
+<details><summary>Флорида: за рік ~29 тис. арештів, друге місце після Техасу; більш ніж половина затриманих не мала кримінальних обвинувачень<span class="tag">WLRN / Deportation Data Project</span></summary>
+<p class="body">WLRN 28 жовтня проаналізувала дані Deportation Data Project. У Флориді цього року було близько 29 тис. імміграційних арештів — друге місце після Техасу. Під час літнього сплеску штат у середньому мав понад 200 арештів на день, майже вдвічі більше, ніж на початку року. Більш ніж половина затриманих не мала ні кримінальних обвинувачень, ні судимостей. Флоридська рада з імміграційного правозастосування звітує про щонайменше 10 тис. арештів силами місцевих агенцій (передусім дорожнього патруля штату) з серпня минулого року. Нових масштабних операцій у Флориді за останню добу в доступних джерелах не знайдено — день тихий.</p>
+<p class="note"><b>Що це означає:</b> Флорида активно використовує угоди 287(g), тож імміграційні перевірки часто починаються з дорожніх зупинок місцевою поліцією. Це стосується насамперед людей без чинного статусу; наявність чинного TPS чи паролю — окрема категорія.</p>
+<p class="src">Джерела: <a href="https://www.wlrn.org/immigration/2026-10-28/whats-behind-the-surge-in-floridas-ice-arrests">WLRN</a> · <a href="https://wusf.org/text/politics-issues/2026-06-11/florida-immigration-arrests-quietly-surged-state-local-agencies-at-forefront">WUSF</a></p>
+</details>
+<details><summary>Конгрес і DHS: пропозиція заборонити імміграційним органам викладати фото затриманих у соцмережах; Гарсія вимагає від Стівена Міллера зберігати документи<span class="tag">The Hill</span></summary>
+<p class="body">В авторській колонці The Hill пропонують Конгресу заборонити імміграційним відомствам публікувати в соцмережах фото затриманих; це думка автора, а не законопроєкт. Демократ Роберт Гарсія, який очолить один із комітетів Палати, попередив радника Білого дому Стівена Міллера, що той «має зберігати документи». Це сигнал майбутніх розслідувань імміграційної політики після переходу Палати під контроль демократів.</p>
+<p class="note"><b>Що це означає:</b> Нагляд Конгресу за ICE посилиться з січня; на сьогоднішні операції це поки не впливає.</p>
+<p class="src">Джерела: <a href="https://thehill.com/opinion/immigration/6213068-dhs-social-media-detainee-photos/">The Hill (колонка)</a> · <a href="https://thehill.com/homenews/house/6215376-garcia-warns-miller-preserve-documents/">The Hill</a></p>
+</details>
+</section>
+<section id="docs"><h2>📄 Державні документи <span class="cnt">2 новини</span></h2>
+<details><summary>Federal Register: прокламація про створення Національного монумента «Овальний кабінет»<span class="tag">Federal Register</span></summary>
+<p class="body">12 листопада Федеральний реєстр опублікував президентський документ про створення Національного монумента «Овальний кабінет» (Oval Office National Monument). Документ має переважно церемоніальний характер. Інших президентських документів чи документів зі згадкою України за останні 26 годин не зафіксовано.</p>
+<p class="src">Джерела: <a href="https://www.federalregister.gov/documents/2026/11/12/2026-23113/establishment-of-the-oval-office-national-monument">Federal Register 2026-23113</a></p>
+</details>
+<details><summary>Верховна Рада: ратифікація угоди про Космічну програму ЄС і постанова про санкції проти регіональних депутатів РФ<span class="tag">ВРУ через Суспільне</span></summary>
+<p class="body">Рада 243 голосами ратифікувала угоду про участь України як асоційованої країни в Космічній програмі ЄС. Окремою постановою парламент запропонував РНБО запровадити санкції проти депутатів усіх регіональних законодавчих органів Росії. Тексти доступні в картках документів на сайті Верховної Ради.</p>
+<p class="src">Джерела: <a href="https://t.me/suspilnenews/79200">Суспільне (TG)</a> · <a href="https://t.me/suspilnenews/79202">Суспільне (TG)</a></p>
+</details>
+</section>
+<section id="mkt"><h2>📈 Ринки і компанії <span class="cnt">5 новин</span></h2>
+<details><summary>Хуанг пішов з Nvidia: акції падали на 10–14%, ринок оцінює ризик для всього AI-циклу<span class="tag">CNBC / Reuters / CoinDesk</span></summary>
+<p class="body">Дженсен Хуанг негайно залишив посади CEO і члена ради директорів Nvidia. Причина — публікації про стосунки з жінкою, яку називають імовірною китайською шпигункою (за повідомленнями, вона зараз у Пекіні), та про другий роман із віцепрезиденткою компанії. Тимчасово компанію очолить фінансова директорка Колетт Кресс. Акції NVDA на старті торгів падали майже на 10%, внутрішньоденно — до 14%; перпетуали на Hyperliquid просіли на 10% ще ввечері в середу.</p>
+<p class="body">Механізм ширшого удару: Nvidia — найбільша компанія індексу S&amp;P 500 і ключовий постачальник для всіх гіперскейлерів, тож її падіння тягне вниз Nasdaq і весь сектор AI-інфраструктури. CNBC називає Nvidia «центробанком AI»: компанія фінансує клієнтів і партнерів (зокрема CoreWeave), тому криза керівництва — ризик для всього ланцюга фінансування дата-центрів. Конгрес планує викликати Хуанга для пояснень щодо можливого витоку до Китаю.</p>
+<p class="body">Наслідки для конкурентів різні: AMD отримала підвищення рейтингу через «вакуум лідерства» в Nvidia, а Том Лі купує просідання, вважаючи, що інвестиційна теза не змінилась.</p>
+<p class="note"><b>Що це означає:</b> За чим стежити: кого рада призначить постійним CEO, позицію Конгресу і Мінторгівлі щодо можливого витоку технологій до Китаю (це може посилити експортний контроль) і чи не почнуть великі клієнти переглядати замовлення.</p>
+<p class="src">Джерела: <a href="https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition">NVIDIA Newsroom</a> · <a href="https://www.cnbc.com/2026/11/12/nvidia-nvda-jensen-huang-second-affair.html">CNBC</a> · <a href="https://www.cnbc.com/2026/11/11/nvidia-jensen-huang-ai-financial-system-risk.html">CNBC (аналіз)</a> · <a href="https://techcrunch.com/2026/11/12/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/">TechCrunch</a></p>
+</details>
+<details><summary>Підсумки сесій: у середу S&amp;P 500 +1,3% на відскоку чипів, у четвер зранку — знову в мінусі<span class="tag">CNBC / Investrade</span></summary>
+<p class="body">У середу, 11 листопада, S&amp;P 500 закрився на рівні 7 619,38 (+1,31%), Nasdaq — 25 466,19 (близько +1,6%), Dow — 52 486,49 (+0,49%); в інших джерелах цифри Dow трохи відрізняються. Відскок вели чипмейкери, а звіт CoreWeave оживив AI-торгівлю. У четвер зранку після новини про Хуанга S&amp;P 500 був на рівні 7 606 (−0,17%), Nasdaq — 25 371 (−0,37%), а Dow тримався біля нуля (52 525, +0,07%).</p>
+<p class="body">Ротація з технологій у «стару економіку» стримує загальне падіння індексу Dow. Акції Nebius падали на 16% через вищі капвитрати у 2026 році і слабкий прогноз — ще один сигнал, що ринок карає AI-компанії за витрати без чіткої віддачі.</p>
+<p class="note"><b>Що це означає:</b> Висока концентрація індексів у кількох мегакапах означає, що криза в одній компанії рухає весь S&amp;P 500. Великі рухи рівноважених індексів зараз малоймовірні.</p>
+<p class="src">Джерела: <a href="https://www.cnbc.com/2026/11/11/stock-market-today-live-updates.html">CNBC — live</a> · <a href="https://investrade.com/market-review-november-11-2026/">Investrade</a> · <a href="https://www.cnbc.com/2026/11/12/nebius-q3-earnings-report-2026.html">CNBC — Nebius</a></p>
+</details>
+<details><summary>Облігації: 10-річна дохідність знову вище 5% — гаряча інфляція, ризик підвищення ставки ФРС та іранська премія<span class="tag">Saxo / mlq / Investrade</span></summary>
+<p class="body">У вівторок після гарячого CPI дохідність 10-річних казначейських облігацій ненадовго перевищила 5%. У середу ринок облігацій не працював через День ветеранів; закриття вівторка — близько 4,98–4,99% для 10-річних і 4,73% для 2-річних. У четвер після заяв Трампа щодо Ірану дохідність 10-річних знову перевищила 5%. Механізм: інфляція по 0,3% у базовому вимірі три місяці поспіль змушує ринок закладати підвищення ставки на засіданні 8–9 грудня (поточний діапазон — 3,75–4%).</p>
+<p class="body">Вища нафта посилює інфляційні очікування, а це тисне на довгий кінець кривої. Наслідки: дорожчають іпотека (продажі житла вже на мінімумі з часів Великої рецесії), корпоративні кредити й обслуговування держборгу США.</p>
+<p class="note"><b>Що це означає:</b> За чим стежити: виступи членів ФРС до грудневого засідання. Якщо дохідність 10-річних закріпиться вище 5%, це підвищить тиск на акції з високими мультиплікаторами, насамперед технологічні.</p>
+<p class="src">Джерела: <a href="https://www.home.saxo/en-mena/content/articles/macro/market-quick-take---us-treasury-yields-rip-higher---11-november-2026-11112026">Saxo</a> · <a href="https://mlq.ai/news/10-year-treasury-yield-tops-5-and-oil-rises-after-trump-says-the-us-doesnt-need-an-iran-deal/">mlq.ai</a> · <a href="https://investrade.com/morning-preview-november-11-2026/">Investrade</a></p>
+</details>
+<details><summary>Нафта: Brent ~$93–94 (+1–1,6%) після слів Трампа «у нас їхня протока»<span class="tag">CNBC / Quartz / TT</span></summary>
+<p class="body">Трамп написав у Truth Social, що США більше не потрібна угода з Іраном, бо Вашингтон контролює іранські кошти й Ормузьку протоку: «у нас їхня протока». За даними CNBC, Brent уранці зростав на 1,6% до $94,25, WTI — на 1,3% до $87,62; згодом Brent був близько $93,3–93,7 (+1,1%). До цього в листопаді WTI подешевшала на 16%, а Brent — на 20%, бо ринок закладав деескалацію. Аналітик Джон Кілдафф (Again Capital) вважає, що сумніви щодо угоди повернуть безпекову премію в ціни.</p>
+<p class="body">Енді Ліпоу (Lipow Oil Associates) припускає, що Іран може й далі атакувати регіональну інфраструктуру, щоб повернути США за стіл переговорів; біля Ормуза вже атаковано ще одне судно. Пом&#x27;якшує ситуацію те, що видобуток ОПЕК+ відновився на 97% від довоєнного рівня.</p>
+<p class="note"><b>Що це означає:</b> Нафта зараз прямо впливає на інфляційні очікування, а через них — на рішення ФРС. Ціна залежить від заяв, а не від реальних обсягів пропозиції, тому волатильність висока.</p>
+<p class="src">Джерела: <a href="https://www.cnbc.com/2026/11/12/oil-prices-jump-after-trump-says-no-iran-deal-needed-weve-got-their-strait.html">CNBC</a> · <a href="https://qz.com/oil-prices-reverse-trump-iran-deal-brent-111226">Quartz</a> · <a href="https://www.ttnews.com/articles/oil-prices-trump-no-iran-deal">Transport Topics</a></p>
+</details>
+<details><summary>Компанії: Wendy&#x27;s відхилила пропозицію поглинання, Scout Motors має 212 тис. попередніх замовлень, держава нарощує частки в бізнесі<span class="tag">MarketWatch / CNBC</span></summary>
+<p class="body">Wendy&#x27;s відхилила пропозицію про поглинання і скоротила сніданкове меню, проте її акції різко зросли. Scout Motors (підрозділ Volkswagen) повідомила про 212 тис. попередніх замовлень, а її завод у Південній Кароліні вартістю $2 млрд близький до завершення. MarketWatch показує, як за другої каденції Трампа різко зросли частки федерального уряду в приватних компаніях. NYT пише, що Kalshi з дозволу CFTC запускає «перпетуальні» угоди на акції, фактично відкриваючи можливість шортити їх.</p>
+<p class="body">SEC втрутилася в суперечку про те, хто має регулювати такі деривативи. Сенатор Коттон закликав міністра торгівлі Лутніка заборонити в США китайського виробника пам&#x27;яті CXMT.</p>
+<p class="note"><b>Що це означає:</b> Боротьба SEC і CFTC за регулювання перпетуалів на акції визначить, чи з&#x27;явиться в США новий масовий інструмент спекуляцій поза класичними біржами.</p>
+<p class="src">Джерела: <a href="https://www.marketwatch.com/story/wendys-rejects-a-takeover-offer-scales-back-breakfast-and-still-sees-its-stock-surge-4e398cde?mod=mw_rss_topstories">MarketWatch</a> · <a href="https://www.cnbc.com/2026/11/12/scout-motors-reservations-south-carolina-plant.html">CNBC</a> · <a href="https://www.nytimes.com/2026/11/12/us/politics/kalshi-commodity-futures-stocks.html">NYT</a> · <a href="https://www.cnbc.com/2026/11/12/lutnick-cxmt-china-cotton.html">CNBC</a></p>
+</details>
+</section>
+<section id="crypto"><h2>₿ Крипто <span class="cnt">3 новини</span></h2>
+<details><summary>BTC ~$71,3 тис. (−3,6%), ETH ~$1 997 (−3,8%): падіння разом із Nvidia, відтік з ETF — п&#x27;ятий день<span class="tag">CoinDesk / Cointelegraph</span></summary>
+<p class="body">Біткоїн опускався нижче $72 тис. разом із падінням Nvidia і зростанням дохідності облігацій; на момент збору даних — близько $71 346 (−3,6% за добу). Ether — близько $1 997 (−3,8%). Відтік із біткоїн-ETF триває п&#x27;ятий день поспіль, а BlackRock IBIT за дев&#x27;ять сесій втратив близько $2 млрд. Пропозиція стейблкоїнів за 30 днів скоротилася на $14,2 млрд — найбільше з червня 2022 року, що означає відплив ліквідності з крипторинку.</p>
+<p class="body">CoinDesk пише, що слабкість біткоїна звела нанівець «бичачий» сигнал вересня, а трейдери, за The Block, підвищують ймовірність ціни нижче $70 тис. на Різдво.</p>
+<p class="note"><b>Що це означає:</b> Крипта зараз торгується як високоризиковий технологічний актив: дорожчі гроші (дохідність понад 5%) і криза в AI-секторі тиснуть на неї одночасно.</p>
+<p class="src">Джерела: <a href="https://www.coindesk.com/markets/2026/11/12/bitcoin-dips-with-nvidia-as-etf-outflows-reach-day-five">CoinDesk</a> · <a href="https://cointelegraph.com/markets/blackrock-bitcoin-etf-ibit-outflows-nine-day-streak?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">Cointelegraph</a> · <a href="https://cointelegraph.com/markets/stablecoin-supply-drops-worst-slump-since-mid-2022?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">Cointelegraph</a></p>
+</details>
+<details><summary>MSCI виключає Strategy і Metaplanet з індексів наприкінці листопада<span class="tag">CoinDesk / Cointelegraph / The Block</span></summary>
+<p class="body">MSCI підтвердила, що Strategy (колишня MicroStrategy) і Metaplanet вийдуть з її індексів під час листопадового ребалансування. Це змусить пасивні фонди, які відстежують індекси MSCI, продати акції цих компаній. За оцінкою CoinDesk, виключення може вдарити по «машині купівлі біткоїна» Strategy: компанія фінансує покупки BTC через продаж акцій і боргових інструментів, а менший попит на її папери ускладнює залучення грошей.</p>
+<p class="note"><b>Що це означає:</b> Якщо Strategy сповільнить купівлю BTC, ринок втратить одного з найбільших постійних покупців.</p>
+<p class="src">Джерела: <a href="https://www.coindesk.com/markets/2026/11/12/msci-is-dropping-strategy-from-its-index-and-the-exclusion-could-hit-its-bitcoin-buying-machine">CoinDesk</a> · <a href="https://www.theblock.co/news/markets/2026-11-11-strategy-metaplanet-lose-msci-index-membership-november-reshuffle-438437">The Block</a></p>
+</details>
+<details><summary>Інфраструктура: DTCC виведе токенізовані цінні папери на Solana у 2027 році, BNY додає стейкінг, Ethereum прискорює постквантовий захист<span class="tag">The Block / CoinDesk</span></summary>
+<p class="body">Депозитарій DTCC планує запустити токенізовані цінні папери на Solana в другому півріччі 2027 року. BNY підключає Figment для підтримки стейкінгу на своїй платформі зберігання цифрових активів. Ethlabs пропонує відмовитися від проєкту прискорення блоків і натомість пришвидшити підготовку Ethereum до квантових загроз до 2027 року, посилаючись на прогрес AI. Регуляція: Таїланд пропонує обмеження ~$148 тис. на добу для депозитів і виведення стейблкоїнів; Південна Корея дозволить заморожувати виведення з бірж при загрозі злому; фінансова розвідка Індії провела обшуки в біржах CoinDCX і Delta. Gemini продала британський і європейський бізнес фірмі KAST менш ніж за $10 млн.</p>
+<p class="src">Джерела: <a href="https://www.theblock.co/news/business/2026-11-12-dtcc-plans-bring-tokenized-securities-solana-second-half-of-2027-438559">The Block</a> · <a href="https://www.theblock.co/news/business/2026-11-12-bny-taps-figment-to-support-staking-on-its-digital-asset-custody-platform-438538">The Block</a> · <a href="https://www.coindesk.com/tech/2026/11/12/ethereum-researchers-drop-faster-blocks-to-race-toward-quantum-defenses-in-2027">CoinDesk</a> · <a href="https://cointelegraph.com/news/thailand-tighter-stablecoin-rules-crypto-exchange?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">Cointelegraph</a></p>
+</details>
+</section>
+<section id="ai"><h2>🤖 AI <span class="cnt">4 новини</span></h2>
+<details><summary>Anthropic почала IPO-роудшоу на Nasdaq; дебют можливий уже наступного тижня<span class="tag">Simon Willison / ROIC / FourWeekMBA</span></summary>
+<p class="body">Anthropic, за повідомленнями, 10 листопада почала маркетинг свого IPO на Nasdaq і оприлюднила відео роудшоу; дебют можливий на тижні з 16 листопада. Ціновий діапазон у останній версії форми S-1/A від 2 листопада досі не вказаний. Оцінки компанії в медіа розходяться: частина інвесторів говорила про $1,8–2 трлн, тоді як FT писала, що компанія готова погодитися на суттєво нижчу оцінку.</p>
+<p class="body">Остання приватна оцінка — $965 млрд у травні 2026 року. Синдикат очолюють Goldman Sachs і Morgan Stanley. Цифри поки неофіційні, тож до публікації ціни розміщення їх варто сприймати обережно.</p>
+<p class="src">Джерела: <a href="https://simonwillison.net/2026/Nov/11/anthropic-ipo-roadshow/">Simon Willison</a> · <a href="https://www.roic.ai/news/anthropic-kicks-off-nasdaq-ipo-roadshow-as-ai-valuation-questions-loom-11-09-2026">ROIC</a></p>
+</details>
+<details><summary>OpenAI: квартальна виручка вперше перевищила $10 млрд (за повідомленнями)<span class="tag">TechCrunch</span></summary>
+<p class="body">TechCrunch з посиланням на звіти пише, що квартальна виручка OpenAI вперше перевищила $10 млрд. Компанія також оприлюднила декларацію про підтримку досліджень безпеки AI для дітей. Цифри виручки неофіційні: OpenAI їх не підтверджувала.</p>
+<p class="src">Джерела: <a href="https://techcrunch.com/2026/11/11/openais-quarterly-revenue-reportedly-crosses-10b-for-the-first-time/">TechCrunch</a> · <a href="https://openai.com/index/children-first-declaration">OpenAI</a></p>
+</details>
+<details><summary>Google: AlphaGenome 2 для пошуку генетичних причин хвороб і Gemini Decisions API<span class="tag">The Verge / Google Blog</span></summary>
+<p class="body">Google DeepMind представила AlphaGenome 2 — модель, яка точніше аналізує, як зміни в ДНК впливають на роботу клітин і розвиток хвороб. Для розробників Google запустила Gemini Decisions API — інструмент для швидких і відкаліброваних мультимодальних рішень (класифікацій за текстом, зображенням тощо). Також з&#x27;явився експеримент Tabletop — простори для спільного планування в групах, поки що з листом очікування.</p>
+<p class="src">Джерела: <a href="https://www.theverge.com/ai-artificial-intelligence/1031524/google-deepmind-alphagenome-2-genetic-ai-model">The Verge</a> · <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/">Google Blog</a></p>
+</details>
+<details><summary>Гроші й ризики AI-інфраструктури: CoreWeave бере передоплати, Fractile залучив $720 млн, Norwest — фонд на $4 млрд; злам Fireworks AI зачепив клієнтів Notion<span class="tag">TechCrunch</span></summary>
+<p class="body">CoreWeave фінансує зростання за рахунок передоплат клієнтів і коротших контрактів — ознака того, що позиковий капітал для дата-центрів дорожчає. Британський розробник AI-чипів Fractile залучив $720 млн. Венчурна компанія Norwest запустила новий фонд на $4 млрд з фокусом на AI. Meta втрачає багаторічного керівника інфраструктури. Кібератака на Fireworks AI дала хакерам доступ до транскриптів чатів клієнтів Notion. United Airlines заборонила стороннім AI-агентам бронювати квитки.</p>
+<p class="src">Джерела: <a href="https://techcrunch.com/2026/11/11/coreweave-turns-to-customer-prepayments-shorter-contracts-to-fund-ai-growth/">TechCrunch — CoreWeave</a> · <a href="https://techcrunch.com/2026/11/11/with-720m-round-britains-fractile-gets-a-leg-up-in-the-race-for-ai-chips/">TechCrunch — Fractile</a> · <a href="https://techcrunch.com/2026/11/12/cyberattack-on-fireworks-ai-allowed-hackers-to-access-notion-customers-chat-transcripts/">TechCrunch — Fireworks</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/1031623/united-unauthorized-ai-agents">The Verge — United</a></p>
+</details>
+</section>
+<section id="tattoo"><h2>🎨 Тату-індустрія <span class="cnt">1 новина</span></h2>
+<details><summary>Цієї доби без помітних регуляторних новин; Inked — історія Цезаря Гуна<span class="tag">Inked Magazine</span></summary>
+<p class="body">Нових рішень FDA, відкликань фарб чи змін у правилах EU REACH за добу не знайдено. Inked Magazine опублікував матеріал про майстра Caesar The Hun — шлях від угорського села до тату-кар&#x27;єри в США. Для контексту: в ЄС з 1 травня 2026 року діє Регламент (EU) 2026/78, який перекласифікував срібло як репродуктивний токсикант і обмежив канцерогенні консерванти у фарбах для тату й перманентного макіяжу.</p>
+<p class="src">Джерела: <a href="https://inkedmag.com/culture/caesar-the-hun-from-a-hungarian-village-to-the-american-tattoo-dream">Inked Magazine</a></p>
+</details>
+</section>
+<footer>Згенеровано автоматично 12.11.2026 о 13:02 за Нью-Йорком. Вікно новин: ~26 годин · Джерел зібрано: 28/29. Сьогодні недоступні: Tattoo Life. Архів: НОВИНИ/digests · <a href="#top">↑ нагору</a></footer></div>
+</body>
+</html>
